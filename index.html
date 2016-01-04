@@ -94,12 +94,16 @@
       
         <p>参考: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a></p>
 <p>一  安装nodes<br><a href="http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html" target="_blank" rel="external">http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html</a></p>
-<p>二  安装初始化配置 hexo</p>
+<p>二  安装初始化配置 hexo<br>初始化<br>hexo init<br>生成静态文件<br>hexo g<br>本地运行服务查看,访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a><br>hexo s</p>
+<p>三  配置 github page<br>注册 github 账号<br>新建一个仓库, 仓库名: yourusername.github.io   (必须是这个格式)</p>
+<p>四  部署到github<br>打开 _config.yml 文件, 修改:<br>deploy:<br>    type: git<br>    repository: git@github.com:yourusername/yourusername.github.io.git<br>    branch: master</p>
+<p>hexo d<br>如果提示：ERROR Deployer not found: git.<br>安装 npm install hexo-deployer-git –save </p>
+<p>五  写文章<br>hexo new “文章标题”<br>然后在 source/_posts/ 目录下可以找到文件进行编辑</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/04/如何用hexo-github搭建静态博客/" data-id="cij07eo5u0001zvbo7yqcx2yz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/04/如何用hexo-github搭建静态博客/" data-id="cij07ywox00011dbo80o6zpwq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -146,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/04/hello-world/" data-id="cij07eo540000zvbomv3p1n3p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/01/04/hello-world/" data-id="cij07ywo600001dbous70ga79" class="article-share-link">Share</a>
       
       
     </footer>
