@@ -34,7 +34,7 @@ _config.yml ： theme: yilia
 cd themes/yilia
 git pull
 2 配置头像首">
-<meta property="og:updated_time" content="2016-01-05T07:11:17.000Z">
+<meta property="og:updated_time" content="2016-01-05T08:08:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 博客优化">
 <meta name="twitter:description" content="1 更换主题我选择更换的主题是yilia
@@ -287,13 +287,20 @@ git pull
 <pre><code>cd themes/yilia
 git pull
 </code></pre><h3 id="2__u914D_u7F6E_u5934_u50CF"><a href="#2__u914D_u7F6E_u5934_u50CF" class="headerlink" title="2 配置头像"></a>2 配置头像</h3><p>首先你得把头像图片上传到网上, 我是上传到了七牛</p>
-<p>然后配置文件 themes/yilia/_config.yml : </p>
+<p>然后配置文件 <code>themes/yilia/\_config.yml</code> : </p>
 <pre><code>favicon: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E5%B0%8F%E9%BB%84.jpg&quot;  # 网页 ico
 
 avatar: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg&quot;  #你的头像url
 </code></pre><h3 id="3__u914D_u7F6E_u591A_u8BF4_u8BC4_u8BBA"><a href="#3__u914D_u7F6E_u591A_u8BF4_u8BC4_u8BBA" class="headerlink" title="3 配置多说评论"></a>3 配置多说评论</h3><p>😂  好像注册了多说就能评论了… 也没做啥配置</p>
 <h3 id="4__u914D_u7F6E_u4EE3_u7801_u9AD8_u4EAE"><a href="#4__u914D_u7F6E_u4EE3_u7801_u9AD8_u4EAE" class="headerlink" title="4 配置代码高亮"></a>4 配置代码高亮</h3><p>修改hexo配置文件: <code>_config.yml</code></p>
 <figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">highlight</span>:</span><br><span class="line">    <span class="attribute">enable</span>: true</span><br><span class="line">    <span class="attribute">line_number</span>: false</span><br><span class="line">    <span class="attribute">auto_detect</span>: true</span><br><span class="line">    <span class="attribute">tab_replace</span>:</span><br><span class="line">    <span class="attribute">style</span>: <span class="string">'github'</span></span><br></pre></td></tr></table></figure>
+<h3 id="5__u63D0_u9AD8_u6548_u7387"><a href="#5__u63D0_u9AD8_u6548_u7387" class="headerlink" title="5 提高效率"></a>5 提高效率</h3><ul>
+<li>修改文章生成模板 <code>scaffolds/post.md</code> 比如添加 categories: </li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="symbol">title:</span> <span class="expansion">&#123;&#123; title &#125;&#125;</span></span><br><span class="line"><span class="symbol">date:</span> <span class="expansion">&#123;&#123; date &#125;&#125;</span></span><br><span class="line"><span class="symbol">categories:</span></span><br><span class="line"><span class="symbol">tags:</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<ul>
+<li>mac 上的 markdown 编辑器, 现在用的是 Mou</li>
+</ul>
 
       
     </div>
