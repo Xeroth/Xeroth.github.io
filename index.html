@@ -92,17 +92,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>参考: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a></p>
-<p>一  安装nodes<br><a href="http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html" target="_blank" rel="external">http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html</a></p>
-<p>二  安装初始化配置 hexo<br>初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
+        <h3 id="u4E00__u5B89_u88C5nodes"><a href="#u4E00__u5B89_u88C5nodes" class="headerlink" title="一  安装nodes"></a>一  安装nodes</h3><p><a href="http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html" target="_blank" rel="external">http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html</a></p>
+<h3 id="u4E8C__u5B89_u88C5_u521D_u59CB_u5316_u914D_u7F6E_hexo"><a href="#u4E8C__u5B89_u88C5_u521D_u59CB_u5316_u914D_u7F6E_hexo" class="headerlink" title="二  安装初始化配置 hexo"></a>二  安装初始化配置 hexo</h3><p>初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
 <p>生成静态文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
-<p>本地运行服务查看,访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
-<p>三  配置 github page<br>注册 github 账号<br>新建一个仓库, 仓库名: yourusername.github.io   (必须是这个格式)</p>
-<p>四  部署到github<br>打开 _config.yml 文件, 修改:<br>deploy:<br>    type: git<br>    repository: git@github.com:yourusername/yourusername.github.io.git<br>    branch: master</p>
+<p>本地运行服务查看,访问 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
+<h3 id="u4E09__u914D_u7F6E_github_page"><a href="#u4E09__u914D_u7F6E_github_page" class="headerlink" title="三  配置 github page"></a>三  配置 github page</h3><p>注册 github 账号<br>新建一个仓库, 仓库名: <strong>yourusername.github.io</strong>   (必须是这个格式)</p>
+<h3 id="u56DB__u90E8_u7F72_u5230github"><a href="#u56DB__u90E8_u7F72_u5230github" class="headerlink" title="四  部署到github"></a>四  部署到github</h3><p>打开 _config.yml 文件, 修改:</p>
+<pre><code>deploy:
+       type: git
+    repository: git@github.com:yourusername/yourusername.github.io.git
+    branch: master
+</code></pre><p>然后部署</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>如果提示：ERROR Deployer not found: git.<br>安装 npm install hexo-deployer-git –save </p>
-<p>五  写文章<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &#34;&#25991;&#31456;&#26631;&#39064;&#34;</span><br></pre></td></tr></table></figure></p>
-<p>然后在 source/_posts/ 目录下可以找到文件进行编辑<br>编辑完成后,部署更新:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure></p>
+<p>如果提示：<figure class="highlight"><figcaption><span>Deployer not found: git. ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#23433;&#35013; ```npm install hexo-deployer-git --save ``` &#21487;&#35299;&#20915;&#10;&#10;&#10;### &#20116;  &#20889;&#25991;&#31456;</span><br></pre></td></tr></table></figure></p>
+<p>$ hexo new “文章标题”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#28982;&#21518;&#22312; source/_posts/ &#30446;&#24405;&#19979;&#21487;&#20197;&#25214;&#21040;&#25991;&#20214;&#36827;&#34892;&#32534;&#36753;&#10;&#32534;&#36753;&#23436;&#25104;&#21518;,&#37096;&#32626;&#26356;&#26032;:</span><br></pre></td></tr></table></figure></p>
+<p>$ hexo g -d<br>```</p>
+<p>参考: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a></p>
 
       
     </div>
