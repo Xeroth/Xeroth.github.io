@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/os-x/" style="font-size: 10px;">os x</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
+						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/os-x/" style="font-size: 10px;">os x</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
 					</div>
 				</section>
 				
@@ -202,6 +202,145 @@
 
       <div class="body-wrap">
   
+    <article id="post-在OS-X上安装Docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/08/在OS-X上安装Docker/" class="article-date">
+  	<time datetime="2016-01-08T07:04:22.000Z" itemprop="datePublished">2016-01-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/08/在OS-X上安装Docker/">在OS X上安装Docker</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="0_Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9"><a href="#0_Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9" class="headerlink" title="0 Docker 是什么, 可以应用在什么地方"></a>0 Docker 是什么, 可以应用在什么地方</h4><p>超轻量级的虚拟化技术</p>
+<p>特点是:<em>敏捷</em></p>
+<p>为什么说特点是敏捷, 启动快, 占用资源少是一方面. 但是最令人喜欢的应该是它类似 Git 那样的的版本管理功能了 , 有了这个功能, 试错的时间成本将大大下降 . 而这个功能我觉得主要得感谢 <a href="http://coolshell.cn/articles/17061.html" target="_blank" rel="external">AuFS</a> 这个文件系统, 使得实现了镜像的增量变化 </p>
+<p>应用:</p>
+<p>由于敏捷性, 我们可以用来搭建开发测试环境, 至于生产环境,放第一位考虑的应该还是稳定性,不知道 docker 现在的稳定性如何. 如果稳定性也是比较 ok, 那还能用来做线上环境的变更发布. 而且弄错了还能回滚! </p>
+<h4 id="1__u5B89_u88C5Docker_Toolbox"><a href="#1__u5B89_u88C5Docker_Toolbox" class="headerlink" title="1 安装Docker Toolbox"></a>1 安装Docker Toolbox</h4><p>因为 docker 进程要用到 Linux 内核的特性 , 所以不能直接在原生的 OS X 系统上运行 docker , 需要使用 docker-machine 来创建一个 vm (虚拟机) .</p>
+<p>下载安装 <a href="https://www.docker.com/docker-toolbox" target="_blank" rel="external">Docker Toolbox</a></p>
+<p>toolbox包含的组件:</p>
+<ul>
+<li>Docker Client</li>
+<li>Docker Machine</li>
+<li>Docker Compose</li>
+<li>Docker Kitematic</li>
+<li>VirtualBox</li>
+</ul>
+<h4 id="2__u6982_u5FF5_u5B66_u4E60_u2B50_uFE0F"><a href="#2__u6982_u5FF5_u5B66_u4E60_u2B50_uFE0F" class="headerlink" title="2 概念学习⭐️"></a>2 概念学习⭐️</h4><p>入门概念</p>
+<ul>
+<li>镜像（Image）类比虚拟机的镜像, 可以用来创建容器, <em>只读</em>属性</li>
+<li>容器（Container) 类比虚拟机</li>
+<li>仓库（Repository) 存放镜像</li>
+</ul>
+<p>高级概念</p>
+<ul>
+<li>Linux Namespace</li>
+<li>Linux CGroup</li>
+<li>AuFS</li>
+<li>DeviceMapper</li>
+</ul>
+<h4 id="3_Docker__u7684Hello_World"><a href="#3_Docker__u7684Hello_World" class="headerlink" title="3 Docker 的Hello World"></a>3 Docker 的Hello World</h4><p>安装过程中, 会让你选择启动方式, 我选择了iTerm, 选择好之后, 会在 iTerm 新开一个终端, 自动创建一个名为default的 vm, 你会在终端看到这样的输出:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">bash <span class="comment">--login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'</span></span><br><span class="line">Creating Machine default...</span><br><span class="line">Running pre-<span class="operator"><span class="keyword">create</span> checks...</span><br><span class="line">Creating machine...</span><br><span class="line">(<span class="keyword">default</span>) Copying /<span class="keyword">Users</span>/cristaly7/.docker/machine/<span class="keyword">cache</span>/boot2docker.iso <span class="keyword">to</span> /<span class="keyword">Users</span>/cristaly7/.docker/machine/machines/<span class="keyword">default</span>/boot2docker.iso...</span><br><span class="line">(<span class="keyword">default</span>) Creating VirtualBox VM...</span><br><span class="line">(<span class="keyword">default</span>) Creating SSH <span class="keyword">key</span>...</span><br><span class="line"></span><br><span class="line">(<span class="keyword">default</span>) <span class="keyword">Starting</span> VM...</span><br><span class="line">Waiting <span class="keyword">for</span> machine <span class="keyword">to</span> be running, this may take a few minutes...</span><br><span class="line">Machine <span class="keyword">is</span> running, waiting <span class="keyword">for</span> SSH <span class="keyword">to</span> be available...</span><br><span class="line">Detecting operating <span class="keyword">system</span> <span class="keyword">of</span> created <span class="keyword">instance</span>...</span><br><span class="line">Detecting the provisioner...</span><br><span class="line">Provisioning <span class="keyword">with</span> boot2docker...</span><br><span class="line">Copying certs <span class="keyword">to</span> the <span class="keyword">local</span> machine <span class="keyword">directory</span>...</span><br><span class="line">Copying certs <span class="keyword">to</span> the remote machine...</span><br><span class="line">Setting Docker configuration <span class="keyword">on</span> the remote daemon...</span><br><span class="line">Checking <span class="keyword">connection</span> <span class="keyword">to</span> Docker...</span><br><span class="line">Docker <span class="keyword">is</span> up <span class="keyword">and</span> running!</span><br><span class="line"><span class="keyword">To</span> see how <span class="keyword">to</span> <span class="keyword">connect</span> Docker <span class="keyword">to</span> this machine, run: /usr/<span class="keyword">local</span>/<span class="keyword">bin</span>/docker-machine env <span class="keyword">default</span></span><br><span class="line">Setting environment <span class="keyword">variables</span> <span class="keyword">for</span> machine <span class="keyword">default</span>...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        ##         .</span><br><span class="line">                  ## ## ##        ==</span><br><span class="line">               ## ## ## ## ##    ===</span><br><span class="line">           /<span class="string">"""""""""""""""""\___/ ===</span><br><span class="line">      ~~~ &#123;~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~</span><br><span class="line">           \______ o           __/</span><br><span class="line">             \    \         __/</span><br><span class="line">              \____\_______/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker is configured to use the default machine with IP 192.168.99.100</span><br><span class="line">For help getting started, check out the docs at https://docs.docker.com</span></span></span><br></pre></td></tr></table></figure>
+<p> vm 创建完成后, 试试在终端输入:</p>
+<p><code>docker run hello-world</code></p>
+<p>docker 会从仓库拉取hello-world的镜像, 进而创建一个容器, 然后容器运行之后将运行结果输出到终端(也就是屏幕)</p>
+<p>上面创建的vm 配置文件目录位置: <code>~/.docker/machine/machines/default</code></p>
+<h4 id="4__u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm"><a href="#4__u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm" class="headerlink" title="4 利用docker-machine 手动创建 vm"></a>4 利用docker-machine 手动创建 vm</h4><p>上面的是安装完软件后自动创建的 vm, 如果要自己手动创建 vm , 可以用 <strong>docker-machine</strong> 这个命令</p>
+<p>1 创建 vm</p>
+<p><code>docker-machine create --driver virtualbox [vmname]</code></p>
+<p>2 查看 vm</p>
+<p><code>docker-machine ls</code>    </p>
+<p>3 获取 vm 环境变量</p>
+<p><code>docker-machine env default</code></p>
+<p>4 把 shell 连接到 vm</p>
+<p><code>$ eval &quot;$(docker-machine env [vmname])&quot;</code></p>
+<p>5 测试 vm</p>
+<p><code>docker run hello-world</code></p>
+<p>6 如果不想要了, 可以这样删除 vm</p>
+<p><code>docker-machine rm [vmname]</code></p>
+<h4 id="5_Access_container_ports"><a href="#5_Access_container_ports" class="headerlink" title="5 Access container ports"></a>5 Access container ports</h4><p>创建好了 vm, 就可以玩 <strong>docker</strong> 的容器了</p>
+<p>1 运行一个 nginx 的容器</p>
+<p><code>docker run -d -P --name web nginx</code></p>
+<p>docker run 启动容器, 运行, 退出<br>-d 使得docker run 之后容器能够继续运行<br>-P </p>
+<p>2 显示正在运行的容器</p>
+<p><code>docker ps</code></p>
+<p>3 查看容器开放的端口</p>
+<p><code>docker port web</code></p>
+<p>可能输出是</p>
+<pre><code>443/tcp -&gt; 0.0.0.0:32768
+80/tcp -&gt; 0.0.0.0:32769
+</code></pre><p>这时候如果你在浏览器中输入 0.0.0.0:32768 , 是访问不到东西的, 为什么呢? 因为这里的0.0.0.0 针对 vm 的, 而要查看 vm 的 ip, 要用下面的命令</p>
+<p><code>docker-machine ip [vmname]</code></p>
+<p>然后访问 ip:port 就能看到nginx 首页了</p>
+<p>停止并移除 nginx的容器:</p>
+<p><code>$ docker stop web</code></p>
+<p><code>$ docker rm web</code></p>
+<h4 id="Mount_a_volume_on_the_container"><a href="#Mount_a_volume_on_the_container" class="headerlink" title="Mount a volume on the container"></a>Mount a volume on the container</h4><p>进入用户家目录</p>
+<p><code>cd $HOME</code></p>
+<p>新建一个目录site</p>
+<p><code>mkdir site &amp;&amp; cd site</code></p>
+<p>新建一个文件</p>
+<p><code>echo &quot;my new site&quot; &gt; index.html</code></p>
+<p>新建一个容器, 并用 site 替换 html 文件夹</p>
+<p><code>docker run -d -P -v $HOME/site:/usr/share/nginx/html --name mysite nginx</code></p>
+<p>获取端口, 并访问</p>
+<p><code>docker port mysite</code></p>
+<p>实时添加一个新文件到 $HOME/site 文件夹中</p>
+<p><code>echo &quot;This is cool&quot; &gt; cool.html</code></p>
+<p>然后访问 ip:port/cool.html </p>
+<h4 id="u5347_u7EA7_Toolbox"><a href="#u5347_u7EA7_Toolbox" class="headerlink" title="升级 Toolbox"></a>升级 Toolbox</h4><p>下载最新版本的 installer 并安装</p>
+<h4 id="u5378_u8F7D_Toolbox"><a href="#u5378_u8F7D_Toolbox" class="headerlink" title="卸载 Toolbox"></a>卸载 Toolbox</h4><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">To uninstall, <span class="built_in">do</span> <span class="operator">the</span> following:</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> List your machines.</span><br><span class="line"></span><br><span class="line">$ docker-machine ls</span><br><span class="line">NAME                ACTIVE   DRIVER       STATE     <span class="built_in">URL</span>                         SWARM</span><br><span class="line">dev                 *        virtualbox   Running   tcp://<span class="number">192.168</span><span class="number">.99</span><span class="number">.100</span>:<span class="number">2376</span></span><br><span class="line">my-docker-machine            virtualbox   Stopped</span><br><span class="line">default                      virtualbox   Stopped</span><br><span class="line"></span><br><span class="line"><span class="number">2</span> Remove <span class="keyword">each</span> machine.</span><br><span class="line"></span><br><span class="line">$ docker-machine rm dev</span><br><span class="line">Successfully removed dev</span><br><span class="line">Removing <span class="operator">a</span> machine deletes its VM <span class="built_in">from</span> VirtualBox <span class="operator">and</span> <span class="built_in">from</span> <span class="operator">the</span> ~/.docker/machine/machines <span class="built_in">directory</span>.</span><br><span class="line"></span><br><span class="line"><span class="number">3</span> Remove <span class="operator">the</span> Docker Quickstart Terminal <span class="operator">and</span> Kitematic <span class="built_in">from</span> your “Applications” <span class="built_in">folder</span>.</span><br><span class="line"></span><br><span class="line"><span class="number">4</span> Remove <span class="operator">the</span> docker, docker-compose, <span class="operator">and</span> docker-machine commands <span class="built_in">from</span> <span class="operator">the</span> /usr/<span class="built_in">local</span>/bin <span class="built_in">folder</span>.</span><br><span class="line"></span><br><span class="line">$ rm /usr/<span class="built_in">local</span>/bin/docker</span><br><span class="line"></span><br><span class="line"><span class="number">5</span> Delete <span class="operator">the</span> ~/.docker <span class="built_in">folder</span> <span class="built_in">from</span> your <span class="keyword">system</span>.</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-七年就是一辈子-读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -228,7 +367,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>学习方法论之一</strong></p>
+        <h4 id="u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5"><a href="#u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5" class="headerlink" title="深入实践最重要的概念"></a>深入实践最重要的概念</h4><p>任何一个概念，都需要认真琢磨:</p>
+<ul>
+<li>它的内涵、外延；</li>
+<li>它是什么，它不是什么；</li>
+<li>它与类似概念的相似、不同之处；</li>
+<li>它在被应用之时需要注意的地方及其常见误区</li>
+</ul>
+<p><strong>学习方法论之一</strong></p>
 <p>必须多问问自己 <em>这个领域里最重要的概念是什么?</em> 先找出点</p>
 <p>找到最重要的<em>概念</em>之后，就要想尽一切办法为这个<em>概念</em>搭建足够系统的<em>方法论</em>。由点带线</p>
 <p>学习这个领域最重要的概念是<em>自学</em></p>
@@ -240,6 +386,11 @@
 <li>这个概念（以及相关的方法论）还可以用到什么地方？</li>
 </ul>
 <p>聪明的朴素定义: <em>聪明就是用来筛选、吸收、理解、应用、反思正确的知识的本领。</em></p>
+<h4 id="u53CD_u5411_u5851_u9020"><a href="#u53CD_u5411_u5851_u9020" class="headerlink" title="反向塑造"></a>反向塑造</h4><p>警惕!</p>
+<blockquote>
+<p>远离___的人</p>
+<p>远离___的环境</p>
+</blockquote>
 
       
     </div>
@@ -410,11 +561,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="u5DF2_u8BFB"><a href="#u5DF2_u8BFB" class="headerlink" title="已读"></a>已读</h3><ul>
-<li><a href="http://xeroth.github.io/2016/01/05/%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E5%81%9A%E6%9C%8B%E5%8F%8B-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">&lt;&lt;把时间当做朋友&gt;&gt;</a> ⭐️⭐️⭐️⭐️⭐️ </li>
-<li>&lt;&lt; 动物庄园 &gt;&gt; ⭐️⭐️</li>
-<li>&lt;&lt; 十年一梦 &gt;&gt; ⭐️⭐️</li>
-<li>&lt;&lt; 我只是敢和别人不一样 &gt;&gt; ⭐️⭐️⭐️ </li>
-<li>&lt;&lt; 黑客与画家 &gt;&gt; ⭐️⭐️⭐️⭐️⭐️</li>
+<li><a href="http://xeroth.github.io/2016/01/05/%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E5%81%9A%E6%9C%8B%E5%8F%8B-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">&lt;&lt;把时间当做朋友&gt;&gt;</a> ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷</li>
+<li><a href="http://xiaolai.github.io/alpha/on-learning/" target="_blank" rel="external"> &lt;&lt; 学习学习再学习 &gt;&gt; </a> ⭐️⭐️⭐️⭐️ 学习的方法论</li>
+<li>&lt;&lt; 动物庄园 &gt;&gt; ⭐️⭐️ 没太大惊喜</li>
+<li>&lt;&lt; 十年一梦 &gt;&gt; ⭐️⭐️ 当故事来看</li>
+<li>&lt;&lt; 我只是敢和别人不一样 &gt;&gt; ⭐️⭐️⭐️ 让你更特立独行的鸡汤</li>
+<li>&lt;&lt; 黑客与画家 &gt;&gt; ⭐️⭐️⭐️⭐️⭐️ 不一样的角度看问题</li>
 </ul>
 <h3 id="u5728_u8BFB"><a href="#u5728_u8BFB" class="headerlink" title="在读"></a>在读</h3><ul>
 <li>&lt;&lt; the leadership pipeline &gt;&gt;</li>
