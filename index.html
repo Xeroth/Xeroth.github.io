@@ -261,7 +261,16 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">bash <span class="comment">--login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'</span></span><br><span class="line">Creating Machine default...</span><br><span class="line">Running pre-<span class="operator"><span class="keyword">create</span> checks...</span><br><span class="line">Creating machine...</span><br><span class="line">(<span class="keyword">default</span>) Copying /<span class="keyword">Users</span>/cristaly7/.docker/machine/<span class="keyword">cache</span>/boot2docker.iso <span class="keyword">to</span> /<span class="keyword">Users</span>/cristaly7/.docker/machine/machines/<span class="keyword">default</span>/boot2docker.iso...</span><br><span class="line">(<span class="keyword">default</span>) Creating VirtualBox VM...</span><br><span class="line">(<span class="keyword">default</span>) Creating SSH <span class="keyword">key</span>...</span><br><span class="line"></span><br><span class="line">(<span class="keyword">default</span>) <span class="keyword">Starting</span> VM...</span><br><span class="line">Waiting <span class="keyword">for</span> machine <span class="keyword">to</span> be running, this may take a few minutes...</span><br><span class="line">Machine <span class="keyword">is</span> running, waiting <span class="keyword">for</span> SSH <span class="keyword">to</span> be available...</span><br><span class="line">Detecting operating <span class="keyword">system</span> <span class="keyword">of</span> created <span class="keyword">instance</span>...</span><br><span class="line">Detecting the provisioner...</span><br><span class="line">Provisioning <span class="keyword">with</span> boot2docker...</span><br><span class="line">Copying certs <span class="keyword">to</span> the <span class="keyword">local</span> machine <span class="keyword">directory</span>...</span><br><span class="line">Copying certs <span class="keyword">to</span> the remote machine...</span><br><span class="line">Setting Docker configuration <span class="keyword">on</span> the remote daemon...</span><br><span class="line">Checking <span class="keyword">connection</span> <span class="keyword">to</span> Docker...</span><br><span class="line">Docker <span class="keyword">is</span> up <span class="keyword">and</span> running!</span><br><span class="line"><span class="keyword">To</span> see how <span class="keyword">to</span> <span class="keyword">connect</span> Docker <span class="keyword">to</span> this machine, run: /usr/<span class="keyword">local</span>/<span class="keyword">bin</span>/docker-machine env <span class="keyword">default</span></span><br><span class="line">Setting environment <span class="keyword">variables</span> <span class="keyword">for</span> machine <span class="keyword">default</span>...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        ##         .</span><br><span class="line">                  ## ## ##        ==</span><br><span class="line">               ## ## ## ## ##    ===</span><br><span class="line">           /<span class="string">"""""""""""""""""\___/ ===</span><br><span class="line">      ~~~ &#123;~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~</span><br><span class="line">           \______ o           __/</span><br><span class="line">             \    \         __/</span><br><span class="line">              \____\_______/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker is configured to use the default machine with IP 192.168.99.100</span><br><span class="line">For help getting started, check out the docs at https://docs.docker.com</span></span></span><br></pre></td></tr></table></figure>
 <p> vm 创建完成后, 试试在终端输入:</p>
 <p><code>docker run hello-world</code></p>
-<p>docker 会从仓库拉取hello-world的镜像, 进而创建一个容器, 然后容器运行之后将运行结果输出到终端(也就是屏幕)</p>
+<p>当利用 docker run 来创建容器时，Docker 在后台运行的标准操作包括：</p>
+<ul>
+<li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li>
+<li>利用镜像创建并启动一个容器</li>
+<li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li>
+<li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li>
+<li>从地址池配置一个 ip 地址给容器</li>
+<li>执行用户指定的应用程序</li>
+<li>执行完毕后容器被终止</li>
+</ul>
 <p>上面创建的vm 配置文件目录位置: <code>~/.docker/machine/machines/default</code></p>
 <h4 id="4__u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm"><a href="#4__u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm" class="headerlink" title="4 利用docker-machine 手动创建 vm"></a>4 利用docker-machine 手动创建 vm</h4><p>上面的是安装完软件后自动创建的 vm, 如果要自己手动创建 vm , 可以用 <strong>docker-machine</strong> 这个命令</p>
 <p>1 创建 vm</p>
@@ -279,7 +288,7 @@
 <h4 id="5_Access_container_ports"><a href="#5_Access_container_ports" class="headerlink" title="5 Access container ports"></a>5 Access container ports</h4><p>创建好了 vm, 就可以玩 <strong>docker</strong> 的容器了</p>
 <p>1 运行一个 nginx 的容器</p>
 <p><code>docker run -d -P --name web nginx</code></p>
-<p>docker run 启动容器, 运行, 退出<br>-d 使得docker run 之后容器能够继续运行<br>-P </p>
+<p>docker run 启动容器, 运行, 退出<br>-d 使得docker run 之后容器能够继续运行<br>-P 把容器开放的端口映射到 vm 的随机端口</p>
 <p>2 显示正在运行的容器</p>
 <p><code>docker ps</code></p>
 <p>3 查看容器开放的端口</p>
@@ -400,6 +409,8 @@
 <p>远离___的人</p>
 <p>远离___的环境</p>
 </blockquote>
+<h4 id="u7C7B_u6BD4_u5F71_u54CD_u601D_u7EF4"><a href="#u7C7B_u6BD4_u5F71_u54CD_u601D_u7EF4" class="headerlink" title="类比影响思维"></a>类比影响思维</h4><p>成功与突破更像是破冰而不是登山</p>
+<p>类比影响思维, 思维影响行动, 不要小看语言的力量</p>
 <h4 id="To_be_continue__u2026"><a href="#To_be_continue__u2026" class="headerlink" title="To be continue …"></a>To be continue …</h4>
       
     </div>
