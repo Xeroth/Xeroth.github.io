@@ -32,7 +32,7 @@ node v4.2.4
 二  安装初始化配置 hexo初始化
 $ hexo init [folder]      #创建 hexo 主目录
 生成静态网页文件">
-<meta property="og:updated_time" content="2016-01-05T06:31:42.000Z">
+<meta property="og:updated_time" content="2016-01-13T10:04:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何用hexo-github搭建静态博客">
 <meta name="twitter:description" content="搭建环境和版本:
@@ -301,8 +301,16 @@ $ hexo d
 <h3 id="u4E94__u5199_u6587_u7AE0"><a href="#u4E94__u5199_u6587_u7AE0" class="headerlink" title="五  写文章"></a>五  写文章</h3><pre><code>$ hexo new &quot;文章标题&quot;
 </code></pre><p>然后在 <code>source/_posts/</code> 目录下可以找到文件进行编辑<br>编辑完成后,部署更新:</p>
 <pre><code>$ hexo g -d
-</code></pre><p>基本这样就能写了, 下一篇进行优化</p>
-
+</code></pre><p>基本这样就能写了</p>
+<h5 id="u8349_u7A3F"><a href="#u8349_u7A3F" class="headerlink" title="草稿"></a>草稿</h5><p>hexo n 默认是创建正式发布的文章, 想要先写草稿不发布, 使用这样的命令创建草稿:</p>
+<pre><code>hexo n draft &lt;title&gt;
+</code></pre><h5 id="u9884_u89C8"><a href="#u9884_u89C8" class="headerlink" title="预览"></a>预览</h5><p>预览正式文章</p>
+<pre><code>hexo s
+</code></pre><p>预览包含草稿在内的文章</p>
+<pre><code>hexo s --draft
+</code></pre><p>将草稿正式发布</p>
+<pre><code>hexo publish &lt;title&gt;
+</code></pre>
       
     </div>
     
