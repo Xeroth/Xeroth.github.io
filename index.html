@@ -281,6 +281,7 @@
 <p><code>docker-machine env default</code></p>
 <p>4 把 shell 连接到 vm</p>
 <p><code>$ eval &quot;$(docker-machine env [vmname])&quot;</code></p>
+<p>把<em>eval $(docker-machine env default)</em>这句加到 ~/.bashrc 文件里, 每次启动新的shell 都自动加载</p>
 <p>5 测试 vm</p>
 <p><code>docker run hello-world</code></p>
 <p>6 如果不想要了, 可以这样删除 vm</p>

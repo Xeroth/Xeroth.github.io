@@ -21,7 +21,7 @@
 应用:
 由于敏捷性, 我们可以用来搭建开发测试环境, 至于生产环境,放">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/dockerdocker-engine.png">
-<meta property="og:updated_time" content="2016-01-09T03:24:21.000Z">
+<meta property="og:updated_time" content="2016-01-13T03:43:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在OS X上安装Docker">
 <meta name="twitter:description" content="零 Docker 是什么, 可以应用在什么地方超轻量级的虚拟化技术
@@ -308,6 +308,7 @@
 <p><code>docker-machine env default</code></p>
 <p>4 把 shell 连接到 vm</p>
 <p><code>$ eval &quot;$(docker-machine env [vmname])&quot;</code></p>
+<p>把<em>eval $(docker-machine env default)</em>这句加到 ~/.bashrc 文件里, 每次启动新的shell 都自动加载</p>
 <p>5 测试 vm</p>
 <p><code>docker run hello-world</code></p>
 <p>6 如果不想要了, 可以这样删除 vm</p>
