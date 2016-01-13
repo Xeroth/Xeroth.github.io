@@ -105,7 +105,7 @@
 					        
 								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
 					        
-								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
 					        
 								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
 					        
@@ -190,7 +190,7 @@
 			        
 						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
 			        
-						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
 			        
 						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
 			        
@@ -228,111 +228,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9"><span class="toc-number">1.</span> <span class="toc-text">Docker 是什么, 可以应用在什么地方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5B89_u88C5Docker_Toolbox"><span class="toc-number">2.</span> <span class="toc-text">安装Docker Toolbox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6982_u5FF5_u5B66_u4E60_u2B50_uFE0F"><span class="toc-number">3.</span> <span class="toc-text">概念学习⭐️</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker__u7684Hello_World"><span class="toc-number">4.</span> <span class="toc-text">Docker 的Hello World</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm"><span class="toc-number">5.</span> <span class="toc-text">利用docker-machine 手动创建 vm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Access_container_ports"><span class="toc-number">6.</span> <span class="toc-text">Access container ports</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mount_a_volume_on_the_container"><span class="toc-number">7.</span> <span class="toc-text">Mount a volume on the container</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5347_u7EA7_Toolbox"><span class="toc-number">8.</span> <span class="toc-text">升级 Toolbox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5378_u8F7D_Toolbox"><span class="toc-number">9.</span> <span class="toc-text">卸载 Toolbox</span></a></li></ol>
-            </div>
-        
         <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/dockerdocker-engine.png" alt="docker-engine"></p>
 <h4 id="Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9"><a href="#Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9" class="headerlink" title="Docker 是什么, 可以应用在什么地方"></a>Docker 是什么, 可以应用在什么地方</h4><p>超轻量级的虚拟化技术</p>
 <p>特点是:<em>敏捷</em></p>
-<p>为什么说特点是敏捷, 启动快, 占用资源少是一方面. 但是最令人喜欢的应该是它类似 Git 那样的的版本管理功能了 , 有了这个功能, 试错的时间成本将大大下降 . 而这个功能我觉得主要得感谢 <a href="http://coolshell.cn/articles/17061.html" target="_blank" rel="external">AuFS</a> 这个文件系统, 使得实现了镜像的增量变化 </p>
-<p>应用:</p>
-<p>由于敏捷性, 我们可以用来搭建开发测试环境, 至于生产环境,放第一位考虑的应该还是稳定性,不知道 docker 现在的稳定性如何. 如果稳定性也是比较 ok, 那还能用来做线上环境的变更发布. 而且弄错了还能回滚! </p>
-<h4 id="u5B89_u88C5Docker_Toolbox"><a href="#u5B89_u88C5Docker_Toolbox" class="headerlink" title="安装Docker Toolbox"></a>安装Docker Toolbox</h4><p>因为 docker 进程要用到 Linux 内核的特性 , 所以不能直接在原生的 OS X 系统上运行 docker , 需要使用 docker-machine 来创建一个 vm (虚拟机) .</p>
-<p>下载安装 <a href="https://www.docker.com/docker-toolbox" target="_blank" rel="external">Docker Toolbox</a></p>
-<p>toolbox包含的组件:</p>
-<ul>
-<li>Docker Client</li>
-<li>Docker Machine</li>
-<li>Docker Compose</li>
-<li>Docker Kitematic</li>
-<li>VirtualBox</li>
-</ul>
-<h4 id="u6982_u5FF5_u5B66_u4E60_u2B50_uFE0F"><a href="#u6982_u5FF5_u5B66_u4E60_u2B50_uFE0F" class="headerlink" title="概念学习⭐️"></a>概念学习⭐️</h4><p>入门概念</p>
-<ul>
-<li>镜像（Image）类比虚拟机的镜像, 可以用来创建容器, <em>只读</em>属性</li>
-<li>容器（Container) 类比虚拟机</li>
-<li>仓库（Repository) 存放镜像</li>
-</ul>
-<p>高级概念</p>
-<ul>
-<li>Linux Namespace</li>
-<li>Linux CGroup</li>
-<li>AuFS</li>
-<li>DeviceMapper</li>
-</ul>
-<h4 id="Docker__u7684Hello_World"><a href="#Docker__u7684Hello_World" class="headerlink" title="Docker 的Hello World"></a>Docker 的Hello World</h4><p>安装过程中, 会让你选择启动方式, 我选择了iTerm, 选择好之后, 会在 iTerm 新开一个终端, 自动创建一个名为default的 vm, 你会在终端看到这样的输出:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">bash <span class="comment">--login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'</span></span><br><span class="line">Creating Machine default...</span><br><span class="line">Running pre-<span class="operator"><span class="keyword">create</span> checks...</span><br><span class="line">Creating machine...</span><br><span class="line">(<span class="keyword">default</span>) Copying /<span class="keyword">Users</span>/cristaly7/.docker/machine/<span class="keyword">cache</span>/boot2docker.iso <span class="keyword">to</span> /<span class="keyword">Users</span>/cristaly7/.docker/machine/machines/<span class="keyword">default</span>/boot2docker.iso...</span><br><span class="line">(<span class="keyword">default</span>) Creating VirtualBox VM...</span><br><span class="line">(<span class="keyword">default</span>) Creating SSH <span class="keyword">key</span>...</span><br><span class="line"></span><br><span class="line">(<span class="keyword">default</span>) <span class="keyword">Starting</span> VM...</span><br><span class="line">Waiting <span class="keyword">for</span> machine <span class="keyword">to</span> be running, this may take a few minutes...</span><br><span class="line">Machine <span class="keyword">is</span> running, waiting <span class="keyword">for</span> SSH <span class="keyword">to</span> be available...</span><br><span class="line">Detecting operating <span class="keyword">system</span> <span class="keyword">of</span> created <span class="keyword">instance</span>...</span><br><span class="line">Detecting the provisioner...</span><br><span class="line">Provisioning <span class="keyword">with</span> boot2docker...</span><br><span class="line">Copying certs <span class="keyword">to</span> the <span class="keyword">local</span> machine <span class="keyword">directory</span>...</span><br><span class="line">Copying certs <span class="keyword">to</span> the remote machine...</span><br><span class="line">Setting Docker configuration <span class="keyword">on</span> the remote daemon...</span><br><span class="line">Checking <span class="keyword">connection</span> <span class="keyword">to</span> Docker...</span><br><span class="line">Docker <span class="keyword">is</span> up <span class="keyword">and</span> running!</span><br><span class="line"><span class="keyword">To</span> see how <span class="keyword">to</span> <span class="keyword">connect</span> Docker <span class="keyword">to</span> this machine, run: /usr/<span class="keyword">local</span>/<span class="keyword">bin</span>/docker-machine env <span class="keyword">default</span></span><br><span class="line">Setting environment <span class="keyword">variables</span> <span class="keyword">for</span> machine <span class="keyword">default</span>...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        ##         .</span><br><span class="line">                  ## ## ##        ==</span><br><span class="line">               ## ## ## ## ##    ===</span><br><span class="line">           /<span class="string">"""""""""""""""""\___/ ===</span><br><span class="line">      ~~~ &#123;~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~</span><br><span class="line">           \______ o           __/</span><br><span class="line">             \    \         __/</span><br><span class="line">              \____\_______/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker is configured to use the default machine with IP 192.168.99.100</span><br><span class="line">For help getting started, check out the docs at https://docs.docker.com</span></span></span><br></pre></td></tr></table></figure>
-<p> vm 创建完成后, 试试在终端输入:</p>
-<p><code>docker run hello-world</code></p>
-<p>当利用 docker run 来创建容器时，Docker 在后台运行的标准操作包括：</p>
-<ul>
-<li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li>
-<li>利用镜像创建并启动一个容器</li>
-<li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li>
-<li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li>
-<li>从地址池配置一个 ip 地址给容器</li>
-<li>执行用户指定的应用程序</li>
-<li>执行完毕后容器被终止</li>
-</ul>
-<p>上面创建的vm 配置文件目录位置: <code>~/.docker/machine/machines/default</code></p>
-<h4 id="u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm"><a href="#u5229_u7528docker-machine__u624B_u52A8_u521B_u5EFA_vm" class="headerlink" title="利用docker-machine 手动创建 vm"></a>利用docker-machine 手动创建 vm</h4><p>上面的是安装完软件后自动创建的 vm, 如果要自己手动创建 vm , 可以用 <strong>docker-machine</strong> 这个命令</p>
-<p>1 创建 vm</p>
-<p><code>docker-machine create --driver virtualbox [vmname]</code></p>
-<p>2 查看 vm</p>
-<p><code>docker-machine ls</code>    </p>
-<p>3 获取 vm 环境变量</p>
-<p><code>docker-machine env default</code></p>
-<p>4 把 shell 连接到 vm</p>
-<p><code>$ eval &quot;$(docker-machine env [vmname])&quot;</code></p>
-<p>把<em>eval $(docker-machine env default)</em>这句加到 ~/.bashrc 文件里, 每次启动新的shell 都自动加载</p>
-<p>5 测试 vm</p>
-<p><code>docker run hello-world</code></p>
-<p>6 如果不想要了, 可以这样删除 vm</p>
-<p><code>docker-machine rm [vmname]</code></p>
-<h4 id="Access_container_ports"><a href="#Access_container_ports" class="headerlink" title="Access container ports"></a>Access container ports</h4><p>创建好了 vm, 就可以玩 <strong>docker</strong> 的容器了</p>
-<p>1 运行一个 nginx 的容器</p>
-<p><code>docker run -d -P --name web nginx</code></p>
-<p>docker run 启动容器, 运行, 退出<br>-d 使得docker run 之后容器能够继续运行<br>-P 把容器开放的端口映射到 vm 的随机端口</p>
-<p>2 显示正在运行的容器</p>
-<p><code>docker ps</code></p>
-<p>3 查看容器开放的端口</p>
-<p><code>docker port web</code></p>
-<p>可能输出是</p>
-<pre><code>443/tcp -&gt; 0.0.0.0:32768
-80/tcp -&gt; 0.0.0.0:32769
-</code></pre><p>这时候如果你在浏览器中输入 0.0.0.0:32768 , 是访问不到东西的, 为什么呢? 因为这里的0.0.0.0 针对 vm 的, 而要查看 vm 的 ip, 要用下面的命令</p>
-<p><code>docker-machine ip [vmname]</code></p>
-<p>然后访问 ip:port 就能看到nginx 首页了</p>
-<p>停止并移除 nginx的容器:</p>
-<p><code>$ docker stop web</code></p>
-<p><code>$ docker rm web</code></p>
-<h4 id="Mount_a_volume_on_the_container"><a href="#Mount_a_volume_on_the_container" class="headerlink" title="Mount a volume on the container"></a>Mount a volume on the container</h4><p>进入用户家目录</p>
-<p><code>cd $HOME</code></p>
-<p>新建一个目录site</p>
-<p><code>mkdir site &amp;&amp; cd site</code></p>
-<p>新建一个文件</p>
-<p><code>echo &quot;my new site&quot; &gt; index.html</code></p>
-<p>新建一个容器, 并用 site 替换 html 文件夹</p>
-<p><code>docker run -d -P -v $HOME/site:/usr/share/nginx/html --name mysite nginx</code></p>
-<p>获取端口, 并访问</p>
-<p><code>docker port mysite</code></p>
-<p>实时添加一个新文件到 $HOME/site 文件夹中</p>
-<p><code>echo &quot;This is cool&quot; &gt; cool.html</code></p>
-<p>然后访问 ip:port/cool.html </p>
-<h4 id="u5347_u7EA7_Toolbox"><a href="#u5347_u7EA7_Toolbox" class="headerlink" title="升级 Toolbox"></a>升级 Toolbox</h4><p>下载最新版本的 installer 并安装</p>
-<h4 id="u5378_u8F7D_Toolbox"><a href="#u5378_u8F7D_Toolbox" class="headerlink" title="卸载 Toolbox"></a>卸载 Toolbox</h4><p>To uninstall, do the following:</p>
-<p>1 List your machines.</p>
-<p><code>$ docker-machine ls</code></p>
-<p>2 Remove each machine.</p>
-<p><code>$ docker-machine rm dev</code><br>Successfully removed dev<br>Removing a machine deletes its VM from VirtualBox and from the ~/.docker/machine/machines directory.</p>
-<p>3 Remove the Docker Quickstart Terminal and Kitematic from your “Applications” folder.</p>
-<p>4 Remove the docker, docker-compose, and docker-machine commands from the /usr/local/bin folder.</p>
-<p>$ rm /usr/local/bin/docker</p>
-<p>5 Delete the ~/.docker folder from your system.</p>
-
+<p>为什么说特点是敏捷, 启动快, 占用资源少是一方面. 但是最令人喜欢的应该是它类似 Git 那样的的版本管理功能了 , 有了这个功能, 试错的时间成本将大大下降 . 而这个功能我觉得主要得感谢 <a href="http://coolshell.cn/articles/17061.html">AuFS</a> 这个文件系统, 使得实现了镜像的增量变化<br>
       
     </div>
     
@@ -349,6 +248,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/08/在OS-X上安装Docker/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -392,39 +295,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5"><span class="toc-number">1.</span> <span class="toc-text">深入实践最重要的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u53CD_u5411_u5851_u9020"><span class="toc-number">2.</span> <span class="toc-text">反向塑造</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7C7B_u6BD4_u5F71_u54CD_u601D_u7EF4"><span class="toc-number">3.</span> <span class="toc-text">类比影响思维</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#To_be_continue__u2026"><span class="toc-number">4.</span> <span class="toc-text">To be continue …</span></a></li></ol>
-            </div>
-        
         <h4 id="u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5"><a href="#u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5" class="headerlink" title="深入实践最重要的概念"></a>深入实践最重要的概念</h4><p>任何一个概念，都需要认真琢磨:</p>
 <ul>
 <li>它的内涵、外延；</li>
 <li>它是什么，它不是什么；</li>
 <li>它与类似概念的相似、不同之处；</li>
-<li>它在被应用之时需要注意的地方及其常见误区</li>
-</ul>
-<p><strong>学习方法论之一</strong></p>
-<p>必须多问问自己 <em>这个领域里最重要的概念是什么?</em> 先找出点</p>
-<p>找到最重要的<em>概念</em>之后，就要想尽一切办法为这个<em>概念</em>搭建足够系统的<em>方法论</em>。由点带线</p>
-<p>学习这个领域最重要的概念是<em>自学</em></p>
-<p>自学中最厉害的方法论是: <strong>践行那个概念</strong></p>
-<p>如何才能践行这个重要的概念，和它所带来的结论，以及相关的方法论呢？</p>
-<p>再进一步，其实总共可以问两个问题：</p>
-<ul>
-<li>什么是最重要的概念（以及相关的方法论）？</li>
-<li>这个概念（以及相关的方法论）还可以用到什么地方？</li>
-</ul>
-<p>聪明的朴素定义: <em>聪明就是用来筛选、吸收、理解、应用、反思正确的知识的本领。</em></p>
-<h4 id="u53CD_u5411_u5851_u9020"><a href="#u53CD_u5411_u5851_u9020" class="headerlink" title="反向塑造"></a>反向塑造</h4><p>警惕!</p>
-<blockquote>
-<p>远离___的人</p>
-<p>远离___的环境</p>
-</blockquote>
-<h4 id="u7C7B_u6BD4_u5F71_u54CD_u601D_u7EF4"><a href="#u7C7B_u6BD4_u5F71_u54CD_u601D_u7EF4" class="headerlink" title="类比影响思维"></a>类比影响思维</h4><p>成功与突破更像是破冰而不是登山</p>
-<p>类比影响思维, 思维影响行动, 不要小看语言的力量</p>
-<h4 id="To_be_continue__u2026"><a href="#To_be_continue__u2026" class="headerlink" title="To be continue …"></a>To be continue …</h4>
+<li>它在被应用之时需要注意的地方及其常见误区
       
     </div>
     
@@ -441,6 +317,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/05/七年就是一辈子-读书笔记/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -484,62 +364,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#u7B2C_u4E00_u70B9-_u4E86_u89E3_u4E86_u5F88_u591A_u4EE5_u524D_u8111_u5B50_u91CC_u7684_u6BD2_u6982_u5FF5_u548C_u574F_u4E60_u60EF_2C__u8FD9_u4E9B_u6BD2_u6982_u5FF5_u5927_u90FD_u662F_u5229_u7528_u4E86_u4EBA_u8111_u7684_u5F31_u70B9_3A"><span class="toc-number">1.</span> <span class="toc-text">第一点.了解了很多以前脑子里的毒概念和坏习惯, 这些毒概念大都是利用了人脑的弱点:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#u7B2C_u4E8C_u70B9-_u660E_u767D_u4E86_u4E4B_u524D_u81EA_u5DF1_u9047_u5230_u7684_u56F0_u5883_2C__u5E76_u4E14_u77E5_u9053_u4E86_u90A3_u662F_u8FDB_u6B65_u8FC7_u7A0B_u4E2D_u7684_u5FC5_u7136_u73B0_u8C61-__u6BD4_u5982_u5B66_u4E60_u8FDB_u6B65_u56FE_u5F62_2C__u4E0D_u662F_u4E00_u6761_u8FDE_u7EED_u7684_u659C_u7EBF_2C__u800C_u662F_u7C7B_u4F3C_u9636_u68AF_u72B6_u7684"><span class="toc-number">2.</span> <span class="toc-text">第二点.明白了之前自己遇到的困境, 并且知道了那是进步过程中的必然现象. 比如学习进步图形, 不是一条连续的斜线, 而是类似阶梯状的.</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#u7B2C_u4E09_u70B9-__u77E5_u9053_u4EC0_u4E48_u77E5_u8BC6_u662F_u91CD_u8981_u7684_2C_u600E_u6837_u7684_u505A_u4E8B_u65B9_u6CD5_u662F_u6B63_u786E_u7684_2C_u6709_u6548_u7684_2C__u4EC0_u4E48_u6837_u7684_u4EBA_u662F_u503C_u5F97_u4EA4_u5F80_u7684"><span class="toc-number">3.</span> <span class="toc-text">第三点. 知道什么知识是重要的,怎样的做事方法是正确的,有效的, 什么样的人是值得交往的</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#u7B2C_u56DB_u70B9-__u5B66_u4F1A_u601D_u8003_2C__u878D_u4F1A_u8D2F_u901A_2C__u5F62_u6210_u81EA_u5DF1_u7684_u77E5_u8BC6_u6EE4_u7F51_2C__u8FC7_u6EE4_u6BD2_u6982_u5FF5_2C_u6BD2_u77E5_u8BC6"><span class="toc-number">4.</span> <span class="toc-text">第四点. 学会思考, 融会贯通, 形成自己的知识滤网, 过滤毒概念,毒知识</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#To_be_continue__u2026"><span class="toc-number"></span> <span class="toc-text">To be continue …</span></a>
-            </div>
-        
         <p>很好的一本书, 条理清晰, 见解直击要害</p>
 <p>读完这本书, 获益良多</p>
 <h6 id="u7B2C_u4E00_u70B9-_u4E86_u89E3_u4E86_u5F88_u591A_u4EE5_u524D_u8111_u5B50_u91CC_u7684_u6BD2_u6982_u5FF5_u548C_u574F_u4E60_u60EF_2C__u8FD9_u4E9B_u6BD2_u6982_u5FF5_u5927_u90FD_u662F_u5229_u7528_u4E86_u4EBA_u8111_u7684_u5F31_u70B9_3A"><a href="#u7B2C_u4E00_u70B9-_u4E86_u89E3_u4E86_u5F88_u591A_u4EE5_u524D_u8111_u5B50_u91CC_u7684_u6BD2_u6982_u5FF5_u548C_u574F_u4E60_u60EF_2C__u8FD9_u4E9B_u6BD2_u6982_u5FF5_u5927_u90FD_u662F_u5229_u7528_u4E86_u4EBA_u8111_u7684_u5F31_u70B9_3A" class="headerlink" title="第一点.了解了很多以前脑子里的毒概念和坏习惯, 这些毒概念大都是利用了人脑的弱点:"></a>第一点.了解了很多以前脑子里的毒概念和坏习惯, 这些毒概念大都是利用了人脑的弱点:</h6><ul>
 <li><p><em>速读, 速成</em>  <code>利用了人&quot;希望自己的欲望能快点得到满足&quot;的天性, 也在一定程度上把人给弄的很浮躁.</code></p>
 </li>
 <li><p><em>完美主义</em>   <code>内因:恐惧犯错, 会让你变成拖拉狂, 人人做事都是要先犯错的. 外因: 犯错被他人嘲笑的几率很高. 但是, 你要明白, 真正做成事的人, 会知道其中的艰辛, 他们才不会随便嘲弄犯错的新手, 甚至会去鼓励他们. 他们也许会批评, 但也是建设性的, 不是为了秀优越的. 这可以做反向筛选, 随便嘲弄别人的, 说明他自己不怎么样. 何必在意这些人的看法呢? 他们的心智成长都是固定模式的了.</code></p>
-</li>
-<li><p><em>细节决定成败</em>    <code>没把整体弄通就去折腾细节, 简直是管中窥豹</code></p>
-</li>
-<li><p><em>内因才是最主要的, 环境不重要</em>    <code>bullshit!  环境与人是相互作用, 互为因果的</code></p>
-</li>
-<li><p><em>梦想”毁”人</em>   <code>当你带着心中 yy 的梦想去做另一件事, 你觉得你能100%投入当下这事吗?  而且为了所谓的梦想换工作, 就是重新下赌注了, 必定会被时间&quot;抽水&quot;.</code></p>
-</li>
-<li><p><em>逆境造就成功, 困难使人成熟</em>    <code>bullshit!  亲测无效! 好多苦吃了根本对成长毫无帮助, 甚至抑制你的成长</code></p>
-</li>
-<li><p><em>逃避倾向, 回避困难</em>    <code>花费很多时间去做非常容易做的事情, 麻痹自己, 殊不知却导致效率低下.(想想学习时候的偏科) 正确的做法应该是: 简单的要迅速做完, 把节约的时间投放在后面困难的部分上.</code></p>
-</li>
-<li><p><em>目标定的太高, 计划做的太长远</em></p>
-</li>
-<li><p><em>计划并不等于目标</em></p>
-</li>
-<li><p><em>语文和文学过分紧密联系了</em></p>
-</li>
-</ul>
-<hr>
-<h6 id="u7B2C_u4E8C_u70B9-_u660E_u767D_u4E86_u4E4B_u524D_u81EA_u5DF1_u9047_u5230_u7684_u56F0_u5883_2C__u5E76_u4E14_u77E5_u9053_u4E86_u90A3_u662F_u8FDB_u6B65_u8FC7_u7A0B_u4E2D_u7684_u5FC5_u7136_u73B0_u8C61-__u6BD4_u5982_u5B66_u4E60_u8FDB_u6B65_u56FE_u5F62_2C__u4E0D_u662F_u4E00_u6761_u8FDE_u7EED_u7684_u659C_u7EBF_2C__u800C_u662F_u7C7B_u4F3C_u9636_u68AF_u72B6_u7684"><a href="#u7B2C_u4E8C_u70B9-_u660E_u767D_u4E86_u4E4B_u524D_u81EA_u5DF1_u9047_u5230_u7684_u56F0_u5883_2C__u5E76_u4E14_u77E5_u9053_u4E86_u90A3_u662F_u8FDB_u6B65_u8FC7_u7A0B_u4E2D_u7684_u5FC5_u7136_u73B0_u8C61-__u6BD4_u5982_u5B66_u4E60_u8FDB_u6B65_u56FE_u5F62_2C__u4E0D_u662F_u4E00_u6761_u8FDE_u7EED_u7684_u659C_u7EBF_2C__u800C_u662F_u7C7B_u4F3C_u9636_u68AF_u72B6_u7684" class="headerlink" title="第二点.明白了之前自己遇到的困境, 并且知道了那是进步过程中的必然现象. 比如学习进步图形, 不是一条连续的斜线, 而是类似阶梯状的."></a>第二点.明白了之前自己遇到的困境, 并且知道了那是进步过程中的必然现象. 比如学习进步图形, 不是一条连续的斜线, 而是类似阶梯状的.</h6><p>困境如下:</p>
-<ul>
-<li><p><em>学习中的未知 , 我们要学会忍受, 接受不确定性</em></p>
-</li>
-<li><p><em>现状是无法立马摆脱的</em></p>
-</li>
-<li><p><em>错误估算任务时间</em>  <code>工作中经常遇到, 上司派你一个新任务, 还要你估算时间, 你估算不出来, 然而这并不是你的错, 因为这是新任务, 你对任务的过程没经历过, 是无法准确估算出来的, 其中有多少坑, 每个坑要花多少时间填, 根本没办法知道. 但是反过来, 你每完成一次任务, 就得总结一下它, 方便日后估算任务时间, 老任务时间再估算不出来, 就是你的错了.</code></p>
-</li>
-<li><p><em>学习进程曲线</em></p>
-</li>
-</ul>
-<hr>
-<h6 id="u7B2C_u4E09_u70B9-__u77E5_u9053_u4EC0_u4E48_u77E5_u8BC6_u662F_u91CD_u8981_u7684_2C_u600E_u6837_u7684_u505A_u4E8B_u65B9_u6CD5_u662F_u6B63_u786E_u7684_2C_u6709_u6548_u7684_2C__u4EC0_u4E48_u6837_u7684_u4EBA_u662F_u503C_u5F97_u4EA4_u5F80_u7684"><a href="#u7B2C_u4E09_u70B9-__u77E5_u9053_u4EC0_u4E48_u77E5_u8BC6_u662F_u91CD_u8981_u7684_2C_u600E_u6837_u7684_u505A_u4E8B_u65B9_u6CD5_u662F_u6B63_u786E_u7684_2C_u6709_u6548_u7684_2C__u4EC0_u4E48_u6837_u7684_u4EBA_u662F_u503C_u5F97_u4EA4_u5F80_u7684" class="headerlink" title="第三点. 知道什么知识是重要的,怎样的做事方法是正确的,有效的, 什么样的人是值得交往的"></a>第三点. 知道什么知识是重要的,怎样的做事方法是正确的,有效的, 什么样的人是值得交往的</h6><ul>
-<li><p><em>关注HOW</em>    学会任务拆分</p>
-</li>
-<li><p><em>预演</em></p>
-</li>
-<li><p><em>死要面子活受罪的人不值得交往</em></p>
-</li>
-</ul>
-<hr>
-<h6 id="u7B2C_u56DB_u70B9-__u5B66_u4F1A_u601D_u8003_2C__u878D_u4F1A_u8D2F_u901A_2C__u5F62_u6210_u81EA_u5DF1_u7684_u77E5_u8BC6_u6EE4_u7F51_2C__u8FC7_u6EE4_u6BD2_u6982_u5FF5_2C_u6BD2_u77E5_u8BC6"><a href="#u7B2C_u56DB_u70B9-__u5B66_u4F1A_u601D_u8003_2C__u878D_u4F1A_u8D2F_u901A_2C__u5F62_u6210_u81EA_u5DF1_u7684_u77E5_u8BC6_u6EE4_u7F51_2C__u8FC7_u6EE4_u6BD2_u6982_u5FF5_2C_u6BD2_u77E5_u8BC6" class="headerlink" title="第四点. 学会思考, 融会贯通, 形成自己的知识滤网, 过滤毒概念,毒知识"></a>第四点. 学会思考, 融会贯通, 形成自己的知识滤网, 过滤毒概念,毒知识</h6><ul>
-<li>“那….这个道理还能用在什么地方?”</li>
-</ul>
-<h4 id="To_be_continue__u2026"><a href="#To_be_continue__u2026" class="headerlink" title="To be continue …"></a>To be continue …</h4>
       
     </div>
     
@@ -556,6 +386,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/05/把时间当做朋友-读书笔记/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -599,33 +433,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5DF2_u8BFB"><span class="toc-number">1.</span> <span class="toc-text">已读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728_u8BFB"><span class="toc-number">2.</span> <span class="toc-text">在读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F85_u8BFB"><span class="toc-number">3.</span> <span class="toc-text">待读</span></a></li></ol>
-            </div>
-        
         <h3 id="u5DF2_u8BFB"><a href="#u5DF2_u8BFB" class="headerlink" title="已读"></a>已读</h3><ul>
-<li>&lt;&lt;把时间当做朋友&gt;&gt; <a href="http://xeroth.github.io/2016/01/05/%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E5%81%9A%E6%9C%8B%E5%8F%8B-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">读书笔记</a> ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷</li>
-<li><a href="http://xiaolai.github.io/alpha/on-learning/" target="_blank" rel="external"> &lt;&lt; 学习学习再学习 &gt;&gt; </a> ⭐️⭐️⭐️⭐️ 学习的方法论</li>
+<li>&lt;&lt;把时间当做朋友&gt;&gt; <a href="http://xeroth.github.io/2016/01/05/%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E5%81%9A%E6%9C%8B%E5%8F%8B-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a> ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷</li>
+<li><a href="http://xiaolai.github.io/alpha/on-learning/"> &lt;&lt; 学习学习再学习 &gt;&gt; </a> ⭐️⭐️⭐️⭐️ 学习的方法论</li>
 <li>&lt;&lt; 动物庄园 &gt;&gt; ⭐️⭐️ 没太大惊喜</li>
 <li>&lt;&lt; 十年一梦 &gt;&gt; ⭐️⭐️ 当故事来看</li>
 <li>&lt;&lt; 我只是敢和别人不一样 &gt;&gt; ⭐️⭐️⭐️ 让你更特立独行的鸡汤</li>
-<li>&lt;&lt; 黑客与画家 &gt;&gt; ⭐️⭐️⭐️⭐️⭐️ 不一样的角度看问题</li>
-</ul>
-<h3 id="u5728_u8BFB"><a href="#u5728_u8BFB" class="headerlink" title="在读"></a>在读</h3><ul>
-<li>&lt;&lt; the leadership pipeline &gt;&gt; 进度 序</li>
-<li>&lt;&lt; 七年就是一辈子 &gt;&gt; <a href="http://xeroth.github.io/2016/01/05/%E4%B8%83%E5%B9%B4%E5%B0%B1%E6%98%AF%E4%B8%80%E8%BE%88%E5%AD%90-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">读书笔记</a> 每日连载…</li>
-<li><a href="http://zhibimo.com/read/xiaolai/everyone-can-use-english/" target="_blank" rel="external">&lt;&lt; 人人都能用英语 &gt;&gt;</a> 进度20%</li>
-<li>&lt;&lt; 批判性思维 &gt;&gt; 进度30%</li>
-<li><a href="http://dockerpool.com/static/books/docker_practice/index.html" target="_blank" rel="external">&lt;&lt; Docker —— 从入门到实践 &gt;&gt;</a> 20%</li>
-</ul>
-<h3 id="u5F85_u8BFB"><a href="#u5F85_u8BFB" class="headerlink" title="待读"></a>待读</h3><ul>
-<li>&lt;&lt; 少有人走的路 &gt;&gt;</li>
-<li>&lt;&lt; 反脆弱 &gt;&gt;</li>
-<li>&lt;&lt; Beyond Feelings &gt;&gt;</li>
-</ul>
-
+<li>&lt;&lt; 黑客与画家 &gt;&gt; ⭐️⭐️⭐️⭐️⭐️ 不一样的角度看问题
       
     </div>
     
@@ -642,6 +456,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/05/我的书单/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -685,59 +503,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u66F4_u6362_u4E3B_u9898"><span class="toc-number">1.</span> <span class="toc-text">更换主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E_u5934_u50CF"><span class="toc-number">2.</span> <span class="toc-text">配置头像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E_u591A_u8BF4_u8BC4_u8BBA"><span class="toc-number">3.</span> <span class="toc-text">配置多说评论</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E_u4EE3_u7801_u9AD8_u4EAE"><span class="toc-number">4.</span> <span class="toc-text">配置代码高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BBE_u7F6E_google_analytics"><span class="toc-number">5.</span> <span class="toc-text">设置 google analytics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6DFB_u52A0RSS"><span class="toc-number">6.</span> <span class="toc-text">添加RSS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55"><span class="toc-number">7.</span> <span class="toc-text">添加文章目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u81EA_u5B9A_u4E49_u57DF_u540D"><span class="toc-number">8.</span> <span class="toc-text">自定义域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6"><span class="toc-number">9.</span> <span class="toc-text">其他</span></a></li></ol>
-            </div>
-        
-        <h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
+        <h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia">yilia</a></p>
 <p>进入 hexo 主目录:</p>
 <pre><code>cd [folder]
 </code></pre><p>安装:</p>
 <pre><code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
-</code></pre><p>配置:</p>
-<p>修改hexo根目录下的 </p>
-<p><code>_config.yml ： theme: yilia</code></p>
-<p>更新:</p>
-<pre><code>cd themes/yilia
-git pull
-</code></pre><h3 id="u914D_u7F6E_u5934_u50CF"><a href="#u914D_u7F6E_u5934_u50CF" class="headerlink" title="配置头像"></a>配置头像</h3><p>首先你得把头像图片上传到网上, 我是上传到了七牛</p>
-<p>然后配置文件 <code>themes/yilia/\_config.yml</code> : </p>
-<pre><code>favicon: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E5%B0%8F%E9%BB%84.jpg&quot;  # 网页 ico
-
-avatar: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg&quot;  #你的头像url
-</code></pre><h3 id="u914D_u7F6E_u591A_u8BF4_u8BC4_u8BBA"><a href="#u914D_u7F6E_u591A_u8BF4_u8BC4_u8BBA" class="headerlink" title="配置多说评论"></a>配置多说评论</h3><p>😂  好像注册了多说就能评论了… 也没做啥配置</p>
-<h3 id="u914D_u7F6E_u4EE3_u7801_u9AD8_u4EAE"><a href="#u914D_u7F6E_u4EE3_u7801_u9AD8_u4EAE" class="headerlink" title="配置代码高亮"></a>配置代码高亮</h3><p>修改hexo配置文件: <code>_config.yml</code></p>
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">highlight</span>:</span><br><span class="line">    <span class="attribute">enable</span>: true</span><br><span class="line">    <span class="attribute">line_number</span>: false</span><br><span class="line">    <span class="attribute">auto_detect</span>: true</span><br><span class="line">    <span class="attribute">tab_replace</span>:</span><br><span class="line">    <span class="attribute">style</span>: <span class="string">'github'</span></span><br></pre></td></tr></table></figure>
-<h3 id="u8BBE_u7F6E_google_analytics"><a href="#u8BBE_u7F6E_google_analytics" class="headerlink" title="设置 google analytics"></a>设置 google analytics</h3><p>注册 <strong>google analytics</strong></p>
-<p>修改文件: <code>themes/yilia/_config.yml</code></p>
-<p><em>google_analytics: ‘Tracking-ID’</em></p>
-<h3 id="u6DFB_u52A0RSS"><a href="#u6DFB_u52A0RSS" class="headerlink" title="添加RSS"></a>添加RSS</h3><pre><code>npm install hexo-generator-feed --save
-</code></pre><h3 id="u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55"><a href="#u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55" class="headerlink" title="添加文章目录"></a>添加文章目录</h3><p>打开<em>themes/yilia/layout/_partial/article.ejs</em>文件，在<em>&lt;%- post.content %&gt;</em>之前插入以下代码</p>
-<figure class="highlight erb"><table><tr><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span>(post.toc !== <span class="keyword">false</span>)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"toc"</span> <span class="attribute">class</span>=<span class="value">"toc-article"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">strong</span> <span class="attribute">class</span>=<span class="value">"toc-title"</span>&gt;</span></span>&lt;%=<span class="ruby"> _<span class="number">_</span>(<span class="string">'文章目录'</span>) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br><span class="line">	</span>&lt;%-<span class="ruby"> toc(post.content) </span>%&gt;<span class="xml"></span><br><span class="line">	<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
-<p>为文章目录添加 css 样式</p>
-<p>打开<em>themes/yilia/source/css/_partial/article.styl</em>, 在最后加入如下 CSS样式即可:</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="comment">//toc</span></span><br><span class="line"><span class="class">.toc-article</span></span><br><span class="line">  <span class="attribute">background</span> <span class="hexcolor">#eee</span></span><br><span class="line">  <span class="attribute">margin</span> <span class="number">2em</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0.5em</span></span><br><span class="line">  <span class="attribute">padding</span> <span class="number">1em</span></span><br><span class="line">  <span class="tag">strong</span></span><br><span class="line">    <span class="attribute">padding</span> <span class="number">0.3em</span> <span class="number">0</span></span><br><span class="line"><span class="id">#toc</span></span><br><span class="line">  <span class="attribute">line-height</span> <span class="number">1.5em</span></span><br><span class="line">  <span class="attribute">font-size</span> <span class="number">1em</span></span><br><span class="line">  <span class="attribute">float</span> <span class="attribute">right</span></span><br><span class="line">  <span class="class">.toc</span></span><br><span class="line">    <span class="attribute">padding</span> <span class="number">0</span></span><br><span class="line">    <span class="tag">li</span></span><br><span class="line">      <span class="attribute">list-style-type</span> <span class="attribute">none</span></span><br><span class="line">      </span><br><span class="line">  <span class="class">.toc-child</span> </span><br><span class="line">    <span class="attribute">padding-left</span> <span class="number">0.7em</span></span><br></pre></td></tr></table></figure>
-<h3 id="u81EA_u5B9A_u4E49_u57DF_u540D"><a href="#u81EA_u5B9A_u4E49_u57DF_u540D" class="headerlink" title="自定义域名"></a>自定义域名</h3><p>首先是要到域名提供商处购买域名, 常见的域名提供商有 Godaddy, Namecheap等 , 我在 Namecheap 买的.</p>
-<p>然后把域名解析服务器设置为国内的 <a href="/www.dnspod.cn">DNSPOD</a></p>
-<p>登陆 DNSPOD 进行设置, 如图</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/gitpage-cname.png" alt="gitpage-cname"></p>
-<p>A记录是 yourusername.github.io的 ip</p>
-<p>CNAME 记录 我设置的是 www 后面跟的 yourusername.github.io</p>
-<p>完了之后在 hexo的主目录创建一个CNAME文件: <em>hexo/source/CNAME</em> , 文件里就一行:<br><em>www.a-ho.com</em></p>
-<p>完了之后 hexo clean &amp;&amp; hexo g -d 部署上去就好了</p>
-<h3 id="u5176_u4ED6"><a href="#u5176_u4ED6" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>修改文章生成模板 <code>scaffolds/post.md</code> 比如添加 categories: </li>
-</ul>
-<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="symbol">title:</span> <span class="expansion">&#123;&#123; title &#125;&#125;</span></span><br><span class="line"><span class="symbol">date:</span> <span class="expansion">&#123;&#123; date &#125;&#125;</span></span><br><span class="line"><span class="symbol">categories:</span></span><br><span class="line"><span class="symbol">tags:</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<ul>
-<li>mac 上的 markdown 编辑器, 现在用的是 Mou</li>
-<li><a href="http://zipperary.com/2013/06/02/hexo-guide-5/" target="_blank" rel="external">添加sitemap</a></li>
-</ul>
-<p>参考:</p>
-<p><a href="http://www.yuthon.com/2015/02/03/tips-for-hexo/" target="_blank" rel="external">http://www.yuthon.com/2015/02/03/tips-for-hexo/</a></p>
-
+</code></pre>
       
     </div>
     
@@ -754,6 +525,10 @@ avatar: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/05/hexo-博客优化/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
