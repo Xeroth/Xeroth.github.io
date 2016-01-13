@@ -307,7 +307,7 @@
     <link href="http://yoursite.com/2016/01/05/hexo-%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/"/>
     <id>http://yoursite.com/2016/01/05/hexo-博客优化/</id>
     <published>2016-01-05T04:34:44.000Z</published>
-    <updated>2016-01-13T14:46:42.000Z</updated>
+    <updated>2016-01-13T14:47:41.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
 <p>进入 hexo 主目录:</p>
 <pre><code>cd [folder]
@@ -363,7 +363,7 @@ avatar: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%
 <li>列表每篇文章的预览部分 是用这个标签<em><!--more--></em></li>
 </ul>
 <p>参考:</p>
-<p><a href="http://www.yuthon.com/2015/02/03/tips-for-hexo/" target="_blank" rel="external">http://www.yuthon.com/2015/02/03/tips-for-hexo/</a><br><a href="https://github.com/litten/hexo-theme-yilia/issues/51" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia/issues/51</a></p>
+<p><a href="http://www.yuthon.com/2015/02/03/tips-for-hexo/" target="_blank" rel="external">http://www.yuthon.com/2015/02/03/tips-for-hexo/</a><br><a href="https://github.com/litten/hexo-theme-yilia/issues/51" target="_blank" rel="external">https://github.com/litten/hexo-theme-yilia/issues/51</a><br><a href="http://hanhailong.com/2015/10/08/Hexo%E2%80%94%E6%AD%A3%E7%A1%AE%E6%B7%BB%E5%8A%A0RSS%E8%AE%A2%E9%98%85/" target="_blank" rel="external">http://hanhailong.com/2015/10/08/Hexo%E2%80%94%E6%AD%A3%E7%A1%AE%E6%B7%BB%E5%8A%A0RSS%E8%AE%A2%E9%98%85/</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia">yilia</a></p>
