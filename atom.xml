@@ -307,7 +307,7 @@
     <link href="http://yoursite.com/2016/01/05/hexo-%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/"/>
     <id>http://yoursite.com/2016/01/05/hexo-博客优化/</id>
     <published>2016-01-05T04:34:44.000Z</published>
-    <updated>2016-01-13T14:24:53.000Z</updated>
+    <updated>2016-01-13T14:46:42.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
 <p>进入 hexo 主目录:</p>
 <pre><code>cd [folder]
@@ -332,7 +332,15 @@ avatar: &quot;http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%
 <p>修改文件: <code>themes/yilia/_config.yml</code></p>
 <p><em>google_analytics: ‘Tracking-ID’</em></p>
 <h3 id="u6DFB_u52A0RSS"><a href="#u6DFB_u52A0RSS" class="headerlink" title="添加RSS"></a>添加<a href="http://www.ruanyifeng.com/blog/2006/01/rss.html" target="_blank" rel="external">RSS</a></h3><pre><code>npm install hexo-generator-feed --save
-</code></pre><h3 id="u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55"><a href="#u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55" class="headerlink" title="添加文章目录"></a>添加文章目录</h3><p>打开<em>themes/yilia/layout/_partial/article.ejs</em>文件，在<em>&lt;%- post.content %&gt;</em>之前插入以下代码</p>
+</code></pre><p>安装完后, 在hexo 配置文件_config.yml 中加入:</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">#RSS订阅</span><br><span class="line">plugin:</span><br><span class="line">    - hexo-generator-feed</span><br><span class="line"><span class="hexcolor">#Fee</span>d Atom</span><br><span class="line">feed:</span><br><span class="line">type: atom</span><br><span class="line">path: atom<span class="class">.xml</span></span><br><span class="line">limit: <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>最后，在你当前主题下的_config.yml下，添加RSS订阅链接即可，这里我用的是Yilia主题，subnav下添加rss：</p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="preprocessor"># SubNav</span></span><br><span class="line"><span class="label">subnav:</span></span><br><span class="line"><span class="label">rss:</span> <span class="string">"/atom.xml"</span></span><br></pre></td></tr></table></figure>
+<p>完了之后部署更新, 点击RSS 按钮</p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/hexo_rss.png" alt="hexo_rss"></p>
+<p>页面跳转到 <a href="http://你的域名/atom.xml" target="_blank" rel="external">http://你的域名/atom.xml</a> 说明配置成功了</p>
+<p>关于 RSS 订阅, 我用的是 Chrome 的插件 <a href="https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp" target="_blank" rel="external">RSS Feed Reader</a></p>
+<h3 id="u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55"><a href="#u6DFB_u52A0_u6587_u7AE0_u76EE_u5F55" class="headerlink" title="添加文章目录"></a>添加文章目录</h3><p>打开<em>themes/yilia/layout/_partial/article.ejs</em>文件，在<em>&lt;%- post.content %&gt;</em>之前插入以下代码</p>
 <figure class="highlight erb"><table><tr><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span>(post.toc !== <span class="keyword">false</span>)&#123; </span>%&gt;<span class="xml"></span><br><span class="line">	<span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"toc"</span> <span class="attribute">class</span>=<span class="value">"toc-article"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">strong</span> <span class="attribute">class</span>=<span class="value">"toc-title"</span>&gt;</span></span>&lt;%=<span class="ruby"> _<span class="number">_</span>(<span class="string">'文章目录'</span>) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">strong</span>&gt;</span></span><br><span class="line">	</span>&lt;%-<span class="ruby"> toc(post.content) </span>%&gt;<span class="xml"></span><br><span class="line">	<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
 <p>为文章目录添加CSS样式</p>
 <p>打开<em>themes/yilia/source/css/_partial/article.styl</em>, 在最后加入如下 CSS样式即可:</p>
