@@ -23,7 +23,7 @@ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/hexo_rss.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/cloud_tag1.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/gitpage-cname.png">
-<meta property="og:updated_time" content="2016-01-15T02:05:00.000Z">
+<meta property="og:updated_time" content="2016-01-15T02:06:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo 博客优化">
 <meta name="twitter:description" content="更换主题我选择更换的主题是yilia
@@ -340,7 +340,7 @@ comments: false
 <p>完了之后在 hexo的主目录创建一个CNAME文件: <em>hexo/source/CNAME</em> , 文件里就一行:<br><em>www.a-ho.com</em></p>
 <p>完了之后 hexo clean &amp;&amp; hexo g -d 部署上去就好了</p>
 <h3 id="u6DFB_u52A0_u8BBF_u95EE_u7EDF_u8BA1"><a href="#u6DFB_u52A0_u8BBF_u95EE_u7EDF_u8BA1" class="headerlink" title="添加访问统计"></a>添加访问统计</h3><p>我用的是<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="external">不蒜子</a></p>
-<p>在文件 <em>themes/yilia/layout/_partial/footer.ejs</em> 中的<em><div class="footer-right"></div></em> 标签下添加代码:</p>
+<p>在文件 <em>themes/yilia/layout/_partial/footer.ejs</em> 中的<em>\<div class="footer-right"></div></em> 标签下添加代码:</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">async</span> <span class="attribute">src</span>=<span class="value">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">本站总访问量<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>次，本站访客数<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>人次，本文总阅读量<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>次</span><br></pre></td></tr></table></figure>
 <h3 id="u5176_u4ED6"><a href="#u5176_u4ED6" class="headerlink" title="其他"></a>其他</h3><ul>
 <li>修改文章生成模板 <code>scaffolds/post.md</code> 比如添加 categories: </li>
