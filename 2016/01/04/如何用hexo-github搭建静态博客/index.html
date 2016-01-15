@@ -13,7 +13,10 @@ OS X EI Captain
 node v4.2.4
 
 
-一  安装nodeshttp://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html">
+一  安装nodesbrew安装NVM
+brew install nvm
+將下列指令加入 .bash_profile（或 .bashrc）檔案
+export NVM_DIR=~/.nvmsource $(brew --prefix nvm)/nvm.sh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何用hexo-github搭建静态博客">
 <meta property="og:url" content="http://yoursite.com/2016/01/04/如何用hexo-github搭建静态博客/index.html">
@@ -25,8 +28,11 @@ OS X EI Captain
 node v4.2.4
 
 
-一  安装nodeshttp://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html">
-<meta property="og:updated_time" content="2016-01-13T14:14:21.000Z">
+一  安装nodesbrew安装NVM
+brew install nvm
+將下列指令加入 .bash_profile（或 .bashrc）檔案
+export NVM_DIR=~/.nvmsource $(brew --prefix nvm)/nvm.sh">
+<meta property="og:updated_time" content="2016-01-15T04:42:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何用hexo-github搭建静态博客">
 <meta name="twitter:description" content="搭建环境和版本:
@@ -36,7 +42,10 @@ OS X EI Captain
 node v4.2.4
 
 
-一  安装nodeshttp://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html">
+一  安装nodesbrew安装NVM
+brew install nvm
+將下列指令加入 .bash_profile（或 .bashrc）檔案
+export NVM_DIR=~/.nvmsource $(brew --prefix nvm)/nvm.sh">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -270,8 +279,24 @@ node v4.2.4
 <li><p>node v4.2.4</p>
 </li>
 </ul>
-<h3 id="u4E00__u5B89_u88C5nodes"><a href="#u4E00__u5B89_u88C5nodes" class="headerlink" title="一  安装nodes"></a>一  安装nodes</h3><p><a href="http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html" target="_blank" rel="external">http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html</a><br><a id="more"></a></p>
-<h3 id="u4E8C__u5B89_u88C5_u521D_u59CB_u5316_u914D_u7F6E_hexo"><a href="#u4E8C__u5B89_u88C5_u521D_u59CB_u5316_u914D_u7F6E_hexo" class="headerlink" title="二  安装初始化配置 hexo"></a>二  安装初始化配置 hexo</h3><p>初始化</p>
+<h3 id="u4E00__u5B89_u88C5nodes"><a href="#u4E00__u5B89_u88C5nodes" class="headerlink" title="一  安装nodes"></a>一  安装nodes</h3><p>brew安装NVM</p>
+<pre><code>brew install nvm
+</code></pre><p>將下列指令加入 .bash_profile（或 .bashrc）檔案</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=~/.nvm</span><br><span class="line"><span class="built_in">source</span> $(brew --prefix nvm)/nvm.sh</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>重新載入 .bash_profile 設定</p>
+<pre><code>source .bash_profile
+</code></pre><p>找出目前所有可安裝的 Node.js 版本</p>
+<pre><code>nvm ls-remote
+</code></pre><p>安裝最新稳定版的 Node.js(我这时候是v4.2.4)</p>
+<pre><code>nvm install v4.2.4
+</code></pre><p>指定nvm使用的 Node.js版本</p>
+<pre><code>nvm use 4.2.4   
+</code></pre><p>預設使用 0.11.16 版本，否則每次重新連線登入，還需要重新 nvm use 一次</p>
+<pre><code>nvm alias default 4.2.4
+</code></pre><p>測試 Node.js</p>
+<pre><code>node -v
+</code></pre><h3 id="u4E8C__u5B89_u88C5_u521D_u59CB_u5316_u914D_u7F6E_hexo"><a href="#u4E8C__u5B89_u88C5_u521D_u59CB_u5316_u914D_u7F6E_hexo" class="headerlink" title="二  安装初始化配置 hexo"></a>二  安装初始化配置 hexo</h3><p>初始化</p>
 <pre><code>$ hexo init [folder]      #创建 hexo 主目录
 </code></pre><p>生成静态网页文件</p>
 <pre><code>$ hexo g
@@ -301,7 +326,9 @@ $ hexo d
 <pre><code>hexo s --draft
 </code></pre><p>将草稿正式发布</p>
 <pre><code>hexo publish &lt;title&gt;
-</code></pre>
+</code></pre><p>参考:</p>
+<p><a href="http://mac-osx-for-newbie-book.kejyun.com/software/softwareWebDeveloperNodeJS.html" target="_blank" rel="external">Mac OSX 新手入门</a>    </p>
+
       
     </div>
     
