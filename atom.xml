@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-13T14:12:18.000Z</updated>
+  <updated>2016-01-16T09:17:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[打造Linux 终端翻墙环境]]></title>
+    <link href="http://yoursite.com/2016/01/16/%E6%89%93%E9%80%A0Linux-%E7%BB%88%E7%AB%AF%E7%BF%BB%E5%A2%99%E7%8E%AF%E5%A2%83/"/>
+    <id>http://yoursite.com/2016/01/16/打造Linux-终端翻墙环境/</id>
+    <published>2016-01-16T04:05:55.000Z</published>
+    <updated>2016-01-16T09:17:48.000Z</updated>
+    <content type="html"><![CDATA[<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
+<p>GFW! 忍你好久了! I believe I can Fan !</p>
+<h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
+<p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
+<blockquote>
+<p>为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？这个问题当时困惑了我很久，最后一句话点醒了我。 Shadowsocks是一个使用SOCKS5（或者SOCK4之类）协议的代理，它只接受SOCKS5协议的流量，不接受HTTP或者HTTPS的流量。所以当你在Chrome上能穿墙的时候，是Proxy SwitchyOmega插件把HTTP和HTTPS流量转换成了SOCKS协议的流量，才实现了Shadowsocks的代理。而终端是没有这样的协议转换的，所以没法直接使用Shadowsock进行代理。这时候就需要一个协议转换器，这里我用了Privoxy。</p>
+</blockquote>
+<a id="more"></a>
+<h5 id="u66F4_u65B0_u56FD_u5185_u6E90"><a href="#u66F4_u65B0_u56FD_u5185_u6E90" class="headerlink" title="更新国内源"></a>更新国内源</h5><p>首先更新 Ubuntu 源, Ubuntu 本来是 us 的源, 更新不动, 只能换国内源了,  国内的 163 源更新时候报错 :    </p>
+<pre><code>W: Failed to fetch http://mirrors.163.com/ubuntu/dists/trusty-proposed/main/i18n/Translation-en  Hash Sum mismatch
+</code></pre><p>然后换了阿里的源, 更新成功, 具体步骤</p>
+<p>1.先备份原来的源列表</p>
+<pre><code>cp /etc/apt/sources.list /tmp/source.list.bak
+</code></pre><p>2.然后打开<em>/etc/apt/sources.list</em>文件, 清空当前的源, 用下面的源替换</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+<p>3.更新</p>
+<pre><code>apt-get update -y  更新源列表
+apt-get upgrade -y (选做)升级软件包
+</code></pre><h5 id="u5B89_u88C5_u914D_u7F6Eshadowsocks"><a href="#u5B89_u88C5_u914D_u7F6Eshadowsocks" class="headerlink" title="安装配置shadowsocks"></a>安装配置shadowsocks</h5><p>安装</p>
+<pre><code>apt-get install python-gevent python-pip -y  
+</code></pre><p>配置</p>
+<p>创建shadowsocks配置文件 <em>/etc/shadowsocks.json</em> , 添加shadowsocks服务的配置参数</p>
+<p>(注:shadowsocks 服务可以自己买vps 搭建 ,也可以买服务商提供的)</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "<span class="attribute">server</span>": <span class="value"><span class="string">"your server ip"</span></span>,</span><br><span class="line">    "<span class="attribute">server_port</span>": <span class="value"><span class="number">15216</span></span>,</span><br><span class="line">    "<span class="attribute">local_address</span>": <span class="value"><span class="string">"127.0.0.1"</span></span>,</span><br><span class="line">    "<span class="attribute">local_port</span>": <span class="value"><span class="number">1080</span></span>,</span><br><span class="line">    "<span class="attribute">password</span>": <span class="value"><span class="string">"your password"</span></span>,</span><br><span class="line">    "<span class="attribute">method</span>": <span class="value"><span class="string">"aes-256-cfb"</span></span>,</span><br><span class="line">    "<span class="attribute">fast_open</span>": <span class="value"><span class="literal">true</span></span>,</span><br><span class="line">    "<span class="attribute">workers</span>": <span class="value"><span class="number">1</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+<p>后台运行 shadowsocks</p>
+<pre><code>nohup sslocal -c /etc/shadowsocks.json &amp;
+</code></pre><p>查看服务端口</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~<span class="preprocessor"># lsof -i:<span class="number">1080</span></span></span><br><span class="line">COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span><br><span class="line">sslocal <span class="number">16572</span> root    <span class="number">3u</span>  IPv4  <span class="number">53244</span>      <span class="number">0</span>t0  TCP localhost:socks (LISTEN)</span><br><span class="line">sslocal <span class="number">16572</span> root    <span class="number">4u</span>  IPv4  <span class="number">53245</span>      <span class="number">0</span>t0  UDP localhost:socks</span><br></pre></td></tr></table></figure>
+<p>运行成功!</p>
+<h5 id="u5B89_u88C5_u914D_u7F6EPrivoxy"><a href="#u5B89_u88C5_u914D_u7F6EPrivoxy" class="headerlink" title="安装配置Privoxy"></a>安装配置Privoxy</h5><p>安装</p>
+<pre><code>apt-get install privoxy -y
+</code></pre><p>配置</p>
+<p>打开配置文件<em>/etc/privoxy/config</em></p>
+<p>找到 <em>4.2. toggle</em> 上方加入如下配置</p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/privoxy1.png" alt="privoxy1"></p>
+<p>注意, 这里要 127.0.0.1 不能用 localhost 代替, 否则 privoxy 服务端口会绑定到 ipv6上, 坑!</p>
+<p>再到 <em>5.3</em> 上方加入下图配置</p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/privoxy2.png" alt="privoxy1"></p>
+<p>重启服务</p>
+<pre><code>service privoxy restart
+</code></pre><p>查看服务端口</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~<span class="comment"># lsof -i:8118</span></span><br><span class="line">COMMAND   PID    <span class="keyword">USER</span>   <span class="title">FD</span>   <span class="operator">TYPE</span> DEVICE SIZE/OFF <span class="keyword">NODE</span><span class="identifier"> </span><span class="title">NAME</span></span><br><span class="line">privoxy <span class="number">19429</span> privoxy    <span class="number">4</span>u  IPv4  <span class="number">58574</span>      <span class="number">0</span>t0  TCP localhost:<span class="number">8118</span> (LISTEN)</span><br></pre></td></tr></table></figure>
+<p>运行成功!</p>
+<h5 id="u914D_u7F6E_u7EC8_u7AEF_u73AF_u5883http_u4EE3_u7406"><a href="#u914D_u7F6E_u7EC8_u7AEF_u73AF_u5883http_u4EE3_u7406" class="headerlink" title="配置终端环境http代理"></a>配置终端环境http代理</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"127.0.0.1:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"127.0.0.1:8118"</span></span><br></pre></td></tr></table></figure>
+<p>测试翻墙效果</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~<span class="preprocessor"># wget http:<span class="comment">//facebook.com</span></span></span><br><span class="line">--<span class="number">2016</span>-<span class="number">01</span>-<span class="number">16</span> <span class="number">15</span>:<span class="number">11</span>:<span class="number">35</span>--  http:<span class="comment">//facebook.com/</span></span><br><span class="line">Connecting <span class="keyword">to</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8118</span>... connected.</span><br><span class="line">Proxy request sent, awaiting response... <span class="number">302</span> Found</span><br><span class="line"><span class="built_in">Location</span>: https:<span class="comment">//facebook.com/ [following]</span></span><br><span class="line">--<span class="number">2016</span>-<span class="number">01</span>-<span class="number">16</span> <span class="number">15</span>:<span class="number">11</span>:<span class="number">36</span>--  https:<span class="comment">//facebook.com/</span></span><br><span class="line">Connecting <span class="keyword">to</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8118</span>... connected.</span><br><span class="line">Proxy request sent, awaiting response... <span class="number">301</span> Moved Permanently</span><br><span class="line"><span class="built_in">Location</span>: https:<span class="comment">//www.facebook.com/?_rdr=p [following]</span></span><br><span class="line">--<span class="number">2016</span>-<span class="number">01</span>-<span class="number">16</span> <span class="number">15</span>:<span class="number">11</span>:<span class="number">37</span>--  https:<span class="comment">//www.facebook.com/?_rdr=p</span></span><br><span class="line">Connecting <span class="keyword">to</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8118</span>... connected.</span><br><span class="line">Proxy request sent, awaiting response... <span class="number">302</span> Found</span><br><span class="line"><span class="built_in">Location</span>: https:<span class="comment">//www.facebook.com/unsupportedbrowser [following]</span></span><br><span class="line">--<span class="number">2016</span>-<span class="number">01</span>-<span class="number">16</span> <span class="number">15</span>:<span class="number">11</span>:<span class="number">38</span>--  https:<span class="comment">//www.facebook.com/unsupportedbrowser</span></span><br><span class="line">Connecting <span class="keyword">to</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8118</span>... connected.</span><br><span class="line">Proxy request sent, awaiting response... <span class="number">200</span> OK</span><br><span class="line">Length: unspecified [<span class="built_in">text</span>/html]</span><br><span class="line">Saving <span class="keyword">to</span>: <span class="string">'index.html'</span></span><br><span class="line"></span><br><span class="line">    [ &lt;=&gt;                                                                                                                                      ] <span class="number">31</span>,<span class="number">392</span>       <span class="number">156</span>KB/s   <span class="built_in">in</span> <span class="number">0.2</span>s</span><br><span class="line"></span><br><span class="line"><span class="number">2016</span>-<span class="number">01</span>-<span class="number">16</span> <span class="number">15</span>:<span class="number">11</span>:<span class="number">39</span> (<span class="number">156</span> KB/s) - <span class="string">'index.html'</span> saved [<span class="number">31392</span>]</span><br></pre></td></tr></table></figure>
+<p>哈!成功! 那就开始愉快的 apt-get 吧, 当我执行 apt-get update 后, 立马报了错, 额, 可能是代理在国外, 访问不了阿里源吧, 于是我把之前备份的 us 源还原回去, 再次执行, 依然报错:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~# apt-get <span class="operator"><span class="keyword">update</span> -y</span><br><span class="line">Ign <span class="keyword">http</span>://<span class="keyword">security</span>.ubuntu.com trusty-<span class="keyword">security</span> InRelease</span><br><span class="line">Err <span class="keyword">http</span>://<span class="keyword">security</span>.ubuntu.com trusty-<span class="keyword">security</span> <span class="keyword">Release</span>.gpg</span><br><span class="line">  Cannot initiate the <span class="keyword">connection</span> <span class="keyword">to</span> <span class="number">8118</span>:<span class="number">80</span> (<span class="number">0.0</span><span class="number">.31</span><span class="number">.182</span>). - <span class="keyword">connect</span> (<span class="number">22</span>: Invalid argument)</span><br><span class="line">  ...</span><br><span class="line">  ...</span></span><br></pre></td></tr></table></figure>
+<p>wget 的测试成功了, 说明代理是走得通的, 但是 apt-get 却失败, 这是为什么呢? 我估计是 apt-get 还需要另外配置代理, 果不其然, 通过 google , 找到了答案, 具体往下面看</p>
+<h5 id="u914D_u7F6E_apt-get__u7684_u4EE3_u7406"><a href="#u914D_u7F6E_apt-get__u7684_u4EE3_u7406" class="headerlink" title="配置 apt-get 的代理"></a>配置 apt-get 的代理</h5><p>很简单, 创建一个文件 <em>/etc/apt/apt.conf</em> , 添加一句:</p>
+<pre><code>Acquire::http::Proxy &quot;http://127.0.0.1:8118&quot;;
+</code></pre><p>再次运行 apt-get update -y</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~# apt-get <span class="operator"><span class="keyword">update</span> -y</span><br><span class="line">Ign <span class="keyword">http</span>://us.<span class="keyword">archive</span>.ubuntu.com trusty InRelease</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">1</span> https://apt.dockerproject.org ubuntu-trusty InRelease</span><br><span class="line">Ign https://apt.dockerproject.org ubuntu-trusty InRelease</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">2</span> https://apt.dockerproject.org ubuntu-trusty <span class="keyword">Release</span></span><br><span class="line"><span class="keyword">Get</span>:<span class="number">3</span> https://apt.dockerproject.org ubuntu-trusty/<span class="keyword">main</span> amd64 Packages</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">4</span> https://apt.dockerproject.org ubuntu-trusty/<span class="keyword">main</span> i386 Packages</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">5</span> <span class="keyword">http</span>://<span class="keyword">security</span>.ubuntu.com trusty-<span class="keyword">security</span> InRelease [<span class="number">64.4</span> kB]</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">6</span> https://apt.dockerproject.org ubuntu-trusty/<span class="keyword">main</span> <span class="keyword">Translation</span>-en</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">7</span> <span class="keyword">http</span>://us.<span class="keyword">archive</span>.ubuntu.com trusty-updates InRelease [<span class="number">64.4</span> kB]</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">8</span> <span class="keyword">http</span>://<span class="keyword">security</span>.ubuntu.com trusty-<span class="keyword">security</span>/<span class="keyword">main</span> Sources [<span class="number">103</span> kB]</span><br><span class="line"><span class="keyword">Get</span>:<span class="number">9</span> <span class="keyword">http</span>://us.<span class="keyword">archive</span>.ubuntu.com trusty-backports InRelease [<span class="number">64.5</span> kB]</span><br><span class="line">...</span><br><span class="line">...</span></span><br></pre></td></tr></table></figure>
+<p>已经能成功运行, 简直是如丝般顺滑~</p>
+<p>docker 的库是我之前配置的, 你们运行时应该看不到2333</p>
+<h5 id="u5F00_u673A_u81EA_u542F_u52A8_u7FFB_u5899_u914D_u7F6E"><a href="#u5F00_u673A_u81EA_u542F_u52A8_u7FFB_u5899_u914D_u7F6E" class="headerlink" title="开机自启动翻墙配置"></a>开机自启动翻墙配置</h5><p>在 <em>/etc/rc.local</em> 中加入下面配置, 注意是在 <em>exit 0</em> 之前。 </p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">nohup sslocal -c /etc/shadowsocks<span class="class">.json</span> &amp;</span><br><span class="line">service privoxy start</span><br></pre></td></tr></table></figure>
+<p>在 <em>/etc/profile</em> 的末尾添加如下两句。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"127.0.0.1:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"127.0.0.1:8118"</span></span><br></pre></td></tr></table></figure>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>这次的翻墙经历: 有种打通任督二脉的感觉, 浑身舒畅, 可以开心地去修炼 docker 了 ~</p>
+<p>如果非要我用一句话总结,那将会是: <strong>一颗赛艇!</strong></p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/excited.png" alt="excited"></p>
+<p>感谢:  </p>
+<p><a href="http://www.itdadao.com/article/169999/" target="_blank" rel="external">Ubuntu 14.04 配置Shadowsocks和Privoxy实现浏览器和终端代理</a></p>
+<p><a href="http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8#Trusty.2814.04.29.E7.89.88.E6.9C.AC" target="_blank" rel="external">Ubuntu源列表</a></p>
+<p><a href="https://help.ubuntu.com/community/AptGet/Howto" target="_blank" rel="external">Setting up apt-get to use a http-proxy</a>  </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
+<p>GFW! 忍你好久了! I believe I can Fan !</p>
+<h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
+<p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
+<blockquote>
+<p>为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？这个问题当时困惑了我很久，最后一句话点醒了我。 Shadowsocks是一个使用SOCKS5（或者SOCK4之类）协议的代理，它只接受SOCKS5协议的流量，不接受HTTP或者HTTPS的流量。所以当你在Chrome上能穿墙的时候，是Proxy SwitchyOmega插件把HTTP和HTTPS流量转换成了SOCKS协议的流量，才实现了Shadowsocks的代理。而终端是没有这样的协议转换的，所以没法直接使用Shadowsock进行代理。这时候就需要一个协议转换器，这里我用了Privoxy。</p>
+</blockquote>]]>
+    
+    </summary>
+    
+      <category term="privoxy" scheme="http://yoursite.com/tags/privoxy/"/>
+    
+      <category term="shadowsocks" scheme="http://yoursite.com/tags/shadowsocks/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[在OS X上安装Docker]]></title>
@@ -328,7 +420,7 @@
     <link href="http://yoursite.com/2016/01/05/hexo-%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/"/>
     <id>http://yoursite.com/2016/01/05/hexo-博客优化/</id>
     <published>2016-01-05T04:34:44.000Z</published>
-    <updated>2016-01-15T12:21:55.000Z</updated>
+    <updated>2016-01-16T09:08:50.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
 <p>进入 hexo 主目录:</p>
 <pre><code>cd [folder]
@@ -428,6 +520,13 @@ comments: false
 <li>mac 上的 markdown 编辑器, 现在用的是 Mou</li>
 <li><a href="http://zipperary.com/2013/06/02/hexo-guide-5/" target="_blank" rel="external">添加sitemap</a></li>
 <li>列表每篇文章的预览部分 是用这个标签<em>\<!--more--></em></li>
+<li><del><a href="http://www.jianshu.com/p/0c5d6678ed6d" target="_blank" rel="external">Markdown页内跳转</a></del>坑爹的</li>
+<li>脚注 (有了这个, 妈妈再也不用担心我的文章引用出处啦)</li>
+</ul>
+<pre><code>[^1]
+
+[^1]:abcd
+</code></pre><ul>
 <li><a href="http://moxfive.xyz/2015/10/16/hexo-404-page/#u53C2_u8003_u8D44_u6599" target="_blank" rel="external">添加404页面</a> 我加了腾讯的<a href="http://www.qq.com/404/" target="_blank" rel="external">公益404</a>,很简单, 加段代码就行, <a href="http://www.a-ho.com/404" target="_blank" rel="external">点击</a>查看效果</li>
 <li>关闭评论 <em>comments: false</em></li>
 <li><a href="http://blog.justforfun.top/2015/02/07/hexo-BGM%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95/" target="_blank" rel="external">hexo BGM</a></li>
@@ -462,7 +561,7 @@ comments: false
     <link href="http://yoursite.com/2016/01/04/%E5%A6%82%E4%BD%95%E7%94%A8hexo-github%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yoursite.com/2016/01/04/如何用hexo-github搭建静态博客/</id>
     <published>2016-01-04T14:30:42.000Z</published>
-    <updated>2016-01-15T04:42:26.000Z</updated>
+    <updated>2016-01-16T06:40:50.000Z</updated>
     <content type="html"><![CDATA[<p>搭建环境和版本:</p>
 <ul>
 <li><p>OS X EI Captain</p>
@@ -509,9 +608,9 @@ $ hexo d
 </code></pre><p>然后在 <code>source/_posts/</code> 目录下可以找到文件进行编辑<br>编辑完成后,部署更新:</p>
 <pre><code>$ hexo g -d
 </code></pre><p>基本这样就能写了</p>
-<h5 id="u8349_u7A3F"><a href="#u8349_u7A3F" class="headerlink" title="草稿"></a>草稿</h5><p>hexo n 默认是创建正式发布的文章, 想要先写草稿不发布, 使用这样的命令创建草稿:</p>
+<h4 id="u8349_u7A3F"><a href="#u8349_u7A3F" class="headerlink" title="草稿"></a>草稿</h4><p>hexo n 默认是创建正式发布的文章, 想要先写草稿不发布, 使用这样的命令创建草稿:</p>
 <pre><code>hexo n draft &lt;title&gt;
-</code></pre><h5 id="u9884_u89C8"><a href="#u9884_u89C8" class="headerlink" title="预览"></a>预览</h5><p>预览正式文章</p>
+</code></pre><h4 id="u9884_u89C8"><a href="#u9884_u89C8" class="headerlink" title="预览"></a>预览</h4><p>预览正式文章</p>
 <pre><code>hexo s
 </code></pre><p>预览包含草稿在内的文章</p>
 <pre><code>hexo s --draft

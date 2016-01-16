@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
+						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
 					</div>
 				</section>
 				
@@ -141,7 +141,7 @@
 				
 				<section class="switch-part switch-part4">
 				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+					<div id="js-aboutme">自我介绍什么的...还没想好 - -</div>
 				</section>
 				
 			</div>
@@ -193,6 +193,76 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-打造Linux-终端翻墙环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/16/打造Linux-终端翻墙环境/" class="article-date">
+  	<time datetime="2016-01-16T04:05:55.000Z" itemprop="datePublished">2016-01-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/16/打造Linux-终端翻墙环境/">打造Linux 终端翻墙环境</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
+<p>GFW! 忍你好久了! I believe I can Fan !</p>
+<h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
+<p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
+<blockquote>
+<p>为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？这个问题当时困惑了我很久，最后一句话点醒了我。 Shadowsocks是一个使用SOCKS5（或者SOCK4之类）协议的代理，它只接受SOCKS5协议的流量，不接受HTTP或者HTTPS的流量。所以当你在Chrome上能穿墙的时候，是Proxy SwitchyOmega插件把HTTP和HTTPS流量转换成了SOCKS协议的流量，才实现了Shadowsocks的代理。而终端是没有这样的协议转换的，所以没法直接使用Shadowsock进行代理。这时候就需要一个协议转换器，这里我用了Privoxy。</p>
+</blockquote>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/privoxy/">privoxy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/16/打造Linux-终端翻墙环境/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-在OS-X上安装Docker" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -451,75 +521,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/01/05/我的书单/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo-博客优化" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/05/hexo-博客优化/" class="article-date">
-  	<time datetime="2016-01-05T04:34:44.000Z" itemprop="datePublished">2016-01-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/05/hexo-博客优化/">hexo 博客优化</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="u66F4_u6362_u4E3B_u9898"><a href="#u66F4_u6362_u4E3B_u9898" class="headerlink" title="更换主题"></a>更换主题</h3><p>我选择更换的主题是<a href="https://github.com/litten/hexo-theme-yilia">yilia</a></p>
-<p>进入 hexo 主目录:</p>
-<pre><code>cd [folder]
-</code></pre><p>安装:</p>
-<pre><code>git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yilia/">yilia</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/05/hexo-博客优化/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
