@@ -1682,7 +1682,7 @@ pre .css ~ * .id {
 }
 .back_home a {
   font-weight: bold;
-  margin-left: 100px;
+  margin-left: 10px;
 }
 .back_home a:hover {
   color: #6e6e6e;
