@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-16T11:57:55.000Z</updated>
+  <updated>2016-01-16T12:09:36.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,10 +19,10 @@
     <link href="http://yoursite.com/2016/01/16/%E6%89%93%E9%80%A0Linux-%E7%BB%88%E7%AB%AF%E7%BF%BB%E5%A2%99%E7%8E%AF%E5%A2%83/"/>
     <id>http://yoursite.com/2016/01/16/打造Linux-终端翻墙环境/</id>
     <published>2016-01-16T04:05:55.000Z</published>
-    <updated>2016-01-16T11:57:55.000Z</updated>
-    <content type="html"><![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank.png" alt="shawshank"></p>
+    <updated>2016-01-16T12:09:36.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank1.png" alt="shawshank"></p>
 <h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
-<p>GFW! 忍你好久了! I believe I can Fan !</p>
+<p>MD - -! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
 <blockquote>
@@ -88,9 +88,9 @@ apt-get upgrade -y (选做)升级软件包
 <p><a href="https://help.ubuntu.com/community/AptGet/Howto" target="_blank" rel="external">Setting up apt-get to use a http-proxy</a>  </p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank.png" alt="shawshank"></p>
+    <![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank1.png" alt="shawshank"></p>
 <h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
-<p>GFW! 忍你好久了! I believe I can Fan !</p>
+<p>MD - -! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
 <blockquote>
