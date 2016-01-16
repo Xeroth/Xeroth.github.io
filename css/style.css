@@ -1674,7 +1674,7 @@ pre .css ~ * .id {
   float: right;
 }
 .share {
-  padding: 10px 75px 30px 40px;
+  padding: 0px 75px 30px 40px;
   margin-bottom: 15px;
 }
 .back_home {
@@ -1682,7 +1682,7 @@ pre .css ~ * .id {
 }
 .back_home a {
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 100px;
 }
 .back_home a:hover {
   color: #6e6e6e;
