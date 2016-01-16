@@ -22,10 +22,11 @@ GFW! 忍你好久了! I believe I can Fan !
 FQ方案为: shadowsocks + privoxy 
 
 为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？">
+<meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/privoxy1.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/privoxy2.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/excited.png">
-<meta property="og:updated_time" content="2016-01-16T09:17:48.000Z">
+<meta property="og:updated_time" content="2016-01-16T11:57:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="打造Linux 终端翻墙环境">
 <meta name="twitter:description" content="起因本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     
@@ -260,7 +261,8 @@ FQ方案为: shadowsocks + privoxy
             <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#u8D77_u56E0"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u52A8_u624B"><span class="toc-number">2.</span> <span class="toc-text">动手</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u66F4_u65B0_u56FD_u5185_u6E90"><span class="toc-number">2.1.</span> <span class="toc-text">更新国内源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5B89_u88C5_u914D_u7F6Eshadowsocks"><span class="toc-number">2.2.</span> <span class="toc-text">安装配置shadowsocks</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5B89_u88C5_u914D_u7F6EPrivoxy"><span class="toc-number">2.3.</span> <span class="toc-text">安装配置Privoxy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u914D_u7F6E_u7EC8_u7AEF_u73AF_u5883http_u4EE3_u7406"><span class="toc-number">2.4.</span> <span class="toc-text">配置终端环境http代理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u914D_u7F6E_apt-get__u7684_u4EE3_u7406"><span class="toc-number">2.5.</span> <span class="toc-text">配置 apt-get 的代理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5F00_u673A_u81EA_u542F_u52A8_u7FFB_u5899_u914D_u7F6E"><span class="toc-number">2.6.</span> <span class="toc-text">开机自启动翻墙配置</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
             </div>
         
-        <h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
+        <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank.png" alt="shawshank"></p>
+<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
 <p>GFW! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
@@ -319,8 +321,7 @@ apt-get upgrade -y (选做)升级软件包
 <figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">nohup sslocal -c /etc/shadowsocks<span class="class">.json</span> &amp;</span><br><span class="line">service privoxy start</span><br></pre></td></tr></table></figure>
 <p>在 <em>/etc/profile</em> 的末尾添加如下两句。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"127.0.0.1:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"127.0.0.1:8118"</span></span><br></pre></td></tr></table></figure>
-<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>这次的翻墙经历: 有种打通任督二脉的感觉, 浑身舒畅, 可以开心地去修炼 docker 了 ~</p>
-<p>如果非要我用一句话总结,那将会是: <strong>一颗赛艇!</strong></p>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>一句话总结: <strong>一颗赛艇!</strong></p>
 <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/excited.png" alt="excited"></p>
 <p>感谢:  </p>
 <p><a href="http://www.itdadao.com/article/169999/" target="_blank" rel="external">Ubuntu 14.04 配置Shadowsocks和Privoxy实现浏览器和终端代理</a></p>

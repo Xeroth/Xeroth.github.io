@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-16T09:17:48.000Z</updated>
+  <updated>2016-01-16T11:57:55.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,9 @@
     <link href="http://yoursite.com/2016/01/16/%E6%89%93%E9%80%A0Linux-%E7%BB%88%E7%AB%AF%E7%BF%BB%E5%A2%99%E7%8E%AF%E5%A2%83/"/>
     <id>http://yoursite.com/2016/01/16/打造Linux-终端翻墙环境/</id>
     <published>2016-01-16T04:05:55.000Z</published>
-    <updated>2016-01-16T09:17:48.000Z</updated>
-    <content type="html"><![CDATA[<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
+    <updated>2016-01-16T11:57:55.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank.png" alt="shawshank"></p>
+<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
 <p>GFW! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
@@ -79,8 +80,7 @@ apt-get upgrade -y (选做)升级软件包
 <figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">nohup sslocal -c /etc/shadowsocks<span class="class">.json</span> &amp;</span><br><span class="line">service privoxy start</span><br></pre></td></tr></table></figure>
 <p>在 <em>/etc/profile</em> 的末尾添加如下两句。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"127.0.0.1:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"127.0.0.1:8118"</span></span><br></pre></td></tr></table></figure>
-<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>这次的翻墙经历: 有种打通任督二脉的感觉, 浑身舒畅, 可以开心地去修炼 docker 了 ~</p>
-<p>如果非要我用一句话总结,那将会是: <strong>一颗赛艇!</strong></p>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>一句话总结: <strong>一颗赛艇!</strong></p>
 <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/excited.png" alt="excited"></p>
 <p>感谢:  </p>
 <p><a href="http://www.itdadao.com/article/169999/" target="_blank" rel="external">Ubuntu 14.04 配置Shadowsocks和Privoxy实现浏览器和终端代理</a></p>
@@ -88,7 +88,8 @@ apt-get upgrade -y (选做)升级软件包
 <p><a href="https://help.ubuntu.com/community/AptGet/Howto" target="_blank" rel="external">Setting up apt-get to use a http-proxy</a>  </p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
+    <![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank.png" alt="shawshank"></p>
+<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
 <p>GFW! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
