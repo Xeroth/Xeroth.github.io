@@ -9,9 +9,7 @@
   <meta name="description" content="起因本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     
 MD - -! 忍你好久了! I believe I can Fan !
 动手环境: Ubuntu 14.04.3  
-FQ方案为: shadowsocks + privoxy 
-
-为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代">
+FQ方案为: shadowsocks + privoxy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="打造Linux 终端翻墙环境">
 <meta property="og:url" content="http://yoursite.com/2016/01/16/打造Linux-终端翻墙环境/index.html">
@@ -19,22 +17,18 @@ FQ方案为: shadowsocks + privoxy
 <meta property="og:description" content="起因本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     
 MD - -! 忍你好久了! I believe I can Fan !
 动手环境: Ubuntu 14.04.3  
-FQ方案为: shadowsocks + privoxy 
-
-为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代">
+FQ方案为: shadowsocks + privoxy">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank1.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/privoxy1.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/privoxy2.png">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/excited.png">
-<meta property="og:updated_time" content="2016-01-16T12:09:36.000Z">
+<meta property="og:updated_time" content="2016-01-19T01:32:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="打造Linux 终端翻墙环境">
 <meta name="twitter:description" content="起因本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     
 MD - -! 忍你好久了! I believe I can Fan !
 动手环境: Ubuntu 14.04.3  
-FQ方案为: shadowsocks + privoxy 
-
-为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代">
+FQ方案为: shadowsocks + privoxy">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -161,7 +155,7 @@ FQ方案为: shadowsocks + privoxy
 				
 				<section class="switch-part switch-part4">
 				
-					<div id="js-aboutme">做一个可爱的傻瓜</div>
+					<div id="js-aboutme">be a fool, feel the world</div>
 				</section>
 				
 			</div>
@@ -266,9 +260,6 @@ FQ方案为: shadowsocks + privoxy
 <p>MD - -! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
-<blockquote>
-<p>为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？这个问题当时困惑了我很久，最后一句话点醒了我。 Shadowsocks是一个使用SOCKS5（或者SOCK4之类）协议的代理，它只接受SOCKS5协议的流量，不接受HTTP或者HTTPS的流量。所以当你在Chrome上能穿墙的时候，是Proxy SwitchyOmega插件把HTTP和HTTPS流量转换成了SOCKS协议的流量，才实现了Shadowsocks的代理。而终端是没有这样的协议转换的，所以没法直接使用Shadowsock进行代理。这时候就需要一个协议转换器，这里我用了Privoxy。</p>
-</blockquote>
 <a id="more"></a>
 <h5 id="u66F4_u65B0_u56FD_u5185_u6E90"><a href="#u66F4_u65B0_u56FD_u5185_u6E90" class="headerlink" title="更新国内源"></a>更新国内源</h5><p>首先更新 Ubuntu 源, Ubuntu 本来是 us 的源, 更新不动, 只能换国内源了,  国内的 163 源更新时候报错 :    </p>
 <pre><code>W: Failed to fetch http://mirrors.163.com/ubuntu/dists/trusty-proposed/main/i18n/Translation-en  Hash Sum mismatch

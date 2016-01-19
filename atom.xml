@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-16T12:09:36.000Z</updated>
+  <updated>2016-01-19T01:32:38.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,15 +19,12 @@
     <link href="http://yoursite.com/2016/01/16/%E6%89%93%E9%80%A0Linux-%E7%BB%88%E7%AB%AF%E7%BF%BB%E5%A2%99%E7%8E%AF%E5%A2%83/"/>
     <id>http://yoursite.com/2016/01/16/打造Linux-终端翻墙环境/</id>
     <published>2016-01-16T04:05:55.000Z</published>
-    <updated>2016-01-16T12:09:36.000Z</updated>
+    <updated>2016-01-19T01:32:38.000Z</updated>
     <content type="html"><![CDATA[<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank1.png" alt="shawshank"></p>
 <h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
 <p>MD - -! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
 <p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
-<blockquote>
-<p>为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？这个问题当时困惑了我很久，最后一句话点醒了我。 Shadowsocks是一个使用SOCKS5（或者SOCK4之类）协议的代理，它只接受SOCKS5协议的流量，不接受HTTP或者HTTPS的流量。所以当你在Chrome上能穿墙的时候，是Proxy SwitchyOmega插件把HTTP和HTTPS流量转换成了SOCKS协议的流量，才实现了Shadowsocks的代理。而终端是没有这样的协议转换的，所以没法直接使用Shadowsock进行代理。这时候就需要一个协议转换器，这里我用了Privoxy。</p>
-</blockquote>
 <a id="more"></a>
 <h5 id="u66F4_u65B0_u56FD_u5185_u6E90"><a href="#u66F4_u65B0_u56FD_u5185_u6E90" class="headerlink" title="更新国内源"></a>更新国内源</h5><p>首先更新 Ubuntu 源, Ubuntu 本来是 us 的源, 更新不动, 只能换国内源了,  国内的 163 源更新时候报错 :    </p>
 <pre><code>W: Failed to fetch http://mirrors.163.com/ubuntu/dists/trusty-proposed/main/i18n/Translation-en  Hash Sum mismatch
@@ -92,10 +89,7 @@ apt-get upgrade -y (选做)升级软件包
 <h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
 <p>MD - -! 忍你好久了! I believe I can Fan !</p>
 <h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
-<p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
-<blockquote>
-<p>为什么终端需要单独穿墙呢？难道Shadowsock不能“全局”代理么？这个问题当时困惑了我很久，最后一句话点醒了我。 Shadowsocks是一个使用SOCKS5（或者SOCK4之类）协议的代理，它只接受SOCKS5协议的流量，不接受HTTP或者HTTPS的流量。所以当你在Chrome上能穿墙的时候，是Proxy SwitchyOmega插件把HTTP和HTTPS流量转换成了SOCKS协议的流量，才实现了Shadowsocks的代理。而终端是没有这样的协议转换的，所以没法直接使用Shadowsock进行代理。这时候就需要一个协议转换器，这里我用了Privoxy。</p>
-</blockquote>]]>
+<p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>]]>
     
     </summary>
     
