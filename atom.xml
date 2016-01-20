@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-20T14:47:25.000Z</updated>
+  <updated>2016-01-20T14:49:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,11 +19,11 @@
     <link href="http://yoursite.com/2016/01/20/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0-%E4%B8%80/"/>
     <id>http://yoursite.com/2016/01/20/前端学习-一/</id>
     <published>2016-01-20T07:55:19.000Z</published>
-    <updated>2016-01-20T14:47:25.000Z</updated>
-    <content type="html"><![CDATA[<p>记录一下个人前端学习的笔记, 之前学过, 没做笔记, 加上没咋用, 又忘了, 还是得有个记录, 方便自己复习</p>
+    <updated>2016-01-20T14:49:48.000Z</updated>
+    <content type="html"><![CDATA[<p>前端学习的笔记,方便自己复习</p>
 <h4 id="css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F"><a href="#css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F" class="headerlink" title="css 是怎么影响 html 的?"></a>css 是怎么影响 html 的?</h4><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="label">html:</span> &lt;h1&gt;Hi,Jack&lt;/h1&gt;</span><br><span class="line"><span class="label">css:</span>  h1&#123;</span><br><span class="line">         color: <span class="preprocessor">#930;</span></span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <h4 id="html_u7ED3_u6784"><a href="#html_u7ED3_u6784" class="headerlink" title="html结构"></a>html结构</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">head</span>&gt;</span>...<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">body</span>&gt;</span>...<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>1.<code>&lt;html&gt;&lt;/html&gt;</code>称为根标签，所有的网页标签都在<code>&lt;html&gt;&lt;/html&gt;</code>中。</p>
 <p>2.<code>&lt;head&gt;</code>标签用于定义文档的头部，它是所有头部元素的容器。头部元素有<code>&lt;title&gt;、&lt;script&gt;、 &lt;style&gt;、&lt;link&gt;、 &lt;meta&gt;</code>等标签</p>
 <h4 id="u8BA4_u8BC6_u4E00_u4E9B_u5E38_u7528_u6807_u7B7E"><a href="#u8BA4_u8BC6_u4E00_u4E9B_u5E38_u7528_u6807_u7B7E" class="headerlink" title="认识一些常用标签"></a>认识一些常用标签</h4><p>关于标签的<strong>语义化</strong>, 我还不太理解</p>
@@ -163,8 +163,9 @@ table tr td,th{border:1px solid #000;}
 </code></pre><p>先这样了, 明天起来学CSS</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>记录一下个人前端学习的笔记, 之前学过, 没做笔记, 加上没咋用, 又忘了, 还是得有个记录, 方便自己复习</p>
-<h4 id="css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F"><a href="#css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F" class="headerlink" title="css 是怎么影响 html 的?"></a>css 是怎么影响 html 的?</h4><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="label">html:</span> &lt;h1&gt;Hi,Jack&lt;/h1&gt;</span><br><span class="line"><span class="label">css:</span>  h1&#123;</span><br><span class="line">         color: <span class="preprocessor">#930;</span></span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>]]>
+    <![CDATA[<p>前端学习的笔记,方便自己复习</p>
+<h4 id="css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F"><a href="#css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F" class="headerlink" title="css 是怎么影响 html 的?"></a>css 是怎么影响 html 的?</h4><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="label">html:</span> &lt;h1&gt;Hi,Jack&lt;/h1&gt;</span><br><span class="line"><span class="label">css:</span>  h1&#123;</span><br><span class="line">         color: <span class="preprocessor">#930;</span></span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="html_u7ED3_u6784"><a href="#html_u7ED3_u6784" class="headerlink" title="html结构"></a>html结构</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">head</span>&gt;</span>...<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">body</span>&gt;</span>...<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>]]>
     
     </summary>
     
