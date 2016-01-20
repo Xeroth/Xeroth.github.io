@@ -220,155 +220,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F"><span class="toc-number">1.</span> <span class="toc-text">css 是怎么影响 html 的?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#html_u7ED3_u6784"><span class="toc-number">2.</span> <span class="toc-text">html结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u8BA4_u8BC6_u4E00_u4E9B_u5E38_u7528_u6807_u7B7E"><span class="toc-number">3.</span> <span class="toc-text">认识一些常用标签</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u5E38_u7528_u6587_u672C_u6807_u7B7E"><span class="toc-number">3.1.</span> <span class="toc-text">常用文本标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5E03_u5C40_u6807_u7B7E_DIV"><span class="toc-number">3.2.</span> <span class="toc-text">布局标签 DIV</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u8868_u683C_u6807_u7B7E_table"><span class="toc-number">3.3.</span> <span class="toc-text">表格标签 table</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u8D85_u94FE_u63A5_u6807_u7B7E"><span class="toc-number">3.4.</span> <span class="toc-text">超链接标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u56FE_u7247_u6807_u7B7E"><span class="toc-number">3.5.</span> <span class="toc-text">图片标签</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u2B50_uFE0F_u4E0E_u6D4F_u89C8_u8005_u4EA4_u4E92_u2013_u8868_u5355_u6807_u7B7E"><span class="toc-number">3.6.</span> <span class="toc-text">⭐️与浏览者交互–表单标签</span></a></li></ol></li></ol>
-            </div>
-        
         <p>记录一下个人前端学习的笔记, 之前学过, 没做笔记, 加上没咋用, 又忘了, 还是得有个记录, 方便自己复习</p>
 <h4 id="css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F"><a href="#css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F" class="headerlink" title="css 是怎么影响 html 的?"></a>css 是怎么影响 html 的?</h4><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="label">html:</span> &lt;h1&gt;Hi,Jack&lt;/h1&gt;</span><br><span class="line"><span class="label">css:</span>  h1&#123;</span><br><span class="line">         color: <span class="preprocessor">#930;</span></span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="html_u7ED3_u6784"><a href="#html_u7ED3_u6784" class="headerlink" title="html结构"></a>html结构</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">head</span>&gt;</span>...<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">body</span>&gt;</span>...<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>1.<code>&lt;html&gt;&lt;/html&gt;</code>称为根标签，所有的网页标签都在<code>&lt;html&gt;&lt;/html&gt;</code>中。</p>
-<p>2.<code>&lt;head&gt;</code>标签用于定义文档的头部，它是所有头部元素的容器。头部元素有<code>&lt;title&gt;、&lt;script&gt;、 &lt;style&gt;、&lt;link&gt;、 &lt;meta&gt;</code>等标签</p>
-<h4 id="u8BA4_u8BC6_u4E00_u4E9B_u5E38_u7528_u6807_u7B7E"><a href="#u8BA4_u8BC6_u4E00_u4E9B_u5E38_u7528_u6807_u7B7E" class="headerlink" title="认识一些常用标签"></a>认识一些常用标签</h4><p>关于标签的<strong>语义化</strong>, 我还不太理解</p>
-<p>head部分</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">title</span>&gt;</span> 网页标题, 位于浏览器顶部的那个</span><br></pre></td></tr></table></figure>
-<p>body部分</p>
-<h5 id="u5E38_u7528_u6587_u672C_u6807_u7B7E"><a href="#u5E38_u7528_u6587_u672C_u6807_u7B7E" class="headerlink" title="常用文本标签"></a>常用文本标签</h5><pre><code>&lt;p&gt;&lt;/p&gt; 段
-&lt;hx&gt;&lt;/hx&gt; x 级标题
-&lt;em&gt;&lt;/em&gt; 斜体
-&lt;strong&gt;&lt;/strong&gt; 粗体
-&lt;span&gt;&lt;/span&gt; 为选中的文本单独设置css样式
-&lt;q&gt;&lt;/q&gt; 引用一句话,浏览器会自动加上双引号
-&lt;blockquote&gt;&lt;/blockquote&gt; 长文本引用, 自带缩进, 也不用加双引号
-&lt;br /&gt; 回车换行. 这是个空标签,平时的回车键不管用,因为在html中是忽略回车和空格的
-&amp;nbsp; 输入空格
-&lt;hr /&gt; 水平横线
-&lt;address&gt;&lt;/address&gt; 联系地址信息,联系人信息, 默认斜体
-&lt;code&gt;&lt;/code&gt; 插入一行代码
-&lt;pre&gt;&lt;/pre&gt; 多行代码, 并且标签内的空格回车生效
-
-
-&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;  无序列表标签,默认带小圆点
-&lt;ol&gt;&lt;li&gt;&lt;/li&gt;&lt;/ol&gt;  有序列表标签
-</code></pre><h5 id="u5E03_u5C40_u6807_u7B7E_DIV"><a href="#u5E03_u5C40_u6807_u7B7E_DIV" class="headerlink" title="布局标签 DIV"></a>布局标签 DIV</h5><pre><code>&lt;div&gt;&lt;/div&gt; 容器标签, 用于确定一组互相关联的元素, 如下图中红框部分:
-</code></pre><p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/div1.png" alt="div1"></p>
-<p>可以使用 id 属性为不同 div 区块命名</p>
-<h5 id="u8868_u683C_u6807_u7B7E_table"><a href="#u8868_u683C_u6807_u7B7E_table" class="headerlink" title="表格标签 table"></a>表格标签 table</h5><pre><code>&lt;!DOCTYPE HTML&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
-&lt;title&gt;认识table表标签&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;table&gt;
-    &lt;tbody&gt;
-    &lt;tr&gt;
-        &lt;th&gt;班级&lt;/th&gt;
-        &lt;th&gt;学生数&lt;/th&gt;
-        &lt;th&gt;平均成绩&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;一班&lt;/td&gt;
-        &lt;td&gt;30&lt;/td&gt;
-        &lt;td&gt;89&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;二班&lt;/td&gt;
-        &lt;td&gt;35&lt;/td&gt;
-        &lt;td&gt;85&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;三班&lt;/td&gt;
-        &lt;td&gt;32&lt;/td&gt;
-        &lt;td&gt;80&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>上面这段代码的效果图:</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/table1.png" alt="table1"></p>
-<p><code>&lt;tbody&gt;…&lt;/tbody&gt;</code>：当表格内容非常多时，表格会下载一点显示一点，但如果加上<tbody>标签后，这个表格就要等表格内容全部下载完才会显示。如右侧代码编辑器中的代码。</tbody></p>
-<p>但是这个表格是没边框的,需要用css 样式为它添加边框</p>
-<p>在<code>&lt;head&gt;..&lt;/head&gt;</code>中添加代码:</p>
-<pre><code>&lt;style type=&quot;text/css&quot;&gt;
-table tr td,th{border:1px solid #000;}
-&lt;/style&gt;
-</code></pre><p>效果:</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/table2.png" alt="table2"></p>
-<p>利用 summary 属性为表格添加<strong>摘要</strong>(为了<strong>语义化</strong>)和用<code>&lt;caption&gt;&lt;/caption&gt;</code>标签为表格添加标题</p>
-<h5 id="u8D85_u94FE_u63A5_u6807_u7B7E"><a href="#u8D85_u94FE_u63A5_u6807_u7B7E" class="headerlink" title="超链接标签"></a>超链接标签</h5><p>语法</p>
-<pre><code>&lt;a  href=&quot;目标网址&quot;  title=&quot;鼠标滑过显示的文本&quot;&gt;链接显示的文本&lt;/a&gt;
-</code></pre><p>添加 <em>target=”_blank”</em> 属性, 是设置新窗口打开链接</p>
-<p>使用mailto在网页中链接邮件地址:</p>
-<pre><code>&lt;a href=&quot;mailto:yy@imooc.com?subject=邮件标题&amp;body=邮件内容&quot;&gt;对此影评有何感想，发送邮件给我&lt;/a&gt;
-</code></pre><p>注意：如果mailto后面同时有多个参数的话，第一个参数必须以“?”开头，后面的参数每一个都以“&amp;”分隔。</p>
-<h5 id="u56FE_u7247_u6807_u7B7E"><a href="#u56FE_u7247_u6807_u7B7E" class="headerlink" title="图片标签"></a>图片标签</h5><p>语法</p>
-<pre><code>&lt;img src=&quot;图片地址&quot; alt=&quot;下载失败时的替换文本&quot; title = &quot;提示文本&quot;&gt;
-</code></pre><h5 id="u2B50_uFE0F_u4E0E_u6D4F_u89C8_u8005_u4EA4_u4E92_u2013_u8868_u5355_u6807_u7B7E"><a href="#u2B50_uFE0F_u4E0E_u6D4F_u89C8_u8005_u4EA4_u4E92_u2013_u8868_u5355_u6807_u7B7E" class="headerlink" title="⭐️与浏览者交互–表单标签"></a>⭐️与浏览者交互–表单标签</h5><p>网站怎样与用户进行交互？答案是使用HTML表单(form)。表单是可以把浏览者输入的数据传送到服务器端，这样服务器端程序就可以处理表单传过来的数据。</p>
-<p>语法：</p>
-<pre><code>&lt;form method=&quot;post&quot; action=&quot;save.php&quot;&gt;
-  &lt;label for=&quot;username&quot;&gt;用户名:&lt;/label&gt;
-  &lt;input type=&quot;text&quot;  name=&quot;username&quot; id=&quot;username&quot; value=&quot;&quot; /&gt; 
-  &lt;label for=&quot;pass&quot;&gt;密码:&lt;/label&gt;
-  &lt;input type=&quot;password&quot;  name=&quot;pass&quot; id=&quot;pass&quot; value=&quot;&quot; /&gt;    
-  &lt;input type=&quot;submit&quot; value=&quot;确定&quot;  name=&quot;submit&quot; /&gt;      &lt;!--提交按钮--&gt;
-  &lt;input type=&quot;reset&quot; value=&quot;重置&quot; name=&quot;reset&quot; /&gt;   &lt;!--重置按钮--&gt;
-&lt;/form&gt;
-</code></pre><p>action ：浏览者输入的数据被传送到的地方,比如一个PHP页面(save.php)</p>
-<p>method ： 数据传送的方式（get/post）</p>
-<p>所有表单控件（文本框、文本域、按钮、单选框、复选框等）都必须放在<code>&lt;form&gt;&lt;/form&gt;</code>标签之间（否则用户输入的信息可提交不到服务器上哦！）</p>
-<p><a href="http://www.imooc.com/wiki/detail/id/142" target="_blank" rel="external">method:post/get的区别</a>这一部分内容属于后端程序员考虑的问题</p>
-<p><strong>文本输入框,密码输入框</strong></p>
-<pre><code>&lt;form&gt;
-   &lt;input type=&quot;text/password&quot; name=&quot;名称&quot; value=&quot;文本&quot; /&gt;
-&lt;/form&gt;
-</code></pre><p>1、type：</p>
-<p>   当type=”text”时，输入框为文本输入框;</p>
-<p>   当type=”password”时, 输入框为密码输入框。</p>
-<p>2、name：为文本框命名，以备后台程序ASP 、PHP使用。</p>
-<p>3、value：为文本输入框设置默认值。(一般起到提示作用)</p>
-<p><strong>label标签</strong>不会向用户呈现任何特殊效果，它的作用是为鼠标用户改进了可用性。如果你在 label 标签内点击文本，就会触发此控件。就是说，当用户单击选中该label标签时，浏览器就会自动将焦点转到和标签相关的表单控件上（就自动选中和该label标签相关连的表单控件上）。</p>
-<p>语法：</p>
-<pre><code>&lt;label for=&quot;控件id名称&quot;&gt;
-</code></pre><p>注意：标签的 for 属性中的值应当与相关控件的 id 属性值一定要相同。</p>
-<p><strong>文本域标签</strong></p>
-<pre><code>&lt;textarea  rows=&quot;行数&quot; cols=&quot;列数&quot;&gt;文本&lt;/textarea&gt;
-</code></pre><p>注意这两个属性可用css样式的width和height来代替：col用width、row用height来代替</p>
-<p><strong>单选框, 复选框</strong></p>
-<pre><code>&lt;input   type=&quot;radio/checkbox&quot;   value=&quot;值&quot;    name=&quot;名称&quot;   checked=&quot;checked&quot;/&gt;
-</code></pre><p>1、type:</p>
-<p>   当 type=”radio” 时，控件为单选框</p>
-<p>   当 type=”checkbox” 时，控件为复选框</p>
-<p>2、value：提交数据到服务器的值（后台程序PHP使用）</p>
-<p>3、name：为控件命名，以备后台程序 ASP、PHP 使用</p>
-<p>4、checked：当设置 checked=”checked” 时，该选项被默认选中</p>
-<p>关于 value 和 name :</p>
-<p>form里面的数据不管是post 还是get提交。最后都要让服务器接受，是吧？那么服务器怎么知道你传过来的是什么东西呢？就是通过name来标示的，而这个东西具体有什么值呢？就是value了</p>
-<p>效果图:</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/checkbox2.png" alt="checkbox2"></p>
-<p>对应代码:</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/checkbox1.png" alt="checkbox1"></p>
-<p>注意:同一组的单选按钮，name 取值一定要一致，比如上面例子为同一个名称“radioLove”，这样同一组的单选按钮才可以起到单选的作用。</p>
-<p><strong>下拉列表框</strong> (节省空间)</p>
-<pre><code>&lt;form action=&quot;save.php&quot; method=&quot;post&quot; &gt;
-    &lt;label&gt;爱好:&lt;/label&gt;
-    &lt;select&gt;
-      &lt;option value=&quot;看书&quot;&gt;看书&lt;/option&gt;
-      &lt;option value=&quot;旅游&quot; selected=&quot;selected&quot;&gt;旅游&lt;/option&gt;
-      &lt;option value=&quot;运动&quot;&gt;运动&lt;/option&gt;
-      &lt;option value=&quot;购物&quot;&gt;购物&lt;/option&gt;
-    &lt;/select&gt;
-&lt;/form&gt;
-</code></pre><p>value是向服务器提交的值, selected默认选中</p>
-<p>设置多选:</p>
-<pre><code>&lt;select multiple=&quot;multiple&quot; size=3&gt;...&lt;/select&gt;
-</code></pre><p>先这样了, 明天起来学CSS</p>
-
       
     </div>
     
@@ -385,6 +238,10 @@ table tr td,th{border:1px solid #000;}
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/20/前端学习-一/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
