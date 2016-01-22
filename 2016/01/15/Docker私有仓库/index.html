@@ -23,7 +23,7 @@ Mac OS X 10.11    ip 为192.168.100.101
 Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
 用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com//docker1.png">
-<meta property="og:updated_time" content="2016-01-22T17:10:49.000Z">
+<meta property="og:updated_time" content="2016-01-22T17:13:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker私有仓库">
 <meta name="twitter:description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
@@ -268,6 +268,7 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
 <p>docker-machine ip default 得到结果是: 192.168.99.100</p>
 <p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
 <p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
+<a id="more"></a>
 <h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.最简单的是使用官方提供的<strong>registry</strong>镜像进行安装:</p>
 <pre><code>docker run -d -p 5000:5000 registry  
 </code></pre><p>也可以安装时把镜像文件存在本地指定路径<code>/opt/docker-registry</code>:  </p>
