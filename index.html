@@ -194,79 +194,6 @@
 
       <div class="body-wrap">
   
-    <article id="post-Docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/23/Docker私有仓库/" class="article-date">
-  	<time datetime="2016-01-22T17:13:13.000Z" itemprop="datePublished">2016-01-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/23/Docker私有仓库/">Docker私有仓库</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
-<p>实验环境:</p>
-<ul>
-<li>Mac OS X 10.11    ip 为192.168.100.101</li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker</li>
-<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
-</ul>
-<p>docker-machine ip default 得到结果是: 192.168.99.100</p>
-<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
-<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/23/Docker私有仓库/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-前端学习-二-CSS" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -449,6 +376,79 @@
       
         <p class="article-more-link">
           <a  href="/2016/01/16/打造Linux-终端翻墙环境/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/15/Docker私有仓库/" class="article-date">
+  	<time datetime="2016-01-15T13:47:35.000Z" itemprop="datePublished">2016-01-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/15/Docker私有仓库/">Docker私有仓库</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
+<p>实验环境:</p>
+<ul>
+<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
+<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
+<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
+</ul>
+<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
+<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
+<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/15/Docker私有仓库/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

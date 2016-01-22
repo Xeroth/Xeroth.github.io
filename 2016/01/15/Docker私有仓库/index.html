@@ -9,27 +9,27 @@
   <meta name="description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
 实验环境:
 
-Mac OS X 10.11    ip 为192.168.100.101
+Mac OS X 10.11    ip 为 192.168.100.101
 Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
 用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker私有仓库">
-<meta property="og:url" content="http://yoursite.com/2016/01/23/Docker私有仓库/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/01/15/Docker私有仓库/index.html">
 <meta property="og:site_name" content="Live with love">
 <meta property="og:description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
 实验环境:
 
-Mac OS X 10.11    ip 为192.168.100.101
+Mac OS X 10.11    ip 为 192.168.100.101
 Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
 用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com//docker1.png">
-<meta property="og:updated_time" content="2016-01-22T17:14:06.000Z">
+<meta property="og:updated_time" content="2016-01-22T17:16:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker私有仓库">
 <meta name="twitter:description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
 实验环境:
 
-Mac OS X 10.11    ip 为192.168.100.101
+Mac OS X 10.11    ip 为 192.168.100.101
 Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
 用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
   
@@ -212,8 +212,8 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
       <div class="body-wrap"><article id="post-Docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/23/Docker私有仓库/" class="article-date">
-  	<time datetime="2016-01-22T17:13:13.000Z" itemprop="datePublished">2016-01-23</time>
+      <a href="/2016/01/15/Docker私有仓库/" class="article-date">
+  	<time datetime="2016-01-15T13:47:35.000Z" itemprop="datePublished">2016-01-15</time>
 </a>
     </div>
   
@@ -261,11 +261,11 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
         <p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
 <p>实验环境:</p>
 <ul>
-<li>Mac OS X 10.11    ip 为192.168.100.101</li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker</li>
+<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
+<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
 <li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
 </ul>
-<p>docker-machine ip default 得到结果是: 192.168.99.100</p>
+<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
 <p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
 <p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
 <a id="more"></a>
@@ -368,9 +368,18 @@ Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
     
 <nav id="article-nav">
   
+    <a href="/2016/01/16/打造Linux-终端翻墙环境/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          打造Linux 终端翻墙环境
+        
+      </div>
+    </a>
   
-    <a href="/2016/01/20/前端学习-二-CSS/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端学习(二)--CSS</div>
+  
+    <a href="/2016/01/08/在OS-X上安装Docker/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在OS X上安装Docker</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -405,7 +414,7 @@ Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Docker私有仓库" data-title="Docker私有仓库" data-url="http://yoursite.com/2016/01/23/Docker私有仓库/"></div>
+	<div class="ds-thread" data-thread-key="Docker私有仓库" data-title="Docker私有仓库" data-url="http://yoursite.com/2016/01/15/Docker私有仓库/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

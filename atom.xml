@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-22T17:14:06.000Z</updated>
+  <updated>2016-01-21T11:32:49.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,134 +13,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Docker私有仓库]]></title>
-    <link href="http://yoursite.com/2016/01/23/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"/>
-    <id>http://yoursite.com/2016/01/23/Docker私有仓库/</id>
-    <published>2016-01-22T17:13:13.000Z</published>
-    <updated>2016-01-22T17:14:06.000Z</updated>
-    <content type="html"><![CDATA[<p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
-<p>实验环境:</p>
-<ul>
-<li>Mac OS X 10.11    ip 为192.168.100.101</li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker</li>
-<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
-</ul>
-<p>docker-machine ip default 得到结果是: 192.168.99.100</p>
-<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
-<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
-<a id="more"></a>
-<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.最简单的是使用官方提供的<strong>registry</strong>镜像进行安装:</p>
-<pre><code>docker run -d -p 5000:5000 registry  
-</code></pre><p>也可以安装时把镜像文件存在本地指定路径<code>/opt/docker-registry</code>:  </p>
-<pre><code>docker run -d -p 5000:5000 -v /opt/docker-registry:/tmp/registry registry
-</code></pre><p>完了在 mac 上测试一下:</p>
-<pre><code>$ curl http://192.168.100.103:5000
-&quot;\&quot;docker-registry server\&quot;&quot;%
-</code></pre><p>访问成功</p>
-<h4 id="u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29"><a href="#u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29" class="headerlink" title="使用(上传下载)"></a>使用(上传下载)</h4><p>在 mac 本地的 docker 中随意选一个镜像, <code>docker images</code> 查看它的 ID</p>
-<pre><code>$ docker images
-REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-sinatra                         v2                  1a6a1230cfe3        13 days ago         319.4 MB
-</code></pre><p>然后用<code>docker tag</code>修改镜像对应仓库</p>
-<pre><code>$ docker tag 1a6a1230cfe3 192.168.100.103:5000/sinatra
-$ docker images
-REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-192.168.100.103:5000/sinatra    latest              1a6a1230cfe3        13 days ago         319.4 MB
-sinatra                         v2                  1a6a1230cfe3        13 days ago         319.4 MB
-</code></pre><p><code>docker tag</code>语法</p>
-<pre><code>Usage:    docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
-</code></pre><p>其中1a6a1230cfe3 对应 IMAGE</p>
-<p>192.168.100.103:5000 对应 REGISTRYHOST</p>
-<p>sinatra 对应 NAME</p>
-<p>开始上传</p>
-<pre><code>$ docker push 192.168.100.103:5000/sinatra
-The push refers to a repository [192.168.100.103:5000/sinatra] (len: 1)
-unable to ping registry endpoint https://192.168.100.103:5000/v0/
-v2 ping attempt failed with error: Get https://192.168.100.103:5000/v2/: EOF
- v1 ping attempt failed with error: Get https://192.168.100.103:5000/v1/_ping: EOF
-</code></pre><p>报错了, 解决方法如下</p>
-<p>进入docker 虚拟机</p>
-<pre><code>docker-machine ssh default
-</code></pre><p>在default 虚拟机里修改 <em>/var/lib/boot2docker/profile</em> 文件, 在<strong>EXTRA_ARGS=</strong>里加入:<br><em>–insecure-registry 192.168.100.103:5000</em></p>
-<p>重启 vm</p>
-<pre><code>docker-machine restart default
-</code></pre><p>再次运行:</p>
-<pre><code>mac $ docker push 192.168.100.103:5000/sinatra
-The push refers to a repository [192.168.100.103:5000/sinatra] (len: 1)
-Sending image list
-Pushing repository 192.168.100.103:5000/sinatra (1 tags)
-895b070402bd: Image successfully pushed
-02e5bca4149b: Image successfully pushed
-b2ae0a712b39: Image successfully pushed
-af88597ec24b: Image successfully pushed
-c37dd6c531a6: Image successfully pushed
-8a6b590a7aec: Image successfully pushed
-5ef2f192cdff: Image successfully pushed
-1a6a1230cfe3: Image successfully pushed
-Pushing tag for rev [1a6a1230cfe3] on {http://192.168.100.103:5000/v1/repositories/sinatra/tags/latest}
-</code></pre><p>curl查看:</p>
-<pre><code>$ curl http://192.168.100.103:5000/v1/search
-{&quot;num_results&quot;: 1, &quot;query&quot;: &quot;&quot;, &quot;results&quot;: [{&quot;description&quot;: &quot;&quot;, &quot;name&quot;: &quot;library/sinatra&quot;}]}%
-</code></pre><p>已经成功出现 library/sinatra</p>
-<p>下载:</p>
-<p>现在到 ubuntu 上下载刚上传的 sinatra 镜像</p>
-<pre><code>$ docker pull 192.168.100.103:5000/sinatra
-Using default tag: latest
-Error response from daemon: unable to ping registry endpoint https://192.168.100.103:5000/v0/
-v2 ping attempt failed with error: Get https://192.168.100.103:5000/v2/: EOF
- v1 ping attempt failed with error: Get https://192.168.100.103:5000/v1/_ping: EOF
-</code></pre><p>又是这个错, 不过这次修改的文件是<code>/etc/default/docker</code>, 加入:</p>
-<pre><code>DOCKER_OPTS=&quot;--insecure-registry 192.168.100.103:5000&quot;
-</code></pre><p>然后stop 仓库的镜像, 重启 docker ,再 pull</p>
-<pre><code>docker pull 192.168.100.103:5000/sinatra
-Using default tag: latest
-Pulling repository 192.168.100.103:5000/sinatra
-1a6a1230cfe3: Download complete
-895b070402bd: Download complete
-02e5bca4149b: Download complete
-b2ae0a712b39: Download complete
-af88597ec24b: Download complete
-c37dd6c531a6: Download complete
-8a6b590a7aec: Download complete
-5ef2f192cdff: Download complete
-Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
-192.168.100.103:5000/sinatra: this image was pulled from a legacy registry.  Important: This registry version will not be supported in future versions of docker.
-</code></pre><p>成功!    </p>
-<p>不过这种方式不是很好, 每次新加一个仓库都要重启 docker , 有人建议这样:</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com//docker1.png" alt="docker1.png"></p>
-<p>嗯, 以后有空再试了</p>
-<h4 id="u7BA1_u7406"><a href="#u7BA1_u7406" class="headerlink" title="管理"></a>管理</h4><h5 id="u505C_u6B62"><a href="#u505C_u6B62" class="headerlink" title="停止"></a>停止</h5><pre><code>docker stop registry &amp;&amp; docker rm -v registry
-</code></pre><h5 id="u67E5_u627E"><a href="#u67E5_u627E" class="headerlink" title="查找"></a>查找</h5><p>查找名字为sinatra 的镜像</p>
-<pre><code>$ curl http://192.168.100.103:5000/v1/search?q=sinatra
-{&quot;num_results&quot;: 1, &quot;query&quot;: &quot;sinatra&quot;, &quot;results&quot;: [{&quot;description&quot;: &quot;&quot;, &quot;name&quot;: &quot;library/sinatra&quot;}]}%
-</code></pre><h5 id="u67E5_u770B_u955C_u50CF_u7248_u672C"><a href="#u67E5_u770B_u955C_u50CF_u7248_u672C" class="headerlink" title="查看镜像版本"></a>查看镜像版本</h5><pre><code>$ curl http://192.168.100.103:5000/v1/repositories/library/sinatra/tags
-{&quot;latest&quot;: &quot;1a6a1230cfe34b1fd2e7cd66d50e342fc3169a365159754115efd4aae3300c00&quot;}%
-</code></pre><h5 id="u5220_u9664"><a href="#u5220_u9664" class="headerlink" title="删除"></a>删除</h5><p><a href="http://stackoverflow.com/questions/25436742/deleting-images-from-a-private-docker-registry" target="_blank" rel="external">貌似没有很好的办法</a></p>
-<p>感谢:</p>
-<p><a href="http://www.zation.me/2015/05/06/how_to_deploy_docker_registry_on_aliyun.html" target="_blank" rel="external">如何在阿里云上部署私有的Docker Registry</a></p>
-<p><a href="http://dockone.io/question/21" target="_blank" rel="external">http://dockone.io/question/21</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
-<p>实验环境:</p>
-<ul>
-<li>Mac OS X 10.11    ip 为192.168.100.101</li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker</li>
-<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
-</ul>
-<p>docker-machine ip default 得到结果是: 192.168.99.100</p>
-<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
-<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>]]>
-    
-    </summary>
-    
-      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[前端学习(二)--CSS]]></title>
@@ -700,6 +572,134 @@ Error while pulling image: Get https://index.docker.io/v1/repositories/library/u
       <category term="privoxy" scheme="http://yoursite.com/tags/privoxy/"/>
     
       <category term="shadowsocks" scheme="http://yoursite.com/tags/shadowsocks/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Docker私有仓库]]></title>
+    <link href="http://yoursite.com/2016/01/15/Docker%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"/>
+    <id>http://yoursite.com/2016/01/15/Docker私有仓库/</id>
+    <published>2016-01-15T13:47:35.000Z</published>
+    <updated>2016-01-22T17:16:29.000Z</updated>
+    <content type="html"><![CDATA[<p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
+<p>实验环境:</p>
+<ul>
+<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
+<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
+<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
+</ul>
+<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
+<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
+<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
+<a id="more"></a>
+<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.最简单的是使用官方提供的<strong>registry</strong>镜像进行安装:</p>
+<pre><code>docker run -d -p 5000:5000 registry  
+</code></pre><p>也可以安装时把镜像文件存在本地指定路径<code>/opt/docker-registry</code>:  </p>
+<pre><code>docker run -d -p 5000:5000 -v /opt/docker-registry:/tmp/registry registry
+</code></pre><p>完了在 mac 上测试一下:</p>
+<pre><code>$ curl http://192.168.100.103:5000
+&quot;\&quot;docker-registry server\&quot;&quot;%
+</code></pre><p>访问成功</p>
+<h4 id="u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29"><a href="#u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29" class="headerlink" title="使用(上传下载)"></a>使用(上传下载)</h4><p>在 mac 本地的 docker 中随意选一个镜像, <code>docker images</code> 查看它的 ID</p>
+<pre><code>$ docker images
+REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+sinatra                         v2                  1a6a1230cfe3        13 days ago         319.4 MB
+</code></pre><p>然后用<code>docker tag</code>修改镜像对应仓库</p>
+<pre><code>$ docker tag 1a6a1230cfe3 192.168.100.103:5000/sinatra
+$ docker images
+REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+192.168.100.103:5000/sinatra    latest              1a6a1230cfe3        13 days ago         319.4 MB
+sinatra                         v2                  1a6a1230cfe3        13 days ago         319.4 MB
+</code></pre><p><code>docker tag</code>语法</p>
+<pre><code>Usage:    docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
+</code></pre><p>其中1a6a1230cfe3 对应 IMAGE</p>
+<p>192.168.100.103:5000 对应 REGISTRYHOST</p>
+<p>sinatra 对应 NAME</p>
+<p>开始上传</p>
+<pre><code>$ docker push 192.168.100.103:5000/sinatra
+The push refers to a repository [192.168.100.103:5000/sinatra] (len: 1)
+unable to ping registry endpoint https://192.168.100.103:5000/v0/
+v2 ping attempt failed with error: Get https://192.168.100.103:5000/v2/: EOF
+ v1 ping attempt failed with error: Get https://192.168.100.103:5000/v1/_ping: EOF
+</code></pre><p>报错了, 解决方法如下</p>
+<p>进入docker 虚拟机</p>
+<pre><code>docker-machine ssh default
+</code></pre><p>在default 虚拟机里修改 <em>/var/lib/boot2docker/profile</em> 文件, 在<strong>EXTRA_ARGS=</strong>里加入:<br><em>–insecure-registry 192.168.100.103:5000</em></p>
+<p>重启 vm</p>
+<pre><code>docker-machine restart default
+</code></pre><p>再次运行:</p>
+<pre><code>mac $ docker push 192.168.100.103:5000/sinatra
+The push refers to a repository [192.168.100.103:5000/sinatra] (len: 1)
+Sending image list
+Pushing repository 192.168.100.103:5000/sinatra (1 tags)
+895b070402bd: Image successfully pushed
+02e5bca4149b: Image successfully pushed
+b2ae0a712b39: Image successfully pushed
+af88597ec24b: Image successfully pushed
+c37dd6c531a6: Image successfully pushed
+8a6b590a7aec: Image successfully pushed
+5ef2f192cdff: Image successfully pushed
+1a6a1230cfe3: Image successfully pushed
+Pushing tag for rev [1a6a1230cfe3] on {http://192.168.100.103:5000/v1/repositories/sinatra/tags/latest}
+</code></pre><p>curl查看:</p>
+<pre><code>$ curl http://192.168.100.103:5000/v1/search
+{&quot;num_results&quot;: 1, &quot;query&quot;: &quot;&quot;, &quot;results&quot;: [{&quot;description&quot;: &quot;&quot;, &quot;name&quot;: &quot;library/sinatra&quot;}]}%
+</code></pre><p>已经成功出现 library/sinatra</p>
+<p>下载:</p>
+<p>现在到 ubuntu 上下载刚上传的 sinatra 镜像</p>
+<pre><code>$ docker pull 192.168.100.103:5000/sinatra
+Using default tag: latest
+Error response from daemon: unable to ping registry endpoint https://192.168.100.103:5000/v0/
+v2 ping attempt failed with error: Get https://192.168.100.103:5000/v2/: EOF
+ v1 ping attempt failed with error: Get https://192.168.100.103:5000/v1/_ping: EOF
+</code></pre><p>又是这个错, 不过这次修改的文件是<code>/etc/default/docker</code>, 加入:</p>
+<pre><code>DOCKER_OPTS=&quot;--insecure-registry 192.168.100.103:5000&quot;
+</code></pre><p>然后stop 仓库的镜像, 重启 docker ,再 pull</p>
+<pre><code>docker pull 192.168.100.103:5000/sinatra
+Using default tag: latest
+Pulling repository 192.168.100.103:5000/sinatra
+1a6a1230cfe3: Download complete
+895b070402bd: Download complete
+02e5bca4149b: Download complete
+b2ae0a712b39: Download complete
+af88597ec24b: Download complete
+c37dd6c531a6: Download complete
+8a6b590a7aec: Download complete
+5ef2f192cdff: Download complete
+Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
+192.168.100.103:5000/sinatra: this image was pulled from a legacy registry.  Important: This registry version will not be supported in future versions of docker.
+</code></pre><p>成功!    </p>
+<p>不过这种方式不是很好, 每次新加一个仓库都要重启 docker , 有人建议这样:</p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com//docker1.png" alt="docker1.png"></p>
+<p>嗯, 以后有空再试了</p>
+<h4 id="u7BA1_u7406"><a href="#u7BA1_u7406" class="headerlink" title="管理"></a>管理</h4><h5 id="u505C_u6B62"><a href="#u505C_u6B62" class="headerlink" title="停止"></a>停止</h5><pre><code>docker stop registry &amp;&amp; docker rm -v registry
+</code></pre><h5 id="u67E5_u627E"><a href="#u67E5_u627E" class="headerlink" title="查找"></a>查找</h5><p>查找名字为sinatra 的镜像</p>
+<pre><code>$ curl http://192.168.100.103:5000/v1/search?q=sinatra
+{&quot;num_results&quot;: 1, &quot;query&quot;: &quot;sinatra&quot;, &quot;results&quot;: [{&quot;description&quot;: &quot;&quot;, &quot;name&quot;: &quot;library/sinatra&quot;}]}%
+</code></pre><h5 id="u67E5_u770B_u955C_u50CF_u7248_u672C"><a href="#u67E5_u770B_u955C_u50CF_u7248_u672C" class="headerlink" title="查看镜像版本"></a>查看镜像版本</h5><pre><code>$ curl http://192.168.100.103:5000/v1/repositories/library/sinatra/tags
+{&quot;latest&quot;: &quot;1a6a1230cfe34b1fd2e7cd66d50e342fc3169a365159754115efd4aae3300c00&quot;}%
+</code></pre><h5 id="u5220_u9664"><a href="#u5220_u9664" class="headerlink" title="删除"></a>删除</h5><p><a href="http://stackoverflow.com/questions/25436742/deleting-images-from-a-private-docker-registry" target="_blank" rel="external">貌似没有很好的办法</a></p>
+<p>感谢:</p>
+<p><a href="http://www.zation.me/2015/05/06/how_to_deploy_docker_registry_on_aliyun.html" target="_blank" rel="external">如何在阿里云上部署私有的Docker Registry</a></p>
+<p><a href="http://dockone.io/question/21" target="_blank" rel="external">http://dockone.io/question/21</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
+<p>实验环境:</p>
+<ul>
+<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
+<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
+<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
+</ul>
+<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
+<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
+<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
