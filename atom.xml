@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-21T11:32:49.000Z</updated>
+  <updated>2016-01-23T14:16:57.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Docker数据卷]]></title>
+    <link href="http://yoursite.com/2016/01/23/Docker%E6%95%B0%E6%8D%AE%E5%8D%B7/"/>
+    <id>http://yoursite.com/2016/01/23/Docker数据卷/</id>
+    <published>2016-01-23T13:31:38.000Z</published>
+    <updated>2016-01-23T14:16:57.000Z</updated>
+    <content type="html"><![CDATA[<h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+<li>数据卷可以在容器间共享和重用</li>
+<li>对数据卷的修改会立马生效</li>
+<li>对数据卷的更新,不会影响镜像</li>
+<li>卷会一直存在, 直到没有容器使用</li>
+</ul>
+<p>数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
+<p>相当于是创建了一个共享文件夹给各个容器用</p>
+<a id="more"></a>
+<h5 id="u521B_u5EFA"><a href="#u521B_u5EFA" class="headerlink" title="创建"></a>创建</h5><p>创建一个名为 dbdata 的数据卷容器</p>
+<pre><code>root@Ubuntu:~# docker run -it -v /dbdata --name dbdata ubuntu
+</code></pre><p>查看挂载信息    </p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span>:~<span class="comment"># docker inspect -f "&#123;&#123; .Mounts &#125;&#125;" dbdata</span></span><br><span class="line">[&#123;<span class="number">6e59</span>fe3a00d347531fa38c7e9c0fb908ee19d60aebcf5b68bd05b5468c139c73 /var/<span class="class"><span class="keyword">lib</span>/<span class="title">docker</span>/<span class="title">volumes</span>/6<span class="title">e59fe3a00d347531fa38c7e9c0fb908ee19d60aebcf5b68bd05b5468c139c73</span>/<span class="title">_data</span> /<span class="title">dbdata</span> <span class="title">local</span>  <span class="title">true</span>&#125;]</span></span><br></pre></td></tr></table></figure>
+<p>其中第一段表示 id, 第二段表示 Ubuntu 本地的目录 , 第三段表示本地目录挂载到容器内的目录</p>
+<p>然後，在其他容器中使用 –volumes-from 來掛載 dbdata 容器中的資料卷</p>
+<pre><code>docker run -it --volumes-from dbdata --name db1 ubuntu
+docker run -it --volumes-from dbdata --name db2 ubuntu
+</code></pre><p>注意: 使用 <code>--volumes-from</code> 參數所掛載資料卷的容器自己並不需要保持在執行狀態</p>
+<p>此时: 宿主机Ubuntu上的<code>/var/lib/docker/volumes/6e59fe3a00d347531fa38c7e9c0fb908ee19d60aebcf5b68bd05b5468c139c73/_data</code>等于 dbdata, db1, db2 上的 <code>/dbdata</code></p>
+<p>可以多次使用 <code>--volumes-from</code> 参数来从多个容器挂载多个数据卷, 还可以从其他已经挂载了容器卷的容器来挂载数据卷,如</p>
+<pre><code>docker run -it --volumes-from db1 --name db3 ubuntu
+</code></pre><h5 id="u5220_u9664"><a href="#u5220_u9664" class="headerlink" title="删除"></a>删除</h5><p>数据卷要在删除最后一个还挂载着它的容器时候指定: <code>docker rm -v</code></p>
+<h5 id="u5907_u4EFD"><a href="#u5907_u4EFD" class="headerlink" title="备份"></a>备份</h5><p>用下面命令来备份dbdata数据卷容器内的数据卷</p>
+<pre><code>root@Ubuntu:~# docker run --volumes-from dbdata -v $(pwd):/backup --name worker ubuntu tar cvf /backup/backup.tar /dbdata
+</code></pre><p>实际就是创建了一个 worker 的容器, worker 挂载了 dbdata , 然后在 worker 上执行命令 <code>tar cvf /backup/backup.tar /dbdata</code></p>
+<p>之后就会把<code>/dbdata</code>目录的数据备份在当前目录</p>
+<h5 id="u6062_u590D"><a href="#u6062_u590D" class="headerlink" title="恢复"></a>恢复</h5><p>我的做法(仅供参考, 概不负责): </p>
+<pre><code>root@Ubuntu:~# docker run --volumes-from dbdata -v $(pwd):/restore --name restorer ubuntu tar xf /restore/backup.tar -C /
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+<li>数据卷可以在容器间共享和重用</li>
+<li>对数据卷的修改会立马生效</li>
+<li>对数据卷的更新,不会影响镜像</li>
+<li>卷会一直存在, 直到没有容器使用</li>
+</ul>
+<p>数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
+<p>相当于是创建了一个共享文件夹给各个容器用</p>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[前端学习(二)--CSS]]></title>

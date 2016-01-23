@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
+						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
 					</div>
 				</section>
 				
@@ -193,6 +193,77 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Docker数据卷" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/23/Docker数据卷/" class="article-date">
+  	<time datetime="2016-01-23T13:31:38.000Z" itemprop="datePublished">2016-01-23</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/23/Docker数据卷/">Docker数据卷</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+<li>数据卷可以在容器间共享和重用</li>
+<li>对数据卷的修改会立马生效</li>
+<li>对数据卷的更新,不会影响镜像</li>
+<li>卷会一直存在, 直到没有容器使用</li>
+</ul>
+<p>数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
+<p>相当于是创建了一个共享文件夹给各个容器用</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/23/Docker数据卷/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-前端学习-二-CSS" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -467,76 +538,9 @@
 
 
   
-    <article id="post-在OS-X上安装Docker" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/08/在OS-X上安装Docker/" class="article-date">
-  	<time datetime="2016-01-08T07:04:22.000Z" itemprop="datePublished">2016-01-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/08/在OS-X上安装Docker/">在OS X上安装Docker</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/dockerdocker-engine.png" alt="docker-engine"></p>
-<h4 id="Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9"><a href="#Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9" class="headerlink" title="Docker 是什么, 可以应用在什么地方"></a>Docker 是什么, 可以应用在什么地方</h4><p>超轻量级的虚拟化技术</p>
-<p>特点是:<em>敏捷</em></p>
-<p>为什么说特点是敏捷, 启动快, 占用资源少是一方面. 但是最令人喜欢的应该是它类似 Git 那样的的版本管理功能了 , 有了这个功能, 试错的时间成本将大大下降 . 而这个功能我觉得主要得感谢 <a href="http://coolshell.cn/articles/17061.html">AuFS</a> 这个文件系统, 使得实现了镜像的增量变化<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os-x/">os x</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/08/在OS-X上安装Docker/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
