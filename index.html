@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
+						<a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
 					</div>
 				</section>
 				
@@ -194,6 +194,76 @@
 
       <div class="body-wrap">
   
+    <article id="post-容器间通信" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/24/容器间通信/" class="article-date">
+  	<time datetime="2016-01-24T12:08:14.000Z" itemprop="datePublished">2016-01-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/24/容器间通信/">容器间通信</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做一个最简单实验就明白了</p>
+<p>创建一个redis数据库容器:</p>
+<pre><code>root@Ubuntu:~# docker run -d --name redis1 redis
+</code></pre><p>然後建立一個新的容器，並將它連接到 db 容器:</p>
+<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name redisclient1 busybox
+</code></pre><p>此時，db 容器和 web 容器建立互聯關系:</p>
+<p><code>--link</code> 參數的格式為 <code>--link name:alias</code>，其中 <code>name</code> 是要連接的容器名稱，<code>alias</code> 是這個連接的別名。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/01/24/容器间通信/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Docker数据卷" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -220,7 +290,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+        <h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
 <li>数据卷可以在容器间共享和重用</li>
 <li>对数据卷的修改会立马生效</li>
 <li>对数据卷的更新,不会影响镜像</li>
@@ -447,79 +517,6 @@
       
         <p class="article-more-link">
           <a  href="/2016/01/16/打造Linux-终端翻墙环境/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/15/Docker私有仓库/" class="article-date">
-  	<time datetime="2016-01-15T13:47:35.000Z" itemprop="datePublished">2016-01-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/15/Docker私有仓库/">Docker私有仓库</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
-<p>实验环境:</p>
-<ul>
-<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
-<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
-</ul>
-<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
-<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
-<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/15/Docker私有仓库/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

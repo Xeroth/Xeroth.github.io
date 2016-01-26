@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Docker数据卷 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="特点:
+  <meta name="description" content="特点
 数据卷可以在容器间共享和重用
 对数据卷的修改会立马生效
 对数据卷的更新,不会影响镜像
@@ -18,7 +18,7 @@
 <meta property="og:title" content="Docker数据卷">
 <meta property="og:url" content="http://yoursite.com/2016/01/23/Docker数据卷/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="特点:
+<meta property="og:description" content="特点
 数据卷可以在容器间共享和重用
 对数据卷的修改会立马生效
 对数据卷的更新,不会影响镜像
@@ -26,10 +26,10 @@
 
 数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.
 相当于是创建了一个共享文件夹给各个容器用">
-<meta property="og:updated_time" content="2016-01-23T14:16:57.000Z">
+<meta property="og:updated_time" content="2016-01-26T06:06:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker数据卷">
-<meta name="twitter:description" content="特点:
+<meta name="twitter:description" content="特点
 数据卷可以在容器间共享和重用
 对数据卷的修改会立马生效
 对数据卷的更新,不会影响镜像
@@ -134,7 +134,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/book/" style="font-size: 20px;">book</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
+						<a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
 					</div>
 				</section>
 				
@@ -260,10 +260,10 @@
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#u7279_u70B9_3A"><span class="toc-number">1.</span> <span class="toc-text">特点:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u521B_u5EFA"><span class="toc-number">2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5220_u9664"><span class="toc-number">3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5907_u4EFD"><span class="toc-number">4.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u6062_u590D"><span class="toc-number">5.</span> <span class="toc-text">恢复</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#u7279_u70B9"><span class="toc-number">1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u521B_u5EFA"><span class="toc-number">2.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5220_u9664"><span class="toc-number">3.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5907_u4EFD"><span class="toc-number">4.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u6062_u590D"><span class="toc-number">5.</span> <span class="toc-text">恢复</span></a></li></ol>
             </div>
         
-        <h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+        <h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
 <li>数据卷可以在容器间共享和重用</li>
 <li>对数据卷的修改会立马生效</li>
 <li>对数据卷的更新,不会影响镜像</li>
@@ -299,6 +299,15 @@ docker run -it --volumes-from dbdata --name db2 ubuntu
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/01/24/容器间通信/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          容器间通信
+        
+      </div>
+    </a>
   
   
     <a href="/2016/01/20/前端学习-二-CSS/" id="article-nav-older" class="article-nav-link-wrap">

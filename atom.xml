@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-23T14:16:57.000Z</updated>
+  <updated>2016-01-26T06:07:02.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,12 +15,99 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[容器间通信]]></title>
+    <link href="http://yoursite.com/2016/01/24/%E5%AE%B9%E5%99%A8%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
+    <id>http://yoursite.com/2016/01/24/容器间通信/</id>
+    <published>2016-01-24T12:08:14.000Z</published>
+    <updated>2016-01-26T06:07:02.000Z</updated>
+    <content type="html"><![CDATA[<p>做一个最简单实验就明白了</p>
+<p>创建一个redis数据库容器:</p>
+<pre><code>root@Ubuntu:~# docker run -d --name redis1 redis
+</code></pre><p>然後建立一個新的容器，並將它連接到 db 容器:</p>
+<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name redisclient1 busybox
+</code></pre><p>此時，db 容器和 web 容器建立互聯關系:</p>
+<p><code>--link</code> 參數的格式為 <code>--link name:alias</code>，其中 <code>name</code> 是要連接的容器名稱，<code>alias</code> 是這個連接的別名。</p>
+<a id="more"></a>
+<p>执行完命令后, 会进入 busybox 的 shell, 执行如下命令:</p>
+<pre><code>/ # cat /etc/hosts
+172.17.0.4    48cc7f111327
+127.0.0.1    localhost
+::1    localhost ip6-localhost ip6-loopback
+fe00::0    ip6-localnet
+ff00::0    ip6-mcastprefix
+ff02::1    ip6-allnodes
+ff02::2    ip6-allrouters
+172.17.0.3    redis c92f7376a0d1 redis1
+/ # ping redis
+PING redis (172.17.0.3): 56 data bytes
+64 bytes from 172.17.0.3: seq=0 ttl=64 time=0.111 ms
+^C
+--- redis ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 0.111/0.111/0.111 ms
+</code></pre><p>发现 hosts 文件以及自动添加上了 redis 的地址</p>
+<p>运行 set 命令还能查看具体信息:</p>
+<pre><code>/ # set
+...
+REDIS_ENV_REDIS_DOWNLOAD_SHA1=&apos;4b1c7b1201984bca8f7f9c6c58862f6928cf0a25&apos;
+REDIS_ENV_REDIS_DOWNLOAD_URL=&apos;http://download.redis.io/releases/redis-3.0.6.tar.gz&apos;
+REDIS_ENV_REDIS_VERSION=&apos;3.0.6&apos;
+REDIS_NAME=&apos;/redisclient1/redis&apos;
+REDIS_PORT=&apos;tcp://172.17.0.3:6379&apos;
+REDIS_PORT_6379_TCP=&apos;tcp://172.17.0.3:6379&apos;
+REDIS_PORT_6379_TCP_ADDR=&apos;172.17.0.3&apos;
+REDIS_PORT_6379_TCP_PORT=&apos;6379&apos;
+REDIS_PORT_6379_TCP_PROTO=&apos;tcp&apos;
+...
+</code></pre><p>我们怎么知道这样是真的就连上了呢? 可以这样测试一下</p>
+<p>用 redis 镜像新建一个容器:</p>
+<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name client1 redis sh
+</code></pre><p>进行连接</p>
+<pre><code># redis-cli -h redis
+redis:6379&gt; PING
+PONG
+redis:6379&gt; set myvar DOCKER
+OK
+redis:6379&gt; get myvar
+&quot;DOCKER&quot;
+redis:6379&gt; exit
+# exit
+</code></pre><p>成功!</p>
+<p>再新建一个容器, 连接同一个 redis 数据库:</p>
+<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name client2 redis sh
+# redis-cli -h redis
+redis:6379&gt; get myvar
+&quot;DOCKER&quot;
+redis:6379&gt; exit
+# exit
+</code></pre><p>OK</p>
+<p>感谢:</p>
+<p><a href="http://rominirani.com/2015/07/31/docker-tutorial-series-part-8-linking-containers/" target="_blank" rel="external">Docker Tutorial Series : Part 8 : Linking Containers</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>做一个最简单实验就明白了</p>
+<p>创建一个redis数据库容器:</p>
+<pre><code>root@Ubuntu:~# docker run -d --name redis1 redis
+</code></pre><p>然後建立一個新的容器，並將它連接到 db 容器:</p>
+<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name redisclient1 busybox
+</code></pre><p>此時，db 容器和 web 容器建立互聯關系:</p>
+<p><code>--link</code> 參數的格式為 <code>--link name:alias</code>，其中 <code>name</code> 是要連接的容器名稱，<code>alias</code> 是這個連接的別名。</p>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Docker数据卷]]></title>
     <link href="http://yoursite.com/2016/01/23/Docker%E6%95%B0%E6%8D%AE%E5%8D%B7/"/>
     <id>http://yoursite.com/2016/01/23/Docker数据卷/</id>
     <published>2016-01-23T13:31:38.000Z</published>
-    <updated>2016-01-23T14:16:57.000Z</updated>
-    <content type="html"><![CDATA[<h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+    <updated>2016-01-26T06:06:39.000Z</updated>
+    <content type="html"><![CDATA[<h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
 <li>数据卷可以在容器间共享和重用</li>
 <li>对数据卷的修改会立马生效</li>
 <li>对数据卷的更新,不会影响镜像</li>
@@ -50,7 +137,7 @@ docker run -it --volumes-from dbdata --name db2 ubuntu
 <pre><code>root@Ubuntu:~# docker run --volumes-from dbdata -v $(pwd):/restore --name restorer ubuntu tar xf /restore/backup.tar -C /
 </code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<h5 id="u7279_u70B9_3A"><a href="#u7279_u70B9_3A" class="headerlink" title="特点:"></a>特点:</h5><ul>
+    <![CDATA[<h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
 <li>数据卷可以在容器间共享和重用</li>
 <li>对数据卷的修改会立马生效</li>
 <li>对数据卷的更新,不会影响镜像</li>
