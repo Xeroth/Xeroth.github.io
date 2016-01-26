@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-26T06:07:02.000Z</updated>
+  <updated>2016-01-26T09:53:37.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,164 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[创建SSH服务镜像]]></title>
+    <link href="http://yoursite.com/2016/01/26/%E7%94%A8Dockerfile%E5%88%9B%E5%BB%BASSH%E6%9C%8D%E5%8A%A1%E9%95%9C%E5%83%8F/"/>
+    <id>http://yoursite.com/2016/01/26/用Dockerfile创建SSH服务镜像/</id>
+    <published>2016-01-26T06:39:23.000Z</published>
+    <updated>2016-01-26T09:53:37.000Z</updated>
+    <content type="html"><![CDATA[<p>docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.</p>
+<p>创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建</p>
+<p>用 Dockerfile 创建推荐的, 但是 Dockerfile 怎么写出来呢? 除非你很熟练了, 不然还是先用第一种方式创建一个, 成功之后, 在把执行过的命令写到 Dockerfile , 这样就比较好写了.</p>
+<a id="more"></a>
+<h4 id="u57FA_u4E8E_commit__u547D_u4EE4_u521B_u5EFA"><a href="#u57FA_u4E8E_commit__u547D_u4EE4_u521B_u5EFA" class="headerlink" title="基于 commit 命令创建"></a>基于 commit 命令创建</h4><p>创建一个 ubuntu 容器, ssh 命令是没有安装的</p>
+<pre><code>root@Ubuntu:~# docker run -it ubuntu /bin/bash
+root@0af4196431d5:/# ssh
+bash: ssh: command not found
+</code></pre><p>更换国内的源</p>
+<pre><code>root@0af4196431d5:/# vi /etc/apt/sources.list
+root@0af4196431d5:/# cat &gt; /etc/apt/sources.list &lt;&lt; EOF
+deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+EOF
+root@0af4196431d5:/# cat /etc/apt/sources.list
+deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse    
+root@0af4196431d5:/# apt-get update -y
+</code></pre><p>安装 ssh 服务</p>
+<pre><code>root@0af4196431d5:/# apt-get install -y openssh-server
+</code></pre><p>启动 ssh</p>
+<pre><code>root@0af4196431d5:/# /etc/init.d/ssh start
+</code></pre><p>查看一下, 已经处于监听状态</p>
+<pre><code>root@0af4196431d5:/# ss -l |grep ssh
+tcp    LISTEN     0      128                  *:ssh                   *:*
+tcp    LISTEN     0      128                 :::ssh                  :::*
+root@0af4196431d5:/# ss -ln |grep 22
+tcp    LISTEN     0      128                    *:22                    *:*
+tcp    LISTEN     0      128                   :::22                   :::*
+</code></pre><p>创建公钥目录, 添加公钥</p>
+<pre><code>root@0af4196431d5:/# mkdir ~/.ssh
+root@0af4196431d5:/# cat &gt; ~/.ssh/authorized_keys &lt;&lt; EOF
+&gt; &lt;你的公钥&gt;
+&gt; EOF
+root@0af4196431d5:/# chmod 750 .ssh/
+root@0af4196431d5:/# chmod 400 ~/.ssh/authorized_keys
+</code></pre><p>创建启动 ssh 服务的脚本, 然后退出容器</p>
+<pre><code>root@0af4196431d5:/# cat &gt; run.sh &lt;&lt; EOF
+&gt; #!/bin/bash
+&gt; /usr/sbin/sshd -D    #这里必须要用 -D 模式运行 ,否则 docker 容器运行完就退出了
+&gt; EOF
+root@0af4196431d5:/# chmod +x run.sh
+root@0af4196431d5:/# exit    
+</code></pre><p>commit 提交修改, 保存为新的 sshd:ubuntu 镜像</p>
+<pre><code>root@Ubuntu:~# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS                    NAMES
+0af4196431d5        ubuntu              &quot;/bin/bash&quot;         42 minutes ago      Exited (1) 18 seconds ago                            reverent_morse
+352a2bfe36b3        registry            &quot;docker-registry&quot;   42 hours ago        Up 42 hours                 0.0.0.0:5000-&gt;5000/tcp   lonely_swanson
+
+root@Ubuntu:~# docker commit 0af sshd:ubuntu
+
+root@Ubuntu:~# docker images|grep ssh
+sshd                            ubuntu              cd28451ce252        About a minute ago   252.6 MB
+</code></pre><p>使用镜像, 启动容器, 添加端口映射 10022-&gt;22</p>
+<pre><code>root@Ubuntu:~# docker run -d -p 10022:22 sshd:ubuntu /run.sh
+
+root@Ubuntu:~# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+a11e3d2e8c43        sshd:ubuntu         &quot;/run.sh&quot;           23 seconds ago      Up 22 seconds       0.0.0.0:10022-&gt;22/tcp    jovial_hugle
+352a2bfe36b3        registry            &quot;docker-registry&quot;   42 hours ago        Up 42 hours         0.0.0.0:5000-&gt;5000/tcp   lonely_swanson
+</code></pre><p>在外面进行登录测试:</p>
+<pre><code>ssh root@192.168.100.103 -p 10022  
+</code></pre><h4 id="u4F7F_u7528_Dockerfile__u521B_u5EFA"><a href="#u4F7F_u7528_Dockerfile__u521B_u5EFA" class="headerlink" title="使用 Dockerfile 创建"></a>使用 Dockerfile 创建</h4><p>创建工作目录</p>
+<pre><code>root@Ubuntu:~# mkdir sshd_ubuntu
+</code></pre><p>创建Dockerfile 和 run.sh</p>
+<pre><code>root@Ubuntu:~# cd sshd_ubuntu
+root@Ubuntu:~/sshd_ubuntu# touch Dockerfile run.sh
+root@Ubuntu:~/sshd_ubuntu# ls
+Dockerfile  run.sh
+</code></pre><p>编写 run.sh 脚本和秘钥认证文件</p>
+<pre><code>root@Ubuntu:~/sshd_ubuntu# cat &gt; run.sh &lt;&lt; EOF
+&gt; #!/bin/bash
+&gt; /usr/sbin/sshd -D
+&gt; EOF
+root@Ubuntu:~/sshd_ubuntu# cat ~/.ssh/
+authorized_keys  id_rsa           id_rsa.pub
+root@Ubuntu:~/sshd_ubuntu# cat ~/.ssh/id_rsa.pub &gt; authorized_keys
+</code></pre><p>编写 Dockerfile</p>
+<pre><code>root@Ubuntu:~/sshd_ubuntu# cat Dockerfile
+# base image
+FROM ubuntu
+# maintainer info
+MAINTAINER from localhost by Rex
+# change apt source to aliyun
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse&quot; &gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN apt-get update -y
+# install ssh service
+RUN apt-get install -y openssh-server
+# start ssh service , it will create /var/run/ssh
+RUN /etc/init.d/ssh start
+RUN /etc/init.d/ssh stop
+RUN mkdir -p /root/.ssh
+ADD authorized_keys /root/.ssh/authorized_keys
+ADD run.sh /run.sh
+RUN chmod 750 /root/.ssh/
+RUN chmod 400 /root/.ssh/authorized_keys
+RUN chmod +x /run.sh
+# open port
+EXPOSE 22
+# set auto run command
+CMD [&quot;/run.sh&quot;]
+</code></pre><p>注意事项:</p>
+<ul>
+<li>尽量使用绝对路径</li>
+<li>cat &gt; file &lt;&lt; EOF 的用法不行</li>
+</ul>
+<p>开始构建:</p>
+<pre><code>root@Ubuntu:~/sshd_ubuntu# docker build -t sshd:dockerfile .
+
+root@Ubuntu:~/sshd_ubuntu# docker images
+REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+sshd                            dockerfile          896888f6e3f3        40 seconds ago      252.6 MB
+</code></pre><p>在外面测试, 连接成功!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.</p>
+<p>创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建</p>
+<p>用 Dockerfile 创建推荐的, 但是 Dockerfile 怎么写出来呢? 除非你很熟练了, 不然还是先用第一种方式创建一个, 成功之后, 在把执行过的命令写到 Dockerfile , 这样就比较好写了.</p>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[容器间通信]]></title>

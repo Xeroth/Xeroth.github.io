@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>创建SSH服务镜像 | Live with love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.
+创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建
+用 Dockerfile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建SSH服务镜像">
+<meta property="og:url" content="http://yoursite.com/2016/01/26/用Dockerfile创建SSH服务镜像/index.html">
+<meta property="og:site_name" content="Live with love">
+<meta property="og:description" content="docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.
+创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建
+用 Dockerfile">
+<meta property="og:updated_time" content="2016-01-26T09:53:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建SSH服务镜像">
+<meta name="twitter:description" content="docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.
+创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建
+用 Dockerfile">
+  
+    <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xpsj5.com1.z0.glb.clouddn.com/%E5%B0%8F%E9%BB%84.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">践行</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Live with love</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="rss" target="_blank" href="/" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">be a fool, feel the world</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">践行</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">践行</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Live with love</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="rss" target="_blank" href="/" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-用Dockerfile创建SSH服务镜像" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/26/用Dockerfile创建SSH服务镜像/" class="article-date">
+  	<time datetime="2016-01-26T06:39:23.000Z" itemprop="datePublished">2016-01-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      创建SSH服务镜像
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#u57FA_u4E8E_commit__u547D_u4EE4_u521B_u5EFA"><span class="toc-number">1.</span> <span class="toc-text">基于 commit 命令创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u4F7F_u7528_Dockerfile__u521B_u5EFA"><span class="toc-number">2.</span> <span class="toc-text">使用 Dockerfile 创建</span></a></li></ol>
+            </div>
+        
+        <p>docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.</p>
+<p>创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建</p>
+<p>用 Dockerfile 创建推荐的, 但是 Dockerfile 怎么写出来呢? 除非你很熟练了, 不然还是先用第一种方式创建一个, 成功之后, 在把执行过的命令写到 Dockerfile , 这样就比较好写了.</p>
+<a id="more"></a>
+<h4 id="u57FA_u4E8E_commit__u547D_u4EE4_u521B_u5EFA"><a href="#u57FA_u4E8E_commit__u547D_u4EE4_u521B_u5EFA" class="headerlink" title="基于 commit 命令创建"></a>基于 commit 命令创建</h4><p>创建一个 ubuntu 容器, ssh 命令是没有安装的</p>
+<pre><code>root@Ubuntu:~# docker run -it ubuntu /bin/bash
+root@0af4196431d5:/# ssh
+bash: ssh: command not found
+</code></pre><p>更换国内的源</p>
+<pre><code>root@0af4196431d5:/# vi /etc/apt/sources.list
+root@0af4196431d5:/# cat &gt; /etc/apt/sources.list &lt;&lt; EOF
+deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+EOF
+root@0af4196431d5:/# cat /etc/apt/sources.list
+deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse    
+root@0af4196431d5:/# apt-get update -y
+</code></pre><p>安装 ssh 服务</p>
+<pre><code>root@0af4196431d5:/# apt-get install -y openssh-server
+</code></pre><p>启动 ssh</p>
+<pre><code>root@0af4196431d5:/# /etc/init.d/ssh start
+</code></pre><p>查看一下, 已经处于监听状态</p>
+<pre><code>root@0af4196431d5:/# ss -l |grep ssh
+tcp    LISTEN     0      128                  *:ssh                   *:*
+tcp    LISTEN     0      128                 :::ssh                  :::*
+root@0af4196431d5:/# ss -ln |grep 22
+tcp    LISTEN     0      128                    *:22                    *:*
+tcp    LISTEN     0      128                   :::22                   :::*
+</code></pre><p>创建公钥目录, 添加公钥</p>
+<pre><code>root@0af4196431d5:/# mkdir ~/.ssh
+root@0af4196431d5:/# cat &gt; ~/.ssh/authorized_keys &lt;&lt; EOF
+&gt; &lt;你的公钥&gt;
+&gt; EOF
+root@0af4196431d5:/# chmod 750 .ssh/
+root@0af4196431d5:/# chmod 400 ~/.ssh/authorized_keys
+</code></pre><p>创建启动 ssh 服务的脚本, 然后退出容器</p>
+<pre><code>root@0af4196431d5:/# cat &gt; run.sh &lt;&lt; EOF
+&gt; #!/bin/bash
+&gt; /usr/sbin/sshd -D    #这里必须要用 -D 模式运行 ,否则 docker 容器运行完就退出了
+&gt; EOF
+root@0af4196431d5:/# chmod +x run.sh
+root@0af4196431d5:/# exit    
+</code></pre><p>commit 提交修改, 保存为新的 sshd:ubuntu 镜像</p>
+<pre><code>root@Ubuntu:~# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                      PORTS                    NAMES
+0af4196431d5        ubuntu              &quot;/bin/bash&quot;         42 minutes ago      Exited (1) 18 seconds ago                            reverent_morse
+352a2bfe36b3        registry            &quot;docker-registry&quot;   42 hours ago        Up 42 hours                 0.0.0.0:5000-&gt;5000/tcp   lonely_swanson
+
+root@Ubuntu:~# docker commit 0af sshd:ubuntu
+
+root@Ubuntu:~# docker images|grep ssh
+sshd                            ubuntu              cd28451ce252        About a minute ago   252.6 MB
+</code></pre><p>使用镜像, 启动容器, 添加端口映射 10022-&gt;22</p>
+<pre><code>root@Ubuntu:~# docker run -d -p 10022:22 sshd:ubuntu /run.sh
+
+root@Ubuntu:~# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+a11e3d2e8c43        sshd:ubuntu         &quot;/run.sh&quot;           23 seconds ago      Up 22 seconds       0.0.0.0:10022-&gt;22/tcp    jovial_hugle
+352a2bfe36b3        registry            &quot;docker-registry&quot;   42 hours ago        Up 42 hours         0.0.0.0:5000-&gt;5000/tcp   lonely_swanson
+</code></pre><p>在外面进行登录测试:</p>
+<pre><code>ssh root@192.168.100.103 -p 10022  
+</code></pre><h4 id="u4F7F_u7528_Dockerfile__u521B_u5EFA"><a href="#u4F7F_u7528_Dockerfile__u521B_u5EFA" class="headerlink" title="使用 Dockerfile 创建"></a>使用 Dockerfile 创建</h4><p>创建工作目录</p>
+<pre><code>root@Ubuntu:~# mkdir sshd_ubuntu
+</code></pre><p>创建Dockerfile 和 run.sh</p>
+<pre><code>root@Ubuntu:~# cd sshd_ubuntu
+root@Ubuntu:~/sshd_ubuntu# touch Dockerfile run.sh
+root@Ubuntu:~/sshd_ubuntu# ls
+Dockerfile  run.sh
+</code></pre><p>编写 run.sh 脚本和秘钥认证文件</p>
+<pre><code>root@Ubuntu:~/sshd_ubuntu# cat &gt; run.sh &lt;&lt; EOF
+&gt; #!/bin/bash
+&gt; /usr/sbin/sshd -D
+&gt; EOF
+root@Ubuntu:~/sshd_ubuntu# cat ~/.ssh/
+authorized_keys  id_rsa           id_rsa.pub
+root@Ubuntu:~/sshd_ubuntu# cat ~/.ssh/id_rsa.pub &gt; authorized_keys
+</code></pre><p>编写 Dockerfile</p>
+<pre><code>root@Ubuntu:~/sshd_ubuntu# cat Dockerfile
+# base image
+FROM ubuntu
+# maintainer info
+MAINTAINER from localhost by Rex
+# change apt source to aliyun
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse&quot; &gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN echo &quot;deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+RUN apt-get update -y
+# install ssh service
+RUN apt-get install -y openssh-server
+# start ssh service , it will create /var/run/ssh
+RUN /etc/init.d/ssh start
+RUN /etc/init.d/ssh stop
+RUN mkdir -p /root/.ssh
+ADD authorized_keys /root/.ssh/authorized_keys
+ADD run.sh /run.sh
+RUN chmod 750 /root/.ssh/
+RUN chmod 400 /root/.ssh/authorized_keys
+RUN chmod +x /run.sh
+# open port
+EXPOSE 22
+# set auto run command
+CMD [&quot;/run.sh&quot;]
+</code></pre><p>注意事项:</p>
+<ul>
+<li>尽量使用绝对路径</li>
+<li>cat &gt; file &lt;&lt; EOF 的用法不行</li>
+</ul>
+<p>开始构建:</p>
+<pre><code>root@Ubuntu:~/sshd_ubuntu# docker build -t sshd:dockerfile .
+
+root@Ubuntu:~/sshd_ubuntu# docker images
+REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+sshd                            dockerfile          896888f6e3f3        40 seconds ago      252.6 MB
+</code></pre><p>在外面测试, 连接成功!</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/01/24/容器间通信/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">容器间通信</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="用Dockerfile创建SSH服务镜像" data-title="创建SSH服务镜像" data-url="http://yoursite.com/2016/01/26/用Dockerfile创建SSH服务镜像/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"livewithlove"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 践行
+    	</div>
+        <div class="footer-middle">
+        </div>
+      	<div class="footer-right">
+            <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+            </script>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72017880-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
