@@ -4,17 +4,42 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Live with love</title>
+  <title>Docker构建Nginx镜像 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每天都要进步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Live with love">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="apt-get 安装版创建工作目录
+root@Ubuntu:~# mkdir nginx_ubuntu
+root@Ubuntu:~# cd nginx_ubuntu
+编写 Dockerfile
+root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
+FROM sshd:dockerfile
+MAINTAINER Rex
+# install Nginx
+RUN \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker构建Nginx镜像">
+<meta property="og:url" content="http://yoursite.com/2016/01/27/Docker构建Nginx镜像/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="每天都要进步">
+<meta property="og:description" content="apt-get 安装版创建工作目录
+root@Ubuntu:~# mkdir nginx_ubuntu
+root@Ubuntu:~# cd nginx_ubuntu
+编写 Dockerfile
+root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
+FROM sshd:dockerfile
+MAINTAINER Rex
+# install Nginx
+RUN \">
+<meta property="og:updated_time" content="2016-01-27T14:22:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Live with love">
-<meta name="twitter:description" content="每天都要进步">
+<meta name="twitter:title" content="Docker构建Nginx镜像">
+<meta name="twitter:description" content="apt-get 安装版创建工作目录
+root@Ubuntu:~# mkdir nginx_ubuntu
+root@Ubuntu:~# cd nginx_ubuntu
+编写 Dockerfile
+root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
+FROM sshd:dockerfile
+MAINTAINER Rex
+# install Nginx
+RUN \">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -192,9 +217,7 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
-  
-    <article id="post-Docker构建Nginx镜像" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Docker构建Nginx镜像" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2016/01/27/Docker构建Nginx镜像/" class="article-date">
@@ -210,16 +233,39 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/27/Docker构建Nginx镜像/">Docker构建Nginx镜像</a>
+    <h1 class="article-title" itemprop="name">
+      Docker构建Nginx镜像
     </h1>
   
 
       </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
     
     <div class="article-entry" itemprop="articleBody">
       
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get__u5B89_u88C5_u7248"><span class="toc-number">1.</span> <span class="toc-text">apt-get 安装版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8BD1_u5B89_u88C5_u7248"><span class="toc-number">2.</span> <span class="toc-text">编译安装版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7BA1_u7406_u65B9_u5F0F"><span class="toc-number">3.</span> <span class="toc-text">管理方式</span></a></li></ol>
+            </div>
+        
         <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>创建工作目录</p>
 <pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
@@ -244,322 +290,88 @@ CMD [&quot;/run.sh&quot;]
 # port
 EXPOSE 80
 EXPOSE 443
-</code></pre>
+</code></pre><a id="more"></a>
+<p>编写 run.sh 脚本</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# cat run.sh
+#!/bin/bash
+/usr/sbin/sshd &amp;
+service nginx start
+</code></pre><p>开始构建</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# docker build -t nginx:stable .
+</code></pre><p>运行测试</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# docker run -d --name=nginx -P nginx:stable
+a328e2d1a2408254ead51bed477efc16b2d4c4804016405631e62798e52ecf33
+root@Ubuntu:~/nginx_ubuntu# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                  NAMES
+a328e2d1a240        nginx:stable        &quot;/run.sh&quot;           2 seconds ago       Up 2 seconds        0.0.0.0:32785-&gt;22/tcp, 0.0.0.0:32784-&gt;80/tcp, 0.0.0.0:32783-&gt;443/tcp   nginx
+352a2bfe36b3        registry            &quot;docker-registry&quot;   3 days ago          Up 3 days           0.0.0.0:5000-&gt;5000/tcp                                                 lonely_swanson
+</code></pre><h3 id="u7F16_u8BD1_u5B89_u88C5_u7248"><a href="#u7F16_u8BD1_u5B89_u88C5_u7248" class="headerlink" title="编译安装版"></a>编译安装版</h3><p>未完待续…</p>
+<h3 id="u7BA1_u7406_u65B9_u5F0F"><a href="#u7BA1_u7406_u65B9_u5F0F" class="headerlink" title="管理方式"></a>管理方式</h3>
       
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/27/Docker构建Nginx镜像/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
     </div>
     
   </div>
   
-</article>
-
-
-
-
-
-
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-用Dockerfile创建SSH服务镜像" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/01/26/用Dockerfile创建SSH服务镜像/" class="article-date">
-  	<time datetime="2016-01-26T06:39:23.000Z" itemprop="datePublished">2016-01-26</time>
-</a>
-    </div>
+    <a href="/2016/01/26/用Dockerfile创建SSH服务镜像/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">创建SSH服务镜像</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/26/用Dockerfile创建SSH服务镜像/">创建SSH服务镜像</a>
-    </h1>
-  
+</nav>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.</p>
-<p>创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建</p>
-<p>用 Dockerfile 创建推荐的, 但是 Dockerfile 怎么写出来呢? 除非你很熟练了, 不然还是先用第一种方式创建一个, 成功之后, 在把执行过的命令写到 Dockerfile , 这样就比较好写了.</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/26/用Dockerfile创建SSH服务镜像/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
   
 </article>
 
 
-
-
-
-
-
-
-
-  
-    <article id="post-容器间通信" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/24/容器间通信/" class="article-date">
-  	<time datetime="2016-01-24T12:08:14.000Z" itemprop="datePublished">2016-01-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/24/容器间通信/">容器间通信</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做一个最简单实验就明白了</p>
-<p>创建一个redis数据库容器:</p>
-<pre><code>root@Ubuntu:~# docker run -d --name redis1 redis
-</code></pre><p>然後建立一個新的容器，並將它連接到 db 容器:</p>
-<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name redisclient1 busybox
-</code></pre><p>此時，db 容器和 web 容器建立互聯關系:</p>
-<p><code>--link</code> 參數的格式為 <code>--link name:alias</code>，其中 <code>name</code> 是要連接的容器名稱，<code>alias</code> 是這個連接的別名。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/24/容器间通信/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
 
 
 
-
-
-
-  
-    <article id="post-Docker数据卷" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/23/Docker数据卷/" class="article-date">
-  	<time datetime="2016-01-23T13:31:38.000Z" itemprop="datePublished">2016-01-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/23/Docker数据卷/">Docker数据卷</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
-<li>数据卷可以在容器间共享和重用</li>
-<li>对数据卷的修改会立马生效</li>
-<li>对数据卷的更新,不会影响镜像</li>
-<li>卷会一直存在, 直到没有容器使用</li>
-</ul>
-<p>数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
-<p>相当于是创建了一个共享文件夹给各个容器用</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/23/Docker数据卷/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Docker构建Nginx镜像" data-title="Docker构建Nginx镜像" data-url="http://yoursite.com/2016/01/27/Docker构建Nginx镜像/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"livewithlove"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
-
-
-
-
-
-  
-    <article id="post-前端学习-二-CSS" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/20/前端学习-二-CSS/" class="article-date">
-  	<time datetime="2016-01-20T15:44:46.000Z" itemprop="datePublished">2016-01-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/20/前端学习-二-CSS/">前端学习(二)--CSS</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h4><p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/css1.png" alt="css1"></p>
-<p>多个属性用分号分隔</p>
-<p>注释: /*…*/</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/20/前端学习-二-CSS/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -589,8 +401,8 @@ EXPOSE 443
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

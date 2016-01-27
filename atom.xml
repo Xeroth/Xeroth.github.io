@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-26T09:53:37.000Z</updated>
+  <updated>2016-01-27T14:22:20.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,90 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Docker构建Nginx镜像]]></title>
+    <link href="http://yoursite.com/2016/01/27/Docker%E6%9E%84%E5%BB%BANginx%E9%95%9C%E5%83%8F/"/>
+    <id>http://yoursite.com/2016/01/27/Docker构建Nginx镜像/</id>
+    <published>2016-01-27T14:11:04.000Z</published>
+    <updated>2016-01-27T14:22:20.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>创建工作目录</p>
+<pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
+root@Ubuntu:~# cd nginx_ubuntu
+</code></pre><p>编写 Dockerfile</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
+FROM sshd:dockerfile
+MAINTAINER Rex
+# install Nginx
+RUN \
+  apt-get install -y nginx &amp;&amp; \
+  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
+# set timezone
+RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone &amp;&amp; \
+  dpkg-reconfigure -f noninteractive tzdata
+# add script , this will cover the old script on the same path
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
+# define volume
+VOLUME [&quot;/etc/nginx/sites-enabled&quot;, &quot;/etc/nginx/certs&quot;, &quot;/etc/nginx/conf.d&quot;, &quot;/var/log/nginx&quot;]
+# command
+CMD [&quot;/run.sh&quot;]
+# port
+EXPOSE 80
+EXPOSE 443
+</code></pre><a id="more"></a>
+<p>编写 run.sh 脚本</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# cat run.sh
+#!/bin/bash
+/usr/sbin/sshd &amp;
+service nginx start
+</code></pre><p>开始构建</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# docker build -t nginx:stable .
+</code></pre><p>运行测试</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# docker run -d --name=nginx -P nginx:stable
+a328e2d1a2408254ead51bed477efc16b2d4c4804016405631e62798e52ecf33
+root@Ubuntu:~/nginx_ubuntu# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                  NAMES
+a328e2d1a240        nginx:stable        &quot;/run.sh&quot;           2 seconds ago       Up 2 seconds        0.0.0.0:32785-&gt;22/tcp, 0.0.0.0:32784-&gt;80/tcp, 0.0.0.0:32783-&gt;443/tcp   nginx
+352a2bfe36b3        registry            &quot;docker-registry&quot;   3 days ago          Up 3 days           0.0.0.0:5000-&gt;5000/tcp                                                 lonely_swanson
+</code></pre><h3 id="u7F16_u8BD1_u5B89_u88C5_u7248"><a href="#u7F16_u8BD1_u5B89_u88C5_u7248" class="headerlink" title="编译安装版"></a>编译安装版</h3><p>未完待续…</p>
+<h3 id="u7BA1_u7406_u65B9_u5F0F"><a href="#u7BA1_u7406_u65B9_u5F0F" class="headerlink" title="管理方式"></a>管理方式</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>创建工作目录</p>
+<pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
+root@Ubuntu:~# cd nginx_ubuntu
+</code></pre><p>编写 Dockerfile</p>
+<pre><code>root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
+FROM sshd:dockerfile
+MAINTAINER Rex
+# install Nginx
+RUN \
+  apt-get install -y nginx &amp;&amp; \
+  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
+# set timezone
+RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone &amp;&amp; \
+  dpkg-reconfigure -f noninteractive tzdata
+# add script , this will cover the old script on the same path
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
+# define volume
+VOLUME [&quot;/etc/nginx/sites-enabled&quot;, &quot;/etc/nginx/certs&quot;, &quot;/etc/nginx/conf.d&quot;, &quot;/var/log/nginx&quot;]
+# command
+CMD [&quot;/run.sh&quot;]
+# port
+EXPOSE 80
+EXPOSE 443
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[创建SSH服务镜像]]></title>
