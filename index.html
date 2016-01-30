@@ -220,7 +220,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>创建工作目录</p>
+        <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像</p>
+<p>创建工作目录</p>
 <pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 </code></pre><p>编写 Dockerfile</p>
@@ -229,11 +230,11 @@ FROM sshd:dockerfile
 MAINTAINER Rex
 # install Nginx
 RUN \
-  apt-get install -y nginx &amp;&amp; \
-  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
+  apt-get install -y nginx  \
+  &amp;&amp;  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
 # set timezone
-RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone &amp;&amp; \
-  dpkg-reconfigure -f noninteractive tzdata
+RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 # add script , this will cover the old script on the same path
 ADD run.sh /run.sh
 RUN chmod +x /run.sh
@@ -637,6 +638,13 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
 
 
   </div>

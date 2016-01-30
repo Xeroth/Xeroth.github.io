@@ -6,40 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Docker构建Nginx镜像 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="apt-get 安装版创建工作目录
+  <meta name="description" content="apt-get 安装版这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像
+创建工作目录
 root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 编写 Dockerfile
 root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:dockerfile
-MAINTAINER Rex
-# install Nginx
-RUN \">
+FROM sshd:docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker构建Nginx镜像">
 <meta property="og:url" content="http://yoursite.com/2016/01/27/Docker构建Nginx镜像/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="apt-get 安装版创建工作目录
+<meta property="og:description" content="apt-get 安装版这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像
+创建工作目录
 root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 编写 Dockerfile
 root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:dockerfile
-MAINTAINER Rex
-# install Nginx
-RUN \">
-<meta property="og:updated_time" content="2016-01-27T14:22:20.000Z">
+FROM sshd:docker">
+<meta property="og:updated_time" content="2016-01-29T09:13:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker构建Nginx镜像">
-<meta name="twitter:description" content="apt-get 安装版创建工作目录
+<meta name="twitter:description" content="apt-get 安装版这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像
+创建工作目录
 root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 编写 Dockerfile
 root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:dockerfile
-MAINTAINER Rex
-# install Nginx
-RUN \">
+FROM sshd:docker">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -263,10 +257,11 @@ RUN \">
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get__u5B89_u88C5_u7248"><span class="toc-number">1.</span> <span class="toc-text">apt-get 安装版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8BD1_u5B89_u88C5_u7248"><span class="toc-number">2.</span> <span class="toc-text">编译安装版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7BA1_u7406_u65B9_u5F0F"><span class="toc-number">3.</span> <span class="toc-text">管理方式</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get__u5B89_u88C5_u7248"><span class="toc-number">1.</span> <span class="toc-text">apt-get 安装版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile"><span class="toc-number">2.</span> <span class="toc-text">官方Nginx镜像的 Dockerfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C"><span class="toc-number">3.</span> <span class="toc-text">编译安装 Tengine 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7BA1_u7406"><span class="toc-number">4.</span> <span class="toc-text">管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E"><span class="toc-number">4.1.</span> <span class="toc-text">内容管理与配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u65E5_u5FD7_u5904_u7406"><span class="toc-number">4.2.</span> <span class="toc-text">日志处理</span></a></li></ol></li></ol>
             </div>
         
-        <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>创建工作目录</p>
+        <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像</p>
+<p>创建工作目录</p>
 <pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 </code></pre><p>编写 Dockerfile</p>
@@ -275,11 +270,11 @@ FROM sshd:dockerfile
 MAINTAINER Rex
 # install Nginx
 RUN \
-  apt-get install -y nginx &amp;&amp; \
-  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
+  apt-get install -y nginx  \
+  &amp;&amp;  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
 # set timezone
-RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone &amp;&amp; \
-  dpkg-reconfigure -f noninteractive tzdata
+RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone
+RUN dpkg-reconfigure -f noninteractive tzdata
 # add script , this will cover the old script on the same path
 ADD run.sh /run.sh
 RUN chmod +x /run.sh
@@ -305,8 +300,41 @@ root@Ubuntu:~/nginx_ubuntu# docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                  NAMES
 a328e2d1a240        nginx:stable        &quot;/run.sh&quot;           2 seconds ago       Up 2 seconds        0.0.0.0:32785-&gt;22/tcp, 0.0.0.0:32784-&gt;80/tcp, 0.0.0.0:32783-&gt;443/tcp   nginx
 352a2bfe36b3        registry            &quot;docker-registry&quot;   3 days ago          Up 3 days           0.0.0.0:5000-&gt;5000/tcp                                                 lonely_swanson
-</code></pre><h3 id="u7F16_u8BD1_u5B89_u88C5_u7248"><a href="#u7F16_u8BD1_u5B89_u88C5_u7248" class="headerlink" title="编译安装版"></a>编译安装版</h3><p>未完待续…</p>
-<h3 id="u7BA1_u7406_u65B9_u5F0F"><a href="#u7BA1_u7406_u65B9_u5F0F" class="headerlink" title="管理方式"></a>管理方式</h3>
+</code></pre><h3 id="u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile"><a href="#u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile" class="headerlink" title="官方Nginx镜像的 Dockerfile"></a>官方Nginx镜像的 Dockerfile</h3><pre><code>FROM debian:jessie
+
+MAINTAINER NGINX Docker Maintainers &quot;docker-maint@nginx.com&quot;
+
+ENV NGINX_VERSION 1.9.10-1~jessie
+
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+    &amp;&amp; echo &quot;deb http://nginx.org/packages/mainline/debian/ jessie nginx&quot; &gt;&gt; /etc/apt/sources.list \
+    &amp;&amp; apt-get update \
+    &amp;&amp; apt-get install -y ca-certificates nginx=${NGINX_VERSION} gettext-base \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    &amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log
+
+EXPOSE 80 443
+
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+</code></pre><h3 id="u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C"><a href="#u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C" class="headerlink" title="编译安装 Tengine 版本"></a>编译安装 Tengine 版本</h3><p>未完待续…</p>
+<h3 id="u7BA1_u7406"><a href="#u7BA1_u7406" class="headerlink" title="管理"></a>管理</h3><p>现在我们已经可以运行 nginx 容器了, 但是如何管理网站内容和对 Nginx 进行配置呢? </p>
+<h4 id="u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E"><a href="#u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E" class="headerlink" title="内容管理与配置"></a>内容管理与配置</h4><p>一种方法是启动容器时将本地目录挂载到nginx 容器上, 从而使得本地目录的变更都能映射到容器中</p>
+<pre><code>root@Ubuntu:~# docker run --name nginx -v /nginx/sites-enabled:/etc/nginx/sites-enabled:ro -v /nginx/html:/usr/share/nginx/html:ro -d -P --rm nginx:stable
+</code></pre><p>更改了配置文件之后, 如何让 Nginx 加载配置文件呢? 可以利用 crontab 定时 reload nginx 服务…</p>
+<p>添加 crontab 服务有2种方式</p>
+<pre><code>root@bc0930b640af:~# cat /var/spool/cron/crontabs/root
+* * * * *  /bin/echo 123 &gt;&gt; /root/test
+</code></pre><p>或者</p>
+<pre><code>root@bc0930b640af:~# cat /etc/crontab
+* * * * *  root /bin/echo 123 &gt;&gt; /root/test
+</code></pre><p>不试还不知道, ubuntu 容器默认是不运行 cron rsyslog 等服务的, 看来还得在 run.sh 脚本里加入运行 cron 服务的命令</p>
+<h4 id="u65E5_u5FD7_u5904_u7406"><a href="#u65E5_u5FD7_u5904_u7406" class="headerlink" title="日志处理"></a>日志处理</h4><p>感谢:</p>
+<p><a href="https://hub.docker.com/_/nginx/" target="_blank" rel="external">Docker 官方 Nginx 镜像</a></p>
+<p><a href="https://blog.docker.com/2015/04/tips-for-deploying-nginx-official-image-with-docker/" target="_blank" rel="external">Tips for Deploying NGINX (Official Image) with Docker</a></p>
+
       
     </div>
     
@@ -449,6 +477,13 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
 
 
   </div>
