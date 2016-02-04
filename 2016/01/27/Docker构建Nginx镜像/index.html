@@ -11,8 +11,7 @@
 root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 编写 Dockerfile
-root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:docker">
+root@Ubuntu:~/nginx_ubuntu# cat DockerfileFROM sshd:dockerf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker构建Nginx镜像">
 <meta property="og:url" content="http://yoursite.com/2016/01/27/Docker构建Nginx镜像/index.html">
@@ -22,9 +21,8 @@ FROM sshd:docker">
 root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 编写 Dockerfile
-root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:docker">
-<meta property="og:updated_time" content="2016-01-30T09:28:57.000Z">
+root@Ubuntu:~/nginx_ubuntu# cat DockerfileFROM sshd:dockerf">
+<meta property="og:updated_time" content="2016-02-04T15:47:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker构建Nginx镜像">
 <meta name="twitter:description" content="apt-get 安装版这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像
@@ -32,8 +30,7 @@ FROM sshd:docker">
 root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 编写 Dockerfile
-root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:docker">
+root@Ubuntu:~/nginx_ubuntu# cat DockerfileFROM sshd:dockerf">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -257,7 +254,7 @@ FROM sshd:docker">
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get__u5B89_u88C5_u7248"><span class="toc-number">1.</span> <span class="toc-text">apt-get 安装版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile"><span class="toc-number">2.</span> <span class="toc-text">官方Nginx镜像的 Dockerfile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C"><span class="toc-number">3.</span> <span class="toc-text">编译安装 Tengine 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7BA1_u7406"><span class="toc-number">4.</span> <span class="toc-text">管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E"><span class="toc-number">4.1.</span> <span class="toc-text">内容管理与配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u65E5_u5FD7_u5904_u7406"><span class="toc-number">4.2.</span> <span class="toc-text">日志处理</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#apt-get__u5B89_u88C5_u7248"><span class="toc-number">1.</span> <span class="toc-text">apt-get 安装版</span></a></li></ol>
             </div>
         
         <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像</p>
@@ -265,77 +262,112 @@ FROM sshd:docker">
 <pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 </code></pre><p>编写 Dockerfile</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:dockerfile
-MAINTAINER Rex
-# install Nginx
-RUN \
-  apt-get install -y nginx  \
-  &amp;&amp;  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
-# set timezone
-RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
-# add script , this will cover the old script on the same path
-ADD run.sh /run.sh
-RUN chmod +x /run.sh
-# define volume
-VOLUME [&quot;/etc/nginx/sites-enabled&quot;, &quot;/etc/nginx/certs&quot;, &quot;/etc/nginx/conf.d&quot;, &quot;/var/log/nginx&quot;]
-# command
-CMD [&quot;/run.sh&quot;]
-# port
-EXPOSE 80
-EXPOSE 443
-</code></pre><a id="more"></a>
-<p>编写 run.sh 脚本</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# cat run.sh
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">  apt-get install -y nginx  \</span><br><span class="line">  &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># define volume</span></span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">[<span class="string">"/etc/nginx/sites-enabled"</span>, <span class="string">"/etc/nginx/certs"</span>, <span class="string">"/etc/nginx/conf.d"</span>, <span class="string">"/var/log/nginx"</span>]</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<!--
+
+编写 run.sh 脚本
+
+    root@Ubuntu:~/nginx_ubuntu# cat run.sh
+    #!/bin/bash
+    /usr/sbin/sshd &
+    service nginx start
+
+开始构建
+
+    root@Ubuntu:~/nginx_ubuntu# docker build -t nginx:stable .
+
+运行测试
+
+    root@Ubuntu:~/nginx_ubuntu# docker run -d --name=nginx -P nginx:stable
+    a328e2d1a2408254ead51bed477efc16b2d4c4804016405631e62798e52ecf33
+    root@Ubuntu:~/nginx_ubuntu# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                  NAMES
+    a328e2d1a240        nginx:stable        "/run.sh"           2 seconds ago       Up 2 seconds        0.0.0.0:32785->22/tcp, 0.0.0.0:32784->80/tcp, 0.0.0.0:32783->443/tcp   nginx
+    352a2bfe36b3        registry            "docker-registry"   3 days ago          Up 3 days           0.0.0.0:5000->5000/tcp                                                 lonely_swanson
+
+### 官方Nginx镜像的 Dockerfile
+
+    FROM debian:jessie
+
+    MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
+
+    ENV NGINX_VERSION 1.9.10-1~jessie
+
+    RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+        && echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
+        && apt-get update \
+        && apt-get install -y ca-certificates nginx=${NGINX_VERSION} gettext-base \
+        && rm -rf /var/lib/apt/lists/*
+
+    # forward request and error logs to docker log collector
+    RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+        && ln -sf /dev/stderr /var/log/nginx/error.log
+
+    EXPOSE 80 443
+
+    CMD ["nginx", "-g", "daemon off;"]
+
+
+
+### 编译安装 Tengine 版本
+
+未完待续...
+
+### 管理
+
+现在我们已经可以运行 nginx 容器了, 但是如何管理网站内容和对 Nginx 进行配置呢? docker 的容器是如此轻便, 我觉得有时候可以把以前的 nginx 多站点管理改成 对 docker 容器的管理就好了, 一个 docker nginx 容器就运行一个站点.
+
+
+#### 内容管理与配置
+
+一种方法是启动容器时将本地目录挂载到nginx 容器上, 从而使得本地目录的变更都能映射到容器中
+
+    root@Ubuntu:~# docker run --name nginx -v /nginx/sites-enabled:/etc/nginx/sites-enabled:ro -v /nginx/html:/usr/share/nginx/html:ro -d -P --rm nginx:stable
+
+如果容器正在运行, 更改了配置文件之后, 如何让 Nginx 加载配置文件呢? 可以利用 crontab 定时 reload nginx 服务...
+
+ubuntu 容器默认是不运行 cron rsyslog 等服务的, 还得在 run.sh 脚本里加入运行 cron 服务的命令
+
+下面构建一个 带定时 reload 的 nginx 镜像
+
+Dockerfile
+
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/dockerfile_dir/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">    apt-get install -qy nginx  \</span><br><span class="line">    &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># Create the log file</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">touch /var/<span class="built_in">log</span>/cron.log</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># Add crontab file in the cron directory</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">crontab /etc/cron.d/nginx-reload</span><br><span class="line"></span><span class="comment"># Give execution rights on the cron job</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">chmod <span class="number">0644</span> /etc/cron.d/nginx-reload</span><br><span class="line"></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>
+<p>crontab</p>
+<pre><code>root@Ubuntu:~/dockerfile_dir/nginx_ubuntu# cat crontab
+* * * * * root /usr/sbin/nginx -t &amp;&amp; service nginx reload &gt;&gt; /var/log/cron.log 2&gt;&amp;1
+# An empty line is required at the end of this file for a valid cron file.
+</code></pre><p>run.sh</p>
+<pre><code>root@Ubuntu:~/dockerfile_dir/nginx_ubuntu# cat run.sh
 #!/bin/bash
 /usr/sbin/sshd &amp;
+cron
 service nginx start
-</code></pre><p>开始构建</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# docker build -t nginx:stable .
-</code></pre><p>运行测试</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# docker run -d --name=nginx -P nginx:stable
-a328e2d1a2408254ead51bed477efc16b2d4c4804016405631e62798e52ecf33
-root@Ubuntu:~/nginx_ubuntu# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                  NAMES
-a328e2d1a240        nginx:stable        &quot;/run.sh&quot;           2 seconds ago       Up 2 seconds        0.0.0.0:32785-&gt;22/tcp, 0.0.0.0:32784-&gt;80/tcp, 0.0.0.0:32783-&gt;443/tcp   nginx
-352a2bfe36b3        registry            &quot;docker-registry&quot;   3 days ago          Up 3 days           0.0.0.0:5000-&gt;5000/tcp                                                 lonely_swanson
-</code></pre><h3 id="u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile"><a href="#u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile" class="headerlink" title="官方Nginx镜像的 Dockerfile"></a>官方Nginx镜像的 Dockerfile</h3><pre><code>FROM debian:jessie
+</code></pre><p>构建镜像</p>
+<pre><code>docker build -t rex/nginx:test .
+</code></pre><p>运行</p>
+<pre><code>root@Ubuntu:/var/www# docker run -d -P -v ~/dockerfile_dir/etc/nginx_conf:/etc/nginx/sites-enabled -v /var/www:/var/www --name=nginx rex/nginx:test
+</code></pre><p>测试, 新建一个test2的虚拟网站</p>
+<pre><code>root@Ubuntu:/var/www# mkdir test2
+root@Ubuntu:/var/www# echo test2 &gt;&gt; test2/index.html
 
-MAINTAINER NGINX Docker Maintainers &quot;docker-maint@nginx.com&quot;
-
-ENV NGINX_VERSION 1.9.10-1~jessie
-
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-    &amp;&amp; echo &quot;deb http://nginx.org/packages/mainline/debian/ jessie nginx&quot; &gt;&gt; /etc/apt/sources.list \
-    &amp;&amp; apt-get update \
-    &amp;&amp; apt-get install -y ca-certificates nginx=${NGINX_VERSION} gettext-base \
-    &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    &amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log
-
-EXPOSE 80 443
-
-CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
-</code></pre><h3 id="u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C"><a href="#u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C" class="headerlink" title="编译安装 Tengine 版本"></a>编译安装 Tengine 版本</h3><p>未完待续…</p>
-<h3 id="u7BA1_u7406"><a href="#u7BA1_u7406" class="headerlink" title="管理"></a>管理</h3><p>现在我们已经可以运行 nginx 容器了, 但是如何管理网站内容和对 Nginx 进行配置呢? </p>
-<h4 id="u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E"><a href="#u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E" class="headerlink" title="内容管理与配置"></a>内容管理与配置</h4><p>一种方法是启动容器时将本地目录挂载到nginx 容器上, 从而使得本地目录的变更都能映射到容器中</p>
-<pre><code>root@Ubuntu:~# docker run --name nginx -v /nginx/sites-enabled:/etc/nginx/sites-enabled:ro -v /nginx/html:/usr/share/nginx/html:ro -d -P --rm nginx:stable
-</code></pre><p>更改了配置文件之后, 如何让 Nginx 加载配置文件呢? 可以利用 crontab 定时 reload nginx 服务…</p>
-<p>添加 crontab 服务有2种方式</p>
-<pre><code>root@bc0930b640af:~# cat /var/spool/cron/crontabs/root
-* * * * *  /bin/echo 123 &gt;&gt; /root/test
-</code></pre><p>或者</p>
-<pre><code>root@bc0930b640af:~# cat /etc/crontab
-* * * * *  root /bin/echo 123 &gt;&gt; /root/test
-</code></pre><p>不试还不知道, ubuntu 容器默认是不运行 cron rsyslog 等服务的, 看来还得在 run.sh 脚本里加入运行 cron 服务的命令</p>
-<h4 id="u65E5_u5FD7_u5904_u7406"><a href="#u65E5_u5FD7_u5904_u7406" class="headerlink" title="日志处理"></a>日志处理</h4><p>感谢:</p>
-<p><a href="https://hub.docker.com/_/nginx/" target="_blank" rel="external">Docker 官方 Nginx 镜像</a></p>
-<p><a href="https://blog.docker.com/2015/04/tips-for-deploying-nginx-official-image-with-docker/" target="_blank" rel="external">Tips for Deploying NGINX (Official Image) with Docker</a></p>
-<p><a href="http://www.ivankrizsan.se/2015/10/31/time-in-docker-containers/" target="_blank" rel="external">容器设置时区以及时间同步</a></p>
-
+root@Ubuntu:~/dockerfile_dir/etc/nginx_conf# cat test2
+server {
+   listen 80;
+   server_name test2.a-ho.com;
+   root /var/www/test2;
+   index index.html;
+}
+</code></pre><p>等一分钟后, 访问网页, 就能看到输出 test2</p>
+<h4 id="u65E5_u5FD7_u5904_u7406"><a href="#u65E5_u5FD7_u5904_u7406" class="headerlink" title="日志处理"></a>日志处理</h4><p>–&gt;</p>
+<p>感谢:</p>
+<p><a href="https://hub.docker.com/_/nginx/">Docker 官方 Nginx 镜像</a></p>
+<p><a href="https://blog.docker.com/2015/04/tips-for-deploying-nginx-official-image-with-docker/">Docker部署 nginx 的技巧</a></p>
+<p><a href="http://www.ivankrizsan.se/2015/10/31/time-in-docker-containers/">容器设置时区以及时间同步</a></p>
+<p><a href="https://www.ekito.fr/people/run-a-cron-job-with-docker/">Docker 容器中运行 crontab 任务</a></p>
+<p><a href="http://dockone.io/article/131">CMD 和 ENTRYPOINT 区别</a></p>
+-->
       
     </div>
     

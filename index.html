@@ -220,7 +220,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="2016-02-01"><a href="#2016-02-01" class="headerlink" title="2016-02-01"></a>2016-02-01</h3><p>早上, 身体已经醒了,人没能立马起来, 懒惰的大脑就 yy 着外面好冷 …<br>主要是起床那一瞬间的奖励(或者不起床的惩罚)比不上赖床一刻的舒服啊<br>最终起来了,果然很冷, 发型很怂, 于是跑到卫生间洗了个冷水头,<br>但是洗冷水头的过程中, 觉得冷度也就那样, 洗完出来之后, 反而觉得不冷了.<br>所以很多时候困难并不像想象的那么难, 嗯, 洗冷水应该还能激发一点身体潜能.<br>另外, 不要把事情弄的太复杂, 简单化吧.<br>把事情分成要做的和不要做的就行, 别加上太多修饰词, 比如应该要做的 , 明天要做的.</p>
+        <h3 id="2016_u5E742_u67081_u65E5"><a href="#2016_u5E742_u67081_u65E5" class="headerlink" title="2016年2月1日"></a>2016年2月1日</h3><p>早上, 身体已经醒了,人没能立马起来, 懒惰的大脑就 yy 着外面好冷 …<br>主要是起床那一瞬间的奖励(或者不起床的惩罚)比不上赖床一刻的舒服啊<br>最终起来了,果然很冷, 发型很怂, 于是跑到卫生间洗了个冷水头,<br>但是洗冷水头的过程中, 觉得冷度也就那样, 洗完出来之后, 反而觉得不冷了.<br>所以很多时候困难并不像想象的那么难, 嗯, 洗冷水应该还能激发一点身体潜能.<br>另外, 不要把事情弄的太复杂, 简单化吧.<br>把事情分成要做的和不要做的就行, 别加上太多修饰词, 比如应该要做的 , 明天要做的.</p>
 <p>嗯, </p>
 <ul>
 <li>要起床. </li>
@@ -300,27 +300,7 @@
 <pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
 root@Ubuntu:~# cd nginx_ubuntu
 </code></pre><p>编写 Dockerfile</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# cat Dockerfile
-FROM sshd:dockerfile
-MAINTAINER Rex
-# install Nginx
-RUN \
-  apt-get install -y nginx  \
-  &amp;&amp;  echo &quot;\ndaemon off;&quot; &gt;&gt; /etc/nginx/nginx.conf
-# set timezone
-RUN echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
-# add script , this will cover the old script on the same path
-ADD run.sh /run.sh
-RUN chmod +x /run.sh
-# define volume
-VOLUME [&quot;/etc/nginx/sites-enabled&quot;, &quot;/etc/nginx/certs&quot;, &quot;/etc/nginx/conf.d&quot;, &quot;/var/log/nginx&quot;]
-# command
-CMD [&quot;/run.sh&quot;]
-# port
-EXPOSE 80
-EXPOSE 443
-</code></pre>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">  apt-get install -y nginx  \</span><br><span class="line">  &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># define volume</span></span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">[<span class="string">"/etc/nginx/sites-enabled"</span>, <span class="string">"/etc/nginx/certs"</span>, <span class="string">"/etc/nginx/conf.d"</span>, <span class="string">"/var/log/nginx"</span>]</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
