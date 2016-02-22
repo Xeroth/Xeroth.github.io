@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a>
+						<a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -193,6 +193,165 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-Django第二天" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/18/Django第二天/" class="article-date">
+  	<time datetime="2016-02-18T01:53:33.000Z" itemprop="datePublished">2016-02-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/18/Django第二天/">Django第二天</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u521B_u5EFA_u6570_u636E_u5E93"><a href="#u521B_u5EFA_u6570_u636E_u5E93" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>相关文件是<em>mysite/settings.py</em> , 默认用的是 SQLite . 我用的 mysql(之前在本地安装好的)</p>
+<p>先在 mysql 中创建库,用户</p>
+<pre><code>mysql&gt; CREATE DATABASE polls DEFAULT CHARSET=utf8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON polls.* TO &apos;poller&apos;@&apos;127.0.0.1&apos; IDENTIFIED BY &apos;poller&apos;;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre><p>修改<em>mysite/settings.py</em>中的数据库设置</p>
+<pre><code>DATABASES = {
+    &apos;default&apos;: {
+        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
+        &apos;NAME&apos;: &apos;polls&apos;,
+        &apos;USER&apos;: &apos;poller&apos;,
+        &apos;PASSWORD&apos;: &apos;poller&apos;,
+        &apos;HOST&apos;:&apos;127.0.0.1&apos;,
+        &apos;PORT&apos;:&apos;3306&apos;,
+    }
+}
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/18/Django第二天/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Django第一天" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/17/Django第一天/" class="article-date">
+  	<time datetime="2016-02-17T07:36:18.000Z" itemprop="datePublished">2016-02-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/17/Django第一天/">Django第一天</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用 Django 做一个投票( poll )的 app</p>
+<h3 id="u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><a href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><pre><code>django-admin startproject myproject
+</code></pre><p>目录结构</p>
+<pre><code>myproject/
+├── manage.py
+└── myproject
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+</code></pre><p>进入项目目录, 创建 app</p>
+<pre><code>cd myproject
+python manage.py startapp polls
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/17/Django第一天/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-二月份的碎碎念" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -404,150 +563,9 @@ root@Ubuntu:~# cd nginx_ubuntu
 
 
   
-    <article id="post-容器间通信" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/24/容器间通信/" class="article-date">
-  	<time datetime="2016-01-24T12:08:14.000Z" itemprop="datePublished">2016-01-24</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/24/容器间通信/">容器间通信</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做一个最简单实验就明白了</p>
-<p>创建一个redis数据库容器:</p>
-<pre><code>root@Ubuntu:~# docker run -d --name redis1 redis
-</code></pre><p>然後建立一個新的容器，並將它連接到 db 容器:</p>
-<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name redisclient1 busybox
-</code></pre><p>此時，db 容器和 web 容器建立互聯關系:</p>
-<p><code>--link</code> 參數的格式為 <code>--link name:alias</code>，其中 <code>name</code> 是要連接的容器名稱，<code>alias</code> 是這個連接的別名。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/24/容器间通信/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Docker数据卷" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/23/Docker数据卷/" class="article-date">
-  	<time datetime="2016-01-23T13:31:38.000Z" itemprop="datePublished">2016-01-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/23/Docker数据卷/">Docker数据卷</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
-<li>数据卷可以在容器间共享和重用</li>
-<li>对数据卷的修改会立马生效</li>
-<li>对数据卷的更新,不会影响镜像</li>
-<li>卷会一直存在, 直到没有容器使用</li>
-</ul>
-<p>数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
-<p>相当于是创建了一个共享文件夹给各个容器用</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/23/Docker数据卷/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
