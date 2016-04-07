@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -194,11 +194,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-用Dockerfile创建SSH服务镜像" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mysql-使用随记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/26/用Dockerfile创建SSH服务镜像/" class="article-date">
-  	<time datetime="2016-01-26T06:39:23.000Z" itemprop="datePublished">2016-01-26</time>
+      <a href="/2016/03/25/mysql-使用随记/" class="article-date">
+  	<time datetime="2016-03-25T06:31:28.000Z" itemprop="datePublished">2016-03-25</time>
 </a>
     </div>
   
@@ -211,7 +211,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/26/用Dockerfile创建SSH服务镜像/">创建SSH服务镜像</a>
+      <a class="article-title" href="/2016/03/25/mysql-使用随记/">mysql 使用随记</a>
     </h1>
   
 
@@ -220,9 +220,80 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>docker 镜像默认都是没安装 ssh 服务的. 虽然用exec的方法可以在宿主机进入容器, 每个镜像跑一个 ssh 服务也违背了 docker 一个容器运行一个服务的原则, 但是还是习惯了用 ssh 来进行管理, 加上 ssh 所占资源也不多, 那么还是创建一个吧.</p>
-<p>创建镜像有2种方法, 第一种是基于 commit 命令创建, 第二张是用 Dockerfile 创建</p>
-<p>用 Dockerfile 创建推荐的, 但是 Dockerfile 怎么写出来呢? 除非你很熟练了, 不然还是先用第一种方式创建一个, 成功之后, 在把执行过的命令写到 Dockerfile , 这样就比较好写了.</p>
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u514D_u5BC6_u7801_u767B_u9646"><span class="toc-number">1.</span> <span class="toc-text">免密码登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql__u5907_u4EFD"><span class="toc-number">2.</span> <span class="toc-text">mysql 备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E38_u7528_u547D_u4EE4"><span class="toc-number">3.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#create_table"><span class="toc-number">3.1.</span> <span class="toc-text">create table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert_into__u63D2_u5165_u6570_u636E"><span class="toc-number">3.2.</span> <span class="toc-text">insert into 插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#truncate__u6E05_u7A7A_u8868"><span class="toc-number">3.3.</span> <span class="toc-text">truncate 清空表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AB_u4E3B_u4ECE"><span class="toc-number">4.</span> <span class="toc-text">AB主从</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u4E3B_u4ECE_u707E_u96BE_u6062_u590D_u6F14_u7EC3"><span class="toc-number">4.1.</span> <span class="toc-text">主从灾难恢复演练</span></a></li></ol></li></ol>
+            </div>
+        
+        <h3 id="u514D_u5BC6_u7801_u767B_u9646"><a href="#u514D_u5BC6_u7801_u767B_u9646" class="headerlink" title="免密码登陆"></a>免密码登陆</h3><p>默认使用~/.my.cnf</p>
+<pre><code>$ vim ~/.my.cnf
+[client]
+password=your_pass
+user=your_user
+$ chmod 400 ~/.my.cnf
+</code></pre><p>也可以指定特定文件</p>
+<pre><code>$ mysql --defaults-file=/home/imlonghao/mysql-opts
+</code></pre><h3 id="mysql__u5907_u4EFD"><a href="#mysql__u5907_u4EFD" class="headerlink" title="mysql 备份"></a>mysql 备份</h3><p>创建备份用户</p>
+<pre><code># 创建一个只允许本地登录的backup用户，密码为12345。
+CREATE USER &apos;backup&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;12345&apos;; 
+
+# 增加EVENT,LOCK TABLES,SELECT,SHOW DATABASES等权限，这是MySQL官方工具建议的BackupAdmin角色应该拥有的权限。
+GRANT EVENT,LOCK TABLES,SELECT,SHOW DATABASES ON  *.* TO &apos;backup&apos;@&apos;localhost&apos; ;
+
+# 刷新权限，使刚添加的用户生效。
+FLUSH PRIVILEGES;
+</code></pre><p>创建备份目录</p>
+<pre><code>$ mkdir -p /data/backup/shell
+$ mkdir /data/backup//mysql
+$ cd /data/backup/shell
+</code></pre><p>备份脚本</p>
+<pre><code>$ vim mysql_backup.sh
+
+#!/bin/bash
+
+
+# 备份
+DB=bid
+MYSQL_PATH=/opt/mysql/bin/
+BACKUP_DIR=/data/backup/mysql/
+USER=backup
+PASSWD=backup123
+$MYSQL_PATH/mysqldump -hlocalhost -u$USER -p$PASSWD $DB  &gt; $BACKUP_DIR/$DB$(date -d &quot;today&quot; +&quot;%Y%m%d_%H%M%S&quot;).sql.gz 2&gt;&gt; /tmp/backup.err
+
+if [ $? -eq 0 ]; then
+    echo `date  +&quot;%Y-%m-%d %H:%M:%S&quot;`&quot;  mysql backup succeeded!&quot; &gt;&gt; /var/log/cron
+else
+    echo `date  +&quot;%Y-%m-%d %H:%M:%S&quot;`&quot;  mysql backup failed!&quot; &gt;&gt; /var/log/cron
+fi
+
+
+# 删除10天前的备份文件
+find $BACKUP_DIR -mtime +10 -name &quot;*.sql&quot; -type f -exec rm -rf {} \;
+</code></pre><p>修改一下脚本权限</p>
+<pre><code>$ chmod 700 mysql_backup.sh
+</code></pre><p>编辑 crontab</p>
+<pre><code>$ crontab -e
+0 */2 * * * sh /data/backup/shell/mysql_backup.sh
+</code></pre><h3 id="u5E38_u7528_u547D_u4EE4"><a href="#u5E38_u7528_u547D_u4EE4" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="create_table"><a href="#create_table" class="headerlink" title="create table"></a>create table</h4><pre><code>create table `user` (  
+`id` int(11) not null auto_increment, 
+`name` varchar(100) default null,
+ primary key (`id`))    
+</code></pre><h4 id="insert_into__u63D2_u5165_u6570_u636E"><a href="#insert_into__u63D2_u5165_u6570_u636E" class="headerlink" title="insert into 插入数据"></a>insert into 插入数据</h4><pre><code>insert into user (name) values (&apos;bob&apos;);
+insert into user (name) values (&apos;mark&apos;);
+</code></pre><h4 id="truncate__u6E05_u7A7A_u8868"><a href="#truncate__u6E05_u7A7A_u8868" class="headerlink" title="truncate 清空表"></a>truncate 清空表</h4><pre><code>truncate table user;
+</code></pre><h3 id="AB_u4E3B_u4ECE"><a href="#AB_u4E3B_u4ECE" class="headerlink" title="AB主从"></a>AB主从</h3><p>配置方法网上很多…自己找去吧 </p>
+<h4 id="u4E3B_u4ECE_u707E_u96BE_u6062_u590D_u6F14_u7EC3"><a href="#u4E3B_u4ECE_u707E_u96BE_u6062_u590D_u6F14_u7EC3" class="headerlink" title="主从灾难恢复演练"></a>主从灾难恢复演练</h4><p>参考:</p>
+<p><a href="http://wangwei007.blog.51cto.com/68019/965575" target="_blank" rel="external">Mysql数据库主从心得整理</a>  </p>
+<p><a href="http://ucode.blog.51cto.com/10837891/1747078" target="_blank" rel="external">MySQL主从复制之主库宕机处理</a></p>
+<p><a href="http://blog.csdn.net/JesseYoung/article/details/41211841" target="_blank" rel="external">mysql备份还原-基于binlog的增量备份还原</a>    </p>
+<p><a href="http://ifxoxo.com/mysql_binlog.html" target="_blank" rel="external">从mysql的binlog恢复数据的步骤</a></p>
+<p><a href="http://lizhenliang.blog.51cto.com/7876557/1669829" target="_blank" rel="external">不停止MySQL服务增加从库的两种方式</a></p>
+<p><a href="https://imlonghao.com/7.html" target="_blank" rel="external">Shell 下免密码快速登陆 MySQL 数据库</a></p>
+<p><a href="http://www.zzbaike.com/wiki/CentOS/%E4%BD%BF%E7%94%A8tar%E5%A4%87%E4%BB%BD" target="_blank" rel="external">tar备份</a></p>
+
       
     </div>
     
@@ -230,7 +301,237 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mac环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/25/mac环境/" class="article-date">
+  	<time datetime="2016-03-25T03:02:48.000Z" itemprop="datePublished">2016-03-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/25/mac环境/">mac环境</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_svn"><span class="toc-number">1.</span> <span class="toc-text">安装 svn</span></a></li></ol>
+            </div>
+        
+        <h3 id="u5B89_u88C5_svn"><a href="#u5B89_u88C5_svn" class="headerlink" title="安装 svn"></a>安装 svn</h3><p>mac 本身自带了 svn, 只是版本过旧, 用 brew 安装新版的</p>
+<pre><code>brew install subversion
+</code></pre><p>新开一个窗口</p>
+<pre><code>svn --version
+svn, version 1.9.3 (r1718519)
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os-x/">os x</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-nginx-rewrite" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/25/nginx-rewrite/" class="article-date">
+  	<time datetime="2016-03-25T02:34:06.000Z" itemprop="datePublished">2016-03-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/25/nginx-rewrite/">nginx rewrite</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F51_u5740_u8DF3_u8F6C"><span class="toc-number">1.</span> <span class="toc-text">网址跳转</span></a></li></ol>
+            </div>
+        
+        <h3 id="u7F51_u5740_u8DF3_u8F6C"><a href="#u7F51_u5740_u8DF3_u8F6C" class="headerlink" title="网址跳转"></a>网址跳转</h3><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">	<span class="title">listen</span>       <span class="number">80</span>;</span><br><span class="line">	<span class="title">server_name</span>  www.<span class="number">123</span>.cn <span class="number">123</span>.cn;</span><br><span class="line">	<span class="title">access_log</span> <span class="built_in">off</span>;</span><br><span class="line">	<span class="title">rewrite</span><span class="regexp"> ^/(.*)$</span> <span class="url">http://www.evergrande.com/<span class="variable">$1</span></span> <span class="built_in">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置生效后, 用curl查看一下</p>
+<pre><code>$ curl -I www.123.cn
+HTTP/1.1 301 Moved Permanently
+Server: nginx/1.8.1
+Date: Fri, 25 Mar 2016 02:38:44 GMT
+Content-Type: text/html
+Content-Length: 184
+Connection: keep-alive
+Location: http://www.123.com/
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-svn使用随记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/24/svn使用随记/" class="article-date">
+  	<time datetime="2016-03-24T01:44:46.000Z" itemprop="datePublished">2016-03-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/24/svn使用随记/">svn使用随记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u521B_u5EFA_u4ED3_u5E93"><a href="#u521B_u5EFA_u4ED3_u5E93" class="headerlink" title="创建仓库"></a>创建仓库</h3><pre><code>svnadmin create /data/svndata/winne  # winne为版本库名称
+</code></pre><h3 id="u6DFB_u52A0_u8D26_u6237"><a href="#u6DFB_u52A0_u8D26_u6237" class="headerlink" title="添加账户"></a>添加账户</h3><pre><code>cd /data/svndata/winne/conf
+</code></pre><p>编辑 <code>authz</code> 文件, 用户权限</p>
+<pre><code>[groups]
+admin = bill,ada   
+[/]
+@admin = rw
+[svndata:/document]
+@admin     = rw
+</code></pre><p>编辑 <code>passwd</code> 文件, 用户的密码</p>
+<pre><code>[users]
+ada = ada
+bill = 123123123123
+</code></pre><p>编辑<code>svnserve.conf</code> , 确保有以下配置</p>
+<pre><code>[general]
+auno-access = none
+auth-access = write
+password-db = passwd
+authz-db = authz
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
 	</div>
 
       
@@ -241,7 +542,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2016/01/26/用Dockerfile创建SSH服务镜像/#more">more >></a>
+          <a  href="/2016/03/24/svn使用随记/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -260,11 +561,11 @@
 
 
   
-    <article id="post-容器间通信" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-sed学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/24/容器间通信/" class="article-date">
-  	<time datetime="2016-01-24T12:08:14.000Z" itemprop="datePublished">2016-01-24</time>
+      <a href="/2016/03/11/sed学习笔记/" class="article-date">
+  	<time datetime="2016-03-11T12:20:04.000Z" itemprop="datePublished">2016-03-11</time>
 </a>
     </div>
   
@@ -277,7 +578,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/24/容器间通信/">容器间通信</a>
+      <a class="article-title" href="/2016/03/11/sed学习笔记/">sed学习笔记</a>
     </h1>
   
 
@@ -286,216 +587,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>做一个最简单实验就明白了</p>
-<p>创建一个redis数据库容器:</p>
-<pre><code>root@Ubuntu:~# docker run -d --name redis1 redis
-</code></pre><p>然後建立一個新的容器，並將它連接到 db 容器:</p>
-<pre><code>root@Ubuntu:~# docker run -it --link redis1:redis --name redisclient1 busybox
-</code></pre><p>此時，db 容器和 web 容器建立互聯關系:</p>
-<p><code>--link</code> 參數的格式為 <code>--link name:alias</code>，其中 <code>name</code> 是要連接的容器名稱，<code>alias</code> 是這個連接的別名。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/24/容器间通信/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Docker数据卷" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/23/Docker数据卷/" class="article-date">
-  	<time datetime="2016-01-23T13:31:38.000Z" itemprop="datePublished">2016-01-23</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/23/Docker数据卷/">Docker数据卷</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="u7279_u70B9"><a href="#u7279_u70B9" class="headerlink" title="特点"></a>特点</h5><ul>
-<li>数据卷可以在容器间共享和重用</li>
-<li>对数据卷的修改会立马生效</li>
-<li>对数据卷的更新,不会影响镜像</li>
-<li>卷会一直存在, 直到没有容器使用</li>
-</ul>
-<p>数据卷容器: 如果需要在容器间共享一些持续更新的数据, 最简单的方式是使用数据卷容器.</p>
-<p>相当于是创建了一个共享文件夹给各个容器用</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/23/Docker数据卷/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端学习-二-CSS" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/20/前端学习-二-CSS/" class="article-date">
-  	<time datetime="2016-01-20T15:44:46.000Z" itemprop="datePublished">2016-01-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/20/前端学习-二-CSS/">前端学习(二)--CSS</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h4><p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/css1.png" alt="css1"></p>
-<p>多个属性用分号分隔</p>
-<p>注释: /*…*/</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/20/前端学习-二-CSS/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端学习-一" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/20/前端学习-一/" class="article-date">
-  	<time datetime="2016-01-20T07:55:19.000Z" itemprop="datePublished">2016-01-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><span class="toc-number">1.</span> <span class="toc-text">关于正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hold_Space__u7F13_u51B2_u533A"><span class="toc-number">2.</span> <span class="toc-text">Hold Space 缓冲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9E_u4F8B"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a></li></ol>
+            </div>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/20/前端学习-一/">前端学习(一)</a>
-    </h1>
-  
+        <p>定位行 ‘/pattern/‘</p>
+<p>定位行内匹配变量  ‘s///3’</p>
+<p>操作:</p>
+<p>修改行内 s</p>
+<h3 id="u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="关于正则表达式"></a>关于正则表达式</h3><p>流派:</p>
+<pre><code>正则表达式
+    |-- PCRE
+    `-- POSIX
+        |-- BRE
+        |   |-- grep
+        |   |-- sed
+        |   `-- vi
+        `-- ERE
+            |-- awk
+            `-- egrep
+</code></pre><p>正则表达式基础:</p>
+<pre><code>^ 表示一行的开头。如：/^#/ 以#开头的匹配。
+$ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
+\&lt; 表示词首。 如 \&lt;abc 表示以 abc 为首的詞。
+\&gt; 表示词尾。 如 abc\&gt; 表示以 abc 結尾的詞。
+. 表示任何单个字符。
+\* 表示某个字符出现了0次或多次。
+[ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
+</code></pre><h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
+<pre><code>g： 将hold space中的内容拷贝到pattern space中，原来pattern space里的内容清除
+G： 将hold space中的内容append到pattern space\n后
+h： 将pattern space中的内容拷贝到hold space中，原来的hold space里的内容被清除
+H： 将pattern space中的内容append到hold space\n后
+x： 交换pattern space和hold space的内容
+</code></pre><p>g( go, 走你 ) 类似于 cat <code>hold space</code> &gt; <code>pattern space</code></p>
+<p>G( 大狗, 追加 ) 类似于 cat <code>hold space</code> &gt;&gt; <code>pattern space</code></p>
+<p>h( 跟g相反 ),  cat <code>pattern space</code> &gt; <code>hold space</code></p>
+<p>H ( 跟G相反 ), 类似于 <code>pattern space</code> cat  &gt;&gt; <code>hold space</code></p>
+<h3 id="u5B9E_u4F8B"><a href="#u5B9E_u4F8B" class="headerlink" title="实例"></a>实例</h3><p>1.匹配以500结尾的工资(BRE正则要转义)</p>
+<pre><code>root@Ubuntu:~/awkpractice# sed -n &quot;/:[0-9]+500$/p&quot; datafile
+root@Ubuntu:~/awkpractice# sed -n &quot;/:[0-9]\+500$/p&quot; datafile
+Paco Gutierrez:835-365-1284:454 Easy Street, Decatur, IL 75732:2/28/53:123500
+Barbara Kertz:385-573-8326:832 Ponce Drive, Gary, IN 83756:12/1/46:268500
+William Kopf:846-836-2837:6937 Ware Road, Milton, PA 93756:9/21/46:43500
+Sir Lancelot:837-835-8257:474 Camelot Boulevard, Bath, WY 28356:5/13/69:24500
+Zippy Pinhead:834-823-8319:2356 Bizarro Ave., Farmount, IL 84357:1/1/67:89500
+</code></pre><p>2.姓名交换位置–圆括号的使用</p>
+<pre><code>root@Ubuntu:~/awkpractice# sed  &apos;s/\(^[a-zA-Z]\+\)\ \([a-zA-Z]\+\):\(.*\)/\2 \1:\3/&apos; datafile
+Corder Norma:397-857-2735:74 Pine Street, Dearborn, MI 23874:3/28/45:245700
+Cowan Jennifer:548-834-2348:583 Laurel Ave., Kingsville, TX 83745:10/1/35:58900
+DeLoach Jon:408-253-3122:123 Park St., San Jose, CA 04086:7/25/53:85100
+Evich Karen:284-758-2857:23 Edgecliff Place, Lincoln, NB 92086:7/25/53:85100
+Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
+</code></pre><p>3.把 port 的数字填到 zoneid里去 (使用 ERE 模式的 sed)</p>
+<figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/awkpractice# cat gamefile</span><br><span class="line">&lt;server name=<span class="string">"92服"</span>  <span class="keyword">port</span>=<span class="string">"10092"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"93服"</span>  <span class="keyword">port</span>=<span class="string">"10093"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"94服"</span>  <span class="keyword">port</span>=<span class="string">"10094"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"95服"</span>  <span class="keyword">port</span>=<span class="string">"10095"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"96服"</span>  <span class="keyword">port</span>=<span class="string">"10096"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">root@Ubuntu:~/awkpractice# sed -r <span class="attribute">'s</span>/(.*<span class="keyword">port</span>=<span class="string">")([0-9]+)("</span>.*zoneid=<span class="string">")("</span>.*$)/\<span class="number">1</span>\<span class="number">2</span>\<span class="number">3</span>\<span class="number">2</span>\<span class="number">4</span>/' gamefile</span><br><span class="line">&lt;server name=<span class="string">"92服"</span>  <span class="keyword">port</span>=<span class="string">"10092"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10092"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"93服"</span>  <span class="keyword">port</span>=<span class="string">"10093"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10093"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"94服"</span>  <span class="keyword">port</span>=<span class="string">"10094"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10094"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"95服"</span>  <span class="keyword">port</span>=<span class="string">"10095"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10095"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"96服"</span>  <span class="keyword">port</span>=<span class="string">"10096"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10096"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>sed默认是BRE，加上-r参数后变成ERE</p>
+<p>4.<a href="http://bbs.chinaunix.net/thread-4241283-1-1.html" target="_blank" rel="external">关于sed中的\1\2\3能否赋值给变量</a></p>
+<p>感谢:</p>
+<p><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a></p>
+<p><a href="http://www.infoq.com/cn/news/2011/07/regular-expressions-6-POSIX" target="_blank" rel="external">Linux/Unix工具与正则表达式的POSIX规范</a></p>
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前端学习的笔记,方便自己复习</p>
-<h4 id="css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F"><a href="#css__u662F_u600E_u4E48_u5F71_u54CD_html__u7684_3F" class="headerlink" title="css 是怎么影响 html 的?"></a>css 是怎么影响 html 的?</h4><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="label">html:</span> &lt;h1&gt;Hi,Jack&lt;/h1&gt;</span><br><span class="line"><span class="label">css:</span>  h1&#123;</span><br><span class="line">         color: <span class="preprocessor">#930;</span></span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="html_u7ED3_u6784"><a href="#html_u7ED3_u6784" class="headerlink" title="html结构"></a>html结构</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">head</span>&gt;</span>...<span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">body</span>&gt;</span>...<span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -503,7 +658,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sed/">sed</a></li></ul>
 	</div>
 
       
@@ -512,10 +667,6 @@
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/20/前端学习-一/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -535,7 +686,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>

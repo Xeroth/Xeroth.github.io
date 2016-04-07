@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>svn使用随记 | Live with love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="创建仓库svnadmin create /data/svndata/winne  # winne为版本库名称
+添加账户cd /data/svndata/winne/conf
+编辑 authz 文件, 用户权限
+[groups]
+admin = bill,ada   
+[/]
+@admin = rw
+[svndata:/document]
+@admin     = rw
+编辑 passwd 文件,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svn使用随记">
+<meta property="og:url" content="http://yoursite.com/2016/03/24/svn使用随记/index.html">
+<meta property="og:site_name" content="Live with love">
+<meta property="og:description" content="创建仓库svnadmin create /data/svndata/winne  # winne为版本库名称
+添加账户cd /data/svndata/winne/conf
+编辑 authz 文件, 用户权限
+[groups]
+admin = bill,ada   
+[/]
+@admin = rw
+[svndata:/document]
+@admin     = rw
+编辑 passwd 文件,">
+<meta property="og:updated_time" content="2016-04-06T03:37:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="svn使用随记">
+<meta name="twitter:description" content="创建仓库svnadmin create /data/svndata/winne  # winne为版本库名称
+添加账户cd /data/svndata/winne/conf
+编辑 authz 文件, 用户权限
+[groups]
+admin = bill,ada   
+[/]
+@admin = rw
+[svndata:/document]
+@admin     = rw
+编辑 passwd 文件,">
+  
+    <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xpsj5.com1.z0.glb.clouddn.com/%E5%B0%8F%E9%BB%84.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">践行</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Live with love</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="rss" target="_blank" href="/" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">be a fool, feel the world</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">践行</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">践行</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Live with love</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="rss" target="_blank" href="/" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-svn使用随记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/24/svn使用随记/" class="article-date">
+  	<time datetime="2016-03-24T01:44:46.000Z" itemprop="datePublished">2016-03-24</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      svn使用随记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4ED3_u5E93"><span class="toc-number">1.</span> <span class="toc-text">创建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6DFB_u52A0_u8D26_u6237"><span class="toc-number">2.</span> <span class="toc-text">添加账户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u542F_u751F_u6548"><span class="toc-number">3.</span> <span class="toc-text">重启生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5C3D_u91CF_u91CD_u547D_u540D_2C__u4E0D_u8981_rm_-rf"><span class="toc-number">4.</span> <span class="toc-text">尽量重命名, 不要 rm -rf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5907_u4EFD"><span class="toc-number">5.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5BA2_u6237_u7AEF_u7684_u4F7F_u7528"><span class="toc-number">6.</span> <span class="toc-text">客户端的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u521D_u59CB_u5316_u5BFC_u5165"><span class="toc-number">6.1.</span> <span class="toc-text">初始化导入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u4E0B_u8F7D"><span class="toc-number">6.2.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6DFB_u52A0_u65B0_u6587_u4EF6"><span class="toc-number">6.3.</span> <span class="toc-text">添加新文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u63D0_u4EA4_u66F4_u65B0"><span class="toc-number">6.4.</span> <span class="toc-text">提交更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5220_u9664_u6587_u4EF6"><span class="toc-number">6.5.</span> <span class="toc-text">删除文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#svn_hooks"><span class="toc-number">7.</span> <span class="toc-text">svn hooks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u9047_u5230_u7684_u5751"><span class="toc-number">7.1.</span> <span class="toc-text">遇到的坑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E38_u7528_u7BA1_u7406_u547D_u4EE4"><span class="toc-number">8.</span> <span class="toc-text">常用管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u67E5_u770B_u6240_u6709_u4ED3_u5E93_u7248_u672C_u6570"><span class="toc-number">8.1.</span> <span class="toc-text">查看所有仓库版本数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5410_u69FD"><span class="toc-number">9.</span> <span class="toc-text">吐槽</span></a></li></ol>
+            </div>
+        
+        <h3 id="u521B_u5EFA_u4ED3_u5E93"><a href="#u521B_u5EFA_u4ED3_u5E93" class="headerlink" title="创建仓库"></a>创建仓库</h3><pre><code>svnadmin create /data/svndata/winne  # winne为版本库名称
+</code></pre><h3 id="u6DFB_u52A0_u8D26_u6237"><a href="#u6DFB_u52A0_u8D26_u6237" class="headerlink" title="添加账户"></a>添加账户</h3><pre><code>cd /data/svndata/winne/conf
+</code></pre><p>编辑 <code>authz</code> 文件, 用户权限</p>
+<pre><code>[groups]
+admin = bill,ada   
+[/]
+@admin = rw
+[svndata:/document]
+@admin     = rw
+</code></pre><p>编辑 <code>passwd</code> 文件, 用户的密码</p>
+<pre><code>[users]
+ada = ada
+bill = 123123123123
+</code></pre><p>编辑<code>svnserve.conf</code> , 确保有以下配置</p>
+<pre><code>[general]
+auno-access = none
+auth-access = write
+password-db = passwd
+authz-db = authz
+</code></pre><a id="more"></a>
+<h3 id="u91CD_u542F_u751F_u6548"><a href="#u91CD_u542F_u751F_u6548" class="headerlink" title="重启生效"></a>重启生效</h3><p>先 kill, 然后</p>
+<pre><code>svnserve -d -r /data/svndata/
+</code></pre><h3 id="u5C3D_u91CF_u91CD_u547D_u540D_2C__u4E0D_u8981_rm_-rf"><a href="#u5C3D_u91CF_u91CD_u547D_u540D_2C__u4E0D_u8981_rm_-rf" class="headerlink" title="尽量重命名, 不要 rm -rf"></a>尽量重命名, 不要 rm -rf</h3><h3 id="u5907_u4EFD"><a href="#u5907_u4EFD" class="headerlink" title="备份"></a>备份</h3><p>备份脚本:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> != <span class="number">3</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"usage: svn-backup ['full'|'part'] [svn root] [backup dir root]"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"example 1: svn-backup full /opt/svn-repos /opt/svn-backup"</span></span><br><span class="line">    <span class="built_in">exit</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">mode=<span class="variable">$1</span></span><br><span class="line">svn_root=<span class="variable">$2</span></span><br><span class="line">backup_root=<span class="variable">$3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> project <span class="keyword">in</span> `ls -F <span class="variable">$svn_root</span> | grep /$ | sed <span class="string">'s/\///g'</span>`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    project_dir=<span class="string">"<span class="variable">$svn_root</span>/<span class="variable">$project</span>"</span></span><br><span class="line">    backup_dir=<span class="string">"<span class="variable">$backup_root</span>/<span class="variable">$project</span>"</span></span><br><span class="line">    backup_info=<span class="string">"<span class="variable">$project_dir</span>/backup_info"</span></span><br><span class="line">    last_version=`svnlook youngest <span class="variable">$project_dir</span>`</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ ! <span class="operator">-f</span> <span class="variable">$backup_info</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="number">0</span> &gt; <span class="variable">$backup_info</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    last_backup_version=`cat <span class="variable">$backup_info</span>`</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$mode</span> != <span class="string">'full'</span> ] &amp;&amp; [ <span class="variable">$last_backup_version</span> == <span class="variable">$last_version</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"`date +"</span>%F %R:%S<span class="string">"`  '<span class="variable">$project</span>' nothing to do"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="variable">$mode</span> == <span class="string">'full'</span> ] || [ <span class="variable">$last_backup_version</span> == <span class="string">'0'</span> ] || [ ! <span class="operator">-d</span> <span class="variable">$backup_dir</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"`date +"</span>%F %R:%S<span class="string">"`  '<span class="variable">$project</span>' full backup"</span></span><br><span class="line">            rm -rf <span class="variable">$backup_dir</span></span><br><span class="line">            svnadmin hotcopy <span class="variable">$project_dir</span> <span class="variable">$backup_dir</span></span><br><span class="line">            last_version=`svnlook youngest <span class="variable">$backup_dir</span>`</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"`date +"</span>%F %R:%S<span class="string">"`  '<span class="variable">$project</span>' version <span class="variable">$last_backup_version</span> to <span class="variable">$last_version</span>"</span></span><br><span class="line">            backup_file=<span class="string">"<span class="variable">$backup_dir</span>/v<span class="variable">$last_backup_version</span>-<span class="variable">$last_version</span>.bk"</span></span><br><span class="line">            svnadmin dump --incremental -q -r <span class="variable">$last_backup_version</span>:<span class="variable">$last_version</span> <span class="variable">$project_dir</span> &gt; <span class="variable">$backup_file</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$last_version</span> &gt; <span class="variable">$backup_info</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"`date +"</span>%F %R:%S<span class="string">"`  done"</span></span><br></pre></td></tr></table></figure>
+<p>配置 crontab:</p>
+<pre><code>### 每天凌晨4点进行svn全备份
+0 4 * * * sh /data/backup/shell/svn_backup.sh full /data/svndata/ /data/backup/svn/
+</code></pre><p>### </p>
+<h3 id="u5BA2_u6237_u7AEF_u7684_u4F7F_u7528"><a href="#u5BA2_u6237_u7AEF_u7684_u4F7F_u7528" class="headerlink" title="客户端的使用"></a>客户端的使用</h3><p>我的是 mac os 的, 先用命令行吧… , windows 上面有乌龟的那个客户端, 貌似安装了之后大多操作是通过右键点点点来进行</p>
+<h4 id="u521D_u59CB_u5316_u5BFC_u5165"><a href="#u521D_u59CB_u5316_u5BFC_u5165" class="headerlink" title="初始化导入"></a>初始化导入</h4><pre><code>$ svn import ~/Documents/eg/svn/svnhook svn://localhost/testhook --username hooktest --password hooktest -m &quot;初始化导入&quot;
+Adding         test1
+Committing transaction...
+Committed revision 1.
+</code></pre><h4 id="u4E0B_u8F7D"><a href="#u4E0B_u8F7D" class="headerlink" title="下载"></a>下载</h4><pre><code>➜ /Users/cristaly7/Documents/svn $ svn checkout svn://120.76.27.38/document --username ksdfhs --password 123456
+</code></pre><h4 id="u6DFB_u52A0_u65B0_u6587_u4EF6"><a href="#u6DFB_u52A0_u65B0_u6587_u4EF6" class="headerlink" title="添加新文件"></a>添加新文件</h4><pre><code>svn add file
+</code></pre><h4 id="u63D0_u4EA4_u66F4_u65B0"><a href="#u63D0_u4EA4_u66F4_u65B0" class="headerlink" title="提交更新"></a>提交更新</h4><pre><code>svn ci file 
+</code></pre><h4 id="u5220_u9664_u6587_u4EF6"><a href="#u5220_u9664_u6587_u4EF6" class="headerlink" title="删除文件"></a>删除文件</h4><pre><code>svn delete file
+</code></pre><h3 id="svn_hooks"><a href="#svn_hooks" class="headerlink" title="svn hooks"></a>svn hooks</h3><p>1 创建一个项目</p>
+<pre><code>svnadmin create /data/svndata/testhook
+</code></pre><p>2 创建项目钩子脚本</p>
+<pre><code>$ cp /data/svndata/testhook/hooks/post-commit.tmpl /data/svndata/testhook/hooks/post-commit
+$ chmod u+x /data/svndata/testhook/hooks/post-commit
+</code></pre><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat /data/svndata/testhook/hooks/post-commit</span><br><span class="line"><span class="shebang">#!/bin/sh</span></span><br><span class="line">PATH=/usr/bin/</span><br><span class="line">UPDATE_DIR=/opt/www/svnhook/testhook/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 触发钩子会传入2个参数: 一个是仓库名, 一个是版本号</span></span><br><span class="line">REPOS=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">REV=<span class="string">"<span class="variable">$2</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取提交者和提交信息</span></span><br><span class="line">AUTHOR=$(<span class="variable">$PATH</span>/svnlook author -r <span class="variable">$REV</span> <span class="variable">$REPOS</span>)</span><br><span class="line">MESSAGE=$(<span class="variable">$PATH</span>/svnlook <span class="built_in">log</span> <span class="variable">$REPOS</span> -r <span class="variable">$REV</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新操作</span></span><br><span class="line"><span class="variable">$PATH</span>/svn update --username=svnhook --password=svnhook4rfv --no-auth-cache --non-interactive <span class="variable">$UPDATE_DIR</span> <span class="number">2</span>&gt;&gt; /tmp/svnhook_error.log</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $? == <span class="number">0</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"`date +"</span>%F %R:%S<span class="string">"` author: <span class="variable">$AUTHOR</span>  update <span class="variable">$REPOS</span> version: <span class="variable">$REV</span> message: <span class="variable">$MESSAGE</span>"</span> &gt;&gt; /tmp/svnhook.log</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>3 为testhook仓库添加一个只读用户,用于更新目标仓库:</p>
+<pre><code>$ cd /data/svndata/testhook/conf
+
+$ grep -Ev &quot;(^$|^#)&quot; authz
+[groups]
+hook = svnhook
+
+
+[/]
+@hook = r
+
+[svndata:/test]
+@hook = r
+
+
+$ grep -Ev &quot;(^$|^#)&quot; passwd
+[users]
+svnhook = svnhook
+
+
+$ grep -Ev &quot;(^$|^#)&quot; svnserve.conf
+[general]
+anon-access = none
+auth-access = write
+password-db = passwd
+authz-db = authz
+[sasl]
+</code></pre><p>4 重启 svn, 使配置生效</p>
+<p>5 到 nginx 目录下先 checkout 项目</p>
+<pre><code>$ cd /opt/www/svnhook/
+$ svn co  svn://localhost/testhook
+</code></pre><p>6 本地 checkout 仓库, 修改文件上传, 看是否触发钩子</p>
+<h4 id="u9047_u5230_u7684_u5751"><a href="#u9047_u5230_u7684_u5751" class="headerlink" title="遇到的坑"></a>遇到的坑</h4><p>测试用的仓库是没问题了, 但是在文档仓库做这个配置之后, 发现不能实现更新, 一开始以为没触发钩子, 首先以为是<strong>权限问题</strong>, 把 <code>post-commit</code> 脚本改成了777, 把更新目录的用户也折腾了一下, 还是不行.</p>
+<p>后来以为<strong>钩子没触发</strong>, 但是在钩子脚本中加入的测试日志表明, 是触发了钩子的</p>
+<p>于是就去看<strong>错误日志</strong>, 发现有这样的报错:</p>
+<pre><code>cat /tmp/svnhook_error.log
+Updating &apos;opt/www/svnhook/document&apos;:
+svn: E000022: Error converting entry in directory &apos;/opt/www/svnhook/testhook/php&apos; to UTF-8
+svn: E000022: Can&apos;t convert string from native encoding to &apos;UTF-8&apos;:
+svn: E000022: ?\230?\149?\176?\230?\141?\174?\230?\168?\161?\229?\158?\139
+</code></pre><p>原来是字符集的问题, locale看了一下系统的, 是 en_US, 但是文件中有中文, 所以就执行不了 update 了</p>
+<p>解决方法 → 在脚本中加入:</p>
+<pre><code>export LC_ALL=zh_CN.UTF-8
+</code></pre><p><strong>日志很重要!!</strong></p>
+<p><strong>日志很重要!!</strong></p>
+<p><strong>日志很重要!!</strong></p>
+<h3 id="u5E38_u7528_u7BA1_u7406_u547D_u4EE4"><a href="#u5E38_u7528_u7BA1_u7406_u547D_u4EE4" class="headerlink" title="常用管理命令"></a>常用管理命令</h3><h4 id="u67E5_u770B_u6240_u6709_u4ED3_u5E93_u7248_u672C_u6570"><a href="#u67E5_u770B_u6240_u6709_u4ED3_u5E93_u7248_u672C_u6570" class="headerlink" title="查看所有仓库版本数"></a>查看所有仓库版本数</h4><pre><code>$ for i in `ls -l /data/svndata |awk &apos;/^d/{print $9}&apos;`;do echo $i;svnlook youngest $i ;done
+config_app
+24
+document
+7
+app
+2
+Nevermore
+2
+inner_app
+125
+outer_app
+8
+</code></pre><h3 id="u5410_u69FD"><a href="#u5410_u69FD" class="headerlink" title="吐槽"></a>吐槽</h3><p>1 一个项目里的多个子项目居然是并列创建在根目录下面的… 正确的姿势不应该是创建在同一个项目目录比如 brunch下面么, 每次 checkout brunch 就能把项目内的子项目都下载了 - -</p>
+<p>2 居然有人把一个800M 的软件上传 svn …… 如果还有人这么搞, 我得弄个<code>pre-commit</code>限制上传的文件大小了</p>
+<p><a href="http://blog.csdn.net/yuanya/article/details/23271951" target="_blank" rel="external">linux下svn命令大全</a></p>
+<p><a href="http://songxj.blog.51cto.com/620981/396113" target="_blank" rel="external">参考</a></p>
+<p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
+<p><a href="http://spiritfrog.iteye.com/blog/448578" target="_blank" rel="external">svn备份和还原</a></p>
+<p><a href="https://segmentfault.com/a/1190000000596975" target="_blank" rel="external">Ubuntu下svn的使用总结</a></p>
+<p><a href="http://www.ha97.com/4467.html" target="_blank" rel="external">CentOS Linux搭建SVN Server配置详解</a></p>
+<p><a href="http://cnbin.github.io/blog/2015/06/13/mac-da-jian-svn-fu-wu-qi-huan-jing/" target="_blank" rel="external">Mac 搭建 SVN 服务器环境</a></p>
+<p><a href="http://yangzb.iteye.com/blog/315023" target="_blank" rel="external">svn备份策略</a></p>
+<p><a href="http://1234n.com/?post/dd00ny" target="_blank" rel="external">支持完整＋差异＋压缩的Subversion备份脚本</a></p>
+<p>hook</p>
+<p><a href="http://blog.csdn.net/lgm252008/article/details/7026426" target="_blank" rel="external">Linux下SVN自动更新web</a></p>
+<p><a href="http://www.cnblogs.com/gaohj/p/3154448.html" target="_blank" rel="external">SVN-钩子祥解与配置</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/25/nginx-rewrite/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          nginx rewrite
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/11/sed学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sed学习笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="svn使用随记" data-title="svn使用随记" data-url="http://yoursite.com/2016/03/24/svn使用随记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"livewithlove"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 践行
+    	</div>
+        <div class="footer-middle">
+        </div>
+      	<div class="footer-right">
+            <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+            </script>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72017880-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -194,11 +194,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-打造Linux-终端翻墙环境" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-awk学习笔记-一" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/16/打造Linux-终端翻墙环境/" class="article-date">
-  	<time datetime="2016-01-16T04:05:55.000Z" itemprop="datePublished">2016-01-16</time>
+      <a href="/2016/03/08/awk学习笔记-一/" class="article-date">
+  	<time datetime="2016-03-08T01:18:04.000Z" itemprop="datePublished">2016-03-08</time>
 </a>
     </div>
   
@@ -211,7 +211,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/16/打造Linux-终端翻墙环境/">打造Linux 终端翻墙环境</a>
+      <a class="article-title" href="/2016/03/08/awk学习笔记-一/">awk学习笔记(一)</a>
     </h1>
   
 
@@ -220,11 +220,84 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/shawshank1.png" alt="shawshank"></p>
-<h4 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h4><p>本菜最近在做 docker 的实验,需要在新安装 Ubuntu 虚拟机上安装 docker , 但是呢, 该死的 GFW 不让人顺利安装啊     </p>
-<p>MD - -! 忍你好久了! I believe I can Fan !</p>
-<h4 id="u52A8_u624B"><a href="#u52A8_u624B" class="headerlink" title="动手"></a>动手</h4><p>环境: Ubuntu 14.04.3  </p>
-<p>FQ方案为: <strong>shadowsocks</strong> + <strong>privoxy</strong> </p>
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5B66_u4E60_u8D44_u6599"><span class="toc-number">1.1.</span> <span class="toc-text">学习资料</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7591_u95EE"><span class="toc-number">2.</span> <span class="toc-text">疑问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9E_u4F8B_3A"><span class="toc-number">3.</span> <span class="toc-text">实例:</span></a></li></ol>
+            </div>
+        
+        <h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.iteye.com/blog/1304823" target="_blank" rel="external">详情参考</a></p>
+<p>else if 这种不能放 pattern, 只能放 action</p>
+<p>来点例子加深印象:</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">awk -F, '&#123;<span class="keyword">print</span> <span class="string">""</span>;<span class="keyword">print</span> <span class="label">$2&#125;</span>' OFS=<span class="string">"\t"</span></span><br><span class="line">awk 'BEGIN&#123;FS=<span class="string">":"</span>&#125; &#123;<span class="keyword">if</span>(<span class="label">$6</span> ~ /TIME/ ) <span class="keyword">print</span> <span class="label">$1&#125;</span>'</span><br><span class="line">awk &#123;<span class="keyword">sum</span>+=<span class="label">$5&#125;</span> END &#123;<span class="keyword">print</span> <span class="keyword">sum</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>输入驱动</p>
+<p>匹配行 /xx/</p>
+<p>匹配字段 $6 ~ /xx/</p>
+<h4 id="u5B66_u4E60_u8D44_u6599"><a href="#u5B66_u4E60_u8D44_u6599" class="headerlink" title="学习资料"></a>学习资料</h4><p>据说看完<a href="http://xstarcd.github.io/wiki/shell/awk_oneliner.html" target="_blank" rel="external">awk_oneliner</a>就成 awk 高手了, 看了80%, 自我感觉不错~, 大部分 awk 学习博客的例子已经可以自行解决了</p>
+<h3 id="u7591_u95EE"><a href="#u7591_u95EE" class="headerlink" title="疑问"></a>疑问</h3><p>1.下面的为何+号位置不同, 导致 root 的内存占用也不同呢? 似乎 += 这种是正确的写法</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]=+$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">6228</span>KB</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]+=$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">94852</span>KB</span><br></pre></td></tr></table></figure>
+<h3 id="u5B9E_u4F8B_3A"><a href="#u5B9E_u4F8B_3A" class="headerlink" title="实例:"></a>实例:</h3><p>1.去重复行, 原理就是利用初始数组变量值为零<a href="http://blog.csdn.net/crazyhacking/article/details/12521919" target="_blank" rel="external">去重原理分析</a></p>
+<pre><code>awk &apos;!a[$0]++&apos; &lt;filename&gt;
+</code></pre><p>2.显示所有只有四个字符的名</p>
+<pre><code>awk  &apos;{if(length($1)==4)  print $1}&apos; datafile
+</code></pre><p>3.文件合并</p>
+<p>我有2个文件 tmp1.txt 和 tmp2.txt</p>
+<pre><code>tmp1.txt
+20
+18
+19
+
+tmp2.txt
+15
+14
+13
+</code></pre><p>我想做个文件tmp3.txt做成</p>
+<pre><code>20 15
+18 14
+19 13
+</code></pre><p>方法一, 用 paste 命令</p>
+<pre><code>paste tmp1.txt tmp2.txt &gt;tmp3.txt
+</code></pre><p>方法二, 用 FNR 和 NR , 输出$0 (合并2个文件有用)</p>
+<pre><code>awk &apos;NR==FNR{a[NR]=$0} NR&gt;FNR{print a[FNR],$0}&apos; tmp1.txt tmp2.txt | tee tmp3.txt
+</code></pre><p>方法三, 使用数组存储$1</p>
+<pre><code>awk &apos;NR==FNR{a[NR]=$1;count=NR} NR&gt;FNR{b[NR-count]=$1} END{for(i=1;i&lt;=count;i++)print a[i],b[i]}&apos; tmp1.txt tmp2.txt | tee tmp3.txt
+</code></pre><p>4.把以\结束的行同下一行相接(sub, getline, next用法)</p>
+<pre><code>awk &apos;/\\$/ { sub(/\\$/,&quot;&quot;); getline t; print $0 t; next }; 1′
+</code></pre><p>首先查找以\结束的行，并删除\。然后getline函数获取下一行的内容，输出当前行（去掉了\）和下一行的相接后的内容。并用next跳过后面的1避免重复输出。如果当前行行末没有\，会直接执行1输出。</p>
+<p>5.合并行输出(next在多行合并，以及选择性输出方面，非常方便)</p>
+<figure class="highlight erlang-repl"><table><tr><td class="code"><pre><span class="line"><span class="function_or_atom">root</span>@<span class="variable">Ubuntu</span>:~/<span class="function_or_atom">awkpractice</span># <span class="function_or_atom">cat</span> <span class="number">6</span>.<span class="function_or_atom">c</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]</span><br><span class="line"></span><br><span class="line"><span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">tomcat</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">sendmail</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web02</span>[<span class="number">192.168</span>.<span class="number">2.101</span>]</span><br><span class="line"><span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">postfix</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web03</span>[<span class="number">192.168</span>.<span class="number">2.102</span>]</span><br><span class="line"><span class="function_or_atom">mysqld</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">httpd</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">root</span>@<span class="variable">Ubuntu</span>:~/<span class="function_or_atom">awkpractice</span># <span class="function_or_atom">awk</span> <span class="string">'$1 ~ /web/ &#123;a=$0;next&#125; ; !/^$/ &#123;print a":\t" $0&#125;'</span> <span class="number">6</span>.<span class="function_or_atom">c</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]:	<span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]:	<span class="function_or_atom">tomcat</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]:	<span class="function_or_atom">sendmail</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web02</span>[<span class="number">192.168</span>.<span class="number">2.101</span>]:	<span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web02</span>[<span class="number">192.168</span>.<span class="number">2.101</span>]:	<span class="function_or_atom">postfix</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web03</span>[<span class="number">192.168</span>.<span class="number">2.102</span>]:	<span class="function_or_atom">mysqld</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web03</span>[<span class="number">192.168</span>.<span class="number">2.102</span>]:	<span class="function_or_atom">httpd</span>               <span class="ok">ok</span></span><br></pre></td></tr></table></figure>
+<p>6.把每5行用逗号相连</p>
+<p>pattern ? pattern : pattern  (三目运算符) 满足表达式条件, 就输出?后面的, 不满足输出:后面的</p>
+<pre><code>awk &apos;ORS=NR%5?&quot;,&quot;:&quot;\n&quot;&apos;
+</code></pre><p>这里在每行输出前，对ORS重新进行定义，如果行号能被5整除则为\n，否则为逗号。（也很天书的一句）</p>
+<p>7.getline 的一些用法</p>
+<pre><code>#输出偶数行, 不跟变量赋值给$0
+seq 10 |awk &apos;{getline;print}&apos;
+#输出奇数行
+seq 10 |awk &apos;{getline t;print}&apos;
+#配合 system , 因为 system(cmd)返回的是 cmd 的返回值
+awk &apos;BEGIN{ while( system(&quot;ls -l&quot;) | getline line ){ print line } }&apos;
+</code></pre><p>8.split</p>
+<p>The awk function split(s,a,sep) splits a string s into an awk array a using the delimiter sep.</p>
+<pre><code>set time = 12:34:56
+set hr = `echo $time | awk &apos;{split($0,a,&quot;:&quot; ); print a[1]}&apos;` # = 12
+set sec = `echo $time | awk &apos;{split($0,a,&quot;:&quot; ); print a[3]}&apos;` # = 56
+# = 12 34 56
+set hms = `echo $time | awk &apos;{split($0,a,&quot;:&quot; ); print a[1], a[2], a[3]}&apos;`
+</code></pre><p>Q:</p>
+<pre><code>name=&quot;76868&amp;5676&amp;435&amp;43526&amp;334&amp;12312312&amp;12321&quot;
+awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&apos;
+</code></pre><p>为什么是1</p>
+<p>而</p>
+<pre><code>awk &apos;BEGIN {print split(&quot;76868&amp;5676&amp;435&amp;43526&amp;334&amp;12312312&amp;12321&quot;, filearray, &quot;&amp;&quot;)}&apos;
+</code></pre><p>则返回正确的结果，应该是7，有没有人解答一下？</p>
+<p>A:</p>
+<p>变量引用错误，这样做试试</p>
+<pre><code>awk &apos;BEGIN {print split(&apos;&quot;\&quot;$name\&quot;&quot;&apos;, filearray, &quot;&amp;&quot;)}&apos;
+</code></pre><p>awk规定引用系统变量必须使用单引号加双引号，即’”$sysvar”‘这样的格式，但是split函数也需要双引号来定界，但这个双引号又不能让sh解释，而应留给awk来解释，所以使用了\”和\”组成的双引号</p>
+
       
     </div>
     
@@ -232,7 +305,268 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/privoxy/">privoxy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awk/">awk</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-三月份的碎碎念" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/03/三月份的碎碎念/" class="article-date">
+  	<time datetime="2016-03-03T00:57:16.000Z" itemprop="datePublished">2016-03-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/03/三月份的碎碎念/">三月份的碎碎念</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67081_u65E5"><span class="toc-number">1.</span> <span class="toc-text">2016年3月1日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67082_u65E5"><span class="toc-number">2.</span> <span class="toc-text">2016年3月2日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67083_u65E5"><span class="toc-number">3.</span> <span class="toc-text">2016年3月3日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67084_u65E5"><span class="toc-number">4.</span> <span class="toc-text">2016年3月4日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67085_u65E5"><span class="toc-number">5.</span> <span class="toc-text">2016年3月5日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67086_u65E5"><span class="toc-number">6.</span> <span class="toc-text">2016年3月6日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67087_u65E5"><span class="toc-number">7.</span> <span class="toc-text">2016年3月7日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67088_u65E5"><span class="toc-number">8.</span> <span class="toc-text">2016年3月8日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u67089_u65E5"><span class="toc-number">9.</span> <span class="toc-text">2016年3月9日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670810_u65E5"><span class="toc-number">10.</span> <span class="toc-text">2016年3月10日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670811_u65E5"><span class="toc-number">11.</span> <span class="toc-text">2016年3月11日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670812_u65E5"><span class="toc-number">12.</span> <span class="toc-text">2016年3月12日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670813_u65E5"><span class="toc-number">13.</span> <span class="toc-text">2016年3月13日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670814_u65E5"><span class="toc-number">14.</span> <span class="toc-text">2016年3月14日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670815_u65E5"><span class="toc-number">15.</span> <span class="toc-text">2016年3月15日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670816_u65E5"><span class="toc-number">16.</span> <span class="toc-text">2016年3月16日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670824_u65E5"><span class="toc-number">17.</span> <span class="toc-text">2016年3月24日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670825_u65E5"><span class="toc-number">18.</span> <span class="toc-text">2016年3月25日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2016_u5E743_u670826_u65E5"><span class="toc-number">19.</span> <span class="toc-text">2016年3月26日</span></a></li></ol>
+            </div>
+        
+        <h3 id="2016_u5E743_u67081_u65E5"><a href="#2016_u5E743_u67081_u65E5" class="headerlink" title="2016年3月1日"></a>2016年3月1日</h3><h3 id="2016_u5E743_u67082_u65E5"><a href="#2016_u5E743_u67082_u65E5" class="headerlink" title="2016年3月2日"></a>2016年3月2日</h3><p>生活顺心的一个关键字: 早</p>
+<h3 id="2016_u5E743_u67083_u65E5"><a href="#2016_u5E743_u67083_u65E5" class="headerlink" title="2016年3月3日"></a>2016年3月3日</h3><p>别把别人眼中的自己, 看的太重</p>
+<h3 id="2016_u5E743_u67084_u65E5"><a href="#2016_u5E743_u67084_u65E5" class="headerlink" title="2016年3月4日"></a>2016年3月4日</h3><p>符号-指针-意义</p>
+<p>BGM: 脱缰</p>
+<p>曾经听不懂的歌, 看不明白的文字, 会在你经历了某些事之后, 明白其意义. <strong>一切的表现形式(文字,音乐等)都是”符号”. 经历则是”指针”. 符号只有经过指针, 才能指到你人生意义的梯田上</strong>. 所以, 读万卷书, 是获取符号, 行万里路则是寻找指针. 所以才会有: 纸上得来终觉浅, 绝知此事要躬行.</p>
+<h3 id="2016_u5E743_u67085_u65E5"><a href="#2016_u5E743_u67085_u65E5" class="headerlink" title="2016年3月5日"></a>2016年3月5日</h3><p>不要做短半衰期的事情, 要做能叠加效益的事情</p>
+<p>凭什么我要被挑选, 我要去当可以挑选的人, 无论是挑人, 还是挑物, 挑知识.</p>
+<p>有心栽花花不成, 无心插柳柳成荫</p>
+<p>感情的脆弱性–童话中两个贪心的人挖地下的财宝，结果挖出一个人的骸骨，虽然迅速埋上了，甚至在上面种了树，栽了花，但两个人心里都知道底下埋的是什么。看见树，看见花，想的却是地下的那具骸骨。</p>
+<h3 id="2016_u5E743_u67086_u65E5"><a href="#2016_u5E743_u67086_u65E5" class="headerlink" title="2016年3月6日"></a>2016年3月6日</h3><p>许多人说要对生命里那些对自己造成伤害的人心存感激，因为他们对我们的成长有帮助，他们是我们的贵人。可是我要说那家伙就是贱人，就是一个贱人.                 –by 九把刀</p>
+<h3 id="2016_u5E743_u67087_u65E5"><a href="#2016_u5E743_u67087_u65E5" class="headerlink" title="2016年3月7日"></a>2016年3月7日</h3><p>如果你无法承担失去一件事物, 那么最好不要拥有它.</p>
+<p>当你在睡觉玩乐时, 想想别人都在如何的奋斗</p>
+<p>人生就是无数个决定组成的, 睡前可以回忆一下这些决定带给自己的影响.</p>
+<p>彼以国士待我，我以国士报之；彼以众人待我，我以众人报之.  </p>
+<p>周末安利一部韩剧&lt;&lt;未生&gt;&gt;. 这部剧…真是一改我对韩剧的印象. &lt;&lt;&gt;&gt;</p>
+<h3 id="2016_u5E743_u67088_u65E5"><a href="#2016_u5E743_u67088_u65E5" class="headerlink" title="2016年3月8日"></a>2016年3月8日</h3><p>恒大面试, 羊入狼群, 得变得像蛇一样聪敏, 像鸽子一样纯洁.  - -</p>
+<h3 id="2016_u5E743_u67089_u65E5"><a href="#2016_u5E743_u67089_u65E5" class="headerlink" title="2016年3月9日"></a>2016年3月9日</h3><p>工作交接的最基本原则是让他们不要再找我们了</p>
+<h3 id="2016_u5E743_u670810_u65E5"><a href="#2016_u5E743_u670810_u65E5" class="headerlink" title="2016年3月10日"></a>2016年3月10日</h3><p>不做计划的日子容易虚度…</p>
+<h3 id="2016_u5E743_u670811_u65E5"><a href="#2016_u5E743_u670811_u65E5" class="headerlink" title="2016年3月11日"></a>2016年3月11日</h3><p>hd hr 今天迟迟不来电话, 最后我沉不住气打了过去, 告诉他我考虑好了, 下周可以去报到. ( 相当选择权又还回去了…)</p>
+<p>结果 hr 说什么他们人力部门又新招了人什么的, 说晚点答复我. 我怎么感觉有点悬呢. </p>
+<p>本来还不太高兴去的, 因为工作内容还有公司制度不是很喜欢. 后来看待遇确实不错, 就说服了自己去. </p>
+<p>期间各种 YY …… 结果今天弄这一茬, 心里很不爽. 也许这就是患得患失吧. 主要之前说考虑, 是觉得自<br>己应该还有更好的机会, 结果简历连续被拒了… 对自己也有点没把握了感觉… 就更想去 hd 了我艹. </p>
+<p>归根结底, 还是能力问题. 要是有运维开发的能力, 我才不会选择 hd 呢, 哼╭(╯^╰)╮. </p>
+<p>哎, 结果, 就黄了. <strong>人, 需要有个基准, 不可太贪.</strong></p>
+<p>还有, 在事情最终确定前, 还是不要去宣传了, 你忘了她生日那天的事了么, 千万沉住气, 沉住气才有持久的胜利!</p>
+<p>今年开头有点不顺呢, 工作感情双双受挫.</p>
+<h3 id="2016_u5E743_u670812_u65E5"><a href="#2016_u5E743_u670812_u65E5" class="headerlink" title="2016年3月12日"></a>2016年3月12日</h3><p>植树节–种一棵树最好的时间是十年前, 其次是现在.</p>
+<p>貌似学会了早睡的方法–躺床上闭眼睛回忆一些事情</p>
+<p>既然没被束缚, 那就学习一些自由的技能: 首推英语, 然后是投资, 编程终究还是用来提升效率的多.</p>
+<h3 id="2016_u5E743_u670813_u65E5"><a href="#2016_u5E743_u670813_u65E5" class="headerlink" title="2016年3月13日"></a>2016年3月13日</h3><p>学了一天 awk 吧…, 早上起来晚了, 不过中午不用睡午觉了倒是不错.</p>
+<h3 id="2016_u5E743_u670814_u65E5"><a href="#2016_u5E743_u670814_u65E5" class="headerlink" title="2016年3月14日"></a>2016年3月14日</h3><p>白色情人节, 无言</p>
+<p>时光不仅能抚平伤痛, 还能淡化以往的快乐, 抹去你的音容. 也许, 我的记忆力真是越来越差了, 可能只是不想回忆吧…</p>
+<h3 id="2016_u5E743_u670815_u65E5"><a href="#2016_u5E743_u670815_u65E5" class="headerlink" title="2016年3月15日"></a>2016年3月15日</h3><p>叫醒你的不是闹钟, 也不是梦想, 而是早睡, 其次是饿了…</p>
+<h3 id="2016_u5E743_u670816_u65E5"><a href="#2016_u5E743_u670816_u65E5" class="headerlink" title="2016年3月16日"></a>2016年3月16日</h3><p>不够自私也会成为被拒绝的理由</p>
+<p>每个子女都是父母的骄傲, 也请做子女的对得起这个称号.</p>
+<p>是啊, 毫无根据的希望和安慰又有什么用呢</p>
+<p>2016年3月21日</p>
+<p>记住, 你选择这家公司的理由: </p>
+<p>1.提升薪资水平</p>
+<p>2.培养良好的工作生活习惯</p>
+<p>3.适应大公司的制度</p>
+<p>4.磨练意志, 锻炼好心态</p>
+<h3 id="2016_u5E743_u670824_u65E5"><a href="#2016_u5E743_u670824_u65E5" class="headerlink" title="2016年3月24日"></a>2016年3月24日</h3><p><a href="https://sg.godaddy.com/zh/help/moving-a-domain-name-out-of-your-account-822" target="_blank" rel="external">godaddy 域名转出到阿里云</a></p>
+<h3 id="2016_u5E743_u670825_u65E5"><a href="#2016_u5E743_u670825_u65E5" class="headerlink" title="2016年3月25日"></a>2016年3月25日</h3><p>忙成狗, 想到钱, 还是忍了</p>
+<h3 id="2016_u5E743_u670826_u65E5"><a href="#2016_u5E743_u670826_u65E5" class="headerlink" title="2016年3月26日"></a>2016年3月26日</h3><p><a href="http://blog.csdn.net/cankingapp/article/details/18312117" target="_blank" rel="external">git 取消修改，恢复版本 命令大全</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/碎碎念/">碎碎念</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/life/">life</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-解决一些电脑问题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/25/解决一些电脑问题/" class="article-date">
+  	<time datetime="2016-02-25T03:38:54.000Z" itemprop="datePublished">2016-02-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/25/解决一些电脑问题/">解决一些电脑问题</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><span class="toc-number">1.</span> <span class="toc-text">windows7 内部版本7601,此windows副本不是正版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><span class="toc-number">2.</span> <span class="toc-text">ubuntu 终端中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error_checking_TLS_connection_3A_Host_is_not_running"><span class="toc-number">3.</span> <span class="toc-text">Error checking TLS connection: Host is not running</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><span class="toc-number">4.</span> <span class="toc-text">mac os 还原最小化窗口的快捷键</span></a></li></ol>
+            </div>
+        
+        <h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
+<h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
+<p>解决方法:</p>
+<pre><code>添加中文字符编码：
+$sudo vim /var/lib/locales/supported.d/local
+#添加下面的中文字符集, 一开始是只有en_US.UTF-8 UTF-8这一行的
+zh_CN.GBK GBK
+zh_CN.GB2312 GB2312
+zh_CN.GB18030 GB18030
+使其生效：
+$sudo dpkg-reconfigure locales
+然后重启, 或者重新登录终端就 ok 了
+</code></pre><h3 id="Error_checking_TLS_connection_3A_Host_is_not_running"><a href="#Error_checking_TLS_connection_3A_Host_is_not_running" class="headerlink" title="Error checking TLS connection: Host is not running"></a>Error checking TLS connection: Host is not running</h3><p>mac 上用 Dockertool 安装了 Docker, 我把<code>eval $(docker-machine env default)</code> 加到了 <code>.bashrc</code> 里面, 但是当网络发生变化的时候, Docker 的 ip 会出现问题 ,连接不上, 于是会提示这个错误</p>
+<p>把上面那句改成下面的就解决了:</p>
+<pre><code># connect your shell to docker-machine
+[ Running == `docker-machine ls | awk &apos;NR==2{print $4}&apos;`  ] &amp;&amp; eval $(docker-machine env default) || echo fuck
+</code></pre><h3 id="mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><a href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E" class="headerlink" title="mac os 还原最小化窗口的快捷键"></a>mac os 还原最小化窗口的快捷键</h3><p>最小化快捷键 command + m</p>
+<p>发现用cmd + tab键不能还原最小化的窗口，非常不方便，Google了一下找到一个最简单的方法。</p>
+<blockquote>
+<p>用cmd+Tab键选中要还原的程序后，保持cmd键不放，松开tab键再按住alt/option 键，再松开cmd键最后松开alt/option键。</p>
+</blockquote>
+<p>试试吧。</p>
+<p><a href="http://www.chinamac.com/2014/0328/2471.html" target="_blank" rel="external">教你如何用快捷键 还原最小化的窗口</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Django第三天" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/22/Django第三天/" class="article-date">
+  	<time datetime="2016-02-22T04:16:57.000Z" itemprop="datePublished">2016-02-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/22/Django第三天/">Django第三天</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u7EE7_u7EED_u5B8C_u5584_polls_app"><a href="#u7EE7_u7EED_u5B8C_u5584_polls_app" class="headerlink" title="继续完善 polls app"></a>继续完善 polls app</h3><p><code>polls/views.py</code>添加如下代码:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">detail</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're looking at question %s."</span> % question_id)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">results</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    response = <span class="string">"You're looking at the results of question %s."</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(response % question_id)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">vote</span><span class="params">(request, question_id)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"You're voting on question %s."</span> % question_id)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
 	</div>
 
       
@@ -243,7 +577,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2016/01/16/打造Linux-终端翻墙环境/#more">more >></a>
+          <a  href="/2016/02/22/Django第三天/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -262,11 +596,11 @@
 
 
   
-    <article id="post-Docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Django第二天" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/15/Docker私有仓库/" class="article-date">
-  	<time datetime="2016-01-15T13:47:35.000Z" itemprop="datePublished">2016-01-15</time>
+      <a href="/2016/02/18/Django第二天/" class="article-date">
+  	<time datetime="2016-02-18T01:53:33.000Z" itemprop="datePublished">2016-02-18</time>
 </a>
     </div>
   
@@ -279,7 +613,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/15/Docker私有仓库/">Docker私有仓库</a>
+      <a class="article-title" href="/2016/02/18/Django第二天/">Django第二天</a>
     </h1>
   
 
@@ -288,16 +622,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
-<p>实验环境:</p>
-<ul>
-<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
-<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
-</ul>
-<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
-<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
-<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
+        <h3 id="u521B_u5EFA_u6570_u636E_u5E93"><a href="#u521B_u5EFA_u6570_u636E_u5E93" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>相关文件是<em>mysite/settings.py</em> , 默认用的是 SQLite . 我用的 mysql(之前在本地安装好的)</p>
+<p>先在 mysql 中创建库,用户</p>
+<pre><code>mysql&gt; CREATE DATABASE polls DEFAULT CHARSET=utf8;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON polls.* TO &apos;poller&apos;@&apos;127.0.0.1&apos; IDENTIFIED BY &apos;poller&apos;;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre><p>修改<em>mysite/settings.py</em>中的数据库设置</p>
+<pre><code>DATABASES = {
+    &apos;default&apos;: {
+        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
+        &apos;NAME&apos;: &apos;polls&apos;,
+        &apos;USER&apos;: &apos;poller&apos;,
+        &apos;PASSWORD&apos;: &apos;poller&apos;,
+        &apos;HOST&apos;:&apos;127.0.0.1&apos;,
+        &apos;PORT&apos;:&apos;3306&apos;,
+    }
+}
+</code></pre>
       
     </div>
     
@@ -305,7 +648,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
 	</div>
 
       
@@ -316,212 +659,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2016/01/15/Docker私有仓库/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-在OS-X上安装Docker" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/08/在OS-X上安装Docker/" class="article-date">
-  	<time datetime="2016-01-08T07:04:22.000Z" itemprop="datePublished">2016-01-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/08/在OS-X上安装Docker/">在OS X上安装Docker</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/dockerdocker-engine.png" alt="docker-engine"></p>
-<h4 id="Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9"><a href="#Docker__u662F_u4EC0_u4E48_2C__u53EF_u4EE5_u5E94_u7528_u5728_u4EC0_u4E48_u5730_u65B9" class="headerlink" title="Docker 是什么, 可以应用在什么地方"></a>Docker 是什么, 可以应用在什么地方</h4><p>超轻量级的虚拟化技术</p>
-<p>特点是:<em>敏捷</em></p>
-<p>为什么说特点是敏捷, 启动快, 占用资源少是一方面. 但是最令人喜欢的应该是它类似 Git 那样的的版本管理功能了 , 有了这个功能, 试错的时间成本将大大下降 . 而这个功能我觉得主要得感谢 <a href="http://coolshell.cn/articles/17061.html">AuFS</a> 这个文件系统, 使得实现了镜像的增量变化<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os-x/">os x</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/08/在OS-X上安装Docker/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-七年就是一辈子-读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/05/七年就是一辈子-读书笔记/" class="article-date">
-  	<time datetime="2016-01-05T14:43:26.000Z" itemprop="datePublished">2016-01-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/05/七年就是一辈子-读书笔记/">&lt;&lt;七年就是一辈子&gt;&gt;读书笔记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5"><a href="#u6DF1_u5165_u5B9E_u8DF5_u6700_u91CD_u8981_u7684_u6982_u5FF5" class="headerlink" title="深入实践最重要的概念"></a>深入实践最重要的概念</h4><p>任何一个概念，都需要认真琢磨:</p>
-<ul>
-<li>它的内涵、外延；</li>
-<li>它是什么，它不是什么；</li>
-<li>它与类似概念的相似、不同之处；</li>
-<li>它在被应用之时需要注意的地方及其常见误区
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book/">book</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/learn/">learn</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/05/七年就是一辈子-读书笔记/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-把时间当做朋友-读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/05/把时间当做朋友-读书笔记/" class="article-date">
-  	<time datetime="2016-01-05T09:03:49.000Z" itemprop="datePublished">2016-01-05</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/05/把时间当做朋友-读书笔记/">&lt;&lt;把时间当做朋友&gt;&gt;读书笔记</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>很好的一本书, 条理清晰, 见解直击要害</p>
-<p>读完这本书, 获益良多</p>
-<h6 id="u7B2C_u4E00_u70B9-_u4E86_u89E3_u4E86_u5F88_u591A_u4EE5_u524D_u8111_u5B50_u91CC_u7684_u6BD2_u6982_u5FF5_u548C_u574F_u4E60_u60EF_2C__u8FD9_u4E9B_u6BD2_u6982_u5FF5_u5927_u90FD_u662F_u5229_u7528_u4E86_u4EBA_u8111_u7684_u5F31_u70B9_3A"><a href="#u7B2C_u4E00_u70B9-_u4E86_u89E3_u4E86_u5F88_u591A_u4EE5_u524D_u8111_u5B50_u91CC_u7684_u6BD2_u6982_u5FF5_u548C_u574F_u4E60_u60EF_2C__u8FD9_u4E9B_u6BD2_u6982_u5FF5_u5927_u90FD_u662F_u5229_u7528_u4E86_u4EBA_u8111_u7684_u5F31_u70B9_3A" class="headerlink" title="第一点.了解了很多以前脑子里的毒概念和坏习惯, 这些毒概念大都是利用了人脑的弱点:"></a>第一点.了解了很多以前脑子里的毒概念和坏习惯, 这些毒概念大都是利用了人脑的弱点:</h6><ul>
-<li><p><em>速读, 速成</em>  <code>利用了人&quot;希望自己的欲望能快点得到满足&quot;的天性, 也在一定程度上把人给弄的很浮躁.</code></p>
-</li>
-<li><p><em>完美主义</em>   <code>内因:恐惧犯错, 会让你变成拖拉狂, 人人做事都是要先犯错的. 外因: 犯错被他人嘲笑的几率很高. 但是, 你要明白, 真正做成事的人, 会知道其中的艰辛, 他们才不会随便嘲弄犯错的新手, 甚至会去鼓励他们. 他们也许会批评, 但也是建设性的, 不是为了秀优越的. 这可以做反向筛选, 随便嘲弄别人的, 说明他自己不怎么样. 何必在意这些人的看法呢? 他们的心智成长都是固定模式的了.</code></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book/">book</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/learn/">learn</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/05/把时间当做朋友-读书笔记/#more">more >></a>
+          <a  href="/2016/02/18/Django第二天/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -542,7 +680,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

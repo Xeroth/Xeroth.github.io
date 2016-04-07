@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -194,11 +194,11 @@
 
       <div class="body-wrap">
   
-    <article id="post-解决一些电脑问题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-centos7-安装破解confluence-5-8" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/25/解决一些电脑问题/" class="article-date">
-  	<time datetime="2016-02-25T03:38:54.000Z" itemprop="datePublished">2016-02-25</time>
+      <a href="/2016/04/05/centos7-安装破解confluence-5-8/" class="article-date">
+  	<time datetime="2016-04-05T03:09:57.000Z" itemprop="datePublished">2016-04-05</time>
 </a>
     </div>
   
@@ -211,7 +211,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/25/解决一些电脑问题/">解决一些电脑问题</a>
+      <a class="article-title" href="/2016/04/05/centos7-安装破解confluence-5-8/">centos7 安装破解confluence 5.8</a>
     </h1>
   
 
@@ -225,10 +225,124 @@
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><span class="toc-number">1.</span> <span class="toc-text">windows7 内部版本7601,此windows副本不是正版</span></a></li></ol>
+            
             </div>
         
-        <h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
+        <p>安装 jdk</p>
+<pre><code>$ yum install -y java-1.7.0-openjdk.x86_64
+$ java -version
+java version &quot;1.7.0_99&quot;
+OpenJDK Runtime Environment (rhel-2.6.5.0.el7_2-x86_64 u99-b00)
+OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
+</code></pre><p>安装数据库</p>
+<p><del>本来打算直接用 mariadb 的, 但是 confluence 不支持这个驱动.只能另外装 mysql 了, 下面这小段作废, 直接跳 mysql 安装</del></p>
+<pre><code>yum install -y mariadb*
+systemctl start mariadb.service
+systemctl enable mariadb.service
+mysql_secure_installation  #一路 yes 下去
+
+#解决中文乱码问题
+vim /etc/my.cnf
+[mysqld]
+character-set-server =utf8
+重启服务
+</code></pre><p>centos7 yum 源不带 mysql, 需要自己安装 yum 源</p>
+<pre><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum install mysql-server
+</code></pre><p>开始安装 confluence</p>
+<pre><code>$ chmod u+x /usr/local/confluence-5.8.10-x64.bin
+$ /usr/local/confluence-5.8.10-x64.bin
+Unpacking JRE ...
+Starting Installer ...
+四月 05, 2016 3:13:16 下午 java.util.prefs.FileSystemPreferences$1 run
+INFO: Created user preferences directory.
+
+This will install Confluence 5.8.10 on your computer.
+OK [o, Enter], Cancel [c]
+
+Choose the appropriate installation or upgrade option.
+Please choose one of the following:
+Express Install (uses default settings) [1],
+Custom Install (recommended for advanced users) [2, Enter],
+Upgrade an existing Confluence installation [3]
+1
+See where Confluence will be installed and the settings that will be used.
+Installation Directory: /opt/atlassian/confluence
+Home Directory: /var/atlassian/application-data/confluence
+HTTP Port: 8090
+RMI Port: 8000
+Install as service: Yes
+Install [i, Enter], Exit [e]
+i
+</code></pre><p>http访问</p>
+<pre><code>http://your.centos.ip:8090
+</code></pre><p>点击安装, 记录 serverid : BH9S-DN8I-F20N-QN2C</p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack1.png" alt="confluence-crack1"></p>
+<p>停止wiki服务, 进行破解</p>
+<pre><code>$ /etc/init.d/confluence stop
+executing using dedicated user
+If you encounter issues starting up Confluence, please see the Installation guide at http://confluence.atlassian.com/display/DOC/Confluence+Installation+Guide
+
+Server startup logs are located in /opt/atlassian/confluence/logs/catalina.out
+Using CATALINA_BASE:   /opt/atlassian/confluence
+Using CATALINA_HOME:   /opt/atlassian/confluence
+Using CATALINA_TMPDIR: /opt/atlassian/confluence/temp
+Using JRE_HOME:        /opt/atlassian/confluence/jre/
+Using CLASSPATH:       /opt/atlassian/confluence/bin/bootstrap.jar:/opt/atlassian/confluence/bin/tomcat-juli.jar
+Using CATALINA_PID:    /opt/atlassian/confluence/work/catalina.pid
+Tomcat stopped.
+
+
+cp /opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.2.jar /tmp/atlassian-extras-2.4.jar
+</code></pre><p>破解将在 mac 本地进行, 因为需要图形界面…</p>
+<pre><code>➜ /Users/cristaly7/tmp &gt;scp -r HD_Server_Config:/root/confluence5.8/confluence5.1-crack .
+➜ /Users/cristaly7/tmp &gt;cd confluence5.1-crack/iNViSiBLE
+➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;chmod u+x keygen_MacOSX.sh
+
+# 按照网上的文章运行命令
+/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java -jar confluence_keygen.jar
+zsh: no such file or directory: /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java
+➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;java -v
+No Java runtime present, requesting install.
+</code></pre><p>没有java, 需要安装 java</p>
+<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">下载 java</a>  </p>
+<p>运行破解程序</p>
+<pre><code>➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;java -jar confluence_keygen.jar
+</code></pre><p>输入 serverid , 点击. patch</p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack2.png" alt=""></p>
+<p>选择 <code>confluence5.1-crack</code> 文件夹里的 <code>atlassian-extras-2.4.jar</code> </p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack3.png" alt=""></p>
+<p>点击.gen 会生成 key, 并且<code>confluence5.1-crack</code> 文件夹会多出一个<code>atlassian-extras-2.4.bak</code></p>
+<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack4.png" alt=""></p>
+<p>拷贝破解的文件到安装目录进行覆盖</p>
+<pre><code>➜ /Users/cristaly7/tmp/confluence5.1-crack &gt;scp atlassian-extras-2.4.jar HD_Server_Config:/opt/atlassian/confluence/confluence/WEB-INF/lib
+</code></pre><p>开启 wiki 服务</p>
+<pre><code>$ service confluence start
+</code></pre><p>在 License key 那里输入刚才生成的 key</p>
+<p>拷贝 mysql 驱动</p>
+<pre><code>cp mysql-connector-java-5.1.32-bin.jar  /opt/atlassian/confluence/confluence/WEB-INF/lib/
+</code></pre><p>重启服务</p>
+<pre><code>service confluence restart
+</code></pre><p>在页面上，选择数据库“MySQL”，点击“ Externam Database”</p>
+<p>登录mysql 创建数据库及账号</p>
+<pre><code>mysql -uroot -p
+create database wiki character set UTF8;
+grant all on wiki.* to wiki_user@&quot;%&quot; identified by &quot;wiki_password&quot;;
+</code></pre><p>我这里装的是 percona 5.6</p>
+<p>确定存储引擎是 InnoDB</p>
+<p>在页面上点击“Direct JDBC”</p>
+<p>填写db信息</p>
+<p>Driver Class Name不用变</p>
+<p>Database URL，修正对应ip、port、database，例如：</p>
+<pre><code>jdbc:mysql://localhost:3306/wiki?useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine%3DInnoDB
+</code></pre><p>上面的连接符是”<code>&amp;amp;</code>”不是”&amp;”，这样是没有问题的，如果你要用”&amp;”也可以尝试，但后面可能出错</p>
+<p>点击“Next”，此时可能会有一个比较长的等待，如果此处出错了，停掉wiki服务，卸载wiki，删掉wiki文件，卸载数据库，从第一步重新来。</p>
+<p>如果上一步成功的话，点击“Empty Site”。你也可以点击“Example Site”</p>
+<p>点击“Manage users and groups within Confluence”，设置管理员相关信息。这里是“下一步”还是“确定”忘了，点击即可</p>
+<p>参考:</p>
+<p><a href="http://www.tuicool.com/articles/7FvuMn" target="_blank" rel="external">CentOS安装confluence(WIKI)</a></p>
+<p><a href="http://www.centoscn.com/image-text/install/2015/1121/6441.html" target="_blank" rel="external">centos安装confluence及破解</a></p>
 
       
     </div>
@@ -236,6 +350,10 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/confluence/">confluence</a></li></ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/it/">it</a>
@@ -259,11 +377,11 @@
 
 
   
-    <article id="post-Django第二天" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-mac-os-安装使用postgresql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/18/Django第二天/" class="article-date">
-  	<time datetime="2016-02-18T01:53:33.000Z" itemprop="datePublished">2016-02-18</time>
+      <a href="/2016/04/01/mac-os-安装使用postgresql/" class="article-date">
+  	<time datetime="2016-04-01T08:42:33.000Z" itemprop="datePublished">2016-04-01</time>
 </a>
     </div>
   
@@ -276,7 +394,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/18/Django第二天/">Django第二天</a>
+      <a class="article-title" href="/2016/04/01/mac-os-安装使用postgresql/">mac os 安装使用postgresql</a>
     </h1>
   
 
@@ -285,24 +403,251 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="u521B_u5EFA_u6570_u636E_u5E93"><a href="#u521B_u5EFA_u6570_u636E_u5E93" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>相关文件是<em>mysite/settings.py</em> , 默认用的是 SQLite . 我用的 mysql(之前在本地安装好的)</p>
-<p>先在 mysql 中创建库,用户</p>
-<pre><code>mysql&gt; CREATE DATABASE polls DEFAULT CHARSET=utf8;
-Query OK, 1 row affected (0.00 sec)
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521D_u59CB_u5316"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u542F_u52A8_u4E0E_u505C_u6B62"><span class="toc-number">3.</span> <span class="toc-text">启动与停止</span></a></li></ol>
+            </div>
+        
+        <h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>➜ /Users/cristaly7/Desktop/15/15 &gt;brew install postgres
+==&gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
+######################################################################## 100.0%
+==&gt; Pouring postgresql-9.4.5_2.el_capitan.bottle.tar.gz
+==&gt; Caveats
+If builds of PostgreSQL 9 are failing and you have version 8.x installed,
+you may need to remove the previous version first. See:
+  https://github.com/Homebrew/homebrew/issues/2510
 
-mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON polls.* TO &apos;poller&apos;@&apos;127.0.0.1&apos; IDENTIFIED BY &apos;poller&apos;;
-Query OK, 0 rows affected (0.00 sec)
-</code></pre><p>修改<em>mysite/settings.py</em>中的数据库设置</p>
-<pre><code>DATABASES = {
-    &apos;default&apos;: {
-        &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
-        &apos;NAME&apos;: &apos;polls&apos;,
-        &apos;USER&apos;: &apos;poller&apos;,
-        &apos;PASSWORD&apos;: &apos;poller&apos;,
-        &apos;HOST&apos;:&apos;127.0.0.1&apos;,
-        &apos;PORT&apos;:&apos;3306&apos;,
-    }
+To migrate existing data from a previous major version (pre-9.4) of PostgreSQL, see:
+  https://www.postgresql.org/docs/9.4/static/upgrading.html
+
+To load postgresql:
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+Or, if you don&apos;t want/need launchctl, you can just run:
+  postgres -D /usr/local/var/postgres
+==&gt; Summary
+🍺  /usr/local/Cellar/postgresql/9.4.5_2: 3,021 files, 33.7M
+</code></pre><h3 id="u521D_u59CB_u5316"><a href="#u521D_u59CB_u5316" class="headerlink" title="初始化"></a>初始化</h3><pre><code>➜ /Users/cristaly7 &gt;initdb ~/postgresql
+The files belonging to this database system will be owned by user &quot;cristaly7&quot;.
+This user must also own the server process.
+
+The database cluster will be initialized with locales
+  COLLATE:  en_US.UTF-8
+  CTYPE:    zh_CN.UTF-8
+  MESSAGES: en_US.UTF-8
+  MONETARY: en_US.UTF-8
+  NUMERIC:  en_US.UTF-8
+  TIME:     en_US.UTF-8
+The default database encoding has accordingly been set to &quot;UTF8&quot;.
+initdb: could not find suitable text search configuration for locale &quot;zh_CN.UTF-8&quot;
+The default text search configuration will be set to &quot;simple&quot;.
+
+Data page checksums are disabled.
+
+creating directory /Users/cristaly7/postgresql ... ok
+creating subdirectories ... ok
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting dynamic shared memory implementation ... posix
+creating configuration files ... ok
+creating template1 database in /Users/cristaly7/postgresql/base/1 ... ok
+initializing pg_authid ... ok
+initializing dependencies ... ok
+creating system views ... ok
+loading system objects&apos; descriptions ... ok
+creating collations ... ok
+creating conversions ... ok
+creating dictionaries ... ok
+setting privileges on built-in objects ... ok
+creating information schema ... ok
+loading PL/pgSQL server-side language ... ok
+vacuuming database template1 ... ok
+copying template1 to template0 ... ok
+copying template1 to postgres ... ok
+syncing data to disk ... ok
+
+WARNING: enabling &quot;trust&quot; authentication for local connections
+You can change this by editing pg_hba.conf or using the option -A, or
+--auth-local and --auth-host, the next time you run initdb.
+
+Success. You can now start the database server using:
+
+    postgres -D /Users/cristaly7/postgresql
+or
+    pg_ctl -D /Users/cristaly7/postgresql -l logfile start
+</code></pre><h3 id="u542F_u52A8_u4E0E_u505C_u6B62"><a href="#u542F_u52A8_u4E0E_u505C_u6B62" class="headerlink" title="启动与停止"></a>启动与停止</h3><pre><code>➜ /Users/cristaly7 &gt;pg_ctl -D /Users/cristaly7/postgresql -l ~/postgresql/logfile start
+server starting
+
+➜ /Users/cristaly7 &gt;pg_ctl -D ~/postgresql stop -s -m fast
+</code></pre><p>### </p>
+<p>参考:</p>
+<p><a href="http://blog.everlose.com/mac-homebrew-postgresql.html" target="_blank" rel="external">Mac下使用homebrew安装postgresql及配置</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac-OS/">Mac OS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-nginx打开目录浏览功能-autoindex" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/29/nginx打开目录浏览功能-autoindex/" class="article-date">
+  	<time datetime="2016-03-29T03:27:44.000Z" itemprop="datePublished">2016-03-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/29/nginx打开目录浏览功能-autoindex/">nginx打开目录浏览功能(autoindex)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            
+            </div>
+        
+        <pre><code>server {
+        server_name hook.123.cn;
+        root /opt/www/svnhook/document/php;
+        location / {
+                autoindex on;
+                autoindex_localtime on;
+                charset utf-8,gbk;  # 解决中文乱码
+
+                # 认证登陆
+                auth_basic            &quot;Password please&quot;;
+                auth_basic_user_file  /etc/nginx/htpasswd;
+
+
+                index 投标单位管理.html;
+                if (!-e $request_filename) {
+                        rewrite ^(.*)$  /manage.html last;
+                }
+        }
 }
+</code></pre><p><code>/etc/nginx/htpasswd</code> 记得修改为 nginx 的权限 , 账号密码可以通过在线的htpasswd生成器生成</p>
+<p><a href="http://blog.licess.com/nginx-autoindex/" target="_blank" rel="external">nginx打开目录浏览功能(autoindex)</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-使用rsync" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/28/使用rsync/" class="article-date">
+  	<time datetime="2016-03-28T07:57:13.000Z" itemprop="datePublished">2016-03-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/28/使用rsync/">使用rsync</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6"><span class="toc-number">1.</span> <span class="toc-text">拷贝文件夹除了带 mysql 之外的文件</span></a></li></ol>
+            </div>
+        
+        <h3 id="u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6"><a href="#u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6" class="headerlink" title="拷贝文件夹除了带 mysql 之外的文件"></a>拷贝文件夹除了带 mysql 之外的文件</h3><pre><code>rsync -av --exclude &apos;*mysql*&apos; root@server:/home/eg/php2 /home/php
+
+-a for archive (mostly all files)
+-v for verbose output
+</code></pre><p><a href="http://stackoverflow.com/questions/1228466/how-to-filter-files-when-using-scp-to-copy-dir-recursively" target="_blank" rel="external">How to filter files when using scp to copy dir recursively?</a></p>
+<p>顺便学习到了ls 的这种用法</p>
+<pre><code>ls --ignore=*mysql* 
 </code></pre>
       
     </div>
@@ -311,7 +656,7 @@ Query OK, 0 rows affected (0.00 sec)
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsync/">rsync</a></li></ul>
 	</div>
 
       
@@ -320,10 +665,6 @@ Query OK, 0 rows affected (0.00 sec)
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a  href="/2016/02/18/Django第二天/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -341,11 +682,11 @@ Query OK, 0 rows affected (0.00 sec)
 
 
   
-    <article id="post-Django第一天" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-centos7常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/02/17/Django第一天/" class="article-date">
-  	<time datetime="2016-02-17T07:36:18.000Z" itemprop="datePublished">2016-02-17</time>
+      <a href="/2016/03/25/centos7常用命令/" class="article-date">
+  	<time datetime="2016-03-25T07:30:43.000Z" itemprop="datePublished">2016-03-25</time>
 </a>
     </div>
   
@@ -358,7 +699,7 @@ Query OK, 0 rows affected (0.00 sec)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/Django第一天/">Django第一天</a>
+      <a class="article-title" href="/2016/03/25/centos7常用命令/">centos7常用命令</a>
     </h1>
   
 
@@ -367,19 +708,40 @@ Query OK, 0 rows affected (0.00 sec)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>用 Django 做一个投票( poll )的 app</p>
-<h3 id="u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><a href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><pre><code>django-admin startproject myproject
-</code></pre><p>目录结构</p>
-<pre><code>myproject/
-├── manage.py
-└── myproject
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-</code></pre><p>进入项目目录, 创建 app</p>
-<pre><code>cd myproject
-python manage.py startapp polls
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#systemd__u76F8_u5173"><span class="toc-number">1.</span> <span class="toc-text">systemd 相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u67E5_u770B_u7CFB_u7EDF_u7248_u672C"><span class="toc-number">2.</span> <span class="toc-text">查看系统版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9632_u706B_u5899"><span class="toc-number">3.</span> <span class="toc-text">防火墙</span></a></li></ol>
+            </div>
+        
+        <p>其实这些东西大部分 ansible 都能做</p>
+<h3 id="systemd__u76F8_u5173"><a href="#systemd__u76F8_u5173" class="headerlink" title="systemd 相关"></a>systemd 相关</h3><p>设置开机自启动命令</p>
+<pre><code>启动nginx服务
+systemctl start nginx.service
+设置开机自启动
+systemctl enable nginx.service
+停止开机自启动
+systemctl disable nginx.service
+查看服务当前状态
+systemctl status nginx.service
+重新启动服务
+systemctl restart nginx.service
+查看所有已启动的服务
+systemctl list-units --type=service
+</code></pre><h3 id="u67E5_u770B_u7CFB_u7EDF_u7248_u672C"><a href="#u67E5_u770B_u7CFB_u7EDF_u7248_u672C" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><pre><code>$ cat /etc/redhat-release
+CentOS Linux release 7.2.1511 (Core)
+</code></pre><h3 id="u9632_u706B_u5899"><a href="#u9632_u706B_u5899" class="headerlink" title="防火墙"></a>防火墙</h3><p>客户端命令firewalld可以用来修改firewalld的永久配置或者运行时配置。firewalld的配置文件保存在<code>/usr/lib/firewalld/</code> 和 <code>/etc/firewalld/</code>中，其中前者是默认的配置，请不要修改。可以在<code>/etc/firewalld/</code>中编辑自己的配置，firewalld优先使用<code>/etc/firewalld/</code>中的配置。</p>
+<p><a href="http://mlworks.cn/posts/Redhat7-Centos7-firewalld/" target="_blank" rel="external">Redhat 7与Centos 7中的防火墙Firewalld</a></p>
+<p><a href="https://argcv.com/articles/3167.c" target="_blank" rel="external">CentOS 7 下使用 iptables</a></p>
+<pre><code>service iptables save #保存设置
+iptables-save &gt; /etc/iptables.save  #导出设置
+iptables-restore /etc/iptables.save #导入设置
+
+原先的 iptables 脚本在K`/usr/libexec/iptables/iptables.init`
+可以拷贝用..
+cp /usr/libexec/iptables/iptables.init /etc/init.d/iptables
 </code></pre>
       
     </div>
@@ -388,7 +750,7 @@ python manage.py startapp polls
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos-7/">Centos 7</a></li></ul>
 	</div>
 
       
@@ -397,154 +759,6 @@ python manage.py startapp polls
 	</div>
 
 
-      
-        <p class="article-more-link">
-          <a  href="/2016/02/17/Django第一天/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-二月份的碎碎念" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/01/二月份的碎碎念/" class="article-date">
-  	<time datetime="2016-02-01T03:50:01.000Z" itemprop="datePublished">2016-02-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/01/二月份的碎碎念/">二月份的碎碎念</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="2016_u5E742_u67081_u65E5"><a href="#2016_u5E742_u67081_u65E5" class="headerlink" title="2016年2月1日"></a>2016年2月1日</h3><p>早上, 身体已经醒了,人没能立马起来, 懒惰的大脑就 yy 着外面好冷 …<br>主要是起床那一瞬间的奖励(或者不起床的惩罚)比不上赖床一刻的舒服啊<br>最终起来了,果然很冷, 发型很怂, 于是跑到卫生间洗了个冷水头,<br>但是洗冷水头的过程中, 觉得冷度也就那样, 洗完出来之后, 反而觉得不冷了.<br>所以很多时候困难并不像想象的那么难, 嗯, 洗冷水应该还能激发一点身体潜能.<br>另外, 不要把事情弄的太复杂, 简单化吧.<br>把事情分成要做的和不要做的就行, 别加上太多修饰词, 比如应该要做的 , 明天要做的.</p>
-<p>嗯, </p>
-<ul>
-<li>要起床. </li>
-<li>要洗头(美好的一天从早起洗头开始, 糟糕的一天从大半夜还不睡觉开始). </li>
-<li>要出去取快递. </li>
-<li>要熟练 docker. </li>
-<li>要静心. (遇到困难是必然的,不能立马见效也是必然的,但是要坚持)</li>
-<li>要锻炼.</li>
-</ul>
-<p>这么冷的天, Lilia居然还闻到了桂花</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/guihua.png" alt="guihua"></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/碎碎念/">碎碎念</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/life/">life</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/02/01/二月份的碎碎念/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Docker构建Nginx镜像" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/27/Docker构建Nginx镜像/" class="article-date">
-  	<time datetime="2016-01-27T14:11:04.000Z" itemprop="datePublished">2016-01-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/27/Docker构建Nginx镜像/">Docker构建Nginx镜像</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像</p>
-<p>创建工作目录</p>
-<pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
-root@Ubuntu:~# cd nginx_ubuntu
-</code></pre><p>编写 Dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">  apt-get install -y nginx  \</span><br><span class="line">  &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># define volume</span></span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">[<span class="string">"/etc/nginx/sites-enabled"</span>, <span class="string">"/etc/nginx/certs"</span>, <span class="string">"/etc/nginx/conf.d"</span>, <span class="string">"/var/log/nginx"</span>]</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/01/27/Docker构建Nginx镜像/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -564,7 +778,7 @@ root@Ubuntu:~# cd nginx_ubuntu
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>

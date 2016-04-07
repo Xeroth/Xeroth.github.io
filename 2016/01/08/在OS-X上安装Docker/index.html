@@ -17,7 +17,7 @@
 特点是:敏捷
 为什么说特点是敏捷, 启动快, 占用资源少是一方面. 但是最令人喜欢的应该是它类似 Git 那样的的版本管理功能了 , 有了这个功能, 试错的时间成本将大大下降 . 而这个功能我觉得主要得感谢 AuFS 这个文件系统, 使得实现了镜像的增量变化">
 <meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com/dockerdocker-engine.png">
-<meta property="og:updated_time" content="2016-01-13T14:12:18.000Z">
+<meta property="og:updated_time" content="2016-03-26T07:59:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在OS X上安装Docker">
 <meta name="twitter:description" content="Docker 是什么, 可以应用在什么地方超轻量级的虚拟化技术
@@ -120,7 +120,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Django/" style="font-size: 13.33px;">Django</a> <a href="/tags/book/" style="font-size: 16.67px;">book</a> <a href="/tags/css/" style="font-size: 13.33px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/os-x/" style="font-size: 13.33px;">os x</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 10px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Mac-OS/" style="font-size: 10px;">Mac OS</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 15px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -297,13 +297,20 @@
 <p>1 创建 vm</p>
 <p><code>docker-machine create --driver virtualbox [vmname]</code></p>
 <p>2 查看 vm</p>
-<p><code>docker-machine ls</code>    </p>
-<p>3 获取 vm 环境变量</p>
+<p><code>docker-machine ls</code>  </p>
+<p>如果 vm 状态是 stop 的, 就启动 vm</p>
+<pre><code>$ docker-machine start default
+(default) Starting VM...
+Machine &quot;default&quot; was started.
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command. 
+</code></pre><p>3 获取 vm 环境变量</p>
 <p><code>docker-machine env default</code></p>
 <p>4 把 shell 连接到 vm</p>
 <p><code>$ eval &quot;$(docker-machine env [vmname])&quot;</code></p>
-<p>把<em>eval $(docker-machine env default)</em>这句加到 ~/.bashrc 文件里, 每次启动新的shell 都自动加载</p>
-<p>5 测试 vm</p>
+<p>把<em>eval $(docker-machine env default)</em>这句加到 ~/.bashrc 文件里, 每次启动新的shell 都自动加载, 但是如果 docker machine 没启动, 就会报错的了, 怎么办呢? 做个判断就好, 把下面这个加到<code>. bashrc</code> 里吧</p>
+<pre><code># connect your shell to docker-machine
+[ Running == `docker-machine ls | awk &apos;NR==2{print $4}&apos;`  ] &amp;&amp; eval $(docker-machine env default) || echo fuck
+</code></pre><p>5 测试 vm</p>
 <p><code>docker run hello-world</code></p>
 <p>6 如果不想要了, 可以这样删除 vm</p>
 <p><code>docker-machine rm [vmname]</code></p>
@@ -356,11 +363,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/01/15/Docker私有仓库/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/01/09/人人都能用英语-读书笔记/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Docker私有仓库
+          &lt;&lt;人人都能用英语&gt;&gt;读书笔记
         
       </div>
     </a>
