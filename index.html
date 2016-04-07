@@ -220,130 +220,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            
-            </div>
-        
         <p>安装 jdk</p>
 <pre><code>$ yum install -y java-1.7.0-openjdk.x86_64
 $ java -version
 java version &quot;1.7.0_99&quot;
 OpenJDK Runtime Environment (rhel-2.6.5.0.el7_2-x86_64 u99-b00)
 OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
-</code></pre><p>安装数据库</p>
-<p><del>本来打算直接用 mariadb 的, 但是 confluence 不支持这个驱动.只能另外装 mysql 了, 下面这小段作废, 直接跳 mysql 安装</del></p>
-<pre><code>yum install -y mariadb*
-systemctl start mariadb.service
-systemctl enable mariadb.service
-mysql_secure_installation  #一路 yes 下去
-
-#解决中文乱码问题
-vim /etc/my.cnf
-[mysqld]
-character-set-server =utf8
-重启服务
-</code></pre><p>centos7 yum 源不带 mysql, 需要自己安装 yum 源</p>
-<pre><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
-rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum install mysql-server
-</code></pre><p>开始安装 confluence</p>
-<pre><code>$ chmod u+x /usr/local/confluence-5.8.10-x64.bin
-$ /usr/local/confluence-5.8.10-x64.bin
-Unpacking JRE ...
-Starting Installer ...
-四月 05, 2016 3:13:16 下午 java.util.prefs.FileSystemPreferences$1 run
-INFO: Created user preferences directory.
-
-This will install Confluence 5.8.10 on your computer.
-OK [o, Enter], Cancel [c]
-
-Choose the appropriate installation or upgrade option.
-Please choose one of the following:
-Express Install (uses default settings) [1],
-Custom Install (recommended for advanced users) [2, Enter],
-Upgrade an existing Confluence installation [3]
-1
-See where Confluence will be installed and the settings that will be used.
-Installation Directory: /opt/atlassian/confluence
-Home Directory: /var/atlassian/application-data/confluence
-HTTP Port: 8090
-RMI Port: 8000
-Install as service: Yes
-Install [i, Enter], Exit [e]
-i
-</code></pre><p>http访问</p>
-<pre><code>http://your.centos.ip:8090
-</code></pre><p>点击安装, 记录 serverid : BH9S-DN8I-F20N-QN2C</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack1.png" alt="confluence-crack1"></p>
-<p>停止wiki服务, 进行破解</p>
-<pre><code>$ /etc/init.d/confluence stop
-executing using dedicated user
-If you encounter issues starting up Confluence, please see the Installation guide at http://confluence.atlassian.com/display/DOC/Confluence+Installation+Guide
-
-Server startup logs are located in /opt/atlassian/confluence/logs/catalina.out
-Using CATALINA_BASE:   /opt/atlassian/confluence
-Using CATALINA_HOME:   /opt/atlassian/confluence
-Using CATALINA_TMPDIR: /opt/atlassian/confluence/temp
-Using JRE_HOME:        /opt/atlassian/confluence/jre/
-Using CLASSPATH:       /opt/atlassian/confluence/bin/bootstrap.jar:/opt/atlassian/confluence/bin/tomcat-juli.jar
-Using CATALINA_PID:    /opt/atlassian/confluence/work/catalina.pid
-Tomcat stopped.
-
-
-cp /opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.2.jar /tmp/atlassian-extras-2.4.jar
-</code></pre><p>破解将在 mac 本地进行, 因为需要图形界面…</p>
-<pre><code>➜ /Users/cristaly7/tmp &gt;scp -r HD_Server_Config:/root/confluence5.8/confluence5.1-crack .
-➜ /Users/cristaly7/tmp &gt;cd confluence5.1-crack/iNViSiBLE
-➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;chmod u+x keygen_MacOSX.sh
-
-# 按照网上的文章运行命令
-/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java -jar confluence_keygen.jar
-zsh: no such file or directory: /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java
-➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;java -v
-No Java runtime present, requesting install.
-</code></pre><p>没有java, 需要安装 java</p>
-<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">下载 java</a>  </p>
-<p>运行破解程序</p>
-<pre><code>➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;java -jar confluence_keygen.jar
-</code></pre><p>输入 serverid , 点击. patch</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack2.png" alt=""></p>
-<p>选择 <code>confluence5.1-crack</code> 文件夹里的 <code>atlassian-extras-2.4.jar</code> </p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack3.png" alt=""></p>
-<p>点击.gen 会生成 key, 并且<code>confluence5.1-crack</code> 文件夹会多出一个<code>atlassian-extras-2.4.bak</code></p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack4.png" alt=""></p>
-<p>拷贝破解的文件到安装目录进行覆盖</p>
-<pre><code>➜ /Users/cristaly7/tmp/confluence5.1-crack &gt;scp atlassian-extras-2.4.jar HD_Server_Config:/opt/atlassian/confluence/confluence/WEB-INF/lib
-</code></pre><p>开启 wiki 服务</p>
-<pre><code>$ service confluence start
-</code></pre><p>在 License key 那里输入刚才生成的 key</p>
-<p>拷贝 mysql 驱动</p>
-<pre><code>cp mysql-connector-java-5.1.32-bin.jar  /opt/atlassian/confluence/confluence/WEB-INF/lib/
-</code></pre><p>重启服务</p>
-<pre><code>service confluence restart
-</code></pre><p>在页面上，选择数据库“MySQL”，点击“ Externam Database”</p>
-<p>登录mysql 创建数据库及账号</p>
-<pre><code>mysql -uroot -p
-create database wiki character set UTF8;
-grant all on wiki.* to wiki_user@&quot;%&quot; identified by &quot;wiki_password&quot;;
-</code></pre><p>我这里装的是 percona 5.6</p>
-<p>确定存储引擎是 InnoDB</p>
-<p>在页面上点击“Direct JDBC”</p>
-<p>填写db信息</p>
-<p>Driver Class Name不用变</p>
-<p>Database URL，修正对应ip、port、database，例如：</p>
-<pre><code>jdbc:mysql://localhost:3306/wiki?useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine%3DInnoDB
-</code></pre><p>上面的连接符是”<code>&amp;amp;</code>”不是”&amp;”，这样是没有问题的，如果你要用”&amp;”也可以尝试，但后面可能出错</p>
-<p>点击“Next”，此时可能会有一个比较长的等待，如果此处出错了，停掉wiki服务，卸载wiki，删掉wiki文件，卸载数据库，从第一步重新来。</p>
-<p>如果上一步成功的话，点击“Empty Site”。你也可以点击“Example Site”</p>
-<p>点击“Manage users and groups within Confluence”，设置管理员相关信息。这里是“下一步”还是“确定”忘了，点击即可</p>
-<p>参考:</p>
-<p><a href="http://www.tuicool.com/articles/7FvuMn" target="_blank" rel="external">CentOS安装confluence(WIKI)</a></p>
-<p><a href="http://www.centoscn.com/image-text/install/2015/1121/6441.html" target="_blank" rel="external">centos安装confluence及破解</a></p>
-
+</code></pre>
       
     </div>
     
@@ -360,6 +243,10 @@ grant all on wiki.* to wiki_user@&quot;%&quot; identified by &quot;wiki_password
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/05/centos7-安装破解confluence-5-8/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
