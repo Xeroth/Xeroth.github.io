@@ -220,14 +220,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u514D_u5BC6_u7801_u767B_u9646"><span class="toc-number">1.</span> <span class="toc-text">免密码登陆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql__u5907_u4EFD"><span class="toc-number">2.</span> <span class="toc-text">mysql 备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E38_u7528_u547D_u4EE4"><span class="toc-number">3.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#create_table"><span class="toc-number">3.1.</span> <span class="toc-text">create table</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#insert_into__u63D2_u5165_u6570_u636E"><span class="toc-number">3.2.</span> <span class="toc-text">insert into 插入数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#truncate__u6E05_u7A7A_u8868"><span class="toc-number">3.3.</span> <span class="toc-text">truncate 清空表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AB_u4E3B_u4ECE"><span class="toc-number">4.</span> <span class="toc-text">AB主从</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u4E3B_u4ECE_u707E_u96BE_u6062_u590D_u6F14_u7EC3"><span class="toc-number">4.1.</span> <span class="toc-text">主从灾难恢复演练</span></a></li></ol></li></ol>
-            </div>
-        
         <h3 id="u514D_u5BC6_u7801_u767B_u9646"><a href="#u514D_u5BC6_u7801_u767B_u9646" class="headerlink" title="免密码登陆"></a>免密码登陆</h3><p>默认使用~/.my.cnf</p>
 <pre><code>$ vim ~/.my.cnf
 [client]
@@ -277,23 +269,7 @@ find $BACKUP_DIR -mtime +10 -name &quot;*.sql&quot; -type f -exec rm -rf {} \;
 </code></pre><p>编辑 crontab</p>
 <pre><code>$ crontab -e
 0 */2 * * * sh /data/backup/shell/mysql_backup.sh
-</code></pre><h3 id="u5E38_u7528_u547D_u4EE4"><a href="#u5E38_u7528_u547D_u4EE4" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="create_table"><a href="#create_table" class="headerlink" title="create table"></a>create table</h4><pre><code>create table `user` (  
-`id` int(11) not null auto_increment, 
-`name` varchar(100) default null,
- primary key (`id`))    
-</code></pre><h4 id="insert_into__u63D2_u5165_u6570_u636E"><a href="#insert_into__u63D2_u5165_u6570_u636E" class="headerlink" title="insert into 插入数据"></a>insert into 插入数据</h4><pre><code>insert into user (name) values (&apos;bob&apos;);
-insert into user (name) values (&apos;mark&apos;);
-</code></pre><h4 id="truncate__u6E05_u7A7A_u8868"><a href="#truncate__u6E05_u7A7A_u8868" class="headerlink" title="truncate 清空表"></a>truncate 清空表</h4><pre><code>truncate table user;
-</code></pre><h3 id="AB_u4E3B_u4ECE"><a href="#AB_u4E3B_u4ECE" class="headerlink" title="AB主从"></a>AB主从</h3><p>配置方法网上很多…自己找去吧 </p>
-<h4 id="u4E3B_u4ECE_u707E_u96BE_u6062_u590D_u6F14_u7EC3"><a href="#u4E3B_u4ECE_u707E_u96BE_u6062_u590D_u6F14_u7EC3" class="headerlink" title="主从灾难恢复演练"></a>主从灾难恢复演练</h4><p>参考:</p>
-<p><a href="http://wangwei007.blog.51cto.com/68019/965575" target="_blank" rel="external">Mysql数据库主从心得整理</a>  </p>
-<p><a href="http://ucode.blog.51cto.com/10837891/1747078" target="_blank" rel="external">MySQL主从复制之主库宕机处理</a></p>
-<p><a href="http://blog.csdn.net/JesseYoung/article/details/41211841" target="_blank" rel="external">mysql备份还原-基于binlog的增量备份还原</a>    </p>
-<p><a href="http://ifxoxo.com/mysql_binlog.html" target="_blank" rel="external">从mysql的binlog恢复数据的步骤</a></p>
-<p><a href="http://lizhenliang.blog.51cto.com/7876557/1669829" target="_blank" rel="external">不停止MySQL服务增加从库的两种方式</a></p>
-<p><a href="https://imlonghao.com/7.html" target="_blank" rel="external">Shell 下免密码快速登陆 MySQL 数据库</a></p>
-<p><a href="http://www.zzbaike.com/wiki/CentOS/%E4%BD%BF%E7%94%A8tar%E5%A4%87%E4%BB%BD" target="_blank" rel="external">tar备份</a></p>
-
+</code></pre>
       
     </div>
     
@@ -310,6 +286,10 @@ insert into user (name) values (&apos;mark&apos;);
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/25/mysql-使用随记/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
