@@ -22,7 +22,7 @@ ubuntu 终端中文乱码ubuntu iterm 连接之后, 终端无法输入中文 , v
 添加中文字符编码：
 $sudo vim /var/lib/locales/supported.d/local
 #添加下面的中文字">
-<meta property="og:updated_time" content="2016-03-26T13:01:16.000Z">
+<meta property="og:updated_time" content="2016-04-07T12:19:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决一些电脑问题">
 <meta name="twitter:description" content="windows7 内部版本7601,此windows副本不是正版下载小马win7激活工具, 解压, 运行
@@ -250,7 +250,7 @@ $sudo vim /var/lib/locales/supported.d/local
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><span class="toc-number">1.</span> <span class="toc-text">windows7 内部版本7601,此windows副本不是正版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><span class="toc-number">2.</span> <span class="toc-text">ubuntu 终端中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error_checking_TLS_connection_3A_Host_is_not_running"><span class="toc-number">3.</span> <span class="toc-text">Error checking TLS connection: Host is not running</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><span class="toc-number">4.</span> <span class="toc-text">mac os 还原最小化窗口的快捷键</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><span class="toc-number">1.</span> <span class="toc-text">windows7 内部版本7601,此windows副本不是正版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><span class="toc-number">2.</span> <span class="toc-text">ubuntu 终端中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error_checking_TLS_connection_3A_Host_is_not_running"><span class="toc-number">3.</span> <span class="toc-text">Error checking TLS connection: Host is not running</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><span class="toc-number">4.</span> <span class="toc-text">mac os 还原最小化窗口的快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Filezilla_sftp__u5BC6_u94A5_u767B_u9646"><span class="toc-number">5.</span> <span class="toc-text">Filezilla sftp 密钥登陆</span></a></li></ol>
             </div>
         
         <h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
@@ -265,7 +265,8 @@ zh_CN.GB18030 GB18030
 使其生效：
 $sudo dpkg-reconfigure locales
 然后重启, 或者重新登录终端就 ok 了
-</code></pre><h3 id="Error_checking_TLS_connection_3A_Host_is_not_running"><a href="#Error_checking_TLS_connection_3A_Host_is_not_running" class="headerlink" title="Error checking TLS connection: Host is not running"></a>Error checking TLS connection: Host is not running</h3><p>mac 上用 Dockertool 安装了 Docker, 我把<code>eval $(docker-machine env default)</code> 加到了 <code>.bashrc</code> 里面, 但是当网络发生变化的时候, Docker 的 ip 会出现问题 ,连接不上, 于是会提示这个错误</p>
+</code></pre><a id="more"></a>
+<h3 id="Error_checking_TLS_connection_3A_Host_is_not_running"><a href="#Error_checking_TLS_connection_3A_Host_is_not_running" class="headerlink" title="Error checking TLS connection: Host is not running"></a>Error checking TLS connection: Host is not running</h3><p>mac 上用 Dockertool 安装了 Docker, 我把<code>eval $(docker-machine env default)</code> 加到了 <code>.bashrc</code> 里面, 但是当网络发生变化的时候, Docker 的 ip 会出现问题 ,连接不上, 于是会提示这个错误</p>
 <p>把上面那句改成下面的就解决了:</p>
 <pre><code># connect your shell to docker-machine
 [ Running == `docker-machine ls | awk &apos;NR==2{print $4}&apos;`  ] &amp;&amp; eval $(docker-machine env default) || echo fuck
@@ -276,6 +277,7 @@ $sudo dpkg-reconfigure locales
 </blockquote>
 <p>试试吧。</p>
 <p><a href="http://www.chinamac.com/2014/0328/2471.html" target="_blank" rel="external">教你如何用快捷键 还原最小化的窗口</a></p>
+<h3 id="Filezilla_sftp__u5BC6_u94A5_u767B_u9646"><a href="#Filezilla_sftp__u5BC6_u94A5_u767B_u9646" class="headerlink" title="Filezilla sftp 密钥登陆"></a>Filezilla sftp 密钥登陆</h3><p>使用的是 id_rsa 文件, 而不是id_rsa.pub 文件</p>
 
       
     </div>

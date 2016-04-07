@@ -470,15 +470,7 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><span class="toc-number">1.</span> <span class="toc-text">windows7 内部版本7601,此windows副本不是正版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><span class="toc-number">2.</span> <span class="toc-text">ubuntu 终端中文乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Error_checking_TLS_connection_3A_Host_is_not_running"><span class="toc-number">3.</span> <span class="toc-text">Error checking TLS connection: Host is not running</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><span class="toc-number">4.</span> <span class="toc-text">mac os 还原最小化窗口的快捷键</span></a></li></ol>
-            </div>
-        
-        <h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
+        <h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html">小马win7激活工具</a>, 解压, 运行</p>
 <h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
 <p>解决方法:</p>
 <pre><code>添加中文字符编码：
@@ -490,18 +482,7 @@ zh_CN.GB18030 GB18030
 使其生效：
 $sudo dpkg-reconfigure locales
 然后重启, 或者重新登录终端就 ok 了
-</code></pre><h3 id="Error_checking_TLS_connection_3A_Host_is_not_running"><a href="#Error_checking_TLS_connection_3A_Host_is_not_running" class="headerlink" title="Error checking TLS connection: Host is not running"></a>Error checking TLS connection: Host is not running</h3><p>mac 上用 Dockertool 安装了 Docker, 我把<code>eval $(docker-machine env default)</code> 加到了 <code>.bashrc</code> 里面, 但是当网络发生变化的时候, Docker 的 ip 会出现问题 ,连接不上, 于是会提示这个错误</p>
-<p>把上面那句改成下面的就解决了:</p>
-<pre><code># connect your shell to docker-machine
-[ Running == `docker-machine ls | awk &apos;NR==2{print $4}&apos;`  ] &amp;&amp; eval $(docker-machine env default) || echo fuck
-</code></pre><h3 id="mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><a href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E" class="headerlink" title="mac os 还原最小化窗口的快捷键"></a>mac os 还原最小化窗口的快捷键</h3><p>最小化快捷键 command + m</p>
-<p>发现用cmd + tab键不能还原最小化的窗口，非常不方便，Google了一下找到一个最简单的方法。</p>
-<blockquote>
-<p>用cmd+Tab键选中要还原的程序后，保持cmd键不放，松开tab键再按住alt/option 键，再松开cmd键最后松开alt/option键。</p>
-</blockquote>
-<p>试试吧。</p>
-<p><a href="http://www.chinamac.com/2014/0328/2471.html" target="_blank" rel="external">教你如何用快捷键 还原最小化的窗口</a></p>
-
+</code></pre>
       
     </div>
     
@@ -514,6 +495,10 @@ $sudo dpkg-reconfigure locales
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/02/25/解决一些电脑问题/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
