@@ -159,7 +159,7 @@ OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
     <link href="http://yoursite.com/2016/04/01/mac-os-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8postgresql/"/>
     <id>http://yoursite.com/2016/04/01/mac-os-安装使用postgresql/</id>
     <published>2016-04-01T08:42:33.000Z</published>
-    <updated>2016-04-01T08:54:48.000Z</updated>
+    <updated>2016-04-07T12:27:59.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>➜ /Users/cristaly7/Desktop/15/15 &gt;brew install postgres
 ==&gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
 ######################################################################## 100.0%
@@ -178,7 +178,8 @@ Or, if you don&apos;t want/need launchctl, you can just run:
   postgres -D /usr/local/var/postgres
 ==&gt; Summary
 🍺  /usr/local/Cellar/postgresql/9.4.5_2: 3,021 files, 33.7M
-</code></pre><h3 id="u521D_u59CB_u5316"><a href="#u521D_u59CB_u5316" class="headerlink" title="初始化"></a>初始化</h3><pre><code>➜ /Users/cristaly7 &gt;initdb ~/postgresql
+</code></pre><a id="more"></a>
+<h3 id="u521D_u59CB_u5316"><a href="#u521D_u59CB_u5316" class="headerlink" title="初始化"></a>初始化</h3><pre><code>➜ /Users/cristaly7 &gt;initdb ~/postgresql
 The files belonging to this database system will be owned by user &quot;cristaly7&quot;.
 This user must also own the server process.
 
@@ -235,7 +236,26 @@ server starting
 <p><a href="http://blog.everlose.com/mac-homebrew-postgresql.html" target="_blank" rel="external">Mac下使用homebrew安装postgresql及配置</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>➜ /Users/cristaly7/Desktop/15/15 &gt;brew in]]>
+    <![CDATA[<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>➜ /Users/cristaly7/Desktop/15/15 &gt;brew install postgres
+==&gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
+######################################################################## 100.0%
+==&gt; Pouring postgresql-9.4.5_2.el_capitan.bottle.tar.gz
+==&gt; Caveats
+If builds of PostgreSQL 9 are failing and you have version 8.x installed,
+you may need to remove the previous version first. See:
+  https://github.com/Homebrew/homebrew/issues/2510
+
+To migrate existing data from a previous major version (pre-9.4) of PostgreSQL, see:
+  https://www.postgresql.org/docs/9.4/static/upgrading.html
+
+To load postgresql:
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+Or, if you don&apos;t want/need launchctl, you can just run:
+  postgres -D /usr/local/var/postgres
+==&gt; Summary
+🍺  /usr/local/Cellar/postgresql/9.4.5_2: 3,021 files, 33.7M
+</code></pre>]]>
+    
     </summary>
     
       <category term="Mac OS" scheme="http://yoursite.com/tags/Mac-OS/"/>
