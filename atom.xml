@@ -697,7 +697,7 @@ authz-db = authz
     <link href="http://yoursite.com/2016/03/11/sed%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://yoursite.com/2016/03/11/sed学习笔记/</id>
     <published>2016-03-11T12:20:04.000Z</published>
-    <updated>2016-03-18T11:53:59.000Z</updated>
+    <updated>2016-04-07T12:25:43.000Z</updated>
     <content type="html"><![CDATA[<p>定位行 ‘/pattern/‘</p>
 <p>定位行内匹配变量  ‘s///3’</p>
 <p>操作:</p>
@@ -721,7 +721,8 @@ $ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
 . 表示任何单个字符。
 \* 表示某个字符出现了0次或多次。
 [ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
-</code></pre><h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
+</code></pre><a id="more"></a>
+<h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
 <pre><code>g： 将hold space中的内容拷贝到pattern space中，原来pattern space里的内容清除
 G： 将hold space中的内容append到pattern space\n后
 h： 将pattern space中的内容拷贝到hold space中，原来的hold space里的内容被清除
@@ -759,7 +760,27 @@ Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
 <p>定位行内匹配变量  ‘s///3’</p>
 <p>操作:</p>
 <p>修改行内 s</p>
-<h3 id="u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u5173_]]>
+<h3 id="u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="关于正则表达式"></a>关于正则表达式</h3><p>流派:</p>
+<pre><code>正则表达式
+    |-- PCRE
+    `-- POSIX
+        |-- BRE
+        |   |-- grep
+        |   |-- sed
+        |   `-- vi
+        `-- ERE
+            |-- awk
+            `-- egrep
+</code></pre><p>正则表达式基础:</p>
+<pre><code>^ 表示一行的开头。如：/^#/ 以#开头的匹配。
+$ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
+\&lt; 表示词首。 如 \&lt;abc 表示以 abc 为首的詞。
+\&gt; 表示词尾。 如 abc\&gt; 表示以 abc 結尾的詞。
+. 表示任何单个字符。
+\* 表示某个字符出现了0次或多次。
+[ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
+</code></pre>]]>
+    
     </summary>
     
       <category term="sed" scheme="http://yoursite.com/tags/sed/"/>
@@ -773,7 +794,7 @@ Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
     <link href="http://yoursite.com/2016/03/08/awk%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/"/>
     <id>http://yoursite.com/2016/03/08/awk学习笔记-一/</id>
     <published>2016-03-08T01:18:04.000Z</published>
-    <updated>2016-03-15T01:10:38.000Z</updated>
+    <updated>2016-04-07T12:26:02.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.iteye.com/blog/1304823" target="_blank" rel="external">详情参考</a></p>
 <p>else if 这种不能放 pattern, 只能放 action</p>
 <p>来点例子加深印象:</p>
@@ -781,6 +802,7 @@ Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
 <p>输入驱动</p>
 <p>匹配行 /xx/</p>
 <p>匹配字段 $6 ~ /xx/</p>
+<a id="more"></a>
 <h4 id="u5B66_u4E60_u8D44_u6599"><a href="#u5B66_u4E60_u8D44_u6599" class="headerlink" title="学习资料"></a>学习资料</h4><p>据说看完<a href="http://xstarcd.github.io/wiki/shell/awk_oneliner.html" target="_blank" rel="external">awk_oneliner</a>就成 awk 高手了, 看了80%, 自我感觉不错~, 大部分 awk 学习博客的例子已经可以自行解决了</p>
 <h3 id="u7591_u95EE"><a href="#u7591_u95EE" class="headerlink" title="疑问"></a>疑问</h3><p>1.下面的为何+号位置不同, 导致 root 的内存占用也不同呢? 似乎 += 这种是正确的写法</p>
 <figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]=+$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">6228</span>KB</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]+=$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">94852</span>KB</span><br></pre></td></tr></table></figure>
@@ -845,7 +867,14 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
 </code></pre><p>awk规定引用系统变量必须使用单引号加双引号，即’”$sysvar”‘这样的格式，但是split函数也需要双引号来定界，但这个双引号又不能让sh解释，而应留给awk来解释，所以使用了\”和\”组成的双引号</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.ite]]>
+    <![CDATA[<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.iteye.com/blog/1304823">详情参考</a></p>
+<p>else if 这种不能放 pattern, 只能放 action</p>
+<p>来点例子加深印象:</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">awk -F, '&#123;<span class="keyword">print</span> <span class="string">""</span>;<span class="keyword">print</span> <span class="label">$2&#125;</span>' OFS=<span class="string">"\t"</span></span><br><span class="line">awk 'BEGIN&#123;FS=<span class="string">":"</span>&#125; &#123;<span class="keyword">if</span>(<span class="label">$6</span> ~ /TIME/ ) <span class="keyword">print</span> <span class="label">$1&#125;</span>'</span><br><span class="line">awk &#123;<span class="keyword">sum</span>+=<span class="label">$5&#125;</span> END &#123;<span class="keyword">print</span> <span class="keyword">sum</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>输入驱动</p>
+<p>匹配行 /xx/</p>
+<p>匹配字段 $6 ~ /xx/</p>]]>
+    
     </summary>
     
       <category term="awk" scheme="http://yoursite.com/tags/awk/"/>

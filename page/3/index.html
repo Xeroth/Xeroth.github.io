@@ -220,84 +220,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BED_u6CD5"><span class="toc-number">1.</span> <span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5B66_u4E60_u8D44_u6599"><span class="toc-number">1.1.</span> <span class="toc-text">学习资料</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7591_u95EE"><span class="toc-number">2.</span> <span class="toc-text">疑问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9E_u4F8B_3A"><span class="toc-number">3.</span> <span class="toc-text">实例:</span></a></li></ol>
-            </div>
-        
-        <h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.iteye.com/blog/1304823" target="_blank" rel="external">详情参考</a></p>
+        <h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.iteye.com/blog/1304823">详情参考</a></p>
 <p>else if 这种不能放 pattern, 只能放 action</p>
 <p>来点例子加深印象:</p>
 <figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">awk -F, '&#123;<span class="keyword">print</span> <span class="string">""</span>;<span class="keyword">print</span> <span class="label">$2&#125;</span>' OFS=<span class="string">"\t"</span></span><br><span class="line">awk 'BEGIN&#123;FS=<span class="string">":"</span>&#125; &#123;<span class="keyword">if</span>(<span class="label">$6</span> ~ /TIME/ ) <span class="keyword">print</span> <span class="label">$1&#125;</span>'</span><br><span class="line">awk &#123;<span class="keyword">sum</span>+=<span class="label">$5&#125;</span> END &#123;<span class="keyword">print</span> <span class="keyword">sum</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>输入驱动</p>
 <p>匹配行 /xx/</p>
 <p>匹配字段 $6 ~ /xx/</p>
-<h4 id="u5B66_u4E60_u8D44_u6599"><a href="#u5B66_u4E60_u8D44_u6599" class="headerlink" title="学习资料"></a>学习资料</h4><p>据说看完<a href="http://xstarcd.github.io/wiki/shell/awk_oneliner.html" target="_blank" rel="external">awk_oneliner</a>就成 awk 高手了, 看了80%, 自我感觉不错~, 大部分 awk 学习博客的例子已经可以自行解决了</p>
-<h3 id="u7591_u95EE"><a href="#u7591_u95EE" class="headerlink" title="疑问"></a>疑问</h3><p>1.下面的为何+号位置不同, 导致 root 的内存占用也不同呢? 似乎 += 这种是正确的写法</p>
-<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]=+$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">6228</span>KB</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]+=$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">94852</span>KB</span><br></pre></td></tr></table></figure>
-<h3 id="u5B9E_u4F8B_3A"><a href="#u5B9E_u4F8B_3A" class="headerlink" title="实例:"></a>实例:</h3><p>1.去重复行, 原理就是利用初始数组变量值为零<a href="http://blog.csdn.net/crazyhacking/article/details/12521919" target="_blank" rel="external">去重原理分析</a></p>
-<pre><code>awk &apos;!a[$0]++&apos; &lt;filename&gt;
-</code></pre><p>2.显示所有只有四个字符的名</p>
-<pre><code>awk  &apos;{if(length($1)==4)  print $1}&apos; datafile
-</code></pre><p>3.文件合并</p>
-<p>我有2个文件 tmp1.txt 和 tmp2.txt</p>
-<pre><code>tmp1.txt
-20
-18
-19
-
-tmp2.txt
-15
-14
-13
-</code></pre><p>我想做个文件tmp3.txt做成</p>
-<pre><code>20 15
-18 14
-19 13
-</code></pre><p>方法一, 用 paste 命令</p>
-<pre><code>paste tmp1.txt tmp2.txt &gt;tmp3.txt
-</code></pre><p>方法二, 用 FNR 和 NR , 输出$0 (合并2个文件有用)</p>
-<pre><code>awk &apos;NR==FNR{a[NR]=$0} NR&gt;FNR{print a[FNR],$0}&apos; tmp1.txt tmp2.txt | tee tmp3.txt
-</code></pre><p>方法三, 使用数组存储$1</p>
-<pre><code>awk &apos;NR==FNR{a[NR]=$1;count=NR} NR&gt;FNR{b[NR-count]=$1} END{for(i=1;i&lt;=count;i++)print a[i],b[i]}&apos; tmp1.txt tmp2.txt | tee tmp3.txt
-</code></pre><p>4.把以\结束的行同下一行相接(sub, getline, next用法)</p>
-<pre><code>awk &apos;/\\$/ { sub(/\\$/,&quot;&quot;); getline t; print $0 t; next }; 1′
-</code></pre><p>首先查找以\结束的行，并删除\。然后getline函数获取下一行的内容，输出当前行（去掉了\）和下一行的相接后的内容。并用next跳过后面的1避免重复输出。如果当前行行末没有\，会直接执行1输出。</p>
-<p>5.合并行输出(next在多行合并，以及选择性输出方面，非常方便)</p>
-<figure class="highlight erlang-repl"><table><tr><td class="code"><pre><span class="line"><span class="function_or_atom">root</span>@<span class="variable">Ubuntu</span>:~/<span class="function_or_atom">awkpractice</span># <span class="function_or_atom">cat</span> <span class="number">6</span>.<span class="function_or_atom">c</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]</span><br><span class="line"></span><br><span class="line"><span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">tomcat</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">sendmail</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web02</span>[<span class="number">192.168</span>.<span class="number">2.101</span>]</span><br><span class="line"><span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">postfix</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web03</span>[<span class="number">192.168</span>.<span class="number">2.102</span>]</span><br><span class="line"><span class="function_or_atom">mysqld</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">httpd</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">root</span>@<span class="variable">Ubuntu</span>:~/<span class="function_or_atom">awkpractice</span># <span class="function_or_atom">awk</span> <span class="string">'$1 ~ /web/ &#123;a=$0;next&#125; ; !/^$/ &#123;print a":\t" $0&#125;'</span> <span class="number">6</span>.<span class="function_or_atom">c</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]:	<span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]:	<span class="function_or_atom">tomcat</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web01</span>[<span class="number">192.168</span>.<span class="number">2.100</span>]:	<span class="function_or_atom">sendmail</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web02</span>[<span class="number">192.168</span>.<span class="number">2.101</span>]:	<span class="function_or_atom">httpd</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web02</span>[<span class="number">192.168</span>.<span class="number">2.101</span>]:	<span class="function_or_atom">postfix</span>               <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web03</span>[<span class="number">192.168</span>.<span class="number">2.102</span>]:	<span class="function_or_atom">mysqld</span>            <span class="ok">ok</span></span><br><span class="line"><span class="function_or_atom">web03</span>[<span class="number">192.168</span>.<span class="number">2.102</span>]:	<span class="function_or_atom">httpd</span>               <span class="ok">ok</span></span><br></pre></td></tr></table></figure>
-<p>6.把每5行用逗号相连</p>
-<p>pattern ? pattern : pattern  (三目运算符) 满足表达式条件, 就输出?后面的, 不满足输出:后面的</p>
-<pre><code>awk &apos;ORS=NR%5?&quot;,&quot;:&quot;\n&quot;&apos;
-</code></pre><p>这里在每行输出前，对ORS重新进行定义，如果行号能被5整除则为\n，否则为逗号。（也很天书的一句）</p>
-<p>7.getline 的一些用法</p>
-<pre><code>#输出偶数行, 不跟变量赋值给$0
-seq 10 |awk &apos;{getline;print}&apos;
-#输出奇数行
-seq 10 |awk &apos;{getline t;print}&apos;
-#配合 system , 因为 system(cmd)返回的是 cmd 的返回值
-awk &apos;BEGIN{ while( system(&quot;ls -l&quot;) | getline line ){ print line } }&apos;
-</code></pre><p>8.split</p>
-<p>The awk function split(s,a,sep) splits a string s into an awk array a using the delimiter sep.</p>
-<pre><code>set time = 12:34:56
-set hr = `echo $time | awk &apos;{split($0,a,&quot;:&quot; ); print a[1]}&apos;` # = 12
-set sec = `echo $time | awk &apos;{split($0,a,&quot;:&quot; ); print a[3]}&apos;` # = 56
-# = 12 34 56
-set hms = `echo $time | awk &apos;{split($0,a,&quot;:&quot; ); print a[1], a[2], a[3]}&apos;`
-</code></pre><p>Q:</p>
-<pre><code>name=&quot;76868&amp;5676&amp;435&amp;43526&amp;334&amp;12312312&amp;12321&quot;
-awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&apos;
-</code></pre><p>为什么是1</p>
-<p>而</p>
-<pre><code>awk &apos;BEGIN {print split(&quot;76868&amp;5676&amp;435&amp;43526&amp;334&amp;12312312&amp;12321&quot;, filearray, &quot;&amp;&quot;)}&apos;
-</code></pre><p>则返回正确的结果，应该是7，有没有人解答一下？</p>
-<p>A:</p>
-<p>变量引用错误，这样做试试</p>
-<pre><code>awk &apos;BEGIN {print split(&apos;&quot;\&quot;$name\&quot;&quot;&apos;, filearray, &quot;&amp;&quot;)}&apos;
-</code></pre><p>awk规定引用系统变量必须使用单引号加双引号，即’”$sysvar”‘这样的格式，但是split函数也需要双引号来定界，但这个双引号又不能让sh解释，而应留给awk来解释，所以使用了\”和\”组成的双引号</p>
-
       
     </div>
     
@@ -314,6 +243,10 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/08/awk学习笔记-一/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

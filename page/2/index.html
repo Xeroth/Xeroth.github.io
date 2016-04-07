@@ -567,14 +567,6 @@ authz-db = authz
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><span class="toc-number">1.</span> <span class="toc-text">关于正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hold_Space__u7F13_u51B2_u533A"><span class="toc-number">2.</span> <span class="toc-text">Hold Space 缓冲区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B9E_u4F8B"><span class="toc-number">3.</span> <span class="toc-text">实例</span></a></li></ol>
-            </div>
-        
         <p>定位行 ‘/pattern/‘</p>
 <p>定位行内匹配变量  ‘s///3’</p>
 <p>操作:</p>
@@ -598,39 +590,7 @@ $ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
 . 表示任何单个字符。
 \* 表示某个字符出现了0次或多次。
 [ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
-</code></pre><h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
-<pre><code>g： 将hold space中的内容拷贝到pattern space中，原来pattern space里的内容清除
-G： 将hold space中的内容append到pattern space\n后
-h： 将pattern space中的内容拷贝到hold space中，原来的hold space里的内容被清除
-H： 将pattern space中的内容append到hold space\n后
-x： 交换pattern space和hold space的内容
-</code></pre><p>g( go, 走你 ) 类似于 cat <code>hold space</code> &gt; <code>pattern space</code></p>
-<p>G( 大狗, 追加 ) 类似于 cat <code>hold space</code> &gt;&gt; <code>pattern space</code></p>
-<p>h( 跟g相反 ),  cat <code>pattern space</code> &gt; <code>hold space</code></p>
-<p>H ( 跟G相反 ), 类似于 <code>pattern space</code> cat  &gt;&gt; <code>hold space</code></p>
-<h3 id="u5B9E_u4F8B"><a href="#u5B9E_u4F8B" class="headerlink" title="实例"></a>实例</h3><p>1.匹配以500结尾的工资(BRE正则要转义)</p>
-<pre><code>root@Ubuntu:~/awkpractice# sed -n &quot;/:[0-9]+500$/p&quot; datafile
-root@Ubuntu:~/awkpractice# sed -n &quot;/:[0-9]\+500$/p&quot; datafile
-Paco Gutierrez:835-365-1284:454 Easy Street, Decatur, IL 75732:2/28/53:123500
-Barbara Kertz:385-573-8326:832 Ponce Drive, Gary, IN 83756:12/1/46:268500
-William Kopf:846-836-2837:6937 Ware Road, Milton, PA 93756:9/21/46:43500
-Sir Lancelot:837-835-8257:474 Camelot Boulevard, Bath, WY 28356:5/13/69:24500
-Zippy Pinhead:834-823-8319:2356 Bizarro Ave., Farmount, IL 84357:1/1/67:89500
-</code></pre><p>2.姓名交换位置–圆括号的使用</p>
-<pre><code>root@Ubuntu:~/awkpractice# sed  &apos;s/\(^[a-zA-Z]\+\)\ \([a-zA-Z]\+\):\(.*\)/\2 \1:\3/&apos; datafile
-Corder Norma:397-857-2735:74 Pine Street, Dearborn, MI 23874:3/28/45:245700
-Cowan Jennifer:548-834-2348:583 Laurel Ave., Kingsville, TX 83745:10/1/35:58900
-DeLoach Jon:408-253-3122:123 Park St., San Jose, CA 04086:7/25/53:85100
-Evich Karen:284-758-2857:23 Edgecliff Place, Lincoln, NB 92086:7/25/53:85100
-Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
-</code></pre><p>3.把 port 的数字填到 zoneid里去 (使用 ERE 模式的 sed)</p>
-<figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/awkpractice# cat gamefile</span><br><span class="line">&lt;server name=<span class="string">"92服"</span>  <span class="keyword">port</span>=<span class="string">"10092"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"93服"</span>  <span class="keyword">port</span>=<span class="string">"10093"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"94服"</span>  <span class="keyword">port</span>=<span class="string">"10094"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"95服"</span>  <span class="keyword">port</span>=<span class="string">"10095"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"96服"</span>  <span class="keyword">port</span>=<span class="string">"10096"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">root@Ubuntu:~/awkpractice# sed -r <span class="attribute">'s</span>/(.*<span class="keyword">port</span>=<span class="string">")([0-9]+)("</span>.*zoneid=<span class="string">")("</span>.*$)/\<span class="number">1</span>\<span class="number">2</span>\<span class="number">3</span>\<span class="number">2</span>\<span class="number">4</span>/' gamefile</span><br><span class="line">&lt;server name=<span class="string">"92服"</span>  <span class="keyword">port</span>=<span class="string">"10092"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10092"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"93服"</span>  <span class="keyword">port</span>=<span class="string">"10093"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10093"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"94服"</span>  <span class="keyword">port</span>=<span class="string">"10094"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10094"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"95服"</span>  <span class="keyword">port</span>=<span class="string">"10095"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10095"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"96服"</span>  <span class="keyword">port</span>=<span class="string">"10096"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10096"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>sed默认是BRE，加上-r参数后变成ERE</p>
-<p>4.<a href="http://bbs.chinaunix.net/thread-4241283-1-1.html" target="_blank" rel="external">关于sed中的\1\2\3能否赋值给变量</a></p>
-<p>感谢:</p>
-<p><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a></p>
-<p><a href="http://www.infoq.com/cn/news/2011/07/regular-expressions-6-POSIX" target="_blank" rel="external">Linux/Unix工具与正则表达式的POSIX规范</a></p>
-
+</code></pre>
       
     </div>
     
@@ -647,6 +607,10 @@ Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/11/sed学习笔记/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

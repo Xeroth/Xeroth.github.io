@@ -18,7 +18,7 @@ awk -F, &apos;&amp;#123;print &quot;&quot;;print $2&amp;#125;&apos; OFS=&quot;\t
 else if 这种不能放 pattern, 只能放 action
 来点例子加深印象:
 awk -F, &apos;&amp;#123;print &quot;&quot;;print $2&amp;#125;&apos; OFS=&quot;\t&quot;awk &apos;BEGIN&amp;#123;FS=&quot;:&quot;&amp;#125; &amp;#123;if($6 ~ /TIME/ ) print $1&amp;#125;&apos;awk &amp;#123">
-<meta property="og:updated_time" content="2016-03-15T01:10:38.000Z">
+<meta property="og:updated_time" content="2016-04-07T12:26:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="awk学习笔记(一)">
 <meta name="twitter:description" content="语法awk ‘/PATTERN/{action}’  详情参考
@@ -258,6 +258,7 @@ awk -F, &apos;&amp;#123;print &quot;&quot;;print $2&amp;#125;&apos; OFS=&quot;\t
 <p>输入驱动</p>
 <p>匹配行 /xx/</p>
 <p>匹配字段 $6 ~ /xx/</p>
+<a id="more"></a>
 <h4 id="u5B66_u4E60_u8D44_u6599"><a href="#u5B66_u4E60_u8D44_u6599" class="headerlink" title="学习资料"></a>学习资料</h4><p>据说看完<a href="http://xstarcd.github.io/wiki/shell/awk_oneliner.html" target="_blank" rel="external">awk_oneliner</a>就成 awk 高手了, 看了80%, 自我感觉不错~, 大部分 awk 学习博客的例子已经可以自行解决了</p>
 <h3 id="u7591_u95EE"><a href="#u7591_u95EE" class="headerlink" title="疑问"></a>疑问</h3><p>1.下面的为何+号位置不同, 导致 root 的内存占用也不同呢? 似乎 += 这种是正确的写法</p>
 <figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]=+$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">6228</span>KB</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~/awkpractice</span><span class="comment"># ps aux |awk 'NR!=1&#123;a[$1]+=$6&#125; END &#123;for (i in a) print i, a[i]"KB"&#125;'</span></span><br><span class="line">privoxy <span class="number">3392</span>KB</span><br><span class="line">message+ <span class="number">2492</span>KB</span><br><span class="line">syslog <span class="number">3872</span>KB</span><br><span class="line">daemon <span class="number">164</span>KB</span><br><span class="line">root <span class="number">94852</span>KB</span><br></pre></td></tr></table></figure>

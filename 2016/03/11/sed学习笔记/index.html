@@ -38,7 +38,7 @@
         |   `-- vi
         `-- ERE
             |-- awk">
-<meta property="og:updated_time" content="2016-03-18T11:53:59.000Z">
+<meta property="og:updated_time" content="2016-04-07T12:25:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sed学习笔记">
 <meta name="twitter:description" content="定位行 ‘/pattern/‘
@@ -304,7 +304,8 @@ $ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
 . 表示任何单个字符。
 \* 表示某个字符出现了0次或多次。
 [ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
-</code></pre><h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
+</code></pre><a id="more"></a>
+<h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
 <pre><code>g： 将hold space中的内容拷贝到pattern space中，原来pattern space里的内容清除
 G： 将hold space中的内容append到pattern space\n后
 h： 将pattern space中的内容拷贝到hold space中，原来的hold space里的内容被清除
