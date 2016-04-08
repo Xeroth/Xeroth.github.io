@@ -178,7 +178,7 @@ OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
     <link href="http://yoursite.com/2016/04/01/mac-os-%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8postgresql/"/>
     <id>http://yoursite.com/2016/04/01/mac-os-安装使用postgresql/</id>
     <published>2016-04-01T08:42:33.000Z</published>
-    <updated>2016-04-07T12:27:59.000Z</updated>
+    <updated>2016-04-08T03:27:53.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>➜ /Users/cristaly7/Desktop/15/15 &gt;brew install postgres
 ==&gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
 ######################################################################## 100.0%
@@ -277,7 +277,7 @@ Or, if you don&apos;t want/need launchctl, you can just run:
     
     </summary>
     
-      <category term="Mac OS" scheme="http://yoursite.com/tags/Mac-OS/"/>
+      <category term="os x" scheme="http://yoursite.com/tags/os-x/"/>
     
       <category term="postgresql" scheme="http://yoursite.com/tags/postgresql/"/>
     
