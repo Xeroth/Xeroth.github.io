@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-07T12:13:51.000Z</updated>
+  <updated>2016-04-08T03:24:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,23 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Shell数组]]></title>
+    <link href="http://yoursite.com/2016/04/08/Shell%E6%95%B0%E7%BB%84/"/>
+    <id>http://yoursite.com/2016/04/08/Shell数组/</id>
+    <published>2016-04-08T03:19:37.000Z</published>
+    <updated>2016-04-08T03:24:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409" target="_blank" rel="external">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="heade]]>
+    </summary>
+    
+      <category term="shell" scheme="http://yoursite.com/tags/shell/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[centos7 安装破解confluence 5.8]]></title>
@@ -1698,101 +1715,6 @@ root@Ubuntu:~# cd nginx_ubuntu
       <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
       <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[<<Docker从入门到实践>>读书笔记(一) 基础篇]]></title>
-    <link href="http://yoursite.com/2016/01/27/Docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E8%B7%B5-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2016/01/27/Docker从入门到实践-读书笔记/</id>
-    <published>2016-01-27T14:03:09.000Z</published>
-    <updated>2016-01-27T14:03:09.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<p>环境:</p>
-<ul>
-<li>Mac OS X 10.11</li>
-<li>Ubuntu 14.04</li>
-<li>Docker Tools安装</li>
-</ul>
-<p>记录一下 docker 的学习历程, 三大基础概念已经基本了解, 然后下一步有点迷茫, 虽然迷茫, 但是不能止步不前, 于是我决定先用最笨的方法, 按书上说的做一遍吧…, 虽然看起来都懂, 但是不做感觉不踏实啊 - -<br><a id="more"></a></p>
-<h4 id="u521B_u5EFA_u955C_u50CF"><a href="#u521B_u5EFA_u955C_u50CF" class="headerlink" title="创建镜像"></a>创建镜像</h4><p>1 拉取现有镜像, 修改后 commit</p>
-<p>2 Dockerfile创建</p>
-<p>3 导入镜像创建</p>
-<p>OpenVZ容器是一个轻量虚拟机，一个完整的操作系统环境，它的主要用途是充当虚拟私有服务器。而Docker的哲学是<em>每个容器运行一个应用进程</em></p>
-<p><a href="http://chuansong.me/n/1119422" target="_blank" rel="external">openvz vs docker</a></p>
-<h4 id="u5220_u9664_u955C_u50CF"><a href="#u5220_u9664_u955C_u50CF" class="headerlink" title="删除镜像"></a>删除镜像</h4><p>*注意：在删除镜像之前要先用 docker rm 删掉依赖于这个镜像的所有容器。</p>
-<h4 id="u8FDB_u5165_u5BB9_u5668"><a href="#u8FDB_u5165_u5BB9_u5668" class="headerlink" title="进入容器"></a>进入容器</h4><p>attach(不推荐)</p>
-<p>docker exec 是Docker內建的命令。下面示範如何使用該命令</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ sudo docker run -idt ubuntu</span><br><span class="line"><span class="number">243</span>c32535da7d142fb0e6df616a3c3ada0b8ab417937c853a9e1c251f499f550</span><br><span class="line">$ sudo docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line"><span class="number">243</span>c32535da7        ubuntu:latest       <span class="string">"/bin/bash"</span>         <span class="number">18</span> seconds ago      Up <span class="number">17</span> seconds                           nostalgic_hypatia</span><br><span class="line">$sudo docker exec -ti nostalgic_hypatia bash</span><br><span class="line">root@<span class="number">243</span>c32535da7:/<span class="preprocessor">#</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/jpetazzo/nsenter" target="_blank" rel="external">nsenter</a>  这个安装起来很蛋疼啊, 有了docker exec , 就不折腾 nsenter 了, 而且命令又臭又长</p>
-<h4 id="u5BB9_u5668_u7684_u5BFC_u51FA_u5BFC_u5165"><a href="#u5BB9_u5668_u7684_u5BFC_u51FA_u5BFC_u5165" class="headerlink" title="容器的导出导入"></a>容器的导出导入</h4><p>导出</p>
-<pre><code>docker export 7691a814370e &gt; ubuntu.tar
-</code></pre><p>导入</p>
-<pre><code>cat ubuntu.tar | docker import - test/buntu:v1.0
-</code></pre><p>通过导入导出功能, 可以实现容器的迁移</p>
-<p>思考: 通过docker import 导入产生的镜像和通过 docker load 文件导入的镜像有什么区别</p>
-<p>Tips:</p>
-<p>如何清理后台停止的容器？</p>
-<p>可以使用 docker rm $(docker ps -a -q) 命令</p>
-<p>如何退出一个镜像的bash，而不终止它？</p>
-<p>按 Ctrl-p Ctrl-q。</p>
-<p>退出容器时候自动删除?</p>
-<p>使用 –rm 选项，例如 sudo docker run –rm -it ubuntu</p>
-<h4 id="u4ED3_u5E93"><a href="#u4ED3_u5E93" class="headerlink" title="仓库"></a>仓库</h4><p>登陆</p>
-<figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">$ docker login</span><br><span class="line">Username: xeroth</span><br><span class="line">Password:</span><br><span class="line">Email: 123321@qq.com</span><br><span class="line"><span class="label">WARNING: </span>login credentials saved in /Users/cristaly7/.docker/config.json</span><br><span class="line">Login Succeeded</span><br></pre></td></tr></table></figure>
-<p>搜索镜像</p>
-<pre><code>docker search centos
-
-docker search -s 100 centos 显示100⭐️以上的镜像
-</code></pre><p>⭐️自动创建(Automated Builds) </p>
-<p>自动创建功能对于需要经常升级镜像内程序来说，十分方便。 有时候，用户创建了镜像，安装了某个软件，如果软件发布新版本则需要手动更新镜像<br>而自动创建允许用户通过 Docker Hub 指定跟踪一个目标网站（目前支持 GitHub 或 BitBucket）上的项目，一旦项目发生新的提交，则自动执行创建。</p>
-<p>参考资料:<br><a href="https://docs.docker.com/docker-hub/builds/" target="_blank" rel="external">https://docs.docker.com/docker-hub/builds/</a><br><a href="https://www.brianchristner.io/how-to-automate-docker-builds-end-to-end/" target="_blank" rel="external">https://www.brianchristner.io/how-to-automate-docker-builds-end-to-end/</a></p>
-<h5 id="dockerpool"><a href="#dockerpool" class="headerlink" title="dockerpool"></a>dockerpool</h5><p>dockerpool是国内的一个 docker 镜像资源网站</p>
-<p>下载一个镜像试试</p>
-<pre><code>docker pull dl.dockerpool.com:5000/ubuntu:12.04
-</code></pre><p>报错:</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker pull dl.dockerpool.<span class="string">com:</span><span class="number">5000</span>/<span class="string">centos:</span><span class="number">7</span></span><br><span class="line">Error response from <span class="string">daemon:</span> unable to ping registry endpoint <span class="string">https:</span><span class="comment">//dl.dockerpool.com:5000/v0/</span></span><br><span class="line">v2 ping attempt failed with <span class="string">error:</span> Get <span class="string">https:</span><span class="comment">//dl.dockerpool.com:5000/v2/: tls: oversized record received with length 28012</span></span><br><span class="line"> v1 ping attempt failed with <span class="string">error:</span> Get <span class="string">https:</span><span class="comment">//dl.dockerpool.com:5000/v1/_ping: tls: oversized record received with length 28012</span></span><br></pre></td></tr></table></figure>
-<p>解决方法:</p>
-<p>查看虚拟机名字</p>
-<figure class="highlight sqf"><table><tr><td class="code"><pre><span class="line">docker-machine ls</span><br><span class="line"><span class="built_in">NAME</span>      ACTIVE   <span class="built_in">DRIVER</span>       STATE     URL                         SWARM   DOCKER   ERRORS</span><br><span class="line"><span class="keyword">default</span>   *        virtualbox   Running   tcp:<span class="comment">//192.168.99.100:2376           v1.9.1</span></span><br></pre></td></tr></table></figure>
-<p>进入docker 虚拟机</p>
-<pre><code>docker-machine ssh default
-</code></pre><p>在default 虚拟机里修改 <em>/var/lib/boot2docker/profile</em> 文件, 在<strong>EXTRA_ARGS=</strong>里加入:<br><em>–insecure-registry dl.dockerpool.com:5000</em></p>
-<p>重启 vm</p>
-<pre><code>docker-machine restart default
-</code></pre><p>再次运行docker pull dl.dockerpool.com:5000/ubuntu:12.04 就可以了</p>
-<p>下载完成后:</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">docker images</span><br><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE</span><br><span class="line">xeroth/sinatra                  v2                  <span class="number">1</span>a6a1230cfe3        <span class="number">3</span> days ago          <span class="number">319.4</span> MB</span><br><span class="line">ubuntu                          <span class="number">14.04</span>               af88597ec24b        <span class="number">8</span> days ago          <span class="number">187.9</span> MB</span><br><span class="line">ubuntu                          latest              af88597ec24b        <span class="number">8</span> days ago          <span class="number">187.9</span> MB</span><br><span class="line">nginx                           latest              <span class="number">813e3731</span>b203        <span class="number">3</span> weeks ago         <span class="number">133.9</span> MB</span><br><span class="line">hello-world                     latest              <span class="number">0</span>a6ba66e537a        <span class="number">3</span> months ago        <span class="number">960</span> B</span><br><span class="line">dl.dockerpool.com:<span class="number">5000</span>/ubuntu   <span class="number">12.04</span>               <span class="number">0</span>b310e6bf058        <span class="number">14</span> months ago       <span class="number">126.7</span> MB</span><br></pre></td></tr></table></figure>
-<p>修改 tag</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ docker tag dl.dockerpool.com:<span class="number">5000</span>/ubuntu:<span class="number">12.04</span> ubuntu:<span class="number">12.04</span></span><br><span class="line">$ /Users/cristaly7 &gt;docker images</span><br><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE</span><br><span class="line">xeroth/sinatra                  v2                  <span class="number">1</span>a6a1230cfe3        <span class="number">3</span> days ago          <span class="number">319.4</span> MB</span><br><span class="line">ubuntu                          <span class="number">14.04</span>               af88597ec24b        <span class="number">8</span> days ago          <span class="number">187.9</span> MB</span><br><span class="line">ubuntu                          latest              af88597ec24b        <span class="number">8</span> days ago          <span class="number">187.9</span> MB</span><br><span class="line">nginx                           latest              <span class="number">813e3731</span>b203        <span class="number">3</span> weeks ago         <span class="number">133.9</span> MB</span><br><span class="line">hello-world                     latest              <span class="number">0</span>a6ba66e537a        <span class="number">3</span> months ago        <span class="number">960</span> B</span><br><span class="line">ubuntu                          <span class="number">12.04</span>               <span class="number">0</span>b310e6bf058        <span class="number">14</span> months ago       <span class="number">126.7</span> MB</span><br><span class="line">dl.dockerpool.com:<span class="number">5000</span>/ubuntu   <span class="number">12.04</span>               <span class="number">0</span>b310e6bf058        <span class="number">14</span> months ago       <span class="number">126.7</span> MB</span><br></pre></td></tr></table></figure>
-<h5 id="u2B50_uFE0Fdocker__u955C_u50CF_u52A0_u901F_u7F51_u7AD9"><a href="#u2B50_uFE0Fdocker__u955C_u50CF_u52A0_u901F_u7F51_u7AD9" class="headerlink" title="⭐️docker 镜像加速网站"></a>⭐️docker 镜像加速网站</h5><p>发现了这个, 感觉 dockerpool 白弄了😂</p>
-<p>国内的有 <a href="http://dockerpool.com/article/1419997003" target="_blank" rel="external">DaoCloud</a> 还有阿里的, 我此刻用的是阿里TAE2.0的<a href="http://tae.taobao.com/mirror/index.html?#/docker/speed/stat" target="_blank" rel="external">docker加速器</a></p>
-<p>使用方法也很简单, 登陆阿里, 获取分配的镜像地址, 跟上面折腾 dockerpool 一样进入 vm, 修改文件<em>/var/lib/boot2docker/profile</em>, 在EXTRA_ARGS=里加入:<em>–registry-mirror=<a href="http://6tgwmnjm.mirror.aliyun.com" target="_blank" rel="external">http://6tgwmnjm.mirror.aliyun.com</a></em></p>
-<p>真是飞一般的感觉啊! 妈妈再也不用担心我 docker 的上传下载了 , 谢谢 TAE</p>
-<h5 id="u2B50_uFE0F_u79C1_u6709_u4ED3_u5E93"><a href="#u2B50_uFE0F_u79C1_u6709_u4ED3_u5E93" class="headerlink" title="⭐️私有仓库"></a>⭐️私有仓库</h5><p><a href="http://www.a-ho.com/2016/01/15/Docker私有仓库/" target="_blank" rel="external">搭建私有仓库</a>   </p>
-<h4 id="u6570_u636E_u5377"><a href="#u6570_u636E_u5377" class="headerlink" title="数据卷"></a>数据卷</h4><p><a href="http://www.a-ho.com/2016/01/23/Docker数据卷/" target="_blank" rel="external">Docker 数据卷</a></p>
-<h4 id="u5BB9_u5668_u4E92_u901A"><a href="#u5BB9_u5668_u4E92_u901A" class="headerlink" title="容器互通"></a>容器互通</h4><p><a href="http://www.a-ho.com/2016/01/24/容器间通信/" target="_blank" rel="external">容器间通信</a></p>
-<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><p>[]</p>
-<p><a href="http://www.cnblogs.com/programfish/p/4101884.html" target="_blank" rel="external">CMD 与 ENTRYPOINT 的区别</a></p>
-<h4 id="To_be_continue"><a href="#To_be_continue" class="headerlink" title="To be continue .."></a>To be continue ..</h4><p>Reference:</p>
-<p><a href="https://github.com/docker/toolbox/issues/83" target="_blank" rel="external">docker pull 证书报错</a></p>
-<p><a href="https://www.gitbook.com/book/philipzheng/docker_practice/details" target="_blank" rel="external">Docker —— 從入門到實踐­</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<hr>
-<p>环境:</p>
-<ul>
-<li>Mac OS X 10.11</li>
-<li>Ubuntu 14.04</li>
-<li>Docker Tools安装</li>
-</ul>
-<p>记录一下 docker 的学习历程, 三大基础概念已经基本了解, 然后下一步有点迷茫, 虽然迷茫, 但是不能止步不前, 于是我决定先用最笨的方法, 按书上说的做一遍吧…, 虽然看起来都懂, 但是不做感觉不踏实啊 - -<br>]]>
-    
-    </summary>
-    
-      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
