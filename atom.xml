@@ -981,7 +981,7 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
     <link href="http://yoursite.com/2016/02/25/%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E7%94%B5%E8%84%91%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2016/02/25/解决一些电脑问题/</id>
     <published>2016-02-25T03:38:54.000Z</published>
-    <updated>2016-04-07T12:19:36.000Z</updated>
+    <updated>2016-04-08T03:12:20.000Z</updated>
     <content type="html"><![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
 <h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
 <p>解决方法:</p>
@@ -1007,6 +1007,7 @@ $sudo dpkg-reconfigure locales
 <p>试试吧。</p>
 <p><a href="http://www.chinamac.com/2014/0328/2471.html" target="_blank" rel="external">教你如何用快捷键 还原最小化的窗口</a></p>
 <h3 id="Filezilla_sftp__u5BC6_u94A5_u767B_u9646"><a href="#Filezilla_sftp__u5BC6_u94A5_u767B_u9646" class="headerlink" title="Filezilla sftp 密钥登陆"></a>Filezilla sftp 密钥登陆</h3><p>使用的是 id_rsa 文件, 而不是id_rsa.pub 文件</p>
+<h3 id="Chrome__u9690_u85CF_u4E66_u7B7E_u680F"><a href="#Chrome__u9690_u85CF_u4E66_u7B7E_u680F" class="headerlink" title="Chrome 隐藏书签栏"></a>Chrome 隐藏书签栏</h3><p>Shift+command+b</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html">小马win7激活工具</a>, 解压, 运行</p>
