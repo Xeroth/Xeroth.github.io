@@ -6,25 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>nginx rewrite | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="网址跳转server &amp;#123;	listen       80;	server_name  www.123.cn 123.cn;	access_log off;	rewrite ^/(.*)$ http://www.evergrande.com/$1 permanent;&amp;#125;
+  <meta name="description" content="网址跳转server &amp;#123;	listen       80;	server_name  www.123.cn 123.cn;	access_log off;	rewrite ^/(.*)$ http://www.123.com/$1 permanent;&amp;#125;
 配置生效后, 用curl查看一下
 $ curl -I www.123.cn
-HTTP/1.1 301 Move">
+HTTP/1.1 301 Moved Perma">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx rewrite">
 <meta property="og:url" content="http://yoursite.com/2016/03/25/nginx-rewrite/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="网址跳转server &amp;#123;	listen       80;	server_name  www.123.cn 123.cn;	access_log off;	rewrite ^/(.*)$ http://www.evergrande.com/$1 permanent;&amp;#125;
+<meta property="og:description" content="网址跳转server &amp;#123;	listen       80;	server_name  www.123.cn 123.cn;	access_log off;	rewrite ^/(.*)$ http://www.123.com/$1 permanent;&amp;#125;
 配置生效后, 用curl查看一下
 $ curl -I www.123.cn
-HTTP/1.1 301 Move">
-<meta property="og:updated_time" content="2016-03-25T02:40:30.000Z">
+HTTP/1.1 301 Moved Perma">
+<meta property="og:updated_time" content="2016-04-09T07:19:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx rewrite">
-<meta name="twitter:description" content="网址跳转server &amp;#123;	listen       80;	server_name  www.123.cn 123.cn;	access_log off;	rewrite ^/(.*)$ http://www.evergrande.com/$1 permanent;&amp;#125;
+<meta name="twitter:description" content="网址跳转server &amp;#123;	listen       80;	server_name  www.123.cn 123.cn;	access_log off;	rewrite ^/(.*)$ http://www.123.com/$1 permanent;&amp;#125;
 配置生效后, 用curl查看一下
 $ curl -I www.123.cn
-HTTP/1.1 301 Move">
+HTTP/1.1 301 Moved Perma">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -251,7 +251,7 @@ HTTP/1.1 301 Move">
             <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F51_u5740_u8DF3_u8F6C"><span class="toc-number">1.</span> <span class="toc-text">网址跳转</span></a></li></ol>
             </div>
         
-        <h3 id="u7F51_u5740_u8DF3_u8F6C"><a href="#u7F51_u5740_u8DF3_u8F6C" class="headerlink" title="网址跳转"></a>网址跳转</h3><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">	<span class="title">listen</span>       <span class="number">80</span>;</span><br><span class="line">	<span class="title">server_name</span>  www.<span class="number">123</span>.cn <span class="number">123</span>.cn;</span><br><span class="line">	<span class="title">access_log</span> <span class="built_in">off</span>;</span><br><span class="line">	<span class="title">rewrite</span><span class="regexp"> ^/(.*)$</span> <span class="url">http://www.evergrande.com/<span class="variable">$1</span></span> <span class="built_in">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="u7F51_u5740_u8DF3_u8F6C"><a href="#u7F51_u5740_u8DF3_u8F6C" class="headerlink" title="网址跳转"></a>网址跳转</h3><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">	<span class="title">listen</span>       <span class="number">80</span>;</span><br><span class="line">	<span class="title">server_name</span>  www.<span class="number">123</span>.cn <span class="number">123</span>.cn;</span><br><span class="line">	<span class="title">access_log</span> <span class="built_in">off</span>;</span><br><span class="line">	<span class="title">rewrite</span><span class="regexp"> ^/(.*)$</span> <span class="url">http://www.123.com/<span class="variable">$1</span></span> <span class="built_in">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>配置生效后, 用curl查看一下</p>
 <pre><code>$ curl -I www.123.cn
 HTTP/1.1 301 Moved Permanently
