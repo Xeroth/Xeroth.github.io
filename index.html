@@ -73,10 +73,10 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
+						<li>Menu</li>
 						<li>標籤</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
 						<li>關於</li>
@@ -220,14 +220,6 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8D77_u56E0"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6743_u9650_u6D4B_u8BD5"><span class="toc-number">2.</span> <span class="toc-text">权限测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u4ED3_u5E93_u95F4_u6570_u636E"><span class="toc-number">2.1.</span> <span class="toc-text">仓库间数据</span></a></li></ol></li></ol>
-            </div>
-        
         <h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
 <pre><code>project1
     ├── branches
@@ -244,18 +236,6 @@
 <p><strong>branches</strong>是分支。一些阶段性的release版本，这些版本是可以继续进行开发和维护的，则放在branches目录中。又比如为不同用户客制化的版本，也可以放在分支中进行开发。</p>
 <p><strong>tags</strong>目录一般是只读的，这里存储阶段性的发布版本，只是作为一个里程碑的版本进行存档。    </p>
 <p>现在需要将分散的代码仓库都迁移放到 <em>trunk-code</em> 目录下进行分类存放, 并规划相应仓库的人员权限</p>
-<h3 id="u6743_u9650_u6D4B_u8BD5"><a href="#u6743_u9650_u6D4B_u8BD5" class="headerlink" title="权限测试"></a>权限测试</h3><p>由于迁移得先通知部门成员, 停止提交并暂停 svn 服务, 估计得找个夜黑风高的时候进行, 大白天的我还是先测试一下子目录里仓库的人员权限吧</p>
-<h4 id="u4ED3_u5E93_u95F4_u6570_u636E"><a href="#u4ED3_u5E93_u95F4_u6570_u636E" class="headerlink" title="仓库间数据"></a>仓库间数据</h4><p>虽说是权限测试, 我们也得搞点数据过来, 顺便当代码仓库迁移演练吧</p>
-<p>不能直接将A仓库重命名为B，或将A复制得到一个复本，再将复本命名为B</p>
-<p>使用<em>svnadmin dump</em> &amp; <em>svnadmin load</em></p>
-<p>创建B仓库(如果B不存在)</p>
-<pre><code>svnadmin create /svndata/B    
-</code></pre><p>得到A仓库.dump文件A.dump</p>
-<p>svnadmin dump /svndata/A &gt; A.dump    </p>
-<p>参考:</p>
-<p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
-<p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
-
       
     </div>
     
@@ -272,6 +252,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/12/svn仓库间数据转移/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
