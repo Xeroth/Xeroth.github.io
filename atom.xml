@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-12T07:40:55.000Z</updated>
+  <updated>2016-04-12T08:16:23.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/04/12/svn%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/"/>
     <id>http://yoursite.com/2016/04/12/svn仓库间数据转移/</id>
     <published>2016-04-12T01:36:17.000Z</published>
-    <updated>2016-04-12T07:40:55.000Z</updated>
+    <updated>2016-04-12T08:16:23.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
 <pre><code>project1
     ├── branches
@@ -86,7 +86,7 @@ Reverted &apos;everinner_app/intest&apos;
 [root@iZ94c5cs7guZ php]# svn st
 M       everouter_app/outest
 </code></pre><p>好, 可以睇到, 单独 revert 一个未 commit 的文件系某问题嘅</p>
-<p>然后测试对整个目录的回滚</p>
+<p>然后测试对整个目录的回滚, 先进行一些变更</p>
 <pre><code>[root@iZ94c5cs7guZ php]# cd everinner_app/
 [root@iZ94c5cs7guZ everinner_app]# echo 789 &gt; intest
 [root@iZ94c5cs7guZ everinner_app]# cd conf/
@@ -97,12 +97,14 @@ A         intest2
 [root@iZ94c5cs7guZ everinner_app]# svn st
 M       conf/intest2
 M       intest
-[root@iZ94c5cs7guZ everinner_app]# cd ..
+</code></pre><p>看看发生的变更</p>
+<pre><code>[root@iZ94c5cs7guZ everinner_app]# cd ..
 [root@iZ94c5cs7guZ php]# svn st
 A       everinner_app/conf/intest2
 M       everinner_app/intest
 M       everouter_app/outest
-[root@iZ94c5cs7guZ php]# svn revert everinner_app/ --recursive
+</code></pre><p>回滚everinner_app目录</p>
+<pre><code>[root@iZ94c5cs7guZ php]# svn revert everinner_app/ --recursive
 Reverted &apos;everinner_app/conf/intest2&apos;
 Reverted &apos;everinner_app/intest&apos;
 [root@iZ94c5cs7guZ php]# svn st
@@ -110,8 +112,18 @@ M       everouter_app/outest
 </code></pre><p>可以看出, 未 commit 的目录也是可以整个回滚的, 但是具体到开发人员使用会是怎样的一种情况呢…</p>
 <p>那么已经 commit 的情况下呢?</p>
 <p>查看一下提交的历史记录</p>
-<pre><code>svn log| less
+<pre><code>$ svn update
 
+$ svn log|less
+
+------------------------------------------------------------------------
+r5 | hugo | 2016-04-12 16:02:32 +0800 (Tue, 12 Apr 2016) | 1 line
+
+666 outest
+------------------------------------------------------------------------
+r4 | hugo | 2016-04-12 15:59:55 +0800 (Tue, 12 Apr 2016) | 1 line
+
+add outest change
 ------------------------------------------------------------------------
 r3 | hugo | 2016-04-12 14:20:01 +0800 (Tue, 12 Apr 2016) | 1 line
 
@@ -125,11 +137,50 @@ r1 | hugo | 2016-04-12 11:56:01 +0800 (Tue, 12 Apr 2016) | 1 line
 
 add trunk/code/php/everinner_app and trunk/code/php/everouter_app
 ------------------------------------------------------------------------
-</code></pre><p>假设我们outest 文件修改错了, 要回滚到r2版本(当前版本是 r3)</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn diff -r 2:3 everouter_app/outest
+(END)
+</code></pre><p>假设我们outest 文件修改错了, 要回滚到r3版本(当前版本是 r5, ), 先对比一下</p>
+<pre><code>[root@iZ94c5cs7guZ php]# svn diff -r 5:3 everouter_app/outest
 Index: everouter_app/outest
 ===================================================================
-</code></pre><p>参考:</p>
+--- everouter_app/outest    (revision 5)
++++ everouter_app/outest    (revision 3)
+@@ -1,2 +0,0 @@
+-456
+-666
+</code></pre><p>可以看出 r3版本是没有456,666这两行的,确定无误之后, 用 merge 回滚</p>
+<pre><code>[root@iZ94c5cs7guZ php]# svn merge -r 5:3 everouter_app/outest
+--- Reverse-merging r5 through r4 into &apos;everouter_app/outest&apos;:
+U    everouter_app/outest
+--- Recording mergeinfo for reverse merge of r5 through r4 into &apos;everouter_app/outest&apos;:
+ U   everouter_app/outest
+--- Eliding mergeinfo from &apos;everouter_app/outest&apos;:
+ U   everouter_app/outest
+[root@iZ94c5cs7guZ php]# cat everouter_app/outest
+[root@iZ94c5cs7guZ php]#
+</code></pre><p>确认无误后, 提交</p>
+<pre><code>[root@iZ94c5cs7guZ php]# svn commit -m &quot;revert to revision 3&quot;
+Sending        everouter_app/outest
+Transmitting file data .
+Committed revision 6.
+</code></pre><p>如果 outer 目录和 inner 目录都有变更, 回滚会不会互相影响呢, 用脚趾头想想是会的</p>
+<pre><code>[root@iZ94c5cs7guZ php]# svn diff -r 7:4
+Index: everinner_app/intest
+===================================================================
+--- everinner_app/intest    (revision 7)
++++ everinner_app/intest    (revision 4)
+@@ -1 +0,0 @@
+-123
+Index: everouter_app/outest
+===================================================================
+--- everouter_app/outest    (revision 7)
++++ everouter_app/outest    (revision 4)
+@@ -0,0 +1 @@
++456  
+</code></pre><p>看上面的对比, 如果我们想要回到版本4,让 intest 去掉123那行, 那么会使得 outest 增加456, 相互影响了</p>
+<p>好吧, 子目录的回滚之谜已经解决, 结论就是未 commit 的可以目录内 revert, 子目录间不受影响</p>
+<p>已经 commit 的则不能随意 merge 了, 会影响到其他目录内容</p>
+<h4 id="u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5"><a href="#u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5" class="headerlink" title="正式开始权限测试"></a>正式开始权限测试</h4><p>搞了这么多,目录结构也比较复杂了, 可以开始子目录的权限控制测试了</p>
+<p>参考:</p>
 <p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
 <p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
 <p><a href="http://holbrook.github.io/2014/01/29/svn_install_config_and_mgnt.html" target="_blank" rel="external">subversion安装、配置和管理</a></p>
