@@ -4,17 +4,45 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: nginx | Live with love</title>
+  <title>svn仓库间数据转移 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每天都要进步">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Live with love">
-<meta property="og:url" content="http://yoursite.com/tags/nginx/index.html">
+  <meta name="description" content="起因由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:
+project1
+    ├── branches
+    ├── tags
+    └── trunk
+        ├── code
+        │   ├── andriod
+        │   ├── ios
+        │   ├── php
+        │   └── sql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svn仓库间数据转移">
+<meta property="og:url" content="http://yoursite.com/2016/04/12/svn仓库间数据转移/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="每天都要进步">
+<meta property="og:description" content="起因由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:
+project1
+    ├── branches
+    ├── tags
+    └── trunk
+        ├── code
+        │   ├── andriod
+        │   ├── ios
+        │   ├── php
+        │   └── sql">
+<meta property="og:updated_time" content="2016-04-12T02:08:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Live with love">
-<meta name="twitter:description" content="每天都要进步">
+<meta name="twitter:title" content="svn仓库间数据转移">
+<meta name="twitter:description" content="起因由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:
+project1
+    ├── branches
+    ├── tags
+    └── trunk
+        ├── code
+        │   ├── andriod
+        │   ├── ios
+        │   ├── php
+        │   └── sql">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -192,127 +220,147 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-svn仓库间数据转移" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/04/12/svn仓库间数据转移/" class="article-date">
+  	<time datetime="2016-04-12T01:36:17.000Z" itemprop="datePublished">2016-04-12</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      svn仓库间数据转移
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/29/nginx打开目录浏览功能-autoindex/" class="archive-article-date">
-  	<time datetime="2016-03-29T03:27:44.000Z" itemprop="datePublished">3月 29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/29/nginx打开目录浏览功能-autoindex/">nginx打开目录浏览功能(autoindex)</a>
-    </h1>
-  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8D77_u56E0"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6743_u9650_u6D4B_u8BD5"><span class="toc-number">2.</span> <span class="toc-text">权限测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u4ED3_u5E93_u95F4_u6570_u636E"><span class="toc-number">2.1.</span> <span class="toc-text">仓库间数据</span></a></li></ol></li></ol>
+            </div>
+        
+        <h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
+<pre><code>project1
+    ├── branches
+    ├── tags
+    └── trunk
+        ├── code
+        │   ├── andriod
+        │   ├── ios
+        │   ├── php
+        │   └── sql
+        ├── doc
+        └── readme.txt
+</code></pre><p><strong>trunk</strong>是主分支，是日常开发进行的地方。</p>
+<p><strong>branches</strong>是分支。一些阶段性的release版本，这些版本是可以继续进行开发和维护的，则放在branches目录中。又比如为不同用户客制化的版本，也可以放在分支中进行开发。</p>
+<p><strong>tags</strong>目录一般是只读的，这里存储阶段性的发布版本，只是作为一个里程碑的版本进行存档。    </p>
+<p>现在需要将分散的代码仓库都迁移放到 <em>trunk-code</em> 目录下进行分类存放, 并规划相应仓库的人员权限</p>
+<h3 id="u6743_u9650_u6D4B_u8BD5"><a href="#u6743_u9650_u6D4B_u8BD5" class="headerlink" title="权限测试"></a>权限测试</h3><p>由于迁移得先通知部门成员, 停止提交并暂停 svn 服务, 估计得找个夜黑风高的时候进行, 大白天的我还是先测试一下子目录里仓库的人员权限吧</p>
+<h4 id="u4ED3_u5E93_u95F4_u6570_u636E"><a href="#u4ED3_u5E93_u95F4_u6570_u636E" class="headerlink" title="仓库间数据"></a>仓库间数据</h4><p>虽说是权限测试, 我们也得搞点数据过来, 顺便当代码仓库迁移演练吧</p>
+<p>不能直接将A仓库重命名为B，或将A复制得到一个复本，再将复本命名为B</p>
+<p>使用<em>svnadmin dump</em> &amp; <em>svnadmin load</em></p>
+<p>创建B仓库(如果B不存在)</p>
+<pre><code>svnadmin create /svndata/B    
+</code></pre><p>得到A仓库.dump文件A.dump</p>
+<p>svnadmin dump /svndata/A &gt; A.dump    </p>
+<p>参考:</p>
+<p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
+<p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/08/Shell数组/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Shell数组</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/25/nginx-rewrite/" class="archive-article-date">
-  	<time datetime="2016-03-25T02:34:06.000Z" itemprop="datePublished">3月 25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/25/nginx-rewrite/">nginx rewrite</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/27/Docker构建Nginx镜像/" class="archive-article-date">
-  	<time datetime="2016-01-27T14:11:04.000Z" itemprop="datePublished">1月 27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/27/Docker构建Nginx镜像/">Docker构建Nginx镜像</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="svn仓库间数据转移" data-title="svn仓库间数据转移" data-url="http://yoursite.com/2016/04/12/svn仓库间数据转移/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"livewithlove"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -344,9 +392,9 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false
 	}

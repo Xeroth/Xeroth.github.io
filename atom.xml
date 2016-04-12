@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-08T03:24:39.000Z</updated>
+  <updated>2016-04-12T02:08:04.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[svn仓库间数据转移]]></title>
+    <link href="http://yoursite.com/2016/04/12/svn%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/"/>
+    <id>http://yoursite.com/2016/04/12/svn仓库间数据转移/</id>
+    <published>2016-04-12T01:36:17.000Z</published>
+    <updated>2016-04-12T02:08:04.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
+<pre><code>project1
+    ├── branches
+    ├── tags
+    └── trunk
+        ├── code
+        │   ├── andriod
+        │   ├── ios
+        │   ├── php
+        │   └── sql
+        ├── doc
+        └── readme.txt
+</code></pre><p><strong>trunk</strong>是主分支，是日常开发进行的地方。</p>
+<p><strong>branches</strong>是分支。一些阶段性的release版本，这些版本是可以继续进行开发和维护的，则放在branches目录中。又比如为不同用户客制化的版本，也可以放在分支中进行开发。</p>
+<p><strong>tags</strong>目录一般是只读的，这里存储阶段性的发布版本，只是作为一个里程碑的版本进行存档。    </p>
+<p>现在需要将分散的代码仓库都迁移放到 <em>trunk-code</em> 目录下进行分类存放, 并规划相应仓库的人员权限</p>
+<h3 id="u6743_u9650_u6D4B_u8BD5"><a href="#u6743_u9650_u6D4B_u8BD5" class="headerlink" title="权限测试"></a>权限测试</h3><p>由于迁移得先通知部门成员, 停止提交并暂停 svn 服务, 估计得找个夜黑风高的时候进行, 大白天的我还是先测试一下子目录里仓库的人员权限吧</p>
+<h4 id="u4ED3_u5E93_u95F4_u6570_u636E"><a href="#u4ED3_u5E93_u95F4_u6570_u636E" class="headerlink" title="仓库间数据"></a>仓库间数据</h4><p>虽说是权限测试, 我们也得搞点数据过来, 顺便当代码仓库迁移演练吧</p>
+<p>不能直接将A仓库重命名为B，或将A复制得到一个复本，再将复本命名为B</p>
+<p>使用<em>svnadmin dump</em> &amp; <em>svnadmin load</em></p>
+<p>创建B仓库(如果B不存在)</p>
+<pre><code>svnadmin create /svndata/B    
+</code></pre><p>得到A仓库.dump文件A.dump</p>
+<p>svnadmin dump /svndata/A &gt; A.dump    </p>
+<p>参考:</p>
+<p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
+<p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
+<pre><cod]]>
+    </summary>
+    
+      <category term="svn" scheme="http://yoursite.com/tags/svn/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Shell数组]]></title>
@@ -38,7 +83,7 @@
     <link href="http://yoursite.com/2016/04/05/centos7-%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3confluence-5-8/"/>
     <id>http://yoursite.com/2016/04/05/centos7-安装破解confluence-5-8/</id>
     <published>2016-04-05T03:09:57.000Z</published>
-    <updated>2016-04-08T05:02:14.000Z</updated>
+    <updated>2016-04-12T02:38:32.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5B89_u88C5_jdk"><a href="#u5B89_u88C5_jdk" class="headerlink" title="安装 jdk"></a>安装 jdk</h3><pre><code>$ yum install -y java-1.7.0-openjdk.x86_64
 $ java -version
 java version &quot;1.7.0_99&quot;
@@ -149,7 +194,35 @@ grant all on wiki.* to wiki_user@&quot;%&quot; identified by &quot;wiki_password
 <p>点击“Next”，此时可能会有一个比较长的等待，如果此处出错了，停掉wiki服务，卸载wiki，删掉wiki文件，卸载数据库，从第一步重新来。</p>
 <p>如果上一步成功的话，点击“Empty Site”。你也可以点击“Example Site”</p>
 <p>点击“Manage users and groups within Confluence”，设置管理员相关信息。这里是“下一步”还是“确定”忘了，点击即可</p>
-<h3 id="u57FA_u672C_u4F7F_u7528"><a href="#u57FA_u672C_u4F7F_u7528" class="headerlink" title="基本使用"></a>基本使用</h3><p>参考:</p>
+<h3 id="u57FA_u672C_u4F7F_u7528"><a href="#u57FA_u672C_u4F7F_u7528" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="u5751"><a href="#u5751" class="headerlink" title="坑"></a>坑</h3><h4 id="u90AE_u4EF6_u914D_u7F6E_u4E0D_u80FD_u6210_u529F"><a href="#u90AE_u4EF6_u914D_u7F6E_u4E0D_u80FD_u6210_u529F" class="headerlink" title="邮件配置不能成功"></a>邮件配置不能成功</h4><p>无论是直接配置 smtp, 还是修改配置文件配置 JNxx的, 都不行</p>
+<p>配置 smtp 直接说验证失败</p>
+<p>配置 JNxx 的, 每次一点击测试邮件发送, 就找不到页面, 并且网上也没有解决方案, 太令人暴躁了</p>
+<h4 id="u4E0A_u4F20_u7684_doc__u4E2D_u6587_u9644_u4EF6_u663E_u793A_u4E71_u7801"><a href="#u4E0A_u4F20_u7684_doc__u4E2D_u6587_u9644_u4EF6_u663E_u793A_u4E71_u7801" class="headerlink" title="上传的 doc 中文附件显示乱码"></a>上传的 doc 中文附件显示乱码</h4><h4 id="mysql-bin_log__u5F88_u5927_21"><a href="#mysql-bin_log__u5F88_u5927_21" class="headerlink" title="mysql-bin log 很大!"></a>mysql-bin log 很大!</h4><p>什么原因? confluence 刷了很多这样的日志:</p>
+<pre><code>&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+  &lt;startDate&gt;2016-04-12 09:29:42.126 CST&lt;/startDate&gt;
+  &lt;endDate&gt;2016-04-12 09:29:42.126 CST&lt;/endDate&gt;
+&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+  &lt;startDate&gt;2016-04-12 09:44:42.126 CST&lt;/startDate&gt;
+  &lt;endDate&gt;2016-04-12 09:44:42.127 CST&lt;/endDate&gt;
+&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+  &lt;startDate&gt;2016-04-12 09:59:42.126 CST&lt;/startDate&gt;
+  &lt;endDate&gt;2016-04-12 09:59:42.126 CST&lt;/endDate&gt;
+&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+  &lt;startDate&gt;2016-04-12 10:14:42.126 CST&lt;/startDate&gt;
+  &lt;endDate&gt;2016-04-12 10:14:42.126 CST&lt;/endDate&gt;
+&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+  &lt;startDate&gt;2016-04-12 10:29:42.126 CST&lt;/startDate&gt;
+  &lt;endDate&gt;2016-04-12 10:29:42.126 CST&lt;/endDate&gt;
+&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
+</code></pre><p><em>General Configuration &gt; Scheduled Jobs</em> 到这里可以进行设置和关闭任务调度, 然而不知道关了会有啥后果, 真是操蛋玩意!</p>
+<h4 id="Analytics__u6027_u80FD_u6536_u96C6_u53D1_u9001"><a href="#Analytics__u6027_u80FD_u6536_u96C6_u53D1_u9001" class="headerlink" title="Analytics 性能收集发送"></a>Analytics 性能收集发送</h4><p>这个会收集 confluence 使用情况发送到 confluence 公司….尼玛老子用的破解版的啊, 还发送, 果断关闭</p>
+<p>未完待续….</p>
+<p>参考:</p>
 <p><a href="http://www.jianshu.com/p/d7e253db24d9" target="_blank" rel="external">创业工具之知识管理：Confluence</a></p>
 <p><a href="http://www.jianshu.com/p/27cb54b4a81a" target="_blank" rel="external">知识管理Confluence：常用基本操作</a></p>
 <p><a href="http://www.tuicool.com/articles/7FvuMn" target="_blank" rel="external">CentOS安装confluence(WIKI)</a></p>
@@ -599,7 +672,7 @@ Location: http://www.123.com/
     <link href="http://yoursite.com/2016/03/24/svn%E4%BD%BF%E7%94%A8%E9%9A%8F%E8%AE%B0/"/>
     <id>http://yoursite.com/2016/03/24/svn使用随记/</id>
     <published>2016-03-24T01:44:46.000Z</published>
-    <updated>2016-04-06T03:37:26.000Z</updated>
+    <updated>2016-04-11T02:51:38.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u521B_u5EFA_u4ED3_u5E93"><a href="#u521B_u5EFA_u4ED3_u5E93" class="headerlink" title="创建仓库"></a>创建仓库</h3><pre><code>svnadmin create /data/svndata/winne  # winne为版本库名称
 </code></pre><h3 id="u6DFB_u52A0_u8D26_u6237"><a href="#u6DFB_u52A0_u8D26_u6237" class="headerlink" title="添加账户"></a>添加账户</h3><pre><code>cd /data/svndata/winne/conf
 </code></pre><p>编辑 <code>authz</code> 文件, 用户权限</p>
@@ -1618,112 +1691,6 @@ python manage.py startapp polls
       <category term="碎碎念" scheme="http://yoursite.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     
       <category term="life" scheme="http://yoursite.com/categories/life/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Docker构建Nginx镜像]]></title>
-    <link href="http://yoursite.com/2016/01/27/Docker%E6%9E%84%E5%BB%BANginx%E9%95%9C%E5%83%8F/"/>
-    <id>http://yoursite.com/2016/01/27/Docker构建Nginx镜像/</id>
-    <published>2016-01-27T14:11:04.000Z</published>
-    <updated>2016-02-04T15:54:37.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像</p>
-<p>创建工作目录</p>
-<pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
-root@Ubuntu:~# cd nginx_ubuntu
-</code></pre><p>编写 Dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">  apt-get install -y nginx  \</span><br><span class="line">  &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># define volume</span></span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">[<span class="string">"/etc/nginx/sites-enabled"</span>, <span class="string">"/etc/nginx/certs"</span>, <span class="string">"/etc/nginx/conf.d"</span>, <span class="string">"/var/log/nginx"</span>]</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>编写 run.sh 脚本</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# cat run.sh
-#!/bin/bash
-/usr/sbin/sshd &amp;
-service nginx start
-</code></pre><p>开始构建</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# docker build -t nginx:stable .
-</code></pre><p>运行测试</p>
-<pre><code>root@Ubuntu:~/nginx_ubuntu# docker run -d --name=nginx -P nginx:stable
-a328e2d1a2408254ead51bed477efc16b2d4c4804016405631e62798e52ecf33
-root@Ubuntu:~/nginx_ubuntu# docker ps
-CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                                                                  NAMES
-a328e2d1a240        nginx:stable        &quot;/run.sh&quot;           2 seconds ago       Up 2 seconds        0.0.0.0:32785-&gt;22/tcp, 0.0.0.0:32784-&gt;80/tcp, 0.0.0.0:32783-&gt;443/tcp   nginx
-352a2bfe36b3        registry            &quot;docker-registry&quot;   3 days ago          Up 3 days           0.0.0.0:5000-&gt;5000/tcp                                                 lonely_swanson
-</code></pre><h3 id="u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile"><a href="#u5B98_u65B9Nginx_u955C_u50CF_u7684_Dockerfile" class="headerlink" title="官方Nginx镜像的 Dockerfile"></a>官方Nginx镜像的 Dockerfile</h3><pre><code>FROM debian:jessie
-
-MAINTAINER NGINX Docker Maintainers &quot;docker-maint@nginx.com&quot;
-
-ENV NGINX_VERSION 1.9.10-1~jessie
-
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-    &amp;&amp; echo &quot;deb http://nginx.org/packages/mainline/debian/ jessie nginx&quot; &gt;&gt; /etc/apt/sources.list \
-    &amp;&amp; apt-get update \
-    &amp;&amp; apt-get install -y ca-certificates nginx=${NGINX_VERSION} gettext-base \
-    &amp;&amp; rm -rf /var/lib/apt/lists/*
-
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    &amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log
-
-EXPOSE 80 443
-
-CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
-</code></pre><h3 id="u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C"><a href="#u7F16_u8BD1_u5B89_u88C5_Tengine__u7248_u672C" class="headerlink" title="编译安装 Tengine 版本"></a>编译安装 Tengine 版本</h3><p>未完待续…</p>
-<h3 id="u7BA1_u7406"><a href="#u7BA1_u7406" class="headerlink" title="管理"></a>管理</h3><p>现在我们已经可以运行 nginx 容器了, 但是如何管理网站内容和对 Nginx 进行配置呢? docker 的容器是如此轻便, 我觉得有时候可以把以前的 nginx 多站点管理改成 对 docker 容器的管理就好了, 一个 docker nginx 容器就运行一个站点.</p>
-<h4 id="u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E"><a href="#u5185_u5BB9_u7BA1_u7406_u4E0E_u914D_u7F6E" class="headerlink" title="内容管理与配置"></a>内容管理与配置</h4><p>一种方法是启动容器时将本地目录挂载到nginx 容器上, 从而使得本地目录的变更都能映射到容器中</p>
-<pre><code>root@Ubuntu:~# docker run --name nginx -v /nginx/sites-enabled:/etc/nginx/sites-enabled:ro -v /nginx/html:/usr/share/nginx/html:ro -d -P --rm nginx:stable
-</code></pre><p>如果容器正在运行, 更改了配置文件之后, 如何让 Nginx 加载配置文件呢? 可以利用 crontab 定时 reload nginx 服务…</p>
-<p>ubuntu 容器默认是不运行 cron rsyslog 等服务的, 还得在 run.sh 脚本里加入运行 cron 服务的命令</p>
-<p>下面构建一个 带定时 reload 的 nginx 镜像</p>
-<p>Dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/dockerfile_dir/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">    apt-get install -qy nginx  \</span><br><span class="line">    &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># Create the log file</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">touch /var/<span class="built_in">log</span>/cron.log</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># Add crontab file in the cron directory</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">crontab /etc/cron.d/nginx-reload</span><br><span class="line"></span><span class="comment"># Give execution rights on the cron job</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">chmod <span class="number">0644</span> /etc/cron.d/nginx-reload</span><br><span class="line"></span></span><br><span class="line"></span><br><span class="line"><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>
-<p>crontab</p>
-<pre><code>root@Ubuntu:~/dockerfile_dir/nginx_ubuntu# cat crontab
-* * * * * root /usr/sbin/nginx -t &amp;&amp; service nginx reload &gt;&gt; /var/log/cron.log 2&gt;&amp;1
-# An empty line is required at the end of this file for a valid cron file.
-</code></pre><p>run.sh</p>
-<pre><code>root@Ubuntu:~/dockerfile_dir/nginx_ubuntu# cat run.sh
-#!/bin/bash
-/usr/sbin/sshd &amp;
-cron
-service nginx start
-</code></pre><p>构建镜像</p>
-<pre><code>docker build -t rex/nginx:test .
-</code></pre><p>运行</p>
-<pre><code>root@Ubuntu:/var/www# docker run -d -P -v ~/dockerfile_dir/etc/nginx_conf:/etc/nginx/sites-enabled -v /var/www:/var/www --name=nginx rex/nginx:test
-</code></pre><p>测试, 新建一个test2的虚拟网站</p>
-<pre><code>root@Ubuntu:/var/www# mkdir test2
-root@Ubuntu:/var/www# echo test2 &gt;&gt; test2/index.html
-
-root@Ubuntu:~/dockerfile_dir/etc/nginx_conf# cat test2
-server {
-   listen 80;
-   server_name test2.a-ho.com;
-   root /var/www/test2;
-   index index.html;
-}
-</code></pre><p>等一分钟后, 访问网页, 就能看到输出 test2</p>
-<h4 id="u65E5_u5FD7_u5904_u7406"><a href="#u65E5_u5FD7_u5904_u7406" class="headerlink" title="日志处理"></a>日志处理</h4><p>感谢:</p>
-<p><a href="https://hub.docker.com/_/nginx/" target="_blank" rel="external">Docker 官方 Nginx 镜像</a></p>
-<p><a href="https://blog.docker.com/2015/04/tips-for-deploying-nginx-official-image-with-docker/" target="_blank" rel="external">Docker部署 nginx 的技巧</a></p>
-<p><a href="http://www.ivankrizsan.se/2015/10/31/time-in-docker-containers/" target="_blank" rel="external">容器设置时区以及时间同步</a></p>
-<p><a href="https://www.ekito.fr/people/run-a-cron-job-with-docker/" target="_blank" rel="external">Docker 容器中运行 crontab 任务</a></p>
-<p><a href="http://dockone.io/article/131" target="_blank" rel="external">CMD 和 ENTRYPOINT 区别</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="apt-get__u5B89_u88C5_u7248"><a href="#apt-get__u5B89_u88C5_u7248" class="headerlink" title="apt-get 安装版"></a>apt-get 安装版</h3><p>这个是做实验用的,nginx 版本比较旧(1.4.6) 建议用官方的 nginx 镜像</p>
-<p>创建工作目录</p>
-<pre><code>root@Ubuntu:~# mkdir nginx_ubuntu
-root@Ubuntu:~# cd nginx_ubuntu
-</code></pre><p>编写 Dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/nginx_ubuntu<span class="comment"># cat Dockerfile</span></span><br><span class="line"><span class="built_in">FROM</span> sshd:dockerfile</span><br><span class="line"><span class="built_in">MAINTAINER</span> Rex</span><br><span class="line"><span class="comment"># install Nginx</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash">\</span><br><span class="line">  apt-get install -y nginx  \</span><br><span class="line">  &amp;&amp;  <span class="built_in">echo</span> <span class="string">"\ndaemon off;"</span> &gt;&gt; /etc/nginx/nginx.conf</span><br><span class="line"></span><span class="comment"># set timezone</span></span><br><span class="line"><span class="built_in">RUN</span> <span class="bash"><span class="built_in">echo</span> <span class="string">"Asia/Shanghai"</span> &gt; /etc/timezone</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">dpkg-reconfigure <span class="operator">-f</span> noninteractive tzdata</span><br><span class="line"></span><span class="comment"># add script , this will cover the old script on the same path</span></span><br><span class="line"><span class="built_in">ADD</span> <span class="bash">run.sh /run.sh</span><br><span class="line"></span><span class="built_in">RUN</span> <span class="bash">chmod +x /run.sh</span><br><span class="line"></span><span class="comment"># define volume</span></span><br><span class="line"><span class="built_in">VOLUME</span> <span class="bash">[<span class="string">"/etc/nginx/sites-enabled"</span>, <span class="string">"/etc/nginx/certs"</span>, <span class="string">"/etc/nginx/conf.d"</span>, <span class="string">"/var/log/nginx"</span>]</span><br><span class="line"></span><span class="comment"># command</span></span><br><span class="line"><span class="built_in">CMD</span> <span class="bash">[<span class="string">"/run.sh"</span>]</span><br><span class="line"></span><span class="comment"># port</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="built_in">EXPOSE</span> <span class="number">443</span></span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
-    
-      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
   </entry>
   

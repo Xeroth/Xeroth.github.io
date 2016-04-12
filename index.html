@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 12.5px;">shell</a> <a href="/tags/svn/" style="font-size: 10px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 12.5px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -193,6 +193,101 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-svn仓库间数据转移" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/12/svn仓库间数据转移/" class="article-date">
+  	<time datetime="2016-04-12T01:36:17.000Z" itemprop="datePublished">2016-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/12/svn仓库间数据转移/">svn仓库间数据转移</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8D77_u56E0"><span class="toc-number">1.</span> <span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6743_u9650_u6D4B_u8BD5"><span class="toc-number">2.</span> <span class="toc-text">权限测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u4ED3_u5E93_u95F4_u6570_u636E"><span class="toc-number">2.1.</span> <span class="toc-text">仓库间数据</span></a></li></ol></li></ol>
+            </div>
+        
+        <h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
+<pre><code>project1
+    ├── branches
+    ├── tags
+    └── trunk
+        ├── code
+        │   ├── andriod
+        │   ├── ios
+        │   ├── php
+        │   └── sql
+        ├── doc
+        └── readme.txt
+</code></pre><p><strong>trunk</strong>是主分支，是日常开发进行的地方。</p>
+<p><strong>branches</strong>是分支。一些阶段性的release版本，这些版本是可以继续进行开发和维护的，则放在branches目录中。又比如为不同用户客制化的版本，也可以放在分支中进行开发。</p>
+<p><strong>tags</strong>目录一般是只读的，这里存储阶段性的发布版本，只是作为一个里程碑的版本进行存档。    </p>
+<p>现在需要将分散的代码仓库都迁移放到 <em>trunk-code</em> 目录下进行分类存放, 并规划相应仓库的人员权限</p>
+<h3 id="u6743_u9650_u6D4B_u8BD5"><a href="#u6743_u9650_u6D4B_u8BD5" class="headerlink" title="权限测试"></a>权限测试</h3><p>由于迁移得先通知部门成员, 停止提交并暂停 svn 服务, 估计得找个夜黑风高的时候进行, 大白天的我还是先测试一下子目录里仓库的人员权限吧</p>
+<h4 id="u4ED3_u5E93_u95F4_u6570_u636E"><a href="#u4ED3_u5E93_u95F4_u6570_u636E" class="headerlink" title="仓库间数据"></a>仓库间数据</h4><p>虽说是权限测试, 我们也得搞点数据过来, 顺便当代码仓库迁移演练吧</p>
+<p>不能直接将A仓库重命名为B，或将A复制得到一个复本，再将复本命名为B</p>
+<p>使用<em>svnadmin dump</em> &amp; <em>svnadmin load</em></p>
+<p>创建B仓库(如果B不存在)</p>
+<pre><code>svnadmin create /svndata/B    
+</code></pre><p>得到A仓库.dump文件A.dump</p>
+<p>svnadmin dump /svndata/A &gt; A.dump    </p>
+<p>参考:</p>
+<p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
+<p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Shell数组" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -473,81 +568,6 @@ Or, if you don&apos;t want/need launchctl, you can just run:
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用rsync" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/28/使用rsync/" class="article-date">
-  	<time datetime="2016-03-28T07:57:13.000Z" itemprop="datePublished">2016-03-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/28/使用rsync/">使用rsync</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6"><span class="toc-number">1.</span> <span class="toc-text">拷贝文件夹除了带 mysql 之外的文件</span></a></li></ol>
-            </div>
-        
-        <h3 id="u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6"><a href="#u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6" class="headerlink" title="拷贝文件夹除了带 mysql 之外的文件"></a>拷贝文件夹除了带 mysql 之外的文件</h3><pre><code>rsync -av --exclude &apos;*mysql*&apos; root@server:/home/eg/php2 /home/php
-
--a for archive (mostly all files)
--v for verbose output
-</code></pre><p><a href="http://stackoverflow.com/questions/1228466/how-to-filter-files-when-using-scp-to-copy-dir-recursively" target="_blank" rel="external">How to filter files when using scp to copy dir recursively?</a></p>
-<p>顺便学习到了ls 的这种用法</p>
-<pre><code>ls --ignore=*mysql* 
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsync/">rsync</a></li></ul>
 	</div>
 
       
