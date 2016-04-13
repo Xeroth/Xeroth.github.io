@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>svn仓库间数据转移 | Live with love</title>
+  <title>svn仓库间数据转移, 回滚, 子目录权限控制 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="起因由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:
 project1
@@ -17,7 +17,7 @@ project1
         │   ├── php
         │   └── sql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="svn仓库间数据转移">
+<meta property="og:title" content="svn仓库间数据转移, 回滚, 子目录权限控制">
 <meta property="og:url" content="http://yoursite.com/2016/04/12/svn仓库间数据转移/index.html">
 <meta property="og:site_name" content="Live with love">
 <meta property="og:description" content="起因由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:
@@ -30,9 +30,9 @@ project1
         │   ├── ios
         │   ├── php
         │   └── sql">
-<meta property="og:updated_time" content="2016-04-12T08:16:23.000Z">
+<meta property="og:updated_time" content="2016-04-12T12:23:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="svn仓库间数据转移">
+<meta name="twitter:title" content="svn仓库间数据转移, 回滚, 子目录权限控制">
 <meta name="twitter:description" content="起因由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:
 project1
     ├── branches
@@ -140,7 +140,7 @@ project1
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 12.5px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 12.5px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -237,7 +237,7 @@ project1
         
   
     <h1 class="article-title" itemprop="name">
-      svn仓库间数据转移
+      svn仓库间数据转移, 回滚, 子目录权限控制
     </h1>
   
 
@@ -429,6 +429,34 @@ Index: everouter_app/outest
 <p>好吧, 子目录的回滚之谜已经解决, 结论就是未 commit 的可以目录内 revert, 子目录间不受影响</p>
 <p>已经 commit 的则不能随意 merge 了, 会影响到其他目录内容</p>
 <h4 id="u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5"><a href="#u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5" class="headerlink" title="正式开始权限测试"></a>正式开始权限测试</h4><p>搞了这么多,目录结构也比较复杂了, 可以开始子目录的权限控制测试了</p>
+<p>现在进行用户规划管理</p>
+<p>admin 拥有project1所有的控制权限</p>
+<p>cto 拥有code目录以及子目录的权限</p>
+<p>in_user 拥有inner 目录的权限</p>
+<p>ou_user 拥有outer 目录的权限</p>
+<p>authz文件(才发现直接修改配置文件, 不用重启 svn 就能生效)</p>
+<pre><code>[groups]
+cto = ctouser
+in_user = hxk
+ou_user = cn
+
+[svndata:/project1]
+@cto = r
+
+[svndata:/project1/trunk/code]
+@cto = rw
+</code></pre><p>checkout 试试</p>
+<pre><code>$ svn co   svn://test.svn.cn/project1/trunk/code  --username ctouser
+A    code/php
+A    code/php/everinner_app
+A    code/php/everinner_app/conf
+A    code/php/everinner_app/conf/config.php    
+...    
+</code></pre><p>疗效不错,结果发现没有写权限╮(╯_╰)╭</p>
+<p>结果都是泪啊:</p>
+<p><em>用户在父目录的权限会把子目录的给覆盖​, 无法进行有效的用户权限控制.</em></p>
+<p>你可能会说, 直接在子目录给权限不就行了, 抱歉, 这样连根目录的读权限都没有, 是不能通过验证的</p>
+<p>日了🐶    </p>
 <p>参考:</p>
 <p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
 <p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
@@ -480,7 +508,7 @@ Index: everouter_app/outest
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="svn仓库间数据转移" data-title="svn仓库间数据转移" data-url="http://yoursite.com/2016/04/12/svn仓库间数据转移/"></div>
+	<div class="ds-thread" data-thread-key="svn仓库间数据转移" data-title="svn仓库间数据转移, 回滚, 子目录权限控制" data-url="http://yoursite.com/2016/04/12/svn仓库间数据转移/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

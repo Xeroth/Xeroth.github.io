@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-12T08:16:23.000Z</updated>
+  <updated>2016-04-12T12:23:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[svn仓库间数据转移]]></title>
+    <title><![CDATA[svn仓库间数据转移, 回滚, 子目录权限控制]]></title>
     <link href="http://yoursite.com/2016/04/12/svn%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/"/>
     <id>http://yoursite.com/2016/04/12/svn仓库间数据转移/</id>
     <published>2016-04-12T01:36:17.000Z</published>
-    <updated>2016-04-12T08:16:23.000Z</updated>
+    <updated>2016-04-12T12:23:33.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
 <pre><code>project1
     ├── branches
@@ -180,6 +180,34 @@ Index: everouter_app/outest
 <p>好吧, 子目录的回滚之谜已经解决, 结论就是未 commit 的可以目录内 revert, 子目录间不受影响</p>
 <p>已经 commit 的则不能随意 merge 了, 会影响到其他目录内容</p>
 <h4 id="u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5"><a href="#u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5" class="headerlink" title="正式开始权限测试"></a>正式开始权限测试</h4><p>搞了这么多,目录结构也比较复杂了, 可以开始子目录的权限控制测试了</p>
+<p>现在进行用户规划管理</p>
+<p>admin 拥有project1所有的控制权限</p>
+<p>cto 拥有code目录以及子目录的权限</p>
+<p>in_user 拥有inner 目录的权限</p>
+<p>ou_user 拥有outer 目录的权限</p>
+<p>authz文件(才发现直接修改配置文件, 不用重启 svn 就能生效)</p>
+<pre><code>[groups]
+cto = ctouser
+in_user = hxk
+ou_user = cn
+
+[svndata:/project1]
+@cto = r
+
+[svndata:/project1/trunk/code]
+@cto = rw
+</code></pre><p>checkout 试试</p>
+<pre><code>$ svn co   svn://test.svn.cn/project1/trunk/code  --username ctouser
+A    code/php
+A    code/php/everinner_app
+A    code/php/everinner_app/conf
+A    code/php/everinner_app/conf/config.php    
+...    
+</code></pre><p>疗效不错,结果发现没有写权限╮(╯_╰)╭</p>
+<p>结果都是泪啊:</p>
+<p><em>用户在父目录的权限会把子目录的给覆盖​, 无法进行有效的用户权限控制.</em></p>
+<p>你可能会说, 直接在子目录给权限不就行了, 抱歉, 这样连根目录的读权限都没有, 是不能通过验证的</p>
+<p>日了🐶    </p>
 <p>参考:</p>
 <p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
 <p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
@@ -1231,7 +1259,7 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
     <link href="http://yoursite.com/2016/02/25/%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E7%94%B5%E8%84%91%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2016/02/25/解决一些电脑问题/</id>
     <published>2016-02-25T03:38:54.000Z</published>
-    <updated>2016-04-08T03:12:20.000Z</updated>
+    <updated>2016-04-13T01:30:03.000Z</updated>
     <content type="html"><![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
 <h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
 <p>解决方法:</p>
@@ -1258,6 +1286,13 @@ $sudo dpkg-reconfigure locales
 <p><a href="http://www.chinamac.com/2014/0328/2471.html" target="_blank" rel="external">教你如何用快捷键 还原最小化的窗口</a></p>
 <h3 id="Filezilla_sftp__u5BC6_u94A5_u767B_u9646"><a href="#Filezilla_sftp__u5BC6_u94A5_u767B_u9646" class="headerlink" title="Filezilla sftp 密钥登陆"></a>Filezilla sftp 密钥登陆</h3><p>使用的是 id_rsa 文件, 而不是id_rsa.pub 文件</p>
 <h3 id="Chrome__u9690_u85CF_u4E66_u7B7E_u680F"><a href="#Chrome__u9690_u85CF_u4E66_u7B7E_u680F" class="headerlink" title="Chrome 隐藏书签栏"></a>Chrome 隐藏书签栏</h3><p>Shift+command+b</p>
+<h3 id="/var/log/messages__u65E5_u5FD7_u6587_u4EF6_u91CC_u5927_u91CF_u7684_3A_systemd_3A_Started_Session_1858_of_user_root"><a href="#/var/log/messages__u65E5_u5FD7_u6587_u4EF6_u91CC_u5927_u91CF_u7684_3A_systemd_3A_Started_Session_1858_of_user_root" class="headerlink" title="/var/log/messages 日志文件里大量的: systemd: Started Session 1858 of user root."></a>/var/log/messages 日志文件里大量的: systemd: Started Session 1858 of user root.</h3><p>解决方法:</p>
+<pre><code>vi /etc/systemd/system.conf
+LogLevel=notice
+</code></pre><p>然后</p>
+<pre><code>systemctl restart rsyslog
+systemd-analyze set-log-level notice
+</code></pre><p><a href="http://blog.dougco.com/unix/too-many-systemd-created-slice/" target="_blank" rel="external">Too many systemd: Created slice !</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html">小马win7激活工具</a>, 解压, 运行</p>
@@ -1275,6 +1310,8 @@ $sudo dpkg-reconfigure locales
 </code></pre>]]>
     
     </summary>
+    
+      <category term="error" scheme="http://yoursite.com/tags/error/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
