@@ -1259,7 +1259,7 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
     <link href="http://yoursite.com/2016/02/25/%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E7%94%B5%E8%84%91%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2016/02/25/解决一些电脑问题/</id>
     <published>2016-02-25T03:38:54.000Z</published>
-    <updated>2016-04-13T01:30:03.000Z</updated>
+    <updated>2016-04-13T08:23:40.000Z</updated>
     <content type="html"><![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
 <h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
 <p>解决方法:</p>
@@ -1293,6 +1293,8 @@ LogLevel=notice
 <pre><code>systemctl restart rsyslog
 systemd-analyze set-log-level notice
 </code></pre><p><a href="http://blog.dougco.com/unix/too-many-systemd-created-slice/" target="_blank" rel="external">Too many systemd: Created slice !</a></p>
+<h3 id="Mac_tree__u4E2D_u6587_u6587_u4EF6_u540D_u663E_u793A_u5F02_u5E38"><a href="#Mac_tree__u4E2D_u6587_u6587_u4EF6_u540D_u663E_u793A_u5F02_u5E38" class="headerlink" title="Mac tree 中文文件名显示异常"></a>Mac tree 中文文件名显示异常</h3><pre><code>tree -N
+</code></pre><p><a href="http://wwdd23.github.io/2015/01/09/mac-tree-chinese-display-error.html" target="_blank" rel="external">参考</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html">小马win7激活工具</a>, 解压, 运行</p>
