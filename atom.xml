@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-12T12:23:33.000Z</updated>
+  <updated>2016-04-14T10:44:29.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,120 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[安装管理Dokuwiki]]></title>
+    <link href="http://yoursite.com/2016/04/14/%E5%AE%89%E8%A3%85%E7%AE%A1%E7%90%86Dokuwiki/"/>
+    <id>http://yoursite.com/2016/04/14/安装管理Dokuwiki/</id>
+    <published>2016-04-14T04:00:33.000Z</published>
+    <updated>2016-04-14T10:44:29.000Z</updated>
+    <content type="html"><![CDATA[<p>搭建 lnmp 环境</p>
+<p>下载解压, 将解压文件配置为nginx虚拟主机根目录</p>
+<p>主要讲下安全设置</p>
+<p>主要是禁止直接访问</p>
+<ul>
+<li>data</li>
+<li>conf</li>
+<li>bin</li>
+</ul>
+<p>这三个目录</p>
+<p>检测方式是看能否访问到</p>
+<p><a href="http://yoursite.com/data/pages/wiki/dokuwiki.txt">http://yoursite.com/data/pages/wiki/dokuwiki.txt</a></p>
+<a id="more"></a>
+<h3 id="u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55"><a href="#u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55" class="headerlink" title="配置nginx禁止访问特定目录"></a>配置nginx禁止访问特定目录</h3><p>一开始打算用 nginx 禁止目录访问功能, 在 nginx 配置了:</p>
+<pre><code>location ^~ /(data|conf|bin|inc)/* {
+        deny all;
+}
+</code></pre><h3 id="u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E"><a href="#u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E" class="headerlink" title="改变数据目录位置"></a>改变数据目录位置</h3><p>当然最好是直接把这些目录迁出网站根目录了</p>
+<pre><code># 转移conf
+[root@HD_Server_Config dokuwiki-2015-08-10a]# mv conf /data/dokuwiki/
+# 添加配置
+[root@HD_Server_Config dokuwiki-2015-08-10a]# vim inc/preload.php
+&lt;?php
+
+define(&apos;DOKU_CONF&apos;,&apos;/data/dokuwiki/conf/&apos;);
+
+# 转移 data
+[root@HD_Server_Config dokuwiki-2015-08-10a]# mv data /data/dokuwiki/
+# 添加配置
+[root@HD_Server_Config dokuwiki-2015-08-10a]# vim /data/dokuwiki/conf/local.php
+
+$conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
+
+# 转移 bin
+[root@HD_Server_Config dokuwiki-2015-08-10a]# mv bin /data/dokuwiki/
+</code></pre><h3 id="u5B89_u88C5_u63D2_u4EF6"><a href="#u5B89_u88C5_u63D2_u4EF6" class="headerlink" title="安装插件"></a>安装插件</h3><p><strong>管理</strong> -&gt; <strong>扩展管理器</strong></p>
+<p><strong>搜索和安装</strong>  </p>
+<p><em>swiftmail</em> 配置发送 smtp 邮件, 然后在 <strong>管理</strong> -&gt; <strong>配置设置</strong> -&gt; <strong>插件设置</strong>(右侧边栏处)</p>
+<p>smtp_host : smtp.exmail.qq.com</p>
+<p>smtp_port: 465</p>
+<p>smtp_ssl: SSL</p>
+<p>auth_user: smtp 邮箱地址, 比如admin@123.com</p>
+<p>auth_pass: 邮箱密码</p>
+<p>localdomain: yoursite.com</p>
+<p>除此之外, 还需要配置<strong>通知设置</strong></p>
+<p>通知设置里的东西全部填上勾上</p>
+<p>比如邮件地址都填</p>
+<p>admin@123.com</p>
+<p>邮件前缀填wiki_admin</p>
+<p>设置完之后 <strong>管理</strong> 界面下有个 <strong>检查 SwiftMail 配置</strong></p>
+<p><em>imgpaste</em> 在编辑器直接粘贴就可以插入剪贴板中的图片，可以用来快速上传截图。</p>
+<p><em>Tag</em></p>
+<p><em>addnewpage</em>  新建页面功能太隐晦了… 得在 url 那里添加, 所以搞了个插件</p>
+<h3 id="u7F16_u8F91"><a href="#u7F16_u8F91" class="headerlink" title="编辑"></a>编辑</h3><p><a href="https://www.dokuwiki.org/start?id=zh:wiki:syntax" target="_blank" rel="external">格式化语法</a></p>
+<h3 id="u5347_u7EA7"><a href="#u5347_u7EA7" class="headerlink" title="升级"></a>升级</h3><p><a href="https://www.dokuwiki.org/zh:install:upgrade" target="_blank" rel="external">升级</a></p>
+<p>参考:</p>
+<p><a href="https://www.dokuwiki.org/zh:security" target="_blank" rel="external">Dokuwikiu安全</a></p>
+<p><a href="http://drops.wooyun.org/tips/1323" target="_blank" rel="external">Nginx安全配置研究</a></p>
+<p><a href="http://www.jianshu.com/p/a6b00b055fcd" target="_blank" rel="external">DokuWiki简介及插件推荐</a></p>
+<p><a href="http://www.ligenyuan.cn/wiki/reproduce:dokuwiki_page_name" target="_blank" rel="external">dokuwiki命名空间</a></p>
+<p><a href="http://www.baiguo.net/wiki/doku.php?id=wiki:plugins" target="_blank" rel="external">Doku插件整理</a></p>
+<p><a href="http://blog.csdn.net/zouhao619/article/details/8523637" target="_blank" rel="external">更换编辑器–我还没空折腾这个…</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>搭建 lnmp 环境</p>
+<p>下载解压, 将解压文件配置为nginx虚拟主机根目录</p>
+<p>主要讲下安全设置</p>
+<p>主要是禁止直接访问</p>
+<ul>
+<li>data</li>
+<li>conf</li>
+<li>bin</li>
+</ul>
+<p>这三个目录</p>
+<p>检测方式是看能否访问到</p>
+<p><a href="http://yoursite.com/data/pages/wiki/dokuwiki.txt">http://yoursite.com/data/pages/wiki/dokuwiki.txt</a></p>]]>
+    
+    </summary>
+    
+      <category term="Dokuwiki" scheme="http://yoursite.com/tags/Dokuwiki/"/>
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[MySQL Galera Cluster 学习]]></title>
+    <link href="http://yoursite.com/2016/04/13/MySQL-Galera-Cluster-%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2016/04/13/MySQL-Galera-Cluster-学习/</id>
+    <published>2016-04-13T09:07:44.000Z</published>
+    <updated>2016-04-13T09:10:52.000Z</updated>
+    <content type="html"><![CDATA[<a id="more"></a>
+]]></content>
+    <summary type="html">
+    <![CDATA[<a id="more"></a>
+]]>
+    </summary>
+    
+      <category term="Galera" scheme="http://yoursite.com/tags/Galera/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[svn仓库间数据转移, 回滚, 子目录权限控制]]></title>
@@ -245,11 +359,11 @@ A    code/php/everinner_app/conf/config.php
     <link href="http://yoursite.com/2016/04/08/Shell%E6%95%B0%E7%BB%84/"/>
     <id>http://yoursite.com/2016/04/08/Shell数组/</id>
     <published>2016-04-08T03:19:37.000Z</published>
-    <updated>2016-04-08T03:24:39.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409" target="_blank" rel="external">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
+    <updated>2016-04-14T01:44:33.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409" target="_blank" rel="external">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数组赋值</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># a=(1 2 3 b c d)</span></span><br><span class="line"><span class="comment"># 调用数组元素</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
 <a id="more"></a>]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>]]>
+    <![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数组赋值</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># a=(1 2 3 b c d)</span></span><br><span class="line"><span class="comment"># 调用数组元素</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>]]>
     
     </summary>
     
@@ -1658,231 +1772,6 @@ python manage.py startapp polls
       <category term="Django" scheme="http://yoursite.com/tags/Django/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[面试技巧]]></title>
-    <link href="http://yoursite.com/2016/02/16/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
-    <id>http://yoursite.com/2016/02/16/面试技巧/</id>
-    <published>2016-02-16T13:39:59.000Z</published>
-    <updated>2016-02-17T03:48:02.000Z</updated>
-    <content type="html"><![CDATA[<p>面试可以问哪些问题？</p>
-<ul>
-<li>岗位具体的工作内容是什么？</li>
-<li>在这家公司工作带来的最大的好处和坏处是什么？</li>
-<li>福利待遇升职加薪的机制是什么？</li>
-</ul>
-<p>自我介绍要提前想好。这样你才能把面试官引导进入你想表达的内容里，这样才能让面试官说出更多帮助你分析了解团队的事情。</p>
-<p>hr 肯定会问你之前跳槽的原因, 提前想好</p>
-<p>时刻维护好你自己的简历，每次做完一个项目、拿下一个客户、参加一次培训都把这些经历添加到你的简历上面，不要等到找工作的时候再去添加这些内容</p>
-<p>参考:</p>
-<p><a href="https://www.zhihu.com/question/20221715" target="_blank" rel="external">知乎-如何高效地找工作</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>面试可以问哪些问题？</p>
-<ul>
-<li>岗位具体的工作内容是什么？</li>
-<li>在这家公司工作带来的最大的好处和坏处是什么？</li>
-<li>福利待遇升职加薪的机制是什么？</li>
-</ul>
-<p>自我介绍要提前想好。这样你才能把面试官引导进入你想表达的]]>
-    </summary>
-    
-      <category term="job" scheme="http://yoursite.com/tags/job/"/>
-    
-      <category term="life" scheme="http://yoursite.com/categories/life/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[二月份的碎碎念]]></title>
-    <link href="http://yoursite.com/2016/02/01/%E4%BA%8C%E6%9C%88%E4%BB%BD%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    <id>http://yoursite.com/2016/02/01/二月份的碎碎念/</id>
-    <published>2016-02-01T03:50:01.000Z</published>
-    <updated>2016-03-03T10:21:38.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="2016_u5E742_u67081_u65E5"><a href="#2016_u5E742_u67081_u65E5" class="headerlink" title="2016年2月1日"></a>2016年2月1日</h3><p>早上, 身体已经醒了,人没能立马起来, 懒惰的大脑就 yy 着外面好冷 …<br>主要是起床那一瞬间的奖励(或者不起床的惩罚)比不上赖床一刻的舒服啊<br>最终起来了,果然很冷, 发型很怂, 于是跑到卫生间洗了个冷水头,<br>但是洗冷水头的过程中, 觉得冷度也就那样, 洗完出来之后, 反而觉得不冷了.<br>所以很多时候困难并不像想象的那么难, 嗯, 洗冷水应该还能激发一点身体潜能.<br>另外, 不要把事情弄的太复杂, 简单化吧.<br>把事情分成要做的和不要做的就行, 别加上太多修饰词, 比如应该要做的 , 明天要做的.</p>
-<p>嗯, </p>
-<ul>
-<li>要起床. </li>
-<li>要洗头(美好的一天从早起洗头开始, 糟糕的一天从大半夜还不睡觉开始). </li>
-<li>要出去取快递. </li>
-<li>要熟练 docker. </li>
-<li>要静心. (遇到困难是必然的,不能立马见效也是必然的,但是要坚持)</li>
-<li>要锻炼.</li>
-</ul>
-<p>这么冷的天, Lilia居然还闻到了桂花</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/guihua.png" alt="guihua"></p>
-<a id="more"></a>
-<p>更新的观念:</p>
-<p><a href="https://www.zhihu.com/question/20003863" target="_blank" rel="external">接地气-共鸣感</a></p>
-<h3 id="2016_u5E742_u67082_u65E5"><a href="#2016_u5E742_u67082_u65E5" class="headerlink" title="2016年2月2日"></a>2016年2月2日</h3><p>去山口拜访了苏老师, 买了煎虾饼和虾饺, 貌似没以前的好吃了-0-</p>
-<p>祖上风水不太好, 没官运, 面相为艺相, 靠技术手艺吃饭</p>
-<h3 id="2016_u5E742_u67083_u65E5"><a href="#2016_u5E742_u67083_u65E5" class="headerlink" title="2016年2月3日"></a>2016年2月3日</h3><p>感情这事, 是很私人的,很微妙的, 所以不要让别人(即使是家人)插手, 别人的意见听听就行, 要照着去做了就真的会坏事, 真的是 Silly B 了 ! ! ! ! ! !</p>
-<p>And, when things mess up , they won’t be responsible for your bad mood .</p>
-<p><a href="http://www.douban.com/note/307716310/" target="_blank" rel="external">把 mac 的qq 聊天记录备份了一下</a></p>
-<h3 id="2016_u5E742_u67084_u65E5"><a href="#2016_u5E742_u67084_u65E5" class="headerlink" title="2016年2月4日"></a>2016年2月4日</h3><p>猴年来了, 马月还会远吗? </p>
-<p>用心生活, 即使是收拾东西, 也是可以注入灵感的. </p>
-<h3 id="2016_u5E742_u67085_u65E5"><a href="#2016_u5E742_u67085_u65E5" class="headerlink" title="2016年2月5日"></a>2016年2月5日</h3><p>一位朋友毕业至今的感想:</p>
-<ol>
-<li>年纪不小了，要有梦，但要脚踏实地</li>
-<li>成家了，心才能定下来，或许才能更有动力的去朝着既定目标努力</li>
-<li>早一点培养后代，世界是我们的，但终归是那帮孙子的</li>
-</ol>
-<h3 id="2016_u5E742_u67086_u65E5"><a href="#2016_u5E742_u67086_u65E5" class="headerlink" title="2016年2月6日"></a>2016年2月6日</h3><p>衣服店有个眼光好的导购真的挺重要</p>
-<p>衣服感觉一般就不要买了, 多逛逛, 能挑到非常合适的. </p>
-<h3 id="2016_u5E742_u67087_u65E5"><a href="#2016_u5E742_u67087_u65E5" class="headerlink" title="2016年2月7日"></a>2016年2月7日</h3><p>摆摆摆,拜拜拜,烧烧烧</p>
-<h3 id="2016_u5E742_u67088_u65E5"><a href="#2016_u5E742_u67088_u65E5" class="headerlink" title="2016年2月8日"></a>2016年2月8日</h3><h3 id="2016_u5E742_u67089_u65E5"><a href="#2016_u5E742_u67089_u65E5" class="headerlink" title="2016年2月9日"></a>2016年2月9日</h3><h3 id="2016_u5E742_u670810_u65E5"><a href="#2016_u5E742_u670810_u65E5" class="headerlink" title="2016年2月10日"></a>2016年2月10日</h3><p>elephant in the room &amp; Erwin Schrödinger’s Cat</p>
-<p>抚琴¶挥剑</p>
-<p>骚年看了一夜的天花板, 天渐凉, 心渐冷</p>
-<h3 id="2016_u5E742_u670811_u65E5"><a href="#2016_u5E742_u670811_u65E5" class="headerlink" title="2016年2月11日"></a>2016年2月11日</h3><p>衣服的效果—思考关键词: 镜头中, 现实中, 各类人的眼中</p>
-<p>一念成佛 一念成魔</p>
-<p>忍</p>
-<p>难道全是我的错?</p>
-<p>如果领导段位比你高, 不要担心被他糊弄, 在你没达到领导的境界, 没看穿领导的思路之前, 不要随便跳毛</p>
-<p>不要在气头上跟在乎的人争论</p>
-<p>一丛竹子, 底部阴冷潮湿, 节节拔高, 唯有顶部的细节才能享受那温暖的阳光</p>
-<p>凡事多想几层, 局中局呢</p>
-<p>韩寒曾说：最酸的不是吃醋，最酸的是没有权利吃醋。</p>
-<p><a href="https://www.zhihu.com/question/24896540" target="_blank" rel="external">男人吃醋为什么常常要假装“我没吃醋”？</a></p>
-<h3 id="2016_u5E742_u670812_u65E5"><a href="#2016_u5E742_u670812_u65E5" class="headerlink" title="2016年2月12日"></a>2016年2月12日</h3><p>Black Swan Events‎:</p>
-<blockquote>
-<p>人们所习惯相信的信念、所乐观看待的事件，有可能是错的，而我们从未思考过“它是错的”所造成的后果，我们期待的破灭，竟是如此之轻易. </p>
-</blockquote>
-<p>“黑天鹅”的逻辑是：你不知道的事比你知道的事更有意义</p>
-<p>从电影所宣传的正能量, 可以看出现实世界与之相对的负能量的存在.</p>
-<p>follow your heart.</p>
-<p>放不下，她就是再不堪你都会紧握不放。</p>
-<p>放的下，她就是纯洁如月光你都会转身。</p>
-<p>兼听则明适合决策，不适合爱情。</p>
-<p>换位思考-换位思考-换位思考</p>
-<p>The time you enjoy wasting, is not wasted.(出处:<a href="https://www.zhihu.com/question/38270275" target="_blank" rel="external">互相喜欢的人明知不可能有结果，要在一起吗？</a>)</p>
-<p>佛總結出人生的八大痛苦：生、老、病、死、愛別離、怨憎會、求不得、五蕴熾盛</p>
-<h3 id="2016_u5E742_u670813_u65E5"><a href="#2016_u5E742_u670813_u65E5" class="headerlink" title="2016年2月13日"></a>2016年2月13日</h3><p>琵琶行</p>
-<p>白居易</p>
-<p>浔阳江头夜送客，枫叶荻花秋瑟瑟。</p>
-<p>主人下马客在船，举酒欲饮无管弦。</p>
-<p>醉不成欢惨将别，别时茫茫江浸月。</p>
-<p>忽闻水上琵琶声，主人忘归客不发。</p>
-<p>寻声暗问弹者谁？琵琶声停欲语迟。</p>
-<p>移船相近邀相见，添酒回灯重开宴。</p>
-<p>千呼万唤始出来，犹抱琵琶半遮面。</p>
-<p>转轴拨弦三两声，未成曲调先有情。</p>
-<p>弦弦掩抑声声思，似诉平生不得意。</p>
-<p>低眉信手续续弹，说尽心中无限事。</p>
-<p>轻拢慢捻抹复挑，初为霓裳后绿腰。</p>
-<p>大弦嘈嘈如急雨，小弦切切如私语。</p>
-<p>嘈嘈切切错杂弹，大珠小珠落玉盘。</p>
-<p>问关莺语花底滑，幽咽泉流冰下难。</p>
-<p>冰泉冷涩弦凝绝，凝绝不通声暂歇。</p>
-<p>别有幽愁暗恨生，此时无声胜有声。</p>
-<p>银瓶乍破水浆迸，铁骑突出刀枪鸣。</p>
-<p>曲终收拨当心画，四弦一声如裂帛。</p>
-<p>东船西舫悄无言，惟见江心秋月白。</p>
-<p>沉吟放拨插弦中，整顿衣裳起敛容。</p>
-<p>自言本是京城女，家在虾蟆陵下住。</p>
-<p>十三学得琵琶成，名属教坊第一部。</p>
-<p>曲罢曾教善才伏，妆成每被秋娘妒。</p>
-<p>五陵年少争缠头，一曲红绡不知数。</p>
-<p>钿头云篦击节碎，血色罗裙翻酒污。</p>
-<p>今年欢笑复明年，秋月春风等闲度。</p>
-<p>弟走从军阿姨死，暮去朝来颜色故。</p>
-<p><em>门前冷落车马稀，老大嫁作商人妇。</em></p>
-<p><em>商人重利轻别离，前月浮梁买茶去。</em></p>
-<p><em>去来江口守空船，绕船月明江水寒。</em></p>
-<p><em>夜深忽梦少年事，梦啼妆泪红阑干！</em></p>
-<p>我闻琵琶已叹息，又闻此语重唧唧。</p>
-<p>同是天涯沦落人，相逢何必曾相识！</p>
-<p>我从去年辞帝京，谪居卧病浔阳城。</p>
-<p>浔阳地僻无音乐，终岁不闻丝竹声。</p>
-<p>住进湓江地低湿，黄芦苦竹绕宅生。</p>
-<p>其间旦暮闻何物，杜鹃啼血猿哀鸣。</p>
-<p>春江花朝秋月夜，往往取酒还独倾。</p>
-<p>岂无山歌与村笛？呕哑嘲 难为听。</p>
-<p>今夜闻君琵琶语，如听仙乐耳暂明。</p>
-<p>莫辞更坐弹一曲，为君翻作琵琶行。</p>
-<p>感我此言良久立，却坐促弦弦转急。</p>
-<p>凄凄不似向前声，满座重闻皆掩泣。</p>
-<p>座中泣下谁最多，江州司马青衫湿。</p>
-<hr>
-<p><em>你当前所有的认知 , 可能都是错的</em></p>
-<p>社交中的控场能力</p>
-<h3 id="2016_u5E742_u670814_u65E5"><a href="#2016_u5E742_u670814_u65E5" class="headerlink" title="2016年2月14日"></a>2016年2月14日</h3><p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/love1.jpg" alt="love1"></p>
-<p>给对方更大的世界, 更多的理解包容</p>
-<p>2月14日是个什么日子?</p>
-<p>是美国发明家亚历山大·格拉汉姆·贝尔向专利局申请电话专利的日子</p>
-<p>世界上第一台通用电子计算机埃尼阿克在美国费城向外界公布</p>
-<p>以色列国会第一次开会</p>
-<p>伊拉克、约旦宣布成立阿拉伯联邦的日子</p>
-<p>美国全球定位系统第一颗工作卫星发射升空，进入地球轨道</p>
-<p>音乐家聂耳的生日</p>
-<p>咆哮教主马景涛的生日</p>
-<p>巴西著名球星“外星人”罗纳尔多宣布退役的日子</p>
-<p>中国与墨西哥建交的日子</p>
-<p>中共中央发出《关于加强党员教育工作的通知》的日子</p>
-<p>你们啊, 就知道个情人节</p>
-<hr>
-<p>又开始降温了</p>
-<p>既要有包容性, 又不能纵容, 这个度, 不好掌握</p>
-<h3 id="2016_u5E742_u670815_u65E5"><a href="#2016_u5E742_u670815_u65E5" class="headerlink" title="2016年2月15日"></a>2016年2月15日</h3><p>邹康结婚</p>
-<p>旁边的大哥挺好, 知道我不喝酒, 看我敬完酒之后, 就帮我把杯子的酒给倒到茶杯中, 然后先给倒点可乐, 让我涮杯子, 然后再倒可乐.</p>
-<p>不能为了友情, 而对事情妥协(想想小学三年级,小强)</p>
-<h3 id="2016_u5E742_u670816_u65E5"><a href="#2016_u5E742_u670816_u65E5" class="headerlink" title="2016年2月16日"></a>2016年2月16日</h3><p>生存价值-纵向(一旦深刻,给别人说就会无聊)</p>
-<p>生活价值-横向</p>
-<p>情感价值</p>
-<p><a href="https://www.zhihu.com/question/21923064/answer/19797280" target="_blank" rel="external">上流社会-生理敏感度</a></p>
-<p>思考: </p>
-<ul>
-<li>真爱是不求回报的么</li>
-<li>喜欢和爱的区别</li>
-<li>如何分辨爱与欲望</li>
-</ul>
-<p>任何一段经历都有其意义, 尽量从中成长, 让自己变的更好</p>
-<p>即使是只付出, 对方没给什么回报, 但是实际上, 自己大概可以学会怎么付出, 算是自己给自己的回报吧</p>
-<h3 id="2016_u5E742_u670817_u65E5"><a href="#2016_u5E742_u670817_u65E5" class="headerlink" title="2016年2月17日"></a>2016年2月17日</h3><p>验证一样东西的重要性, 可以这样做: 先拥有, 然后失去</p>
-<p>妄自菲薄伤害的不是自己, 而是爱你的人.</p>
-<p>什么是态度, 态度就是你在乎</p>
-<h3 id="2016_u5E742_u670818_u65E5"><a href="#2016_u5E742_u670818_u65E5" class="headerlink" title="2016年2月18日"></a>2016年2月18日</h3><p>我没有任何的疑问, 这是爱. 只是外界的一些东西在这上面套了枷锁.</p>
-<p>男人的担当, 体现在 Farm 好自己, 带领团队(2人也算小团队)走向胜利, 而不是作为一个 Carry 却去给辅助买鸡买眼挡刀让人头, 错位的打法无疑会团灭.</p>
-<p><strong>本质的善良，天性的温厚，开阔的胸襟</strong> </p>
-<h3 id="2016_u5E742_u670819_u65E5"><a href="#2016_u5E742_u670819_u65E5" class="headerlink" title="2016年2月19日"></a>2016年2月19日</h3><p>对事不对人: 不做动机揣摩，少做价值判断</p>
-<p>我往往租的房子离公司比较近, 不是因为我喜欢上班, 是因为我喜欢下班回家.</p>
-<h3 id="2016_u5E742_u670820_u65E5"><a href="#2016_u5E742_u670820_u65E5" class="headerlink" title="2016年2月20日"></a>2016年2月20日</h3><p>不要让爱情受到经济的限制, 所以, 努力工作吧!</p>
-<h3 id="2016_u5E742_u670821_u65E5"><a href="#2016_u5E742_u670821_u65E5" class="headerlink" title="2016年2月21日"></a>2016年2月21日</h3><p>在成熟和不成熟之间有一道分水岭：一个人是否拥有清醒的自我认知。</p>
-<p>何以解忧? 有的人通过喝酒(麻醉自己), 有的人通过旅行(转换环境), 有的人通过心理咨询(倾诉), 有的人通过忙碌工作(转移注意力).</p>
-<h3 id="2016_u5E742_u670822_u65E5"><a href="#2016_u5E742_u670822_u65E5" class="headerlink" title="2016年2月22日"></a>2016年2月22日</h3><p>注意你的控制欲, 人人都是独立自由的.</p>
-<h3 id="2016_u5E742_u670823_u65E5"><a href="#2016_u5E742_u670823_u65E5" class="headerlink" title="2016年2月23日"></a>2016年2月23日</h3><p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/Modern.png" alt="Modern"></p>
-<p><a href="http://www.iqiyi.com/a_19rrhb24o9.html#vfrm=2-3-0-1" target="_blank" rel="external">奇葩说-该不该向恋人坦白情史</a></p>
-<h3 id="2016_u5E742_u670824_u65E5"><a href="#2016_u5E742_u670824_u65E5" class="headerlink" title="2016年2月24日"></a>2016年2月24日</h3><p><strong>断联T.T</strong> , 为什么这么弱 ! ! ! 啊啊啊啊啊啊啊啊啊啊</p>
-<h3 id="2016_u5E742_u670825_u65E5"><a href="#2016_u5E742_u670825_u65E5" class="headerlink" title="2016年2月25日"></a>2016年2月25日</h3><p>我们知道睡懒觉不好, 不运动不好, 宅着不好, 但是我们为什么不去改变. 因为我们太舒服了. 我们懒得去改变. 我愿意有这样一个人, 让我爱上她, 让我不再计较得失, 让我不再心猿意马, 让我不再随波逐流. 因为我知道当我爱上她的那一刻, 我就已经遇见了最好的自己.</p>
-<p>我希望我能非常骄傲地说, 我当时能做的所有努力, 我都做了.</p>
-<h3 id="2016_u5E742_u670826_u65E5"><a href="#2016_u5E742_u670826_u65E5" class="headerlink" title="2016年2月26日"></a>2016年2月26日</h3><p><a href="http://www.iqiyi.com/a_19rrhb24o9.html#vfrm=2-3-0-1" target="_blank" rel="external">奇葩说-爱情中要不要有备胎</a> 樊野的备胎历程.</p>
-<h3 id="2016_u5E742_u670827_u65E5"><a href="#2016_u5E742_u670827_u65E5" class="headerlink" title="2016年2月27日"></a>2016年2月27日</h3><p>在人群中保持独立思考的能力, 不要受到环境情绪影响的能力</p>
-<p>失败是朝着脑子开一枪，失恋是对着心脏狠狠插一刀。</p>
-<h3 id="2016_u5E742_u670828_u65E5"><a href="#2016_u5E742_u670828_u65E5" class="headerlink" title="2016年2月28日"></a>2016年2月28日</h3><p><a href="https://www.zhihu.com/question/23819007" target="_blank" rel="external">你有什么道理后悔早点知道-知乎</a></p>
-<h3 id="2016_u5E742_u670829_u65E5"><a href="#2016_u5E742_u670829_u65E5" class="headerlink" title="2016年2月29日"></a>2016年2月29日</h3><p>有时候需要想象别人在想什么</p>
-<p>安全感-抗风险能力</p>
-<p>骄傲-就是完成了自己设定的目标时候的那种感觉吧</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="2016_u5E742_u67081_u65E5"><a href="#2016_u5E742_u67081_u65E5" class="headerlink" title="2016年2月1日"></a>2016年2月1日</h3><p>早上, 身体已经醒了,人没能立马起来, 懒惰的大脑就 yy 着外面好冷 …<br>主要是起床那一瞬间的奖励(或者不起床的惩罚)比不上赖床一刻的舒服啊<br>最终起来了,果然很冷, 发型很怂, 于是跑到卫生间洗了个冷水头,<br>但是洗冷水头的过程中, 觉得冷度也就那样, 洗完出来之后, 反而觉得不冷了.<br>所以很多时候困难并不像想象的那么难, 嗯, 洗冷水应该还能激发一点身体潜能.<br>另外, 不要把事情弄的太复杂, 简单化吧.<br>把事情分成要做的和不要做的就行, 别加上太多修饰词, 比如应该要做的 , 明天要做的.</p>
-<p>嗯, </p>
-<ul>
-<li>要起床. </li>
-<li>要洗头(美好的一天从早起洗头开始, 糟糕的一天从大半夜还不睡觉开始). </li>
-<li>要出去取快递. </li>
-<li>要熟练 docker. </li>
-<li>要静心. (遇到困难是必然的,不能立马见效也是必然的,但是要坚持)</li>
-<li>要锻炼.</li>
-</ul>
-<p>这么冷的天, Lilia居然还闻到了桂花</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/guihua.png" alt="guihua"></p>]]>
-    
-    </summary>
-    
-      <category term="碎碎念" scheme="http://yoursite.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    
-      <category term="life" scheme="http://yoursite.com/categories/life/"/>
     
   </entry>
   

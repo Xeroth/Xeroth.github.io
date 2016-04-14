@@ -4,33 +4,51 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>我的书单 | Live with love</title>
+  <title>安装管理Dokuwiki | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="已读
-&amp;lt;&amp;lt;把时间当做朋友&amp;gt;&amp;gt; 读书笔记 ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷
- &amp;lt;&amp;lt; 学习学习再学习 &amp;gt;&amp;gt;  ⭐️⭐️⭐️⭐️ 学习的方法论
-&amp;lt;&amp;lt; 动物庄园 &amp;gt;&amp;gt; ⭐️⭐️ 没太大惊喜
-&amp;lt;&amp;lt; 十年一梦 &amp;gt;&amp;gt; ⭐️⭐️ 当故事来看
-&amp;lt;&amp;lt; 我只是敢和别人不一样 &amp;gt;&amp;gt; ⭐️⭐️⭐️">
+  <meta name="description" content="搭建 lnmp 环境
+下载解压, 将解压文件配置为nginx虚拟主机根目录
+主要讲下安全设置
+主要是禁止直接访问
+
+data
+conf
+bin
+
+这三个目录
+检测方式是看能否访问到
+http://yoursite.com/data/pages/wiki/dokuwiki.txt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的书单">
-<meta property="og:url" content="http://yoursite.com/2016/01/05/我的书单/index.html">
+<meta property="og:title" content="安装管理Dokuwiki">
+<meta property="og:url" content="http://yoursite.com/2016/04/14/安装管理Dokuwiki/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="已读
-&amp;lt;&amp;lt;把时间当做朋友&amp;gt;&amp;gt; 读书笔记 ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷
- &amp;lt;&amp;lt; 学习学习再学习 &amp;gt;&amp;gt;  ⭐️⭐️⭐️⭐️ 学习的方法论
-&amp;lt;&amp;lt; 动物庄园 &amp;gt;&amp;gt; ⭐️⭐️ 没太大惊喜
-&amp;lt;&amp;lt; 十年一梦 &amp;gt;&amp;gt; ⭐️⭐️ 当故事来看
-&amp;lt;&amp;lt; 我只是敢和别人不一样 &amp;gt;&amp;gt; ⭐️⭐️⭐️">
-<meta property="og:updated_time" content="2016-01-13T14:13:22.000Z">
+<meta property="og:description" content="搭建 lnmp 环境
+下载解压, 将解压文件配置为nginx虚拟主机根目录
+主要讲下安全设置
+主要是禁止直接访问
+
+data
+conf
+bin
+
+这三个目录
+检测方式是看能否访问到
+http://yoursite.com/data/pages/wiki/dokuwiki.txt">
+<meta property="og:updated_time" content="2016-04-14T10:44:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的书单">
-<meta name="twitter:description" content="已读
-&amp;lt;&amp;lt;把时间当做朋友&amp;gt;&amp;gt; 读书笔记 ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷
- &amp;lt;&amp;lt; 学习学习再学习 &amp;gt;&amp;gt;  ⭐️⭐️⭐️⭐️ 学习的方法论
-&amp;lt;&amp;lt; 动物庄园 &amp;gt;&amp;gt; ⭐️⭐️ 没太大惊喜
-&amp;lt;&amp;lt; 十年一梦 &amp;gt;&amp;gt; ⭐️⭐️ 当故事来看
-&amp;lt;&amp;lt; 我只是敢和别人不一样 &amp;gt;&amp;gt; ⭐️⭐️⭐️">
+<meta name="twitter:title" content="安装管理Dokuwiki">
+<meta name="twitter:description" content="搭建 lnmp 环境
+下载解压, 将解压文件配置为nginx虚拟主机根目录
+主要讲下安全设置
+主要是禁止直接访问
+
+data
+conf
+bin
+
+这三个目录
+检测方式是看能否访问到
+http://yoursite.com/data/pages/wiki/dokuwiki.txt">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -208,11 +226,11 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-我的书单" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-安装管理Dokuwiki" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/05/我的书单/" class="article-date">
-  	<time datetime="2016-01-05T08:53:00.000Z" itemprop="datePublished">2016-01-05</time>
+      <a href="/2016/04/14/安装管理Dokuwiki/" class="article-date">
+  	<time datetime="2016-04-14T04:00:33.000Z" itemprop="datePublished">2016-04-14</time>
 </a>
     </div>
   
@@ -225,7 +243,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我的书单
+      安装管理Dokuwiki
     </h1>
   
 
@@ -234,12 +252,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/book/">book</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dokuwiki/">Dokuwiki</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/learn/">learn</a>
+	<a class="article-category-link" href="/categories/it/">it</a>
 	</div>
 
 
@@ -254,30 +272,71 @@
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5DF2_u8BFB"><span class="toc-number">1.</span> <span class="toc-text">已读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728_u8BFB"><span class="toc-number">2.</span> <span class="toc-text">在读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F85_u8BFB"><span class="toc-number">3.</span> <span class="toc-text">待读</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55"><span class="toc-number">1.</span> <span class="toc-text">配置nginx禁止访问特定目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">改变数据目录位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_u63D2_u4EF6"><span class="toc-number">3.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8F91"><span class="toc-number">4.</span> <span class="toc-text">编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5347_u7EA7"><span class="toc-number">5.</span> <span class="toc-text">升级</span></a></li></ol>
             </div>
         
-        <h3 id="u5DF2_u8BFB"><a href="#u5DF2_u8BFB" class="headerlink" title="已读"></a>已读</h3><ul>
-<li>&lt;&lt;把时间当做朋友&gt;&gt; <a href="http://xeroth.github.io/2016/01/05/%E6%8A%8A%E6%97%B6%E9%97%B4%E5%BD%93%E5%81%9A%E6%9C%8B%E5%8F%8B-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">读书笔记</a> ⭐️⭐️⭐️⭐️⭐️ 看得爽,能治郁闷</li>
-<li><a href="http://xiaolai.github.io/alpha/on-learning/" target="_blank" rel="external"> &lt;&lt; 学习学习再学习 &gt;&gt; </a> ⭐️⭐️⭐️⭐️ 学习的方法论</li>
-<li>&lt;&lt; 动物庄园 &gt;&gt; ⭐️⭐️ 没太大惊喜</li>
-<li>&lt;&lt; 十年一梦 &gt;&gt; ⭐️⭐️ 当故事来看</li>
-<li>&lt;&lt; 我只是敢和别人不一样 &gt;&gt; ⭐️⭐️⭐️ 让你更特立独行的鸡汤</li>
-<li>&lt;&lt; 黑客与画家 &gt;&gt; ⭐️⭐️⭐️⭐️⭐️ 不一样的角度看问题<a id="more"></a>
-</li>
+        <p>搭建 lnmp 环境</p>
+<p>下载解压, 将解压文件配置为nginx虚拟主机根目录</p>
+<p>主要讲下安全设置</p>
+<p>主要是禁止直接访问</p>
+<ul>
+<li>data</li>
+<li>conf</li>
+<li>bin</li>
 </ul>
-<h3 id="u5728_u8BFB"><a href="#u5728_u8BFB" class="headerlink" title="在读"></a>在读</h3><ul>
-<li>&lt;&lt; the leadership pipeline &gt;&gt; 进度 序</li>
-<li>&lt;&lt; 七年就是一辈子 &gt;&gt; <a href="http://xeroth.github.io/2016/01/05/%E4%B8%83%E5%B9%B4%E5%B0%B1%E6%98%AF%E4%B8%80%E8%BE%88%E5%AD%90-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">读书笔记</a> 每日连载…</li>
-<li><a href="http://zhibimo.com/read/xiaolai/everyone-can-use-english/" target="_blank" rel="external">&lt;&lt; 人人都能用英语 &gt;&gt;</a> 进度20%</li>
-<li>&lt;&lt; 批判性思维 &gt;&gt; 进度30%</li>
-<li><a href="http://dockerpool.com/static/books/docker_practice/index.html" target="_blank" rel="external">&lt;&lt; Docker —— 从入门到实践 &gt;&gt;</a> 20%</li>
-</ul>
-<h3 id="u5F85_u8BFB"><a href="#u5F85_u8BFB" class="headerlink" title="待读"></a>待读</h3><ul>
-<li>&lt;&lt; 少有人走的路 &gt;&gt;</li>
-<li>&lt;&lt; 反脆弱 &gt;&gt;</li>
-<li>&lt;&lt; Beyond Feelings &gt;&gt;</li>
-</ul>
+<p>这三个目录</p>
+<p>检测方式是看能否访问到</p>
+<p><a href="http://yoursite.com/data/pages/wiki/dokuwiki.txt">http://yoursite.com/data/pages/wiki/dokuwiki.txt</a></p>
+<a id="more"></a>
+<h3 id="u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55"><a href="#u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55" class="headerlink" title="配置nginx禁止访问特定目录"></a>配置nginx禁止访问特定目录</h3><p>一开始打算用 nginx 禁止目录访问功能, 在 nginx 配置了:</p>
+<pre><code>location ^~ /(data|conf|bin|inc)/* {
+        deny all;
+}
+</code></pre><h3 id="u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E"><a href="#u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E" class="headerlink" title="改变数据目录位置"></a>改变数据目录位置</h3><p>当然最好是直接把这些目录迁出网站根目录了</p>
+<pre><code># 转移conf
+[root@HD_Server_Config dokuwiki-2015-08-10a]# mv conf /data/dokuwiki/
+# 添加配置
+[root@HD_Server_Config dokuwiki-2015-08-10a]# vim inc/preload.php
+&lt;?php
+
+define(&apos;DOKU_CONF&apos;,&apos;/data/dokuwiki/conf/&apos;);
+
+# 转移 data
+[root@HD_Server_Config dokuwiki-2015-08-10a]# mv data /data/dokuwiki/
+# 添加配置
+[root@HD_Server_Config dokuwiki-2015-08-10a]# vim /data/dokuwiki/conf/local.php
+
+$conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
+
+# 转移 bin
+[root@HD_Server_Config dokuwiki-2015-08-10a]# mv bin /data/dokuwiki/
+</code></pre><h3 id="u5B89_u88C5_u63D2_u4EF6"><a href="#u5B89_u88C5_u63D2_u4EF6" class="headerlink" title="安装插件"></a>安装插件</h3><p><strong>管理</strong> -&gt; <strong>扩展管理器</strong></p>
+<p><strong>搜索和安装</strong>  </p>
+<p><em>swiftmail</em> 配置发送 smtp 邮件, 然后在 <strong>管理</strong> -&gt; <strong>配置设置</strong> -&gt; <strong>插件设置</strong>(右侧边栏处)</p>
+<p>smtp_host : smtp.exmail.qq.com</p>
+<p>smtp_port: 465</p>
+<p>smtp_ssl: SSL</p>
+<p>auth_user: smtp 邮箱地址, 比如admin@123.com</p>
+<p>auth_pass: 邮箱密码</p>
+<p>localdomain: yoursite.com</p>
+<p>除此之外, 还需要配置<strong>通知设置</strong></p>
+<p>通知设置里的东西全部填上勾上</p>
+<p>比如邮件地址都填</p>
+<p>admin@123.com</p>
+<p>邮件前缀填wiki_admin</p>
+<p>设置完之后 <strong>管理</strong> 界面下有个 <strong>检查 SwiftMail 配置</strong></p>
+<p><em>imgpaste</em> 在编辑器直接粘贴就可以插入剪贴板中的图片，可以用来快速上传截图。</p>
+<p><em>Tag</em></p>
+<p><em>addnewpage</em>  新建页面功能太隐晦了… 得在 url 那里添加, 所以搞了个插件</p>
+<h3 id="u7F16_u8F91"><a href="#u7F16_u8F91" class="headerlink" title="编辑"></a>编辑</h3><p><a href="https://www.dokuwiki.org/start?id=zh:wiki:syntax" target="_blank" rel="external">格式化语法</a></p>
+<h3 id="u5347_u7EA7"><a href="#u5347_u7EA7" class="headerlink" title="升级"></a>升级</h3><p><a href="https://www.dokuwiki.org/zh:install:upgrade" target="_blank" rel="external">升级</a></p>
+<p>参考:</p>
+<p><a href="https://www.dokuwiki.org/zh:security" target="_blank" rel="external">Dokuwikiu安全</a></p>
+<p><a href="http://drops.wooyun.org/tips/1323" target="_blank" rel="external">Nginx安全配置研究</a></p>
+<p><a href="http://www.jianshu.com/p/a6b00b055fcd" target="_blank" rel="external">DokuWiki简介及插件推荐</a></p>
+<p><a href="http://www.ligenyuan.cn/wiki/reproduce:dokuwiki_page_name" target="_blank" rel="external">dokuwiki命名空间</a></p>
+<p><a href="http://www.baiguo.net/wiki/doku.php?id=wiki:plugins" target="_blank" rel="external">Doku插件整理</a></p>
+<p><a href="http://blog.csdn.net/zouhao619/article/details/8523637" target="_blank" rel="external">更换编辑器–我还没空折腾这个…</a></p>
 
       
     </div>
@@ -287,18 +346,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/01/05/把时间当做朋友-读书笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          &lt;&lt;把时间当做朋友&gt;&gt;读书笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/05/hexo-博客优化/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo 博客优化</div>
+    <a href="/2016/04/13/MySQL-Galera-Cluster-学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL Galera Cluster 学习</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -333,7 +383,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="我的书单" data-title="我的书单" data-url="http://yoursite.com/2016/01/05/我的书单/"></div>
+	<div class="ds-thread" data-thread-key="安装管理Dokuwiki" data-title="安装管理Dokuwiki" data-url="http://yoursite.com/2016/04/14/安装管理Dokuwiki/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
