@@ -194,6 +194,76 @@
 
       <div class="body-wrap">
   
+    <article id="post-awk学习笔记-一" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/08/awk学习笔记-一/" class="article-date">
+  	<time datetime="2016-03-08T01:18:04.000Z" itemprop="datePublished">2016-03-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/08/awk学习笔记-一/">awk学习笔记(一)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><p>awk ‘/PATTERN/{action}’  <a href="http://ama2000.iteye.com/blog/1304823">详情参考</a></p>
+<p>else if 这种不能放 pattern, 只能放 action</p>
+<p>来点例子加深印象:</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">awk -F, '&#123;<span class="keyword">print</span> <span class="string">""</span>;<span class="keyword">print</span> <span class="label">$2&#125;</span>' OFS=<span class="string">"\t"</span></span><br><span class="line">awk 'BEGIN&#123;FS=<span class="string">":"</span>&#125; &#123;<span class="keyword">if</span>(<span class="label">$6</span> ~ /TIME/ ) <span class="keyword">print</span> <span class="label">$1&#125;</span>'</span><br><span class="line">awk &#123;<span class="keyword">sum</span>+=<span class="label">$5&#125;</span> END &#123;<span class="keyword">print</span> <span class="keyword">sum</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>输入驱动</p>
+<p>匹配行 /xx/</p>
+<p>匹配字段 $6 ~ /xx/</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/awk/">awk</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/08/awk学习笔记-一/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-三月份的碎碎念" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -530,86 +600,9 @@ Query OK, 0 rows affected (0.00 sec)
 
 
   
-    <article id="post-Django第一天" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/17/Django第一天/" class="article-date">
-  	<time datetime="2016-02-17T07:36:18.000Z" itemprop="datePublished">2016-02-17</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/17/Django第一天/">Django第一天</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用 Django 做一个投票( poll )的 app</p>
-<h3 id="u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><a href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><pre><code>django-admin startproject myproject
-</code></pre><p>目录结构</p>
-<pre><code>myproject/
-├── manage.py
-└── myproject
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-</code></pre><p>进入项目目录, 创建 app</p>
-<pre><code>cd myproject
-python manage.py startapp polls
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/02/17/Django第一天/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 </div>

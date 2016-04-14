@@ -34,7 +34,7 @@ bin
 这三个目录
 检测方式是看能否访问到
 http://yoursite.com/data/pages/wiki/dokuwiki.txt">
-<meta property="og:updated_time" content="2016-04-14T10:44:29.000Z">
+<meta property="og:updated_time" content="2016-04-14T11:08:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装管理Dokuwiki">
 <meta name="twitter:description" content="搭建 lnmp 环境
@@ -272,7 +272,7 @@ http://yoursite.com/data/pages/wiki/dokuwiki.txt">
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55"><span class="toc-number">1.</span> <span class="toc-text">配置nginx禁止访问特定目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">改变数据目录位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_u63D2_u4EF6"><span class="toc-number">3.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8F91"><span class="toc-number">4.</span> <span class="toc-text">编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5347_u7EA7"><span class="toc-number">5.</span> <span class="toc-text">升级</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6Enginx_u7981_u6B62_u8BBF_u95EE_u7279_u5B9A_u76EE_u5F55"><span class="toc-number">1.</span> <span class="toc-text">配置nginx禁止访问特定目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6539_u53D8_u6570_u636E_u76EE_u5F55_u4F4D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">改变数据目录位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_u63D2_u4EF6"><span class="toc-number">3.</span> <span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8F91"><span class="toc-number">4.</span> <span class="toc-text">编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5347_u7EA7"><span class="toc-number">5.</span> <span class="toc-text">升级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6279_u91CF_u7528_u6237_u5BFC_u5165"><span class="toc-number">6.</span> <span class="toc-text">批量用户导入</span></a></li></ol>
             </div>
         
         <p>搭建 lnmp 环境</p>
@@ -330,6 +330,16 @@ $conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
 <p><em>addnewpage</em>  新建页面功能太隐晦了… 得在 url 那里添加, 所以搞了个插件</p>
 <h3 id="u7F16_u8F91"><a href="#u7F16_u8F91" class="headerlink" title="编辑"></a>编辑</h3><p><a href="https://www.dokuwiki.org/start?id=zh:wiki:syntax" target="_blank" rel="external">格式化语法</a></p>
 <h3 id="u5347_u7EA7"><a href="#u5347_u7EA7" class="headerlink" title="升级"></a>升级</h3><p><a href="https://www.dokuwiki.org/zh:install:upgrade" target="_blank" rel="external">升级</a></p>
+<h3 id="u6279_u91CF_u7528_u6237_u5BFC_u5165"><a href="#u6279_u91CF_u7528_u6237_u5BFC_u5165" class="headerlink" title="批量用户导入"></a>批量用户导入</h3><p>先是创建了2个用户, 然后导出了用户 csv 文件, 看了一下文件结构:</p>
+<pre><code>user1,user1,user1@yoursite.cn,user
+user2,user2,user2@yoursite.cn,user
+</code></pre><p>然后建立一个文件,里面存放用户名:</p>
+<pre><code>user3
+user4
+...
+</code></pre><p>最后用 awk 生成 csv 文件</p>
+<pre><code>awk &apos;{printf &quot;%s,%s,%s@yoursite.cn,user\n&quot;, $1,$1,$1}&apos; member.txt &gt; member.csv
+</code></pre><p>导入 csv 文件即可</p>
 <p>参考:</p>
 <p><a href="https://www.dokuwiki.org/zh:security" target="_blank" rel="external">Dokuwikiu安全</a></p>
 <p><a href="http://drops.wooyun.org/tips/1323" target="_blank" rel="external">Nginx安全配置研究</a></p>
@@ -345,6 +355,15 @@ $conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/04/14/Vagrant安装使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Vagrant安装使用
+        
+      </div>
+    </a>
   
   
     <a href="/2016/04/13/MySQL-Galera-Cluster-学习/" id="article-nav-older" class="article-nav-link-wrap">

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T10:44:29.000Z</updated>
+  <updated>2016-04-14T10:49:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,26 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Vagrant安装使用]]></title>
+    <link href="http://yoursite.com/2016/04/14/Vagrant%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/04/14/Vagrant安装使用/</id>
+    <published>2016-04-14T10:49:01.000Z</published>
+    <updated>2016-04-14T10:49:01.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[安装管理Dokuwiki]]></title>
     <link href="http://yoursite.com/2016/04/14/%E5%AE%89%E8%A3%85%E7%AE%A1%E7%90%86Dokuwiki/"/>
     <id>http://yoursite.com/2016/04/14/安装管理Dokuwiki/</id>
     <published>2016-04-14T04:00:33.000Z</published>
-    <updated>2016-04-14T10:44:29.000Z</updated>
+    <updated>2016-04-14T11:08:13.000Z</updated>
     <content type="html"><![CDATA[<p>搭建 lnmp 环境</p>
 <p>下载解压, 将解压文件配置为nginx虚拟主机根目录</p>
 <p>主要讲下安全设置</p>
@@ -75,6 +90,16 @@ $conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
 <p><em>addnewpage</em>  新建页面功能太隐晦了… 得在 url 那里添加, 所以搞了个插件</p>
 <h3 id="u7F16_u8F91"><a href="#u7F16_u8F91" class="headerlink" title="编辑"></a>编辑</h3><p><a href="https://www.dokuwiki.org/start?id=zh:wiki:syntax" target="_blank" rel="external">格式化语法</a></p>
 <h3 id="u5347_u7EA7"><a href="#u5347_u7EA7" class="headerlink" title="升级"></a>升级</h3><p><a href="https://www.dokuwiki.org/zh:install:upgrade" target="_blank" rel="external">升级</a></p>
+<h3 id="u6279_u91CF_u7528_u6237_u5BFC_u5165"><a href="#u6279_u91CF_u7528_u6237_u5BFC_u5165" class="headerlink" title="批量用户导入"></a>批量用户导入</h3><p>先是创建了2个用户, 然后导出了用户 csv 文件, 看了一下文件结构:</p>
+<pre><code>user1,user1,user1@yoursite.cn,user
+user2,user2,user2@yoursite.cn,user
+</code></pre><p>然后建立一个文件,里面存放用户名:</p>
+<pre><code>user3
+user4
+...
+</code></pre><p>最后用 awk 生成 csv 文件</p>
+<pre><code>awk &apos;{printf &quot;%s,%s,%s@yoursite.cn,user\n&quot;, $1,$1,$1}&apos; member.txt &gt; member.csv
+</code></pre><p>导入 csv 文件即可</p>
 <p>参考:</p>
 <p><a href="https://www.dokuwiki.org/zh:security" target="_blank" rel="external">Dokuwikiu安全</a></p>
 <p><a href="http://drops.wooyun.org/tips/1323" target="_blank" rel="external">Nginx安全配置研究</a></p>
@@ -1684,87 +1709,6 @@ Query OK, 0 rows affected (0.00 sec)
         &apos;PORT&apos;:&apos;3306&apos;,
     }
 }
-</code></pre>]]>
-    
-    </summary>
-    
-      <category term="Django" scheme="http://yoursite.com/tags/Django/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Django第一天]]></title>
-    <link href="http://yoursite.com/2016/02/17/Django%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
-    <id>http://yoursite.com/2016/02/17/Django第一天/</id>
-    <published>2016-02-17T07:36:18.000Z</published>
-    <updated>2016-02-22T04:11:25.000Z</updated>
-    <content type="html"><![CDATA[<p>用 Django 做一个投票( poll )的 app</p>
-<h3 id="u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><a href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><pre><code>django-admin startproject myproject
-</code></pre><p>目录结构</p>
-<pre><code>myproject/
-├── manage.py
-└── myproject
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-</code></pre><p>进入项目目录, 创建 app</p>
-<pre><code>cd myproject
-python manage.py startapp polls
-</code></pre><a id="more"></a>    
-<p>app 目录结构</p>
-<pre><code>polls/
-├── __init__.py
-├── admin.py
-├── apps.py
-├── migrations
-│   └── __init__.py
-├── models.py
-├── tests.py
-└── views.py
-</code></pre><p>运行测试</p>
-<pre><code>python manage.py runserver
-</code></pre><h3 id="u521B_u5EFA_u4E00_u4E2A_view"><a href="#u521B_u5EFA_u4E00_u4E2A_view" class="headerlink" title="创建一个 view"></a>创建一个 view</h3><pre><code>polls/views.py
-from django.http import HttpResponse
-
-
-def index(request):
-    return HttpResponse(&quot;Hello, world. You&apos;re at the polls index.&quot;)
-</code></pre><p>为了能访问 view, 需要写一个局部的 URLconf (URL配置文件),将 view 映射给 URL</p>
-<pre><code>polls/urls.py
-from django.conf.urls import url
-
-from . import views
-
-urlpatterns = [
-    url(r&apos;^$&apos;, views.index, name=&apos;index&apos;),
-]
-</code></pre><p>然后把这个局部的 URLconf 文件关联到root URLconf 中</p>
-<pre><code>myproject/urls.py
-from django.conf.urls import include, url
-from django.contrib import admin
-
-urlpatterns = [
-    url(r&apos;^polls/&apos;, include(&apos;polls.urls&apos;)),
-    url(r&apos;^admin/&apos;, admin.site.urls),
-]
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>用 Django 做一个投票( poll )的 app</p>
-<h3 id="u521B_u5EFA_u4E00_u4E2A_u9879_u76EE"><a href="#u521B_u5EFA_u4E00_u4E2A_u9879_u76EE" class="headerlink" title="创建一个项目"></a>创建一个项目</h3><pre><code>django-admin startproject myproject
-</code></pre><p>目录结构</p>
-<pre><code>myproject/
-├── manage.py
-└── myproject
-    ├── __init__.py
-    ├── settings.py
-    ├── urls.py
-    └── wsgi.py
-</code></pre><p>进入项目目录, 创建 app</p>
-<pre><code>cd myproject
-python manage.py startapp polls
 </code></pre>]]>
     
     </summary>
