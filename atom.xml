@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T10:49:01.000Z</updated>
+  <updated>2016-04-14T11:29:05.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,11 +19,25 @@
     <link href="http://yoursite.com/2016/04/14/Vagrant%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2016/04/14/Vagrant安装使用/</id>
     <published>2016-04-14T10:49:01.000Z</published>
-    <updated>2016-04-14T10:49:01.000Z</updated>
-    <content type="html"></content>
+    <updated>2016-04-14T11:29:05.000Z</updated>
+    <content type="html"><![CDATA[<p>下载,安装</p>
+<p>在新 terminal 可以看到 vagrant 命令</p>
+<pre><code>$ vagrant --version
+Vagrant 1.8.1
+</code></pre><h3 id="u51E0_u4E2A_u6982_u5FF5"><a href="#u51E0_u4E2A_u6982_u5FF5" class="headerlink" title="几个概念"></a>几个概念</h3><p><em>Provider</em>：供应商，在这里指Vagrant调用的虚拟化工具。Vagrant本身并没有能力创建虚拟机，它是调用一些虚拟化工具来创建，如VirtualBox、VMWare、Xen、Docker，甚至AWS，这些虚拟化工具只要安装好了，vagrant会自动封装在底层通过统一的命令调用。也就是说使用vagrant时你电脑上还需要安装对应的Provider，默认是免费开源的virtualbox。<br><em>Box</em>：可被Vagrant直接使用的虚拟机镜像文件，大小根据内容的不同从200M-2G不等。针对不同的Provider，Box文件的格式是不一样的，从 vagrantcloud.com 你可以找到社区维护的box。</p>
+<p><em>Vagrantfile</em>：Vagrant根据Vagrantfile中的配置来创建虚拟机，是Vagrant的核心。在Vagrantfile文件中你需要指明使用哪个Box（可以下载好的或自己制作，或指定在线的URL地址），虚拟机使用的内存大小和CPU，需要预安装哪些软件，虚拟机的网络配置，与host的共享目录等。</p>
+<p><em>Provisioner</em>：是Vagrant的插件的一种。大部分现成的box并不是你正好想要的，通过使用你熟悉的provisioner，比如Puppet，可以在你使用vagrant up启动虚拟机时自动的安装软件、修改配置等初始化操作。当然你也可以在最先启动虚拟机后，使用vagrant ssh进去然后手动安装软件，但毕竟不是所有人都是系统管理员，写好Vagrantfile后无需人工干预马上就可以使用vm。目前支持并实现的provisioning有Puppet、Salt、Ansible、Chef这些知名的自动化运维工具，当然需要一定的使用经验；也可以使用shell provisioner，故名思议这个插件就是通过执行shell命令完成统一的作用。</p>
+<p><em>Guest Additions</em>：这个是常在下载 base box 介绍里有的，一般用来实现host到vm的端口转发、目录共享，在开发环境上都建议装上以便测试。</p>
+]]></content>
     <summary type="html">
-    
+    <![CDATA[<p>下载,安装</p>
+<p>在新 terminal 可以看到 vagrant 命令</p>
+<pre><code>$ vagrant --version
+Vagrant 1.8.1
+</code></pre><h3 id="u51E0_u4E2A_u6982_u5FF5"><]]>
     </summary>
+    
+      <category term="vagrant" scheme="http://yoursite.com/tags/vagrant/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
@@ -34,7 +48,7 @@
     <link href="http://yoursite.com/2016/04/14/%E5%AE%89%E8%A3%85%E7%AE%A1%E7%90%86Dokuwiki/"/>
     <id>http://yoursite.com/2016/04/14/安装管理Dokuwiki/</id>
     <published>2016-04-14T04:00:33.000Z</published>
-    <updated>2016-04-14T11:08:13.000Z</updated>
+    <updated>2016-04-14T13:05:32.000Z</updated>
     <content type="html"><![CDATA[<p>搭建 lnmp 环境</p>
 <p>下载解压, 将解压文件配置为nginx虚拟主机根目录</p>
 <p>主要讲下安全设置</p>
@@ -86,8 +100,9 @@ $conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
 <p>邮件前缀填wiki_admin</p>
 <p>设置完之后 <strong>管理</strong> 界面下有个 <strong>检查 SwiftMail 配置</strong></p>
 <p><em>imgpaste</em> 在编辑器直接粘贴就可以插入剪贴板中的图片，可以用来快速上传截图。</p>
-<p><em>Tag</em></p>
+<p><em>Tag</em>    在文档顶部加入标签 </p>
 <p><em>addnewpage</em>  新建页面功能太隐晦了… 得在 url 那里添加, 所以搞了个插件</p>
+<p><em>pagelist</em>    表格形式列出wiki页面列表</p>
 <h3 id="u7F16_u8F91"><a href="#u7F16_u8F91" class="headerlink" title="编辑"></a>编辑</h3><p><a href="https://www.dokuwiki.org/start?id=zh:wiki:syntax" target="_blank" rel="external">格式化语法</a></p>
 <h3 id="u5347_u7EA7"><a href="#u5347_u7EA7" class="headerlink" title="升级"></a>升级</h3><p><a href="https://www.dokuwiki.org/zh:install:upgrade" target="_blank" rel="external">升级</a></p>
 <h3 id="u6279_u91CF_u7528_u6237_u5BFC_u5165"><a href="#u6279_u91CF_u7528_u6237_u5BFC_u5165" class="headerlink" title="批量用户导入"></a>批量用户导入</h3><p>先是创建了2个用户, 然后导出了用户 csv 文件, 看了一下文件结构:</p>
