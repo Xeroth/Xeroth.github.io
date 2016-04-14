@@ -48,7 +48,7 @@ Vagrant 1.8.1
     <link href="http://yoursite.com/2016/04/14/%E5%AE%89%E8%A3%85%E7%AE%A1%E7%90%86Dokuwiki/"/>
     <id>http://yoursite.com/2016/04/14/安装管理Dokuwiki/</id>
     <published>2016-04-14T04:00:33.000Z</published>
-    <updated>2016-04-14T13:05:32.000Z</updated>
+    <updated>2016-04-14T13:05:56.000Z</updated>
     <content type="html"><![CDATA[<p>搭建 lnmp 环境</p>
 <p>下载解压, 将解压文件配置为nginx虚拟主机根目录</p>
 <p>主要讲下安全设置</p>
@@ -101,6 +101,7 @@ $conf[&apos;savedir&apos;] = &apos;/data/dokuwiki/data/&apos;;
 <p>设置完之后 <strong>管理</strong> 界面下有个 <strong>检查 SwiftMail 配置</strong></p>
 <p><em>imgpaste</em> 在编辑器直接粘贴就可以插入剪贴板中的图片，可以用来快速上传截图。</p>
 <p><em>Tag</em>    在文档顶部加入标签 </p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="expansion">&#123;&#123;tag&gt;it mannual&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 <p><em>addnewpage</em>  新建页面功能太隐晦了… 得在 url 那里添加, 所以搞了个插件</p>
 <p><em>pagelist</em>    表格形式列出wiki页面列表</p>
 <h3 id="u7F16_u8F91"><a href="#u7F16_u8F91" class="headerlink" title="编辑"></a>编辑</h3><p><a href="https://www.dokuwiki.org/start?id=zh:wiki:syntax" target="_blank" rel="external">格式化语法</a></p>
