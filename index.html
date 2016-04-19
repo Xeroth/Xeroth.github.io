@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 12.5px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -193,6 +193,76 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-系统管理常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/19/系统管理常用脚本/" class="article-date">
+  	<time datetime="2016-04-19T09:29:28.000Z" itemprop="datePublished">2016-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/19/系统管理常用脚本/">系统管理常用脚本</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><span class="toc-number">1.</span> <span class="toc-text">文件和文件夹权限递归为777，还原成默认的755和644</span></a></li></ol>
+            </div>
+        
+        <h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
+find ./ -type d |xargs chmod 755
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Vagrant安装使用" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -491,70 +561,6 @@ Error: Nothing to do
       
         <p class="article-more-link">
           <a  href="/2016/04/12/svn仓库间数据转移/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Shell数组" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/04/08/Shell数组/" class="article-date">
-  	<time datetime="2016-04-08T03:19:37.000Z" itemprop="datePublished">2016-04-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/08/Shell数组/">Shell数组</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数组赋值</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># a=(1 2 3 b c d)</span></span><br><span class="line"><span class="comment"># 调用数组元素</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/04/08/Shell数组/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
