@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-22T03:53:38.000Z</updated>
+  <updated>2016-04-22T09:20:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Centos 7 安装Docker]]></title>
+    <link href="http://yoursite.com/2016/04/22/Centos-7-%E5%AE%89%E8%A3%85Docker/"/>
+    <id>http://yoursite.com/2016/04/22/Centos-7-安装Docker/</id>
+    <published>2016-04-22T06:31:15.000Z</published>
+    <updated>2016-04-22T09:20:08.000Z</updated>
+    <content type="html"><![CDATA[<p>环境:阿里云 centos7 镜像</p>
+<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><p>1.查看内核版本, 如果内核太旧, 请升级到最新版本</p>
+<pre><code># uname -r
+3.10.0-327.13.1.el7.x86_64
+
+# yum update -y
+</code></pre><p>2.官方脚本安装</p>
+<pre><code># curl -fsSL https://get.docker.com/ | sh
++ sh -c &apos;sleep 3; yum -y -q install docker-engine&apos;
+warning: /var/cache/yum/x86_64/7/docker-main-repo/packages/docker-engine-selinux-1.11.0-1.el7.centos.noarch.rpm: Header V4 RSA/SHA512 Signature, key ID 2c52609d: NOKEY
+Public key for docker-engine-selinux-1.11.0-1.el7.centos.noarch.rpm is not installed
+https://yum.dockerproject.org/repo/main/centos/7/Packages/docker-engine-1.11.0-1.el7.centos.x86_64.rpm: [Errno 12] Timeout on https://yum.dockerproject.org/repo/main/centos/7/Packages/docker-engine-1.11.0-1.el7.centos.x86_64.rpm: (28, &apos;Operation timed out after 3000 milliseconds with 0 out of 0 bytes received&apos;)
+Trying other mirror.
+https://yum.dockerproject.org/repo/main/centos/7/Packages/docker-engine-1.11.0-1.el7.centos.x86_64.rpm: [Errno 12] Timeout on https://yum.dockerproject.org/repo/main/centos/7/Packages/docker-engine-1.11.0-1.el7.centos.x86_64.rpm: (28, &apos;Operation timed out after 3001 milliseconds with 0 out of 0 bytes received&apos;)
+Trying other mirror.
+Importing GPG key 0x2C52609D:
+ Userid     : &quot;Docker Release Tool (releasedocker) &lt;docker@docker.com&gt;&quot;
+ Fingerprint: 5811 8e89 f3a9 1289 7c07 0adb f762 2157 2c52 609d
+ From       : https://yum.dockerproject.org/gpg
+setsebool:  SELinux is disabled.
+
+If you would like to use Docker as a non-root user, you should now consider
+adding your user to the &quot;docker&quot; group with something like:
+
+  sudo usermod -aG docker your-user
+
+Remember that you will have to log out and back in for this to take effect!
+</code></pre><p>3.启动</p>
+<pre><code>service docker start
+</code></pre><p>4.测试</p>
+<pre><code># docker run hello-world
+Unable to find image &apos;hello-world:latest&apos; locally
+latest: Pulling from library/hello-world
+03f4658f8b78: Pull complete
+a3ed95caeb02: Pull complete
+Digest: sha256:8be990ef2aeb16dbcb9271ddfe2610fa6658d13f6dfb8bc72074cc1ca36966a7
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker.
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the &quot;hello-world&quot; image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker Hub account:
+ https://hub.docker.com
+
+For more examples and ideas, visit:
+ https://docs.docker.com/userguide/
+</code></pre><p>5.设置开机启动</p>
+<pre><code># chkconfig docker on
+Note: Forwarding request to &apos;systemctl enable docker.service&apos;.
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+</code></pre><h3 id="u5378_u8F7D"><a href="#u5378_u8F7D" class="headerlink" title="卸载"></a>卸载</h3><pre><code>yum list installed | grep docker
+docker-engine.x86_64               1.11.0-1.el7.centos        @docker-main-repo
+docker-engine-selinux.noarch       1.11.0-1.el7.centos        @docker-main-repo
+
+yum -y remove docker-engine.x86_64
+
+rm -rf /var/lib/docker
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>环境:阿里云 centos7 镜像</p>
+<h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><p>1.查看内核版本, 如果内核太旧, 请升级到最新版本<]]>
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Ansible synchronize]]></title>
@@ -406,7 +492,7 @@ Error: Nothing to do
     <link href="http://yoursite.com/2016/04/12/svn%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/"/>
     <id>http://yoursite.com/2016/04/12/svn仓库间数据转移/</id>
     <published>2016-04-12T01:36:17.000Z</published>
-    <updated>2016-04-12T12:23:33.000Z</updated>
+    <updated>2016-04-22T09:22:18.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
 <pre><code>project1
     ├── branches
@@ -595,6 +681,8 @@ A    code/php/everinner_app/conf/config.php
 <p><em>用户在父目录的权限会把子目录的给覆盖​, 无法进行有效的用户权限控制.</em></p>
 <p>你可能会说, 直接在子目录给权限不就行了, 抱歉, 这样连根目录的读权限都没有, 是不能通过验证的</p>
 <p>日了🐶    </p>
+<p>扩展阅读:</p>
+<p><a href="http://developer.51cto.com/art/201005/201718.htm" target="_blank" rel="external">SVN中tag branch trunk用法详解</a>    </p>
 <p>参考:</p>
 <p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
 <p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
@@ -1645,71 +1733,6 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
       <category term="碎碎念" scheme="http://yoursite.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
     
       <category term="life" scheme="http://yoursite.com/categories/life/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[解决一些电脑问题]]></title>
-    <link href="http://yoursite.com/2016/02/25/%E8%A7%A3%E5%86%B3%E4%B8%80%E4%BA%9B%E7%94%B5%E8%84%91%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2016/02/25/解决一些电脑问题/</id>
-    <published>2016-02-25T03:38:54.000Z</published>
-    <updated>2016-04-19T09:28:34.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html" target="_blank" rel="external">小马win7激活工具</a>, 解压, 运行</p>
-<h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
-<p>解决方法:</p>
-<pre><code>添加中文字符编码：
-$sudo vim /var/lib/locales/supported.d/local
-#添加下面的中文字符集, 一开始是只有en_US.UTF-8 UTF-8这一行的
-zh_CN.GBK GBK
-zh_CN.GB2312 GB2312
-zh_CN.GB18030 GB18030
-使其生效：
-$sudo dpkg-reconfigure locales
-然后重启, 或者重新登录终端就 ok 了
-</code></pre><a id="more"></a>
-<h3 id="Error_checking_TLS_connection_3A_Host_is_not_running"><a href="#Error_checking_TLS_connection_3A_Host_is_not_running" class="headerlink" title="Error checking TLS connection: Host is not running"></a>Error checking TLS connection: Host is not running</h3><p>mac 上用 Dockertool 安装了 Docker, 我把<code>eval $(docker-machine env default)</code> 加到了 <code>.bashrc</code> 里面, 但是当网络发生变化的时候, Docker 的 ip 会出现问题 ,连接不上, 于是会提示这个错误</p>
-<p>把上面那句改成下面的就解决了:</p>
-<pre><code># connect your shell to docker-machine
-[ Running == `docker-machine ls | awk &apos;NR==2{print $4}&apos;`  ] &amp;&amp; eval $(docker-machine env default) || echo fuck
-</code></pre><h3 id="mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E"><a href="#mac_os__u8FD8_u539F_u6700_u5C0F_u5316_u7A97_u53E3_u7684_u5FEB_u6377_u952E" class="headerlink" title="mac os 还原最小化窗口的快捷键"></a>mac os 还原最小化窗口的快捷键</h3><p>最小化快捷键 command + m</p>
-<p>发现用cmd + tab键不能还原最小化的窗口，非常不方便，Google了一下找到一个最简单的方法。</p>
-<blockquote>
-<p>用cmd+Tab键选中要还原的程序后，保持cmd键不放，松开tab键再按住alt/option 键，再松开cmd键最后松开alt/option键。</p>
-</blockquote>
-<p>试试吧。</p>
-<p><a href="http://www.chinamac.com/2014/0328/2471.html" target="_blank" rel="external">教你如何用快捷键 还原最小化的窗口</a></p>
-<h3 id="Filezilla_sftp__u5BC6_u94A5_u767B_u9646"><a href="#Filezilla_sftp__u5BC6_u94A5_u767B_u9646" class="headerlink" title="Filezilla sftp 密钥登陆"></a>Filezilla sftp 密钥登陆</h3><p>使用的是 id_rsa 文件, 而不是id_rsa.pub 文件</p>
-<h3 id="Chrome__u9690_u85CF_u4E66_u7B7E_u680F"><a href="#Chrome__u9690_u85CF_u4E66_u7B7E_u680F" class="headerlink" title="Chrome 隐藏书签栏"></a>Chrome 隐藏书签栏</h3><p>Shift+command+b</p>
-<h3 id="/var/log/messages__u65E5_u5FD7_u6587_u4EF6_u91CC_u5927_u91CF_u7684_3A_systemd_3A_Started_Session_1858_of_user_root"><a href="#/var/log/messages__u65E5_u5FD7_u6587_u4EF6_u91CC_u5927_u91CF_u7684_3A_systemd_3A_Started_Session_1858_of_user_root" class="headerlink" title="/var/log/messages 日志文件里大量的: systemd: Started Session 1858 of user root."></a>/var/log/messages 日志文件里大量的: systemd: Started Session 1858 of user root.</h3><p>解决方法:</p>
-<pre><code>vi /etc/systemd/system.conf
-LogLevel=notice
-</code></pre><p>然后</p>
-<pre><code>systemctl restart rsyslog
-systemd-analyze set-log-level notice
-</code></pre><p><a href="http://blog.dougco.com/unix/too-many-systemd-created-slice/" target="_blank" rel="external">Too many systemd: Created slice !</a></p>
-<h3 id="Mac_tree__u4E2D_u6587_u6587_u4EF6_u540D_u663E_u793A_u5F02_u5E38"><a href="#Mac_tree__u4E2D_u6587_u6587_u4EF6_u540D_u663E_u793A_u5F02_u5E38" class="headerlink" title="Mac tree 中文文件名显示异常"></a>Mac tree 中文文件名显示异常</h3><pre><code>tree -N
-</code></pre><p><a href="http://wwdd23.github.io/2015/01/09/mac-tree-chinese-display-error.html" target="_blank" rel="external">参考</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248"><a href="#windows7__u5185_u90E8_u7248_u672C7601_2C_u6B64windows_u526F_u672C_u4E0D_u662F_u6B63_u7248" class="headerlink" title="windows7 内部版本7601,此windows副本不是正版"></a>windows7 内部版本7601,此windows副本不是正版</h3><p>下载<a href="http://www.2cto.com/os/201601/456247.html">小马win7激活工具</a>, 解压, 运行</p>
-<h3 id="ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801"><a href="#ubuntu__u7EC8_u7AEF_u4E2D_u6587_u4E71_u7801" class="headerlink" title="ubuntu 终端中文乱码"></a>ubuntu 终端中文乱码</h3><p>ubuntu iterm 连接之后, 终端无法输入中文 , vim 里面的中文都是乱码, ubuntu tty 显示中文为乱码</p>
-<p>解决方法:</p>
-<pre><code>添加中文字符编码：
-$sudo vim /var/lib/locales/supported.d/local
-#添加下面的中文字符集, 一开始是只有en_US.UTF-8 UTF-8这一行的
-zh_CN.GBK GBK
-zh_CN.GB2312 GB2312
-zh_CN.GB18030 GB18030
-使其生效：
-$sudo dpkg-reconfigure locales
-然后重启, 或者重新登录终端就 ok 了
-</code></pre>]]>
-    
-    </summary>
-    
-      <category term="error" scheme="http://yoursite.com/tags/error/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
   </entry>
   

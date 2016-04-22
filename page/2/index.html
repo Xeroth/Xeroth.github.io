@@ -112,7 +112,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Ansible/" style="font-size: 10px;">Ansible</a> <a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Synchronize/" style="font-size: 10px;">Synchronize</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+						<a href="/tags/Ansible/" style="font-size: 10px;">Ansible</a> <a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Synchronize/" style="font-size: 10px;">Synchronize</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -193,6 +193,91 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-MySQL-Galera-Cluster-学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/13/MySQL-Galera-Cluster-学习/" class="article-date">
+  	<time datetime="2016-04-13T09:07:44.000Z" itemprop="datePublished">2016-04-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/13/MySQL-Galera-Cluster-学习/">MySQL Galera Cluster 学习</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://galeracluster.com/documentation-webpages/">官网文档</a></p>
+<h2 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h2><h3 id="u6709_u4E09_u79CD_u7248_u672C_u53EF_u4EE5_u9009_u62E9_u5B89_u88C5"><a href="#u6709_u4E09_u79CD_u7248_u672C_u53EF_u4EE5_u9009_u62E9_u5B89_u88C5" class="headerlink" title="有三种版本可以选择安装"></a>有三种版本可以选择安装</h3><ul>
+<li>mysql 版本</li>
+<li>Percona XtraDB Cluster 版本</li>
+<li>Mariadb 版本</li>
+</ul>
+<h3 id="u5B89_u88C5_u9047_u5230_u5F88_u591A_u5751_3A"><a href="#u5B89_u88C5_u9047_u5230_u5F88_u591A_u5751_3A" class="headerlink" title="安装遇到很多坑:"></a>安装遇到很多坑:</h3><p>比如, 安装 mysql 版本的, 更新 yum 源时候, 被墙了:</p>
+<pre><code>http://releases.galeracluster.com/centos/6/x86_64/repodata/repomd.xml: [Errno 14] PYCURL ERROR 6 - &quot;Couldn&apos;t resolve host &apos;releases.galeracluster.com&apos;&quot;
+Trying other mirror.
+Error: Cannot retrieve repository metadata (repomd.xml) for repository: galera. Please verify its path and try again
+</code></pre><p>比如, 安装 Percona XtraDB Cluster 版本的, 提示仓库没那个软件包…</p>
+<pre><code>[root@node2 ~]#  yum install Percona-XtraDB-Cluster -y
+Loaded plugins: security
+Setting up Install Process
+No package Percona-XtraDB-Cluster available.
+Error: Nothing to do
+</code></pre><p>比如, 装了 PXC 的 yum 仓库包之后, 再装 mariadb, 会产生软件包冲突, md 得格式化系统了 - -</p>
+<pre><code>Transaction Check Error:
+  file /usr/lib64/libmysqlclient.so.16.0.0 from install of MariaDB-compat-10.0.24-1.el6.x86_64 conflicts with file from package Percona-Server-shared-51-5.1.73-rel14.12.625.rhel6.x86_64
+  file /usr/lib64/libmysqlclient_r.so.16.0.0 from install of MariaDB-compat-10.0.24-1.el6.x86_64 conflicts with file from package Percona-Server-shared-51-5.1.73-rel14.12.625.rhel6.x86_64
+  file /etc/my.cnf from install of MariaDB-common-10.0.24-1.el6.x86_64 conflicts with file from package Percona-Server-shared-51-5.1.73-rel14.12.625.rhel6.x86_64
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Galera/">Galera</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/13/MySQL-Galera-Cluster-学习/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-svn仓库间数据转移" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -471,95 +556,6 @@ Or, if you don&apos;t want/need launchctl, you can just run:
         <p class="article-more-link">
           <a  href="/2016/04/01/mac-os-安装使用postgresql/#more">more >></a>
         </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-nginx打开目录浏览功能-autoindex" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/29/nginx打开目录浏览功能-autoindex/" class="article-date">
-  	<time datetime="2016-03-29T03:27:44.000Z" itemprop="datePublished">2016-03-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/29/nginx打开目录浏览功能-autoindex/">nginx打开目录浏览功能(autoindex)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            
-            </div>
-        
-        <pre><code>server {
-        server_name hook.123.cn;
-        root /opt/www/svnhook/document/php;
-        location / {
-                autoindex on;
-                autoindex_localtime on;
-                charset utf-8,gbk;  # 解决中文乱码
-
-                # 认证登陆
-                auth_basic            &quot;Password please&quot;;
-                auth_basic_user_file  /etc/nginx/htpasswd;
-
-
-                index 投标单位管理.html;
-                if (!-e $request_filename) {
-                        rewrite ^(.*)$  /manage.html last;
-                }
-        }
-}
-</code></pre><p><code>/etc/nginx/htpasswd</code> 记得修改为 nginx 的权限 , 账号密码可以通过在线的htpasswd生成器生成</p>
-<p><a href="http://blog.licess.com/nginx-autoindex/" target="_blank" rel="external">nginx打开目录浏览功能(autoindex)</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/">nginx</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/it/">it</a>
-	</div>
-
-
       
       <div class="clearfix"></div>
     </div>
