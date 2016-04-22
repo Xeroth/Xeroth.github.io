@@ -7,18 +7,21 @@
   <title>系统管理常用脚本 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755">
+find ./ -type d |xargs chmod 755
+讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统管理常用脚本">
 <meta property="og:url" content="http://yoursite.com/2016/04/19/系统管理常用脚本/index.html">
 <meta property="og:site_name" content="Live with love">
 <meta property="og:description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755">
-<meta property="og:updated_time" content="2016-04-19T09:38:28.000Z">
+find ./ -type d |xargs chmod 755
+讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
+<meta property="og:updated_time" content="2016-04-22T03:50:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统管理常用脚本">
 <meta name="twitter:description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755">
+find ./ -type d |xargs chmod 755
+讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -116,7 +119,7 @@ find ./ -type d |xargs chmod 755">
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+						<a href="/tags/Ansible/" style="font-size: 10px;">Ansible</a> <a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Synchronize/" style="font-size: 10px;">Synchronize</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -242,11 +245,23 @@ find ./ -type d |xargs chmod 755">
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><span class="toc-number">1.</span> <span class="toc-text">文件和文件夹权限递归为777，还原成默认的755和644</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><span class="toc-number">1.</span> <span class="toc-text">文件和文件夹权限递归为777，还原成默认的755和644</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">讲 ssh/config 的主机信息转移到 ansible hosts 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_swap"><span class="toc-number">3.</span> <span class="toc-text">创建 swap</span></a></li></ol>
             </div>
         
         <h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
 find ./ -type d |xargs chmod 755
+</code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
+</code></pre><p>其中<code>a=a$2&quot;\n&quot;</code> 为字符串连接</p>
+<h3 id="u521B_u5EFA_swap"><a href="#u521B_u5EFA_swap" class="headerlink" title="创建 swap"></a>创建 swap</h3><pre><code>[root@node1 ~]# cat create_swap.sh
+#!/bin/bash
+
+fallocate -l 512M /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo &quot;/swapfile none swap defaults 0 0&quot; &gt;&gt;  /etc/fstab
+mount -a
+free -m
 </code></pre>
       
     </div>
@@ -255,6 +270,15 @@ find ./ -type d |xargs chmod 755
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/04/20/Ansible-synchronize/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Ansible synchronize
+        
+      </div>
+    </a>
   
   
     <a href="/2016/04/14/Vagrant安装使用/" id="article-nav-older" class="article-nav-link-wrap">

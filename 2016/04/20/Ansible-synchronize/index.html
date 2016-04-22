@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Ansible synchronize | Live with love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注意几个参数,[default: no]或者有特殊配置的:
+
+copy_links    拷贝软连接的真实文件, 而不是软连接
+delete    在进行同步后是否删除 src 中不存在的文件, 默认情况下, 是会保留 dest 目标文件夹原先就存在的文件
+existing_only    ?
+mode      [ default: push ]本地或者委托到目标机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ansible synchronize">
+<meta property="og:url" content="http://yoursite.com/2016/04/20/Ansible-synchronize/index.html">
+<meta property="og:site_name" content="Live with love">
+<meta property="og:description" content="注意几个参数,[default: no]或者有特殊配置的:
+
+copy_links    拷贝软连接的真实文件, 而不是软连接
+delete    在进行同步后是否删除 src 中不存在的文件, 默认情况下, 是会保留 dest 目标文件夹原先就存在的文件
+existing_only    ?
+mode      [ default: push ]本地或者委托到目标机">
+<meta property="og:updated_time" content="2016-04-22T03:53:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ansible synchronize">
+<meta name="twitter:description" content="注意几个参数,[default: no]或者有特殊配置的:
+
+copy_links    拷贝软连接的真实文件, 而不是软连接
+delete    在进行同步后是否删除 src 中不存在的文件, 默认情况下, 是会保留 dest 目标文件夹原先就存在的文件
+existing_only    ?
+mode      [ default: push ]本地或者委托到目标机">
+  
+    <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xpsj5.com1.z0.glb.clouddn.com/%E5%B0%8F%E9%BB%84.jpg">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">践行</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Live with love</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/tags">标签云</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="rss" target="_blank" href="/" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Ansible/" style="font-size: 10px;">Ansible</a> <a href="/tags/Centos-7/" style="font-size: 10px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Synchronize/" style="font-size: 10px;">Synchronize</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 17.5px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12.5px;">css</a> <a href="/tags/docker/" style="font-size: 20px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.5px;">nginx</a> <a href="/tags/os-x/" style="font-size: 17.5px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 10px;">rsync</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/svn/" style="font-size: 12.5px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12.5px;">碎碎念</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">be a fool, feel the world</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">践行</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://7xpsj5.com1.z0.glb.clouddn.com/%E7%9A%AE%E5%8D%A1%E4%B8%98%E5%B1%81%E5%B1%81.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">践行</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Live with love</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/tags">标签云</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="rss" target="_blank" href="/" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Ansible-synchronize" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/20/Ansible-synchronize/" class="article-date">
+  	<time datetime="2016-04-20T12:00:58.000Z" itemprop="datePublished">2016-04-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ansible synchronize
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ansible/">Ansible</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Synchronize/">Synchronize</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/it/">it</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
+        
+        
+            <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ansible-doc"><span class="toc-number">1.</span> <span class="toc-text">ansible-doc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u6765_u505A_u751F_u4EA7_u73AF_u5883_beta__u73AF_u5883_u540C_u6B65"><span class="toc-number">2.</span> <span class="toc-text">用来做生产环境 beta 环境同步</span></a></li></ol>
+            </div>
+        
+        <p>注意几个参数,[default: no]或者有特殊配置的:</p>
+<ul>
+<li>copy_links    拷贝软连接的真实文件, 而不是软连接</li>
+<li>delete    在进行同步后是否删除 src 中不存在的文件, 默认情况下, 是会保留 dest 目标文件夹原先就存在的文件</li>
+<li>existing_only    ?</li>
+<li>mode      [ default: push ]本地或者委托到目标机</li>
+</ul>
+<a id="more"></a>
+<h3 id="ansible-doc"><a href="#ansible-doc" class="headerlink" title="ansible-doc"></a>ansible-doc</h3><figure class="highlight vbnet"><table><tr><td class="code"><pre><span class="line">&gt; SYNCHRONIZE</span><br><span class="line"></span><br><span class="line">  This <span class="keyword">is</span> a wrapper around rsync. <span class="keyword">Of</span> course you could just use the</span><br><span class="line">  command action <span class="keyword">to</span> <span class="keyword">call</span> rsync yourself, but you also have <span class="keyword">to</span> add a</span><br><span class="line">  fair number <span class="keyword">of</span> boilerplate options <span class="keyword">and</span> host facts. You still may</span><br><span class="line">  need <span class="keyword">to</span> <span class="keyword">call</span> rsync directly via `command<span class="comment">' or `shell' depending on</span></span><br><span class="line">  your use <span class="keyword">case</span>. The synchronize action <span class="keyword">is</span> meant <span class="keyword">to</span> <span class="keyword">do</span> common things</span><br><span class="line">  <span class="keyword">with</span> `rsync<span class="comment">' easily. It does not provide access to the full power of</span></span><br><span class="line">  rsync, but does make most invocations easier <span class="keyword">to</span> follow.</span><br><span class="line"></span><br><span class="line">Options (= <span class="keyword">is</span> mandatory):</span><br><span class="line"></span><br><span class="line">- archive</span><br><span class="line">        Mirrors the rsync archive flag, enables recursive, links,</span><br><span class="line">        perms, times, owner, <span class="keyword">group</span> flags <span class="keyword">and</span> -D. (Choices: yes, no)</span><br><span class="line">        [<span class="keyword">Default</span>: yes]</span><br><span class="line"></span><br><span class="line">- checksum</span><br><span class="line">        <span class="keyword">Skip</span> based <span class="keyword">on</span> checksum, rather than <span class="keyword">mod</span>-time &amp; size; Note that</span><br><span class="line">        that <span class="string">"archive"</span> <span class="keyword">option</span> <span class="keyword">is</span> still enabled <span class="keyword">by</span> <span class="keyword">default</span> - the</span><br><span class="line">        <span class="string">"checksum"</span> <span class="keyword">option</span> will <span class="keyword">not</span> disable it. (Choices: yes, no)</span><br><span class="line">        [<span class="keyword">Default</span>: no]</span><br><span class="line"></span><br><span class="line">- compress</span><br><span class="line">        Compress file data during the transfer. <span class="keyword">In</span> most cases, leave</span><br><span class="line">        this enabled unless it causes problems. (Choices: yes, no)</span><br><span class="line">        [<span class="keyword">Default</span>: yes]</span><br><span class="line"></span><br><span class="line">- copy_links</span><br><span class="line">        Copy symlinks <span class="keyword">as</span> the item that they point <span class="keyword">to</span> (the referent) <span class="keyword">is</span></span><br><span class="line">        copied, rather than the symlink. (Choices: yes, no) [<span class="keyword">Default</span>:</span><br><span class="line">        no]</span><br><span class="line"></span><br><span class="line">- delete</span><br><span class="line">        Delete files that don<span class="comment">'t exist (after transfer, not before) in</span></span><br><span class="line">        the `src<span class="comment">' path. This option requires `recursive=yes'.</span></span><br><span class="line">        (Choices: yes, no) [<span class="keyword">Default</span>: no]</span><br><span class="line"></span><br><span class="line">= dest</span><br><span class="line">        Path <span class="keyword">on</span> the destination machine that will be synchronized <span class="keyword">from</span></span><br><span class="line">        the source; The path can be absolute <span class="keyword">or</span> relative.</span><br><span class="line"></span><br><span class="line">- dest_port</span><br><span class="line">        Port number <span class="keyword">for</span> ssh <span class="keyword">on</span> the destination host. The</span><br><span class="line">        ansible_ssh_port inventory var takes precedence over this</span><br><span class="line">        value. [<span class="keyword">Default</span>: <span class="number">22</span>]</span><br><span class="line"></span><br><span class="line">- dirs</span><br><span class="line">        Transfer directories without recursing (Choices: yes, no)</span><br><span class="line">        [<span class="keyword">Default</span>: no]</span><br><span class="line"></span><br><span class="line">- existing_only</span><br><span class="line">        <span class="keyword">Skip</span> creating <span class="keyword">new</span> files <span class="keyword">on</span> receiver. (Choices: yes, no)</span><br><span class="line">        [<span class="keyword">Default</span>: no]</span><br><span class="line"></span><br><span class="line">- <span class="keyword">group</span></span><br><span class="line">        <span class="keyword">Preserve</span> <span class="keyword">group</span> (Choices: yes, no) [<span class="keyword">Default</span>: the value <span class="keyword">of</span> the</span><br><span class="line">        archive <span class="keyword">option</span>]</span><br><span class="line"></span><br><span class="line">- links</span><br><span class="line">        Copy symlinks <span class="keyword">as</span> symlinks. (Choices: yes, no) [<span class="keyword">Default</span>: the</span><br><span class="line">        value <span class="keyword">of</span> the archive <span class="keyword">option</span>]</span><br><span class="line"></span><br><span class="line">- mode</span><br><span class="line">        Specify the direction <span class="keyword">of</span> the synchronization. <span class="keyword">In</span> push mode the</span><br><span class="line">        localhost <span class="keyword">or</span> <span class="keyword">delegate</span> <span class="keyword">is</span> the source; <span class="keyword">In</span> pull mode the remote</span><br><span class="line">        host <span class="keyword">in</span> context <span class="keyword">is</span> the source. (Choices: push, pull) [<span class="keyword">Default</span>:</span><br><span class="line">        push]</span><br><span class="line"></span><br><span class="line">- owner</span><br><span class="line">        <span class="keyword">Preserve</span> owner (super user only) (Choices: yes, no) [<span class="keyword">Default</span>:</span><br><span class="line">        the value <span class="keyword">of</span> the archive <span class="keyword">option</span>]</span><br><span class="line"></span><br><span class="line">- perms</span><br><span class="line">        <span class="keyword">Preserve</span> permissions. (Choices: yes, no) [<span class="keyword">Default</span>: the value</span><br><span class="line">        <span class="keyword">of</span> the archive <span class="keyword">option</span>]</span><br><span class="line"></span><br><span class="line">- recursive</span><br><span class="line">        Recurse <span class="keyword">into</span> directories. (Choices: yes, no) [<span class="keyword">Default</span>: the</span><br><span class="line">        value <span class="keyword">of</span> the archive <span class="keyword">option</span>]</span><br><span class="line"></span><br><span class="line">- rsync_opts</span><br><span class="line">        Specify additional rsync options <span class="keyword">by</span> passing <span class="keyword">in</span> an array.</span><br><span class="line">        [<span class="keyword">Default</span>: None]</span><br><span class="line"></span><br><span class="line">- rsync_path</span><br><span class="line">        Specify the rsync command <span class="keyword">to</span> run <span class="keyword">on</span> the remote machine. See</span><br><span class="line">        `--rsync-path<span class="comment">' on the rsync man page.</span></span><br><span class="line"></span><br><span class="line">- rsync_timeout</span><br><span class="line">        Specify a --timeout <span class="keyword">for</span> the rsync command <span class="keyword">in</span> seconds.</span><br><span class="line">        [<span class="keyword">Default</span>: <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">- set_remote_user</span><br><span class="line">        put user@ <span class="keyword">for</span> the remote paths. <span class="keyword">If</span> you have a <span class="keyword">custom</span> ssh</span><br><span class="line">        config <span class="keyword">to</span> define the remote user <span class="keyword">for</span> a host that does <span class="keyword">not</span></span><br><span class="line">        match the inventory user, you should <span class="keyword">set</span> this parameter <span class="keyword">to</span></span><br><span class="line">        <span class="string">"no"</span>. [<span class="keyword">Default</span>: <span class="literal">True</span>]</span><br><span class="line"></span><br><span class="line">= src</span><br><span class="line">        Path <span class="keyword">on</span> the source machine that will be synchronized <span class="keyword">to</span> the</span><br><span class="line">        destination; The path can be absolute <span class="keyword">or</span> relative.</span><br><span class="line"></span><br><span class="line">- times</span><br><span class="line">        <span class="keyword">Preserve</span> modification times (Choices: yes, no) [<span class="keyword">Default</span>: the</span><br><span class="line">        value <span class="keyword">of</span> the archive <span class="keyword">option</span>]</span><br><span class="line"></span><br><span class="line">Notes:  rsync must be installed <span class="keyword">on</span> both the local <span class="keyword">and</span> remote machine.</span><br><span class="line">        Inspect the verbose output <span class="keyword">to</span> validate the destination</span><br><span class="line">        user/host/path are what was expected. The remote user <span class="keyword">for</span> the</span><br><span class="line">        dest path will always be the remote_user, <span class="keyword">not</span> the sudo_user.</span><br><span class="line">        Expect that dest=~/x will be ~&lt;remote_user&gt;/x even <span class="keyword">if</span> <span class="keyword">using</span></span><br><span class="line">        sudo. <span class="keyword">To</span> exclude files <span class="keyword">and</span> directories <span class="keyword">from</span> being</span><br><span class="line">        synchronized, you may add `.rsync-filter<span class="comment">' files to the source</span></span><br><span class="line">        directory.</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">EXAMPLES:</span><br><span class="line"># Synchronization of src on the control machine to dest on the remote hosts</span><br><span class="line">synchronize: src=some/relative/path dest=/some/absolute/path</span><br><span class="line"></span><br><span class="line"># Synchronization without any <span class="comment">--archive options enabled</span></span><br><span class="line">synchronize: src=some/relative/path dest=/some/absolute/path archive=no</span><br><span class="line"></span><br><span class="line"># Synchronization with <span class="comment">--archive options enabled except for --recursive</span></span><br><span class="line">synchronize: src=some/relative/path dest=/some/absolute/path recursive=no</span><br><span class="line"></span><br><span class="line"># Synchronization with <span class="comment">--archive options enabled except for --times, with --checksum option enabled</span></span><br><span class="line">synchronize: src=some/relative/path dest=/some/absolute/path <span class="operator"><span class="keyword">checksum</span>=yes times=<span class="keyword">no</span></span><br><span class="line"></span><br><span class="line"># Synchronization <span class="keyword">without</span> <span class="comment">--archive options enabled except use --links</span></span><br><span class="line">synchronize: src=<span class="keyword">some</span>/<span class="keyword">relative</span>/<span class="keyword">path</span> dest=/<span class="keyword">some</span>/<span class="keyword">absolute</span>/<span class="keyword">path</span> <span class="keyword">archive</span>=<span class="keyword">no</span> links=yes</span><br><span class="line"></span><br><span class="line"># Synchronization <span class="keyword">of</span> two paths <span class="keyword">both</span> <span class="keyword">on</span> the control machine</span><br><span class="line">local_action: synchronize src=<span class="keyword">some</span>/<span class="keyword">relative</span>/<span class="keyword">path</span> dest=/<span class="keyword">some</span>/<span class="keyword">absolute</span>/<span class="keyword">path</span></span><br><span class="line"></span><br><span class="line"># Synchronization <span class="keyword">of</span> src <span class="keyword">on</span> the inventory host <span class="keyword">to</span> the dest <span class="keyword">on</span> the localhost <span class="keyword">in</span></span><br><span class="line">pull <span class="keyword">mode</span></span><br><span class="line">synchronize: <span class="keyword">mode</span>=pull src=<span class="keyword">some</span>/<span class="keyword">relative</span>/<span class="keyword">path</span> dest=/<span class="keyword">some</span>/<span class="keyword">absolute</span>/<span class="keyword">path</span></span><br><span class="line"></span><br><span class="line"># Synchronization <span class="keyword">of</span> src <span class="keyword">on</span> <span class="keyword">delegate</span> host <span class="keyword">to</span> dest <span class="keyword">on</span> the <span class="keyword">current</span> inventory host.</span><br><span class="line"># <span class="keyword">If</span> delegate_to <span class="keyword">is</span> <span class="keyword">set</span> <span class="keyword">to</span> the <span class="keyword">current</span> inventory host, this can be used <span class="keyword">to</span> syncronize</span><br><span class="line"># two directories <span class="keyword">on</span> that host. </span><br><span class="line">synchronize: &gt;</span><br><span class="line">    src=<span class="keyword">some</span>/<span class="keyword">relative</span>/<span class="keyword">path</span> dest=/<span class="keyword">some</span>/<span class="keyword">absolute</span>/<span class="keyword">path</span></span><br><span class="line">    delegate_to: <span class="keyword">delegate</span>.host</span><br><span class="line"></span><br><span class="line"># Synchronize <span class="keyword">and</span> <span class="keyword">delete</span> files <span class="keyword">in</span> dest <span class="keyword">on</span> the remote host that <span class="keyword">are</span> <span class="keyword">not</span> <span class="keyword">found</span> <span class="keyword">in</span> src <span class="keyword">of</span> localhost.</span><br><span class="line">synchronize: src=<span class="keyword">some</span>/<span class="keyword">relative</span>/<span class="keyword">path</span> dest=/<span class="keyword">some</span>/<span class="keyword">absolute</span>/<span class="keyword">path</span> <span class="keyword">delete</span>=yes</span><br><span class="line"></span><br><span class="line"># Synchronize <span class="keyword">using</span> an alternate rsync command</span><br><span class="line">synchronize: src=<span class="keyword">some</span>/<span class="keyword">relative</span>/<span class="keyword">path</span> dest=/<span class="keyword">some</span>/<span class="keyword">absolute</span>/<span class="keyword">path</span> rsync_path=<span class="string">"sudo rsync"</span></span><br><span class="line"></span><br><span class="line"># Example .rsync-filter <span class="keyword">file</span> <span class="keyword">in</span> the <span class="keyword">source</span> <span class="keyword">directory</span></span><br><span class="line">- <span class="keyword">var</span>       # <span class="keyword">exclude</span> <span class="keyword">any</span> <span class="keyword">path</span> whose <span class="keyword">last</span> part <span class="keyword">is</span> <span class="string">'var'</span></span><br><span class="line">- /<span class="keyword">var</span>      # <span class="keyword">exclude</span> <span class="keyword">any</span> <span class="keyword">path</span> <span class="keyword">starting</span> <span class="keyword">with</span> <span class="string">'var'</span> <span class="keyword">starting</span> <span class="keyword">at</span> the <span class="keyword">source</span> <span class="keyword">directory</span></span><br><span class="line">+ /<span class="keyword">var</span>/conf # <span class="keyword">include</span> /<span class="keyword">var</span>/conf even though it was previously excluded</span><br><span class="line"></span><br><span class="line"># Synchronize <span class="keyword">passing</span> <span class="keyword">in</span> extra rsync options</span><br><span class="line">synchronize: src=/tmp/helloworld dest=/<span class="keyword">var</span>/www/helloword rsync_opts=<span class="comment">--no-motd,--exclude=.git</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7528_u6765_u505A_u751F_u4EA7_u73AF_u5883_beta__u73AF_u5883_u540C_u6B65"><a href="#u7528_u6765_u505A_u751F_u4EA7_u73AF_u5883_beta__u73AF_u5883_u540C_u6B65" class="headerlink" title="用来做生产环境 beta 环境同步"></a>用来做生产环境 beta 环境同步</h3><p>同步 nginx 主目录下的配置, 除了 vhost 配置目录不同步</p>
+<p>一个坑:</p>
+<pre><code>synchronize: src=~/Documents/eg/svn/everinner_app_beta/config_app dest=/opt/www
+</code></pre><p>这个相当于把<code>config_app</code>目录拷贝到<code>/opt/www</code>下, 拷贝后变成<code>/opt/www/config_app</code>, 如果 写成<code>dest=/opt/www/config_app</code>, 拷贝后会变成<code>/opt/www/config_app/config_app</code></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/19/系统管理常用脚本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">系统管理常用脚本</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Ansible-synchronize" data-title="Ansible synchronize" data-url="http://yoursite.com/2016/04/20/Ansible-synchronize/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"livewithlove"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 践行
+    	</div>
+        <div class="footer-middle">
+        </div>
+      	<div class="footer-right">
+            <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+            </script>
+            本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-72017880-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script src="/js/totop.js"></script>
+
+
+  </div>
+</body>
+</html>
