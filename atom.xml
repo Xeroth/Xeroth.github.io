@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-22T09:20:08.000Z</updated>
+  <updated>2016-04-22T12:09:19.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Docker 部署Gitlab]]></title>
+    <link href="http://yoursite.com/2016/04/22/Docker-%E9%83%A8%E7%BD%B2Gitlab/"/>
+    <id>http://yoursite.com/2016/04/22/Docker-部署Gitlab/</id>
+    <published>2016-04-22T09:38:07.000Z</published>
+    <updated>2016-04-22T12:09:19.000Z</updated>
+    <content type="html"><![CDATA[<p>环境: 阿里云 centos7镜像, 已经安装了 docker <a href="http://www.a-ho.com/2016/04/22/Centos-7-%E5%AE%89%E8%A3%85Docker/" target="_blank" rel="external">(docker 安装详情)</a></p>
+<p>参考:</p>
+<p><a href="https://github.com/sameersbn/docker-gitlab#installation" target="_blank" rel="external">sameersbn/gitlab:8.6.6</a></p>
+<p><a href="http://www.cnphp6.com/archives/99594" target="_blank" rel="external">使用DOCKER搭建GITLAB实践</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>环境: 阿里云 centos7镜像, 已经安装了 docker <a href="http://www.a-ho.com/2016/04/22/Centos-7-%E5%AE%89%E8%A3%85Docker/" target="_blank" rel="external]]>
+    </summary>
+    
+      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+    
+      <category term="Gitlab" scheme="http://yoursite.com/tags/Gitlab/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Centos 7 安装Docker]]></title>
@@ -145,7 +168,7 @@ rm -rf /var/lib/docker
     <link href="http://yoursite.com/2016/04/19/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC/"/>
     <id>http://yoursite.com/2016/04/19/系统管理常用脚本/</id>
     <published>2016-04-19T09:29:28.000Z</published>
-    <updated>2016-04-22T03:50:54.000Z</updated>
+    <updated>2016-04-25T10:34:28.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
 find ./ -type d |xargs chmod 755
 </code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
@@ -160,6 +183,7 @@ swapon /swapfile
 echo &quot;/swapfile none swap defaults 0 0&quot; &gt;&gt;  /etc/fstab
 mount -a
 free -m
+</code></pre><h3 id="awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><a href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA" class="headerlink" title="awk 交换1,2列, 以tab 作为分隔符输出"></a>awk 交换1,2列, 以tab 作为分隔符输出</h3><pre><code>awk  -v  OFS=&apos;\t&apos; &apos;{temp=$1;$1=$2;$2=temp;print}&apos; 1.txt
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href=]]>
@@ -1671,68 +1695,6 @@ awk &apos;BEGIN {print split(&quot;$name&quot;, filearray, &quot;&amp;&quot;)}&a
       <category term="awk" scheme="http://yoursite.com/tags/awk/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[三月份的碎碎念]]></title>
-    <link href="http://yoursite.com/2016/03/03/%E4%B8%89%E6%9C%88%E4%BB%BD%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    <id>http://yoursite.com/2016/03/03/三月份的碎碎念/</id>
-    <published>2016-03-03T00:57:16.000Z</published>
-    <updated>2016-04-07T01:44:33.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="2016_u5E743_u67081_u65E5"><a href="#2016_u5E743_u67081_u65E5" class="headerlink" title="2016年3月1日"></a>2016年3月1日</h3><h3 id="2016_u5E743_u67082_u65E5"><a href="#2016_u5E743_u67082_u65E5" class="headerlink" title="2016年3月2日"></a>2016年3月2日</h3><p>生活顺心的一个关键字: 早</p>
-<h3 id="2016_u5E743_u67083_u65E5"><a href="#2016_u5E743_u67083_u65E5" class="headerlink" title="2016年3月3日"></a>2016年3月3日</h3><p>别把别人眼中的自己, 看的太重</p>
-<h3 id="2016_u5E743_u67084_u65E5"><a href="#2016_u5E743_u67084_u65E5" class="headerlink" title="2016年3月4日"></a>2016年3月4日</h3><p>符号-指针-意义</p>
-<p>BGM: 脱缰</p>
-<p>曾经听不懂的歌, 看不明白的文字, 会在你经历了某些事之后, 明白其意义. <strong>一切的表现形式(文字,音乐等)都是”符号”. 经历则是”指针”. 符号只有经过指针, 才能指到你人生意义的梯田上</strong>. 所以, 读万卷书, 是获取符号, 行万里路则是寻找指针. 所以才会有: 纸上得来终觉浅, 绝知此事要躬行.</p>
-<h3 id="2016_u5E743_u67085_u65E5"><a href="#2016_u5E743_u67085_u65E5" class="headerlink" title="2016年3月5日"></a>2016年3月5日</h3><p>不要做短半衰期的事情, 要做能叠加效益的事情</p>
-<p>凭什么我要被挑选, 我要去当可以挑选的人, 无论是挑人, 还是挑物, 挑知识.</p>
-<p>有心栽花花不成, 无心插柳柳成荫</p>
-<p>感情的脆弱性–童话中两个贪心的人挖地下的财宝，结果挖出一个人的骸骨，虽然迅速埋上了，甚至在上面种了树，栽了花，但两个人心里都知道底下埋的是什么。看见树，看见花，想的却是地下的那具骸骨。</p>
-<h3 id="2016_u5E743_u67086_u65E5"><a href="#2016_u5E743_u67086_u65E5" class="headerlink" title="2016年3月6日"></a>2016年3月6日</h3><p>许多人说要对生命里那些对自己造成伤害的人心存感激，因为他们对我们的成长有帮助，他们是我们的贵人。可是我要说那家伙就是贱人，就是一个贱人.                 –by 九把刀</p>
-<h3 id="2016_u5E743_u67087_u65E5"><a href="#2016_u5E743_u67087_u65E5" class="headerlink" title="2016年3月7日"></a>2016年3月7日</h3><p>如果你无法承担失去一件事物, 那么最好不要拥有它.</p>
-<p>当你在睡觉玩乐时, 想想别人都在如何的奋斗</p>
-<p>人生就是无数个决定组成的, 睡前可以回忆一下这些决定带给自己的影响.</p>
-<p>彼以国士待我，我以国士报之；彼以众人待我，我以众人报之.  </p>
-<p>周末安利一部韩剧&lt;&lt;未生&gt;&gt;. 这部剧…真是一改我对韩剧的印象. &lt;&lt;&gt;&gt;</p>
-<h3 id="2016_u5E743_u67088_u65E5"><a href="#2016_u5E743_u67088_u65E5" class="headerlink" title="2016年3月8日"></a>2016年3月8日</h3><p>恒大面试, 羊入狼群, 得变得像蛇一样聪敏, 像鸽子一样纯洁.  - -</p>
-<h3 id="2016_u5E743_u67089_u65E5"><a href="#2016_u5E743_u67089_u65E5" class="headerlink" title="2016年3月9日"></a>2016年3月9日</h3><p>工作交接的最基本原则是让他们不要再找我们了</p>
-<h3 id="2016_u5E743_u670810_u65E5"><a href="#2016_u5E743_u670810_u65E5" class="headerlink" title="2016年3月10日"></a>2016年3月10日</h3><p>不做计划的日子容易虚度…</p>
-<h3 id="2016_u5E743_u670811_u65E5"><a href="#2016_u5E743_u670811_u65E5" class="headerlink" title="2016年3月11日"></a>2016年3月11日</h3><p>hd hr 今天迟迟不来电话, 最后我沉不住气打了过去, 告诉他我考虑好了, 下周可以去报到. ( 相当选择权又还回去了…)</p>
-<p>结果 hr 说什么他们人力部门又新招了人什么的, 说晚点答复我. 我怎么感觉有点悬呢. </p>
-<p>本来还不太高兴去的, 因为工作内容还有公司制度不是很喜欢. 后来看待遇确实不错, 就说服了自己去. </p>
-<p>期间各种 YY …… 结果今天弄这一茬, 心里很不爽. 也许这就是患得患失吧. 主要之前说考虑, 是觉得自<br>己应该还有更好的机会, 结果简历连续被拒了… 对自己也有点没把握了感觉… 就更想去 hd 了我艹. </p>
-<p>归根结底, 还是能力问题. 要是有运维开发的能力, 我才不会选择 hd 呢, 哼╭(╯^╰)╮. </p>
-<p>哎, 结果, 就黄了. <strong>人, 需要有个基准, 不可太贪.</strong></p>
-<p>还有, 在事情最终确定前, 还是不要去宣传了, 你忘了她生日那天的事了么, 千万沉住气, 沉住气才有持久的胜利!</p>
-<p>今年开头有点不顺呢, 工作感情双双受挫.</p>
-<h3 id="2016_u5E743_u670812_u65E5"><a href="#2016_u5E743_u670812_u65E5" class="headerlink" title="2016年3月12日"></a>2016年3月12日</h3><p>植树节–种一棵树最好的时间是十年前, 其次是现在.</p>
-<p>貌似学会了早睡的方法–躺床上闭眼睛回忆一些事情</p>
-<p>既然没被束缚, 那就学习一些自由的技能: 首推英语, 然后是投资, 编程终究还是用来提升效率的多.</p>
-<h3 id="2016_u5E743_u670813_u65E5"><a href="#2016_u5E743_u670813_u65E5" class="headerlink" title="2016年3月13日"></a>2016年3月13日</h3><p>学了一天 awk 吧…, 早上起来晚了, 不过中午不用睡午觉了倒是不错.</p>
-<h3 id="2016_u5E743_u670814_u65E5"><a href="#2016_u5E743_u670814_u65E5" class="headerlink" title="2016年3月14日"></a>2016年3月14日</h3><p>白色情人节, 无言</p>
-<p>时光不仅能抚平伤痛, 还能淡化以往的快乐, 抹去你的音容. 也许, 我的记忆力真是越来越差了, 可能只是不想回忆吧…</p>
-<h3 id="2016_u5E743_u670815_u65E5"><a href="#2016_u5E743_u670815_u65E5" class="headerlink" title="2016年3月15日"></a>2016年3月15日</h3><p>叫醒你的不是闹钟, 也不是梦想, 而是早睡, 其次是饿了…</p>
-<h3 id="2016_u5E743_u670816_u65E5"><a href="#2016_u5E743_u670816_u65E5" class="headerlink" title="2016年3月16日"></a>2016年3月16日</h3><p>不够自私也会成为被拒绝的理由</p>
-<p>每个子女都是父母的骄傲, 也请做子女的对得起这个称号.</p>
-<p>是啊, 毫无根据的希望和安慰又有什么用呢</p>
-<p>2016年3月21日</p>
-<p>记住, 你选择这家公司的理由: </p>
-<p>1.提升薪资水平</p>
-<p>2.培养良好的工作生活习惯</p>
-<p>3.适应大公司的制度</p>
-<p>4.磨练意志, 锻炼好心态</p>
-<h3 id="2016_u5E743_u670824_u65E5"><a href="#2016_u5E743_u670824_u65E5" class="headerlink" title="2016年3月24日"></a>2016年3月24日</h3><p><a href="https://sg.godaddy.com/zh/help/moving-a-domain-name-out-of-your-account-822" target="_blank" rel="external">godaddy 域名转出到阿里云</a></p>
-<h3 id="2016_u5E743_u670825_u65E5"><a href="#2016_u5E743_u670825_u65E5" class="headerlink" title="2016年3月25日"></a>2016年3月25日</h3><p>忙成狗, 想到钱, 还是忍了</p>
-<h3 id="2016_u5E743_u670826_u65E5"><a href="#2016_u5E743_u670826_u65E5" class="headerlink" title="2016年3月26日"></a>2016年3月26日</h3><p><a href="http://blog.csdn.net/cankingapp/article/details/18312117" target="_blank" rel="external">git 取消修改，恢复版本 命令大全</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="2016_u5E743_u67081_u65E5"><a href="#2016_u5E743_u67081_u65E5" class="headerlink" title="2016年3月1日"></a>2016年3月1日</h3><h3 id="2016_u5]]>
-    </summary>
-    
-      <category term="碎碎念" scheme="http://yoursite.com/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
-    
-      <category term="life" scheme="http://yoursite.com/categories/life/"/>
     
   </entry>
   
