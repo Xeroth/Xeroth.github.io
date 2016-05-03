@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-26T12:19:29.000Z</updated>
+  <updated>2016-05-03T08:18:10.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,164 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Centos7 配置 rsync 同步的一个 shell 脚本]]></title>
+    <link href="http://yoursite.com/2016/05/03/Centos7-%E9%85%8D%E7%BD%AE-rsync-%E5%90%8C%E6%AD%A5%E7%9A%84%E4%B8%80%E4%B8%AA-shell-%E8%84%9A%E6%9C%AC/"/>
+    <id>http://yoursite.com/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/</id>
+    <published>2016-05-03T03:05:54.000Z</published>
+    <updated>2016-05-03T08:18:10.000Z</updated>
+    <content type="html"><![CDATA[<pre><code>cat /root/shell/set_rsync.sh
+#!/bin/bash
+
+# 此脚本用来配置 rsync 服务端
+
+# 定义一些变量
+
+RPATH=/etc/rsyncd.d
+CONF=$RPATH/rsyncd.conf
+PASSWD_FILE=$RPATH/rsyncd.password
+AUTH=$RPATH/rsyncd.secrets
+
+#本机 IP
+ADDRESS=192.168.0.2
+# 允许访问服务的 IP
+ALLOW_IP=192.168.0.3
+
+TAG_NAME=app_upload_files
+# 同步目录
+RSYNC_DIR=/tmp/app_upload_files
+USER=user
+PASSWD=&quot;passwd&quot;
+
+
+# 先创建 rsync 配置存放目录
+
+[ ! -d $RPATH ] &amp;&amp; mkdir $RPATH
+
+# 创建配置文件
+
+[ ! -f $CONF ] &amp;&amp; touch $CONF
+[ ! -f $PASSWD_FILE ] &amp;&amp; touch $PASSWD_FILE
+[ ! -f $AUTH ] &amp;&amp; touch $AUTH
+
+cat &gt; $CONF &lt;&lt;EOF
+#pid文件位置
+pid file = /var/run/rsyncd.pid
+#监听的端口号
+port = 873
+
+#本机ip，请自行修改为自己机器的ip
+address = $ADDRESS
+#执行账户
+uid = nobody
+gid = nobody
+use chroot = yes
+#是否只读
+read only = no
+#允许访问设置 可以配ip段，也可以多个ip空格间隔，请改为自己允许的ip
+#如果客户端不在以下允许列表中，会报 @ERROR: access denied to xxx from unknown 错误
+hosts allow= $ALLOW_IP
+hosts deny=*
+#最大连接数
+max connections = 5
+motd file = /etc/rsyncd.d/rsyncd.motd
+#log文件位置
+log file = /var/log/rsync.log
+#超时时间
+timeout = 300
+
+#配置要同步的目录，可以添加多个
+#自定义名称
+[$TAG_NAME]
+#同步的目录
+path = $RSYNC_DIR
+#排除的文件
+#exclude from = /etc/rsyncd.d/xxx_exclude_list
+list=yes
+ignore errors
+#认证用户名称
+auth users = $USER
+#用户认证文件，见接下的第2条
+secrets file = /etc/rsyncd.d/rsyncd.secrets
+EOF
+
+chmod 600 $CONF
+mv /etc/rsyncd.conf{,.bak}
+ln -s  $CONF  /etc/rsyncd.conf
+
+echo $PASSWD &gt; $PASSWD_FILE
+chmod 600 $PASSWD_FILE
+
+echo &quot;$USER:$PASSWD&quot; &gt; $AUTH
+chmod 600 $AUTH
+
+
+# 启动服务
+systemctl enable rsyncd.service
+systemctl restart rsyncd.service
+systemctl status rsyncd.service
+
+# 执行完脚本后, 还需自行配置防火墙端口 873
+</code></pre><p>两台机器都执行这个脚本</p>
+<p>然后可以用拉的方式同步:</p>
+<pre><code>/usr/bin/rsync -avzP --delete user@server1::app_upload_files /tmp/app_upload_files/ --password-file=/etc/rsyncd.d/rsyncd.password
+</code></pre><p>如果用推的方式:</p>
+<pre><code>/usr/bin/rsync -avzP /tmp/app_upload_files/ hdruser@server1::app_upload_files --password-file=/etc/rsyncd.d/rsyncd.password
+</code></pre><p>注意<code>/tmp/app_upload_files/</code> 如果改成<code>/tmp/app_upload_files</code> (末尾少了斜杠) 推送过去目录结构会变成<code>/tmp/app_upload_files/app_upload_files</code>, 如果提示<code>Permission denied</code>, 则推送目标端的 rsync 配置文件需要把 gid,uid 改成 root</p>
+<p>结合 inotfy 脚本进行实时同步, 则必须用推的方式, 因为是监控本地变化, 发生变化推送到远端</p>
+<p>inotify 脚本:</p>
+<pre><code>cat /etc/rsyncd.d/inotify-rsync.sh
+#!/bin/bash
+
+# 此脚本用来监控 源目录文件夹的变化, 跟目标机器进行rsync同步
+
+set -e
+#源目录
+SRC=/tmp/app_upload_files/
+#目标服务器ip
+TARGET=192.168.0.3
+#rsync 用户
+USER=hdruser
+#rsync tag
+TAG=app_upload_files
+# 密码文件
+PASSWD=/etc/rsyncd.d/rsyncd.password
+
+#modify,delete,create,attrib这些为监听的动作，比如如果不要delete，那么删除的动作就不会触发同步
+/bin/inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f%e&apos; -e modify,delete,create,attrib $SRC | while read files
+do
+/usr/bin/rsync -vzrtopgq --delete --progress --password-file=$PASSWD $SRC $USER@$TARGET::$TAG
+done
+
+# 运行方式, 给脚本赋予执行权限, 然后用后台的方式运行: nohup /etc/rsyncd.d/inotify-rsync.sh &amp;
+# 加到开机启动项: echo &quot;/etc/rsyncd.d/inotify-rsync.sh &amp;&quot; &gt;&gt; /etc/rc.local
+</code></pre><p>参考:</p>
+<p><a href="http://xxling.com/blog/article/2093.aspx" target="_blank" rel="external">CentOS7通过rsync和inotify进行实时同步</a></p>
+<p><a href="https://segmentfault.com/a/1190000002558330" target="_blank" rel="external">关于rsync+inotify-tools实时同步模式</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<pre><code>cat /root/shell/set_rsync.sh
+#!/bin/bash
+
+# 此脚本用来配置 rsync 服务端
+
+# 定义一些变量
+
+RPATH=/etc/rsyncd.d
+CONF=$RPATH/rsyncd.conf
+PASSWD_FILE=]]>
+    </summary>
+    
+      <category term="Centos 7" scheme="http://yoursite.com/tags/Centos-7/"/>
+    
+      <category term="rsync" scheme="http://yoursite.com/tags/rsync/"/>
+    
+      <category term="shell" scheme="http://yoursite.com/tags/shell/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[svn 版本控制命令]]></title>
@@ -1528,103 +1686,6 @@ authz-db = authz
     </summary>
     
       <category term="svn" scheme="http://yoursite.com/tags/svn/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[sed学习笔记]]></title>
-    <link href="http://yoursite.com/2016/03/11/sed%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2016/03/11/sed学习笔记/</id>
-    <published>2016-03-11T12:20:04.000Z</published>
-    <updated>2016-04-07T12:25:43.000Z</updated>
-    <content type="html"><![CDATA[<p>定位行 ‘/pattern/‘</p>
-<p>定位行内匹配变量  ‘s///3’</p>
-<p>操作:</p>
-<p>修改行内 s</p>
-<h3 id="u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="关于正则表达式"></a>关于正则表达式</h3><p>流派:</p>
-<pre><code>正则表达式
-    |-- PCRE
-    `-- POSIX
-        |-- BRE
-        |   |-- grep
-        |   |-- sed
-        |   `-- vi
-        `-- ERE
-            |-- awk
-            `-- egrep
-</code></pre><p>正则表达式基础:</p>
-<pre><code>^ 表示一行的开头。如：/^#/ 以#开头的匹配。
-$ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
-\&lt; 表示词首。 如 \&lt;abc 表示以 abc 为首的詞。
-\&gt; 表示词尾。 如 abc\&gt; 表示以 abc 結尾的詞。
-. 表示任何单个字符。
-\* 表示某个字符出现了0次或多次。
-[ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
-</code></pre><a id="more"></a>
-<h3 id="Hold_Space__u7F13_u51B2_u533A"><a href="#Hold_Space__u7F13_u51B2_u533A" class="headerlink" title="Hold Space 缓冲区"></a>Hold Space 缓冲区</h3><p>Pattern Space 就是当前读入行</p>
-<pre><code>g： 将hold space中的内容拷贝到pattern space中，原来pattern space里的内容清除
-G： 将hold space中的内容append到pattern space\n后
-h： 将pattern space中的内容拷贝到hold space中，原来的hold space里的内容被清除
-H： 将pattern space中的内容append到hold space\n后
-x： 交换pattern space和hold space的内容
-</code></pre><p>g( go, 走你 ) 类似于 cat <code>hold space</code> &gt; <code>pattern space</code></p>
-<p>G( 大狗, 追加 ) 类似于 cat <code>hold space</code> &gt;&gt; <code>pattern space</code></p>
-<p>h( 跟g相反 ),  cat <code>pattern space</code> &gt; <code>hold space</code></p>
-<p>H ( 跟G相反 ), 类似于 <code>pattern space</code> cat  &gt;&gt; <code>hold space</code></p>
-<h3 id="u5B9E_u4F8B"><a href="#u5B9E_u4F8B" class="headerlink" title="实例"></a>实例</h3><p>1.匹配以500结尾的工资(BRE正则要转义)</p>
-<pre><code>root@Ubuntu:~/awkpractice# sed -n &quot;/:[0-9]+500$/p&quot; datafile
-root@Ubuntu:~/awkpractice# sed -n &quot;/:[0-9]\+500$/p&quot; datafile
-Paco Gutierrez:835-365-1284:454 Easy Street, Decatur, IL 75732:2/28/53:123500
-Barbara Kertz:385-573-8326:832 Ponce Drive, Gary, IN 83756:12/1/46:268500
-William Kopf:846-836-2837:6937 Ware Road, Milton, PA 93756:9/21/46:43500
-Sir Lancelot:837-835-8257:474 Camelot Boulevard, Bath, WY 28356:5/13/69:24500
-Zippy Pinhead:834-823-8319:2356 Bizarro Ave., Farmount, IL 84357:1/1/67:89500
-</code></pre><p>2.姓名交换位置–圆括号的使用</p>
-<pre><code>root@Ubuntu:~/awkpractice# sed  &apos;s/\(^[a-zA-Z]\+\)\ \([a-zA-Z]\+\):\(.*\)/\2 \1:\3/&apos; datafile
-Corder Norma:397-857-2735:74 Pine Street, Dearborn, MI 23874:3/28/45:245700
-Cowan Jennifer:548-834-2348:583 Laurel Ave., Kingsville, TX 83745:10/1/35:58900
-DeLoach Jon:408-253-3122:123 Park St., San Jose, CA 04086:7/25/53:85100
-Evich Karen:284-758-2857:23 Edgecliff Place, Lincoln, NB 92086:7/25/53:85100
-Evich Karen:284-758-2867:23 Edgecliff Place, Lincoln, NB 92743:11/3/35:58200
-</code></pre><p>3.把 port 的数字填到 zoneid里去 (使用 ERE 模式的 sed)</p>
-<figure class="highlight vhdl"><table><tr><td class="code"><pre><span class="line">root@Ubuntu:~/awkpractice# cat gamefile</span><br><span class="line">&lt;server name=<span class="string">"92服"</span>  <span class="keyword">port</span>=<span class="string">"10092"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"93服"</span>  <span class="keyword">port</span>=<span class="string">"10093"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"94服"</span>  <span class="keyword">port</span>=<span class="string">"10094"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"95服"</span>  <span class="keyword">port</span>=<span class="string">"10095"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"96服"</span>  <span class="keyword">port</span>=<span class="string">"10096"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">""</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">root@Ubuntu:~/awkpractice# sed -r <span class="attribute">'s</span>/(.*<span class="keyword">port</span>=<span class="string">")([0-9]+)("</span>.*zoneid=<span class="string">")("</span>.*$)/\<span class="number">1</span>\<span class="number">2</span>\<span class="number">3</span>\<span class="number">2</span>\<span class="number">4</span>/' gamefile</span><br><span class="line">&lt;server name=<span class="string">"92服"</span>  <span class="keyword">port</span>=<span class="string">"10092"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10092"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"93服"</span>  <span class="keyword">port</span>=<span class="string">"10093"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10093"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"94服"</span>  <span class="keyword">port</span>=<span class="string">"10094"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10094"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"95服"</span>  <span class="keyword">port</span>=<span class="string">"10095"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10095"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br><span class="line">&lt;server name=<span class="string">"96服"</span>  <span class="keyword">port</span>=<span class="string">"10096"</span> os=<span class="string">"android"</span>  hidden=<span class="string">"false"</span> recommendrate=<span class="string">"0"</span> newport=<span class="string">""</span> zoneid=<span class="string">"10096"</span> tabname=<span class="string">"地区服"</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>sed默认是BRE，加上-r参数后变成ERE</p>
-<p>4.<a href="http://bbs.chinaunix.net/thread-4241283-1-1.html" target="_blank" rel="external">关于sed中的\1\2\3能否赋值给变量</a></p>
-<p>感谢:</p>
-<p><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a></p>
-<p><a href="http://www.infoq.com/cn/news/2011/07/regular-expressions-6-POSIX" target="_blank" rel="external">Linux/Unix工具与正则表达式的POSIX规范</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>定位行 ‘/pattern/‘</p>
-<p>定位行内匹配变量  ‘s///3’</p>
-<p>操作:</p>
-<p>修改行内 s</p>
-<h3 id="u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F"><a href="#u5173_u4E8E_u6B63_u5219_u8868_u8FBE_u5F0F" class="headerlink" title="关于正则表达式"></a>关于正则表达式</h3><p>流派:</p>
-<pre><code>正则表达式
-    |-- PCRE
-    `-- POSIX
-        |-- BRE
-        |   |-- grep
-        |   |-- sed
-        |   `-- vi
-        `-- ERE
-            |-- awk
-            `-- egrep
-</code></pre><p>正则表达式基础:</p>
-<pre><code>^ 表示一行的开头。如：/^#/ 以#开头的匹配。
-$ 表示一行的结尾。如：/}$/ 以}结尾的匹配。
-\&lt; 表示词首。 如 \&lt;abc 表示以 abc 为首的詞。
-\&gt; 表示词尾。 如 abc\&gt; 表示以 abc 結尾的詞。
-. 表示任何单个字符。
-\* 表示某个字符出现了0次或多次。
-[ ] 字符集合。 如：[abc]表示匹配a或b或c，还有[a-zA-Z]表示匹配所有的26个字符。如果其中有^表示反，如[^a]表示非a的字符
-</code></pre>]]>
-    
-    </summary>
-    
-      <category term="sed" scheme="http://yoursite.com/tags/sed/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     

@@ -4,34 +4,57 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Docker私有仓库 | Live with love</title>
+  <title>Centos7 配置 rsync 同步的一个 shell 脚本 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
-实验环境:
+  <meta name="description" content="cat /root/shell/set_rsync.sh
+#!/bin/bash
 
-Mac OS X 10.11    ip 为 192.168.100.101
-Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
-用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
+# 此脚本用来配置 rsync 服务端
+
+# 定义一些变量
+
+RPATH=/etc/rsyncd.d
+CONF=$RPATH/rsyncd.conf
+PASSWD_FILE=$RPATH/rsyncd.password
+AUTH=$RPATH/rsyncd.secrets
+
+#本机 IP
+ADDRESS=192.1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker私有仓库">
-<meta property="og:url" content="http://yoursite.com/2016/01/15/Docker私有仓库/index.html">
+<meta property="og:title" content="Centos7 配置 rsync 同步的一个 shell 脚本">
+<meta property="og:url" content="http://yoursite.com/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
-实验环境:
+<meta property="og:description" content="cat /root/shell/set_rsync.sh
+#!/bin/bash
 
-Mac OS X 10.11    ip 为 192.168.100.101
-Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
-用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
-<meta property="og:image" content="http://7xpsj5.com1.z0.glb.clouddn.com//docker1.png">
-<meta property="og:updated_time" content="2016-01-22T17:16:29.000Z">
+# 此脚本用来配置 rsync 服务端
+
+# 定义一些变量
+
+RPATH=/etc/rsyncd.d
+CONF=$RPATH/rsyncd.conf
+PASSWD_FILE=$RPATH/rsyncd.password
+AUTH=$RPATH/rsyncd.secrets
+
+#本机 IP
+ADDRESS=192.1">
+<meta property="og:updated_time" content="2016-05-03T08:18:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker私有仓库">
-<meta name="twitter:description" content="为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库
-实验环境:
+<meta name="twitter:title" content="Centos7 配置 rsync 同步的一个 shell 脚本">
+<meta name="twitter:description" content="cat /root/shell/set_rsync.sh
+#!/bin/bash
 
-Mac OS X 10.11    ip 为 192.168.100.101
-Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安装了 docker
-用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker">
+# 此脚本用来配置 rsync 服务端
+
+# 定义一些变量
+
+RPATH=/etc/rsyncd.d
+CONF=$RPATH/rsyncd.conf
+PASSWD_FILE=$RPATH/rsyncd.password
+AUTH=$RPATH/rsyncd.secrets
+
+#本机 IP
+ADDRESS=192.1">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -209,11 +232,11 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-Docker私有仓库" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Centos7-配置-rsync-同步的一个-shell-脚本" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/01/15/Docker私有仓库/" class="article-date">
-  	<time datetime="2016-01-15T13:47:35.000Z" itemprop="datePublished">2016-01-15</time>
+      <a href="/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/" class="article-date">
+  	<time datetime="2016-05-03T03:05:54.000Z" itemprop="datePublished">2016-05-03</time>
 </a>
     </div>
   
@@ -226,7 +249,7 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
         
   
     <h1 class="article-title" itemprop="name">
-      Docker私有仓库
+      Centos7 配置 rsync 同步的一个 shell 脚本
     </h1>
   
 
@@ -235,7 +258,7 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Centos-7/">Centos 7</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsync/">rsync</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
 	</div>
 
         
@@ -255,110 +278,137 @@ Parallels虚拟机虚拟了一台Ubuntu ip 为 192.168.100.103 , Ubuntu 上安�
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#u5B89_u88C5"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29"><span class="toc-number">2.</span> <span class="toc-text">使用(上传下载)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u7BA1_u7406"><span class="toc-number">3.</span> <span class="toc-text">管理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#u505C_u6B62"><span class="toc-number">3.1.</span> <span class="toc-text">停止</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u67E5_u627E"><span class="toc-number">3.2.</span> <span class="toc-text">查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u67E5_u770B_u955C_u50CF_u7248_u672C"><span class="toc-number">3.3.</span> <span class="toc-text">查看镜像版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#u5220_u9664"><span class="toc-number">3.4.</span> <span class="toc-text">删除</span></a></li></ol></li></ol>
+            
             </div>
         
-        <p>为了方便企业内部使用, 更多时候我们需要搭建Docker私有仓库</p>
-<p>实验环境:</p>
-<ul>
-<li>Mac OS X 10.11    ip 为 <em>192.168.100.101</em></li>
-<li>Parallels虚拟机虚拟了一台Ubuntu ip 为 <em>192.168.100.103</em> , Ubuntu 上安装了 docker</li>
-<li>用docker-machine 在 Mac 上生成了一台名为 default 的虚拟机, 用来跑 docker</li>
-</ul>
-<p><code>docker-machine ip default</code> 得到结果是: <em>192.168.99.100</em></p>
-<p>mac 跟 Ubuntu 是桥接网络, mac 与 default 是 NAT 网络</p>
-<p>从 default(192.168.99.100) 能 ping 通 Ubuntu, 反过来不行(原因未明,不知怎么打通,有大神看到请指点一二). 所以我决定在 Ubuntu 上搭建仓库</p>
-<a id="more"></a>
-<h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>1.最简单的是使用官方提供的<strong>registry</strong>镜像进行安装:</p>
-<pre><code>docker run -d -p 5000:5000 registry  
-</code></pre><p>也可以安装时把镜像文件存在本地指定路径<code>/opt/docker-registry</code>:  </p>
-<pre><code>docker run -d -p 5000:5000 -v /opt/docker-registry:/tmp/registry registry
-</code></pre><p>完了在 mac 上测试一下:</p>
-<pre><code>$ curl http://192.168.100.103:5000
-&quot;\&quot;docker-registry server\&quot;&quot;%
-</code></pre><p>访问成功</p>
-<h4 id="u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29"><a href="#u4F7F_u7528_28_u4E0A_u4F20_u4E0B_u8F7D_29" class="headerlink" title="使用(上传下载)"></a>使用(上传下载)</h4><p>在 mac 本地的 docker 中随意选一个镜像, <code>docker images</code> 查看它的 ID</p>
-<pre><code>$ docker images
-REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-sinatra                         v2                  1a6a1230cfe3        13 days ago         319.4 MB
-</code></pre><p>然后用<code>docker tag</code>修改镜像对应仓库</p>
-<pre><code>$ docker tag 1a6a1230cfe3 192.168.100.103:5000/sinatra
-$ docker images
-REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-192.168.100.103:5000/sinatra    latest              1a6a1230cfe3        13 days ago         319.4 MB
-sinatra                         v2                  1a6a1230cfe3        13 days ago         319.4 MB
-</code></pre><p><code>docker tag</code>语法</p>
-<pre><code>Usage:    docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
-</code></pre><p>其中1a6a1230cfe3 对应 IMAGE</p>
-<p>192.168.100.103:5000 对应 REGISTRYHOST</p>
-<p>sinatra 对应 NAME</p>
-<p>开始上传</p>
-<pre><code>$ docker push 192.168.100.103:5000/sinatra
-The push refers to a repository [192.168.100.103:5000/sinatra] (len: 1)
-unable to ping registry endpoint https://192.168.100.103:5000/v0/
-v2 ping attempt failed with error: Get https://192.168.100.103:5000/v2/: EOF
- v1 ping attempt failed with error: Get https://192.168.100.103:5000/v1/_ping: EOF
-</code></pre><p>报错了, 解决方法如下</p>
-<p>进入docker 虚拟机</p>
-<pre><code>docker-machine ssh default
-</code></pre><p>在default 虚拟机里修改 <em>/var/lib/boot2docker/profile</em> 文件, 在<strong>EXTRA_ARGS=</strong>里加入:<br><em>–insecure-registry 192.168.100.103:5000</em></p>
-<p>重启 vm</p>
-<pre><code>docker-machine restart default
-</code></pre><p>再次运行:</p>
-<pre><code>mac $ docker push 192.168.100.103:5000/sinatra
-The push refers to a repository [192.168.100.103:5000/sinatra] (len: 1)
-Sending image list
-Pushing repository 192.168.100.103:5000/sinatra (1 tags)
-895b070402bd: Image successfully pushed
-02e5bca4149b: Image successfully pushed
-b2ae0a712b39: Image successfully pushed
-af88597ec24b: Image successfully pushed
-c37dd6c531a6: Image successfully pushed
-8a6b590a7aec: Image successfully pushed
-5ef2f192cdff: Image successfully pushed
-1a6a1230cfe3: Image successfully pushed
-Pushing tag for rev [1a6a1230cfe3] on {http://192.168.100.103:5000/v1/repositories/sinatra/tags/latest}
-</code></pre><p>curl查看:</p>
-<pre><code>$ curl http://192.168.100.103:5000/v1/search
-{&quot;num_results&quot;: 1, &quot;query&quot;: &quot;&quot;, &quot;results&quot;: [{&quot;description&quot;: &quot;&quot;, &quot;name&quot;: &quot;library/sinatra&quot;}]}%
-</code></pre><p>已经成功出现 library/sinatra</p>
-<p>下载:</p>
-<p>现在到 ubuntu 上下载刚上传的 sinatra 镜像</p>
-<pre><code>$ docker pull 192.168.100.103:5000/sinatra
-Using default tag: latest
-Error response from daemon: unable to ping registry endpoint https://192.168.100.103:5000/v0/
-v2 ping attempt failed with error: Get https://192.168.100.103:5000/v2/: EOF
- v1 ping attempt failed with error: Get https://192.168.100.103:5000/v1/_ping: EOF
-</code></pre><p>又是这个错, 不过这次修改的文件是<code>/etc/default/docker</code>, 加入:</p>
-<pre><code>DOCKER_OPTS=&quot;--insecure-registry 192.168.100.103:5000&quot;
-</code></pre><p>然后stop 仓库的镜像, 重启 docker ,再 pull</p>
-<pre><code>docker pull 192.168.100.103:5000/sinatra
-Using default tag: latest
-Pulling repository 192.168.100.103:5000/sinatra
-1a6a1230cfe3: Download complete
-895b070402bd: Download complete
-02e5bca4149b: Download complete
-b2ae0a712b39: Download complete
-af88597ec24b: Download complete
-c37dd6c531a6: Download complete
-8a6b590a7aec: Download complete
-5ef2f192cdff: Download complete
-Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
-192.168.100.103:5000/sinatra: this image was pulled from a legacy registry.  Important: This registry version will not be supported in future versions of docker.
-</code></pre><p>成功!    </p>
-<p>不过这种方式不是很好, 每次新加一个仓库都要重启 docker , 有人建议这样:</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com//docker1.png" alt="docker1.png"></p>
-<p>嗯, 以后有空再试了</p>
-<h4 id="u7BA1_u7406"><a href="#u7BA1_u7406" class="headerlink" title="管理"></a>管理</h4><h5 id="u505C_u6B62"><a href="#u505C_u6B62" class="headerlink" title="停止"></a>停止</h5><pre><code>docker stop registry &amp;&amp; docker rm -v registry
-</code></pre><h5 id="u67E5_u627E"><a href="#u67E5_u627E" class="headerlink" title="查找"></a>查找</h5><p>查找名字为sinatra 的镜像</p>
-<pre><code>$ curl http://192.168.100.103:5000/v1/search?q=sinatra
-{&quot;num_results&quot;: 1, &quot;query&quot;: &quot;sinatra&quot;, &quot;results&quot;: [{&quot;description&quot;: &quot;&quot;, &quot;name&quot;: &quot;library/sinatra&quot;}]}%
-</code></pre><h5 id="u67E5_u770B_u955C_u50CF_u7248_u672C"><a href="#u67E5_u770B_u955C_u50CF_u7248_u672C" class="headerlink" title="查看镜像版本"></a>查看镜像版本</h5><pre><code>$ curl http://192.168.100.103:5000/v1/repositories/library/sinatra/tags
-{&quot;latest&quot;: &quot;1a6a1230cfe34b1fd2e7cd66d50e342fc3169a365159754115efd4aae3300c00&quot;}%
-</code></pre><h5 id="u5220_u9664"><a href="#u5220_u9664" class="headerlink" title="删除"></a>删除</h5><p><a href="http://stackoverflow.com/questions/25436742/deleting-images-from-a-private-docker-registry" target="_blank" rel="external">貌似没有很好的办法</a></p>
-<p>感谢:</p>
-<p><a href="http://www.zation.me/2015/05/06/how_to_deploy_docker_registry_on_aliyun.html" target="_blank" rel="external">如何在阿里云上部署私有的Docker Registry</a></p>
-<p><a href="http://dockone.io/question/21" target="_blank" rel="external">http://dockone.io/question/21</a></p>
+        <pre><code>cat /root/shell/set_rsync.sh
+#!/bin/bash
+
+# 此脚本用来配置 rsync 服务端
+
+# 定义一些变量
+
+RPATH=/etc/rsyncd.d
+CONF=$RPATH/rsyncd.conf
+PASSWD_FILE=$RPATH/rsyncd.password
+AUTH=$RPATH/rsyncd.secrets
+
+#本机 IP
+ADDRESS=192.168.0.2
+# 允许访问服务的 IP
+ALLOW_IP=192.168.0.3
+
+TAG_NAME=app_upload_files
+# 同步目录
+RSYNC_DIR=/tmp/app_upload_files
+USER=user
+PASSWD=&quot;passwd&quot;
+
+
+# 先创建 rsync 配置存放目录
+
+[ ! -d $RPATH ] &amp;&amp; mkdir $RPATH
+
+# 创建配置文件
+
+[ ! -f $CONF ] &amp;&amp; touch $CONF
+[ ! -f $PASSWD_FILE ] &amp;&amp; touch $PASSWD_FILE
+[ ! -f $AUTH ] &amp;&amp; touch $AUTH
+
+cat &gt; $CONF &lt;&lt;EOF
+#pid文件位置
+pid file = /var/run/rsyncd.pid
+#监听的端口号
+port = 873
+
+#本机ip，请自行修改为自己机器的ip
+address = $ADDRESS
+#执行账户
+uid = nobody
+gid = nobody
+use chroot = yes
+#是否只读
+read only = no
+#允许访问设置 可以配ip段，也可以多个ip空格间隔，请改为自己允许的ip
+#如果客户端不在以下允许列表中，会报 @ERROR: access denied to xxx from unknown 错误
+hosts allow= $ALLOW_IP
+hosts deny=*
+#最大连接数
+max connections = 5
+motd file = /etc/rsyncd.d/rsyncd.motd
+#log文件位置
+log file = /var/log/rsync.log
+#超时时间
+timeout = 300
+
+#配置要同步的目录，可以添加多个
+#自定义名称
+[$TAG_NAME]
+#同步的目录
+path = $RSYNC_DIR
+#排除的文件
+#exclude from = /etc/rsyncd.d/xxx_exclude_list
+list=yes
+ignore errors
+#认证用户名称
+auth users = $USER
+#用户认证文件，见接下的第2条
+secrets file = /etc/rsyncd.d/rsyncd.secrets
+EOF
+
+chmod 600 $CONF
+mv /etc/rsyncd.conf{,.bak}
+ln -s  $CONF  /etc/rsyncd.conf
+
+echo $PASSWD &gt; $PASSWD_FILE
+chmod 600 $PASSWD_FILE
+
+echo &quot;$USER:$PASSWD&quot; &gt; $AUTH
+chmod 600 $AUTH
+
+
+# 启动服务
+systemctl enable rsyncd.service
+systemctl restart rsyncd.service
+systemctl status rsyncd.service
+
+# 执行完脚本后, 还需自行配置防火墙端口 873
+</code></pre><p>两台机器都执行这个脚本</p>
+<p>然后可以用拉的方式同步:</p>
+<pre><code>/usr/bin/rsync -avzP --delete user@server1::app_upload_files /tmp/app_upload_files/ --password-file=/etc/rsyncd.d/rsyncd.password
+</code></pre><p>如果用推的方式:</p>
+<pre><code>/usr/bin/rsync -avzP /tmp/app_upload_files/ hdruser@server1::app_upload_files --password-file=/etc/rsyncd.d/rsyncd.password
+</code></pre><p>注意<code>/tmp/app_upload_files/</code> 如果改成<code>/tmp/app_upload_files</code> (末尾少了斜杠) 推送过去目录结构会变成<code>/tmp/app_upload_files/app_upload_files</code>, 如果提示<code>Permission denied</code>, 则推送目标端的 rsync 配置文件需要把 gid,uid 改成 root</p>
+<p>结合 inotfy 脚本进行实时同步, 则必须用推的方式, 因为是监控本地变化, 发生变化推送到远端</p>
+<p>inotify 脚本:</p>
+<pre><code>cat /etc/rsyncd.d/inotify-rsync.sh
+#!/bin/bash
+
+# 此脚本用来监控 源目录文件夹的变化, 跟目标机器进行rsync同步
+
+set -e
+#源目录
+SRC=/tmp/app_upload_files/
+#目标服务器ip
+TARGET=192.168.0.3
+#rsync 用户
+USER=hdruser
+#rsync tag
+TAG=app_upload_files
+# 密码文件
+PASSWD=/etc/rsyncd.d/rsyncd.password
+
+#modify,delete,create,attrib这些为监听的动作，比如如果不要delete，那么删除的动作就不会触发同步
+/bin/inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f%e&apos; -e modify,delete,create,attrib $SRC | while read files
+do
+/usr/bin/rsync -vzrtopgq --delete --progress --password-file=$PASSWD $SRC $USER@$TARGET::$TAG
+done
+
+# 运行方式, 给脚本赋予执行权限, 然后用后台的方式运行: nohup /etc/rsyncd.d/inotify-rsync.sh &amp;
+# 加到开机启动项: echo &quot;/etc/rsyncd.d/inotify-rsync.sh &amp;&quot; &gt;&gt; /etc/rc.local
+</code></pre><p>参考:</p>
+<p><a href="http://xxling.com/blog/article/2093.aspx" target="_blank" rel="external">CentOS7通过rsync和inotify进行实时同步</a></p>
+<p><a href="https://segmentfault.com/a/1190000002558330" target="_blank" rel="external">关于rsync+inotify-tools实时同步模式</a></p>
 
       
     </div>
@@ -368,18 +418,9 @@ Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
     
 <nav id="article-nav">
   
-    <a href="/2016/01/15/Docker-常用命令/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Docker 常用命令
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/09/人人都能用英语-读书笔记/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">&lt;&lt;人人都能用英语&gt;&gt;读书笔记</div>
+    <a href="/2016/04/26/svn-版本控制命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">svn 版本控制命令</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -414,7 +455,7 @@ Status: Downloaded newer image for 192.168.100.103:5000/sinatra:latest
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Docker私有仓库" data-title="Docker私有仓库" data-url="http://yoursite.com/2016/01/15/Docker私有仓库/"></div>
+	<div class="ds-thread" data-thread-key="Centos7-配置-rsync-同步的一个-shell-脚本" data-title="Centos7 配置 rsync 同步的一个 shell 脚本" data-url="http://yoursite.com/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
