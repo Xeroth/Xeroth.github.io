@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/index.html">
 <meta property="og:site_name" content="Live with love">
 <meta property="og:description" content="rsync 脚本">
-<meta property="og:updated_time" content="2016-05-03T08:19:24.000Z">
+<meta property="og:updated_time" content="2016-05-03T08:20:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7 配置 rsync 同步的一个 shell 脚本">
 <meta name="twitter:description" content="rsync 脚本">
@@ -340,7 +340,7 @@ systemctl status rsyncd.service
 <p>然后可以用拉的方式同步:</p>
 <pre><code>/usr/bin/rsync -avzP --delete user@server1::app_upload_files /tmp/app_upload_files/ --password-file=/etc/rsyncd.d/rsyncd.password
 </code></pre><p>如果用推的方式:</p>
-<pre><code>/usr/bin/rsync -avzP /tmp/app_upload_files/ hdruser@server1::app_upload_files --password-file=/etc/rsyncd.d/rsyncd.password
+<pre><code>/usr/bin/rsync -avzP /tmp/app_upload_files/ user@server1::app_upload_files --password-file=/etc/rsyncd.d/rsyncd.password
 </code></pre><p>注意<code>/tmp/app_upload_files/</code> 如果改成<code>/tmp/app_upload_files</code> (末尾少了斜杠) 推送过去目录结构会变成<code>/tmp/app_upload_files/app_upload_files</code>, 如果提示<code>Permission denied</code>, 则推送目标端的 rsync 配置文件需要把 gid,uid 改成 root</p>
 <p>结合 inotfy 脚本进行实时同步, 则必须用推的方式, 因为是监控本地变化, 发生变化推送到远端</p>
 <p>inotify 脚本:</p>
