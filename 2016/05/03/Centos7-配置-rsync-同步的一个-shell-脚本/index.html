@@ -6,55 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Centos7 配置 rsync 同步的一个 shell 脚本 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="cat /root/shell/set_rsync.sh
-#!/bin/bash
-
-# 此脚本用来配置 rsync 服务端
-
-# 定义一些变量
-
-RPATH=/etc/rsyncd.d
-CONF=$RPATH/rsyncd.conf
-PASSWD_FILE=$RPATH/rsyncd.password
-AUTH=$RPATH/rsyncd.secrets
-
-#本机 IP
-ADDRESS=192.1">
+  <meta name="description" content="rsync 脚本">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos7 配置 rsync 同步的一个 shell 脚本">
 <meta property="og:url" content="http://yoursite.com/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="cat /root/shell/set_rsync.sh
-#!/bin/bash
-
-# 此脚本用来配置 rsync 服务端
-
-# 定义一些变量
-
-RPATH=/etc/rsyncd.d
-CONF=$RPATH/rsyncd.conf
-PASSWD_FILE=$RPATH/rsyncd.password
-AUTH=$RPATH/rsyncd.secrets
-
-#本机 IP
-ADDRESS=192.1">
-<meta property="og:updated_time" content="2016-05-03T08:18:10.000Z">
+<meta property="og:description" content="rsync 脚本">
+<meta property="og:updated_time" content="2016-05-03T08:19:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7 配置 rsync 同步的一个 shell 脚本">
-<meta name="twitter:description" content="cat /root/shell/set_rsync.sh
-#!/bin/bash
-
-# 此脚本用来配置 rsync 服务端
-
-# 定义一些变量
-
-RPATH=/etc/rsyncd.d
-CONF=$RPATH/rsyncd.conf
-PASSWD_FILE=$RPATH/rsyncd.password
-AUTH=$RPATH/rsyncd.secrets
-
-#本机 IP
-ADDRESS=192.1">
+<meta name="twitter:description" content="rsync 脚本">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -114,12 +75,12 @@ ADDRESS=192.1">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>標籤</li>
+						<li>Тэги</li>
 						
 						<li>友情链接</li>
 						
 						
-						<li>關於</li>
+						<li>О сайте</li>
 						
 					</ul>
 				</div>
@@ -281,7 +242,9 @@ ADDRESS=192.1">
             
             </div>
         
-        <pre><code>cat /root/shell/set_rsync.sh
+        <p>rsync 脚本</p>
+<a id="more"></a>
+<pre><code>cat /root/shell/set_rsync.sh
 #!/bin/bash
 
 # 此脚本用来配置 rsync 服务端

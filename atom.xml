@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-03T08:18:10.000Z</updated>
+  <updated>2016-05-03T08:19:24.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,8 +19,10 @@
     <link href="http://yoursite.com/2016/05/03/Centos7-%E9%85%8D%E7%BD%AE-rsync-%E5%90%8C%E6%AD%A5%E7%9A%84%E4%B8%80%E4%B8%AA-shell-%E8%84%9A%E6%9C%AC/"/>
     <id>http://yoursite.com/2016/05/03/Centos7-配置-rsync-同步的一个-shell-脚本/</id>
     <published>2016-05-03T03:05:54.000Z</published>
-    <updated>2016-05-03T08:18:10.000Z</updated>
-    <content type="html"><![CDATA[<pre><code>cat /root/shell/set_rsync.sh
+    <updated>2016-05-03T08:19:24.000Z</updated>
+    <content type="html"><![CDATA[<p>rsync 脚本</p>
+<a id="more"></a>
+<pre><code>cat /root/shell/set_rsync.sh
 #!/bin/bash
 
 # 此脚本用来配置 rsync 服务端
@@ -150,16 +152,8 @@ done
 <p><a href="https://segmentfault.com/a/1190000002558330" target="_blank" rel="external">关于rsync+inotify-tools实时同步模式</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<pre><code>cat /root/shell/set_rsync.sh
-#!/bin/bash
-
-# 此脚本用来配置 rsync 服务端
-
-# 定义一些变量
-
-RPATH=/etc/rsyncd.d
-CONF=$RPATH/rsyncd.conf
-PASSWD_FILE=]]>
+    <![CDATA[<p>rsync 脚本</p>]]>
+    
     </summary>
     
       <category term="Centos 7" scheme="http://yoursite.com/tags/Centos-7/"/>
