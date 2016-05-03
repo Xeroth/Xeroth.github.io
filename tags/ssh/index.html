@@ -4,24 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>系统管理常用脚本 | Live with love</title>
+  <title>Tag: ssh | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="系统管理常用脚本">
-<meta property="og:url" content="http://yoursite.com/2016/04/19/系统管理常用脚本/index.html">
+  <meta name="description" content="每天都要进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Live with love">
+<meta property="og:url" content="http://yoursite.com/tags/ssh/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
-<meta property="og:updated_time" content="2016-04-29T09:48:20.000Z">
+<meta property="og:description" content="每天都要进步">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统管理常用脚本">
-<meta name="twitter:description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
+<meta name="twitter:title" content="Live with love">
+<meta name="twitter:description" content="每天都要进步">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -199,145 +192,57 @@ find ./ -type d |xargs chmod 755
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-系统管理常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/04/19/系统管理常用脚本/" class="article-date">
-  	<time datetime="2016-04-19T09:29:28.000Z" itemprop="datePublished">2016-04-19</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/05/03/配置ssh和ansible通过跳板机直接登录目标机器/" class="archive-article-date">
+  	<time datetime="2016-05-03T10:46:51.000Z" itemprop="datePublished">5月 3</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      系统管理常用脚本
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/05/03/配置ssh和ansible通过跳板机直接登录目标机器/">配置ssh和ansible通过跳板机直接登录目标机器</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ansible/">ansible</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/">ssh</a></li></ul>
 	</div>
 
-        
+          
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/it/">it</a>
 	</div>
 
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><span class="toc-number">1.</span> <span class="toc-text">文件和文件夹权限递归为777，还原成默认的755和644</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">讲 ssh/config 的主机信息转移到 ansible hosts 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_swap"><span class="toc-number">3.</span> <span class="toc-text">创建 swap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><span class="toc-number">4.</span> <span class="toc-text">awk 交换1,2列, 以tab 作为分隔符输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_key"><span class="toc-number">5.</span> <span class="toc-text">生成 key</span></a></li></ol>
-            </div>
-        
-        <h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-</code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
-</code></pre><p>其中<code>a=a$2&quot;\n&quot;</code> 为字符串连接</p>
-<h3 id="u521B_u5EFA_swap"><a href="#u521B_u5EFA_swap" class="headerlink" title="创建 swap"></a>创建 swap</h3><pre><code>[root@node1 ~]# cat create_swap.sh
-#!/bin/bash
-
-fallocate -l 512M /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo &quot;/swapfile none swap defaults 0 0&quot; &gt;&gt;  /etc/fstab
-mount -a
-free -m
-</code></pre><h3 id="awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><a href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA" class="headerlink" title="awk 交换1,2列, 以tab 作为分隔符输出"></a>awk 交换1,2列, 以tab 作为分隔符输出</h3><pre><code>awk  -v  OFS=&apos;\t&apos; &apos;{temp=$1;$1=$2;$2=temp;print}&apos; 1.txt
-</code></pre><h3 id="u751F_u6210_key"><a href="#u751F_u6210_key" class="headerlink" title="生成 key"></a>生成 key</h3><pre><code>ssh-keygen -f test   -C &quot;test key&quot;
-</code></pre>
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/04/20/Ansible-synchronize/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Ansible synchronize
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/04/14/Vagrant安装使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vagrant安装使用</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="系统管理常用脚本" data-title="系统管理常用脚本" data-url="http://yoursite.com/2016/04/19/系统管理常用脚本/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"livewithlove"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 </div>
       <footer id="footer">
@@ -369,9 +274,9 @@ free -m
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}
