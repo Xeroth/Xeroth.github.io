@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-03T12:52:54.000Z</updated>
+  <updated>2016-05-05T06:39:07.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,13 +15,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Centos 7 配置 ftp 服务器]]></title>
+    <link href="http://yoursite.com/2016/05/05/Centos-7-%E9%85%8D%E7%BD%AE-ftp-%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://yoursite.com/2016/05/05/Centos-7-配置-ftp-服务器/</id>
+    <published>2016-05-05T06:35:05.000Z</published>
+    <updated>2016-05-05T06:39:07.000Z</updated>
+    <content type="html"><![CDATA[<p>照这个做</p>
+<p><a href="https://www.zybuluo.com/hshustc/note/180958" target="_blank" rel="external">CentOS7.0安装配置vsftp</a></p>
+<p>参考:</p>
+<p><a href="http://www.ha97.com/4113.html" target="_blank" rel="external">Linux下vsftpd基本配置和虚拟用户设置的安全方法</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>照这个做</p>
+<p><a href="https://www.zybuluo.com/hshustc/note/180958" target="_blank" rel="external">CentOS7.0安装配置vsftp</a></p>
+<p>参考:</p>
+<p]]>
+    </summary>
+    
+      <category term="ftp" scheme="http://yoursite.com/tags/ftp/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[配置ssh和ansible通过跳板机直接登录目标机器]]></title>
     <link href="http://yoursite.com/2016/05/03/%E9%85%8D%E7%BD%AEssh%E5%92%8Cansible%E9%80%9A%E8%BF%87%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%9B%B4%E6%8E%A5%E7%99%BB%E5%BD%95%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8/"/>
     <id>http://yoursite.com/2016/05/03/配置ssh和ansible通过跳板机直接登录目标机器/</id>
     <published>2016-05-03T10:46:51.000Z</published>
-    <updated>2016-05-03T12:52:54.000Z</updated>
+    <updated>2016-05-05T00:38:10.000Z</updated>
     <content type="html"><![CDATA[<h3 id="ssh_u914D_u7F6E"><a href="#ssh_u914D_u7F6E" class="headerlink" title="ssh配置"></a>ssh配置</h3><p>有这样的场景, 我们本地的机器 A 需要通过先登录跳板机 B , 然后在 B 上登录目标机器 C, 本文介绍就是通过配置, 实现从 A 直接登录 C .</p>
-<p>首先, 将 A 的公钥放到 B , C的 authorized_keys 文件中, 然后确保能从 A免密码登录到 B.如果看不懂这句, 请先去补习 ssh 通过密钥免密码登录的内容.</p>
+<p>首先, 将 A 的公钥放到 B , C的 authorized_keys 文件中, 然后确保能从 A免密码登录到 B. 如果看不懂这句, 请先去补习 ssh 通过密钥免密码登录的内容. </p>
 <p>在A机的 <code>~/.ssh/config</code> 中配置</p>
 <pre><code>host Server_C
 user=user_to_C             #这个用户是 B 上登录到 C 的用户
@@ -37,13 +61,14 @@ forwardagent yes
 <pre><code>[S_C]
 Server_C
 </code></pre><p>然后 ssh 跳转什么的, 也可以用 ssh 配置里面的了</p>
+<p>不过如果跳转后 ,如果登陆目标机器用户不是 root 用户, 执行 sudo 的时候会有问题.</p>
 <p>参考:</p>
 <p><a href="http://mingxinglai.com/cn/2015/07/ssh-proxycommand/" target="_blank" rel="external">SSH穿越跳板机：一条命令跨越跳板机直接登陆远程计算机</a></p>
 <p><a href="http://www.cweye.net/2015/07/17/ansible-jumper.html" target="_blank" rel="external">Ansible通过跳板机管理服务器</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="ssh_u914D_u7F6E"><a href="#ssh_u914D_u7F6E" class="headerlink" title="ssh配置"></a>ssh配置</h3><p>有这样的场景, 我们本地的机器 A 需要通过先登录跳板机 B , 然后在 B 上登录目标机器 C, 本文介绍就是通过配置, 实现从 A 直接登录 C .</p>
-<p>首先, 将 A 的公钥放到 B , C的 authorized_keys 文件中, 然后确保能从 A免密码登录到 B.如果看不懂这句, 请先去补习 ssh 通过密钥免密码登录的内容.</p>
+<p>首先, 将 A 的公钥放到 B , C的 authorized_keys 文件中, 然后确保能从 A免密码登录到 B. 如果看不懂这句, 请先去补习 ssh 通过密钥免密码登录的内容. </p>
 <p>在A机的 <code>~/.ssh/config</code> 中配置</p>
 <pre><code>host Server_C
 user=user_to_C             #这个用户是 B 上登录到 C 的用户
@@ -1550,33 +1575,6 @@ rsync  version 3.1.2  protocol version 31
     </summary>
     
       <category term="os x" scheme="http://yoursite.com/tags/os-x/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[nginx rewrite]]></title>
-    <link href="http://yoursite.com/2016/03/25/nginx-rewrite/"/>
-    <id>http://yoursite.com/2016/03/25/nginx-rewrite/</id>
-    <published>2016-03-25T02:34:06.000Z</published>
-    <updated>2016-04-09T07:19:35.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u7F51_u5740_u8DF3_u8F6C"><a href="#u7F51_u5740_u8DF3_u8F6C" class="headerlink" title="网址跳转"></a>网址跳转</h3><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">	<span class="title">listen</span>       <span class="number">80</span>;</span><br><span class="line">	<span class="title">server_name</span>  www.<span class="number">123</span>.cn <span class="number">123</span>.cn;</span><br><span class="line">	<span class="title">access_log</span> <span class="built_in">off</span>;</span><br><span class="line">	<span class="title">rewrite</span><span class="regexp"> ^/(.*)$</span> <span class="url">http://www.123.com/<span class="variable">$1</span></span> <span class="built_in">permanent</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>配置生效后, 用curl查看一下</p>
-<pre><code>$ curl -I www.123.cn
-HTTP/1.1 301 Moved Permanently
-Server: nginx/1.8.1
-Date: Fri, 25 Mar 2016 02:38:44 GMT
-Content-Type: text/html
-Content-Length: 184
-Connection: keep-alive
-Location: http://www.123.com/
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u7F51_u5740_u8DF3_u8F6C"><a href="#u7F51_u5740_u8DF3_u8F6C" class="headerlink" title="网址跳转"></a>网址跳转</h3><figure class="highlight ng]]>
-    </summary>
-    
-      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
