@@ -4,24 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>系统管理常用脚本 | Live with love</title>
+  <title>svnhook 同步代码到远端机器 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
+  <meta name="description" content="本文仅做记录
+post-commit 脚本主要是通过ssh 远程命令来执行自动更新, 需配置 ssh 免密码登陆
+/usr/bin/ssh -p22 root@remote_ip &amp;quot;/bin/bash /opt/www/svn_beta_update.sh&amp;quot; 2&amp;gt;&amp;gt;/tmp/svn_error.log
+远端机器的同步代码脚本:
+#!/bin/bash
+
+/usr/b">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统管理常用脚本">
-<meta property="og:url" content="http://yoursite.com/2016/04/19/系统管理常用脚本/index.html">
+<meta property="og:title" content="svnhook 同步代码到远端机器">
+<meta property="og:url" content="http://yoursite.com/2016/05/05/svnhook-同步代码到远端机器/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
-<meta property="og:updated_time" content="2016-04-29T09:48:20.000Z">
+<meta property="og:description" content="本文仅做记录
+post-commit 脚本主要是通过ssh 远程命令来执行自动更新, 需配置 ssh 免密码登陆
+/usr/bin/ssh -p22 root@remote_ip &amp;quot;/bin/bash /opt/www/svn_beta_update.sh&amp;quot; 2&amp;gt;&amp;gt;/tmp/svn_error.log
+远端机器的同步代码脚本:
+#!/bin/bash
+
+/usr/b">
+<meta property="og:updated_time" content="2016-05-05T07:56:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统管理常用脚本">
-<meta name="twitter:description" content="文件和文件夹权限递归为777，还原成默认的755和644find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-讲 ssh/config 的主机信息转移到 ansible hosts 文件awk -F[=\ ] &amp;apos;$2 ~ /HD_Server/ {print &amp;quot;[&amp;quot;$2&amp;quot;]&amp;">
+<meta name="twitter:title" content="svnhook 同步代码到远端机器">
+<meta name="twitter:description" content="本文仅做记录
+post-commit 脚本主要是通过ssh 远程命令来执行自动更新, 需配置 ssh 免密码登陆
+/usr/bin/ssh -p22 root@remote_ip &amp;quot;/bin/bash /opt/www/svn_beta_update.sh&amp;quot; 2&amp;gt;&amp;gt;/tmp/svn_error.log
+远端机器的同步代码脚本:
+#!/bin/bash
+
+/usr/b">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -199,11 +211,11 @@ find ./ -type d |xargs chmod 755
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-系统管理常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-svnhook-同步代码到远端机器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/19/系统管理常用脚本/" class="article-date">
-  	<time datetime="2016-04-19T09:29:28.000Z" itemprop="datePublished">2016-04-19</time>
+      <a href="/2016/05/05/svnhook-同步代码到远端机器/" class="article-date">
+  	<time datetime="2016-05-05T07:30:03.000Z" itemprop="datePublished">2016-05-05</time>
 </a>
     </div>
   
@@ -216,7 +228,7 @@ find ./ -type d |xargs chmod 755
         
   
     <h1 class="article-title" itemprop="name">
-      系统管理常用脚本
+      svnhook 同步代码到远端机器
     </h1>
   
 
@@ -225,7 +237,7 @@ find ./ -type d |xargs chmod 755
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
 	</div>
 
         
@@ -245,26 +257,19 @@ find ./ -type d |xargs chmod 755
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><span class="toc-number">1.</span> <span class="toc-text">文件和文件夹权限递归为777，还原成默认的755和644</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><span class="toc-number">2.</span> <span class="toc-text">讲 ssh/config 的主机信息转移到 ansible hosts 文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_swap"><span class="toc-number">3.</span> <span class="toc-text">创建 swap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><span class="toc-number">4.</span> <span class="toc-text">awk 交换1,2列, 以tab 作为分隔符输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_key"><span class="toc-number">5.</span> <span class="toc-text">生成 key</span></a></li></ol>
+            
             </div>
         
-        <h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-</code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
-</code></pre><p>其中<code>a=a$2&quot;\n&quot;</code> 为字符串连接</p>
-<h3 id="u521B_u5EFA_swap"><a href="#u521B_u5EFA_swap" class="headerlink" title="创建 swap"></a>创建 swap</h3><pre><code>[root@node1 ~]# cat create_swap.sh
-#!/bin/bash
+        <p>本文仅做记录</p>
+<p>post-commit 脚本主要是通过ssh 远程命令来执行自动更新, 需配置 ssh 免密码登陆</p>
+<pre><code>/usr/bin/ssh -p22 root@remote_ip &quot;/bin/bash /opt/www/svn_beta_update.sh&quot; 2&gt;&gt;/tmp/svn_error.log
+</code></pre><p>远端机器的同步代码脚本:</p>
+<pre><code>#!/bin/bash
 
-fallocate -l 512M /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo &quot;/swapfile none swap defaults 0 0&quot; &gt;&gt;  /etc/fstab
-mount -a
-free -m
-</code></pre><h3 id="awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><a href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA" class="headerlink" title="awk 交换1,2列, 以tab 作为分隔符输出"></a>awk 交换1,2列, 以tab 作为分隔符输出</h3><pre><code>awk  -v  OFS=&apos;\t&apos; &apos;{temp=$1;$1=$2;$2=temp;print}&apos; 1.txt
-</code></pre><h3 id="u751F_u6210_key"><a href="#u751F_u6210_key" class="headerlink" title="生成 key"></a>生成 key</h3><pre><code>ssh-keygen -f test   -C &quot;test key&quot;
-</code></pre>
+/usr/bin/svn update /opt/www/dest/ 2&gt;&gt; svn_update_error.log
+</code></pre><p>参考:</p>
+<p><a href="http://denglz.blog.51cto.com/3617037/1341835" target="_blank" rel="external">SVN 使用 hooks 自动更新代码到远程的web目录下</a></p>
+
       
     </div>
     
@@ -273,18 +278,9 @@ free -m
     
 <nav id="article-nav">
   
-    <a href="/2016/04/20/Ansible-synchronize/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Ansible synchronize
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/04/14/Vagrant安装使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Vagrant安装使用</div>
+    <a href="/2016/05/05/Centos-7-配置-ftp-服务器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Centos 7 配置 ftp 服务器</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -319,7 +315,7 @@ free -m
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="系统管理常用脚本" data-title="系统管理常用脚本" data-url="http://yoursite.com/2016/04/19/系统管理常用脚本/"></div>
+	<div class="ds-thread" data-thread-key="svnhook-同步代码到远端机器" data-title="svnhook 同步代码到远端机器" data-url="http://yoursite.com/2016/05/05/svnhook-同步代码到远端机器/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
