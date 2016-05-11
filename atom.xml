@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-11T00:34:35.000Z</updated>
+  <updated>2016-05-11T07:03:07.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,11 +15,74 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[inotify 监控文件和目录变化]]></title>
+    <link href="http://yoursite.com/2016/05/11/inotify-%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E5%8F%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2016/05/11/inotify-监控文件和目录变化/</id>
+    <published>2016-05-11T01:49:32.000Z</published>
+    <updated>2016-05-11T07:03:07.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u672C_u6765_u6253_u7B97_u628A_u8981_u76D1_u63A7_u7684_u6587_u4EF6_u653E_mysql_2C__u901A_u8FC7_u76D1_u63A7_mysql__u5B9E_u73B0"><a href="#u672C_u6765_u6253_u7B97_u628A_u8981_u76D1_u63A7_u7684_u6587_u4EF6_u653E_mysql_2C__u901A_u8FC7_u76D1_u63A7_mysql__u5B9E_u73B0" class="headerlink" title="本来打算把要监控的文件放 mysql, 通过监控 mysql 实现"></a>本来打算把要监控的文件放 mysql, 通过监控 mysql 实现</h3><pre><code>广州-kali  17:06:13
+mysql 能不能设置这样的功能:  查询某个表的某个字段就触发报警脚本
+北京-青山  17:08:22
+.mysql_history 
+北京-青山  17:08:53
+默认你连接mysql后执行的命令这个文件里会有记录，你可以发告警，不过是事后
+北京-青山  17:09:19
+不过这个是在服务器上操作时的告警
+北京-青山  17:09:33
+远程odbc连接的话里面没有
+北京-青山  17:10:14
+binlog日志里应该可以提取出来
+
+广州-小王-Vip  17:19:42
+建个触发器可行？select的不知道能否判断，没研究过
+北京-青山  17:20:05
+select不行，delete\update可以
+</code></pre><p>但是网上有的说查看正在写入的 binlog 会有不良后果… , 所以另寻他法, 想起了以前做文件同步时候用的 inotify</p>
+<h3 id="u5B89_u88C5_u4F7F_u7528_inotify-tools"><a href="#u5B89_u88C5_u4F7F_u7528_inotify-tools" class="headerlink" title="安装使用 inotify-tools"></a>安装使用 inotify-tools</h3><p>inotify 是用 C 的, 作为一只菜鸟 sa, 我用用封装好的inotify-tools 就够了~</p>
+<p>安装</p>
+<pre><code>yum -y install inotify-tools
+</code></pre><p>看看监控/root  目录的效果, 在一个终端输入如下命令, 另一个终端做测试, 比如cat a.txt:</p>
+<pre><code>[root@node1 ~]# inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f %e&apos; -e access,move,modify,delete,create,attrib /root
+11/05/16 10:54 /root/a.txt ACCESS
+</code></pre><p>利用管道就能触发变更操作:</p>
+<pre><code>[root@node1 ~]# inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f %e&apos; -e access,move,modify,delete,create,attrib /root | while read line; do echo &quot;sb. is doing sth.&quot; ; done
+</code></pre><p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u672C_u6765_u6253_u7B97_u628A_u8981_u76D1_u63A7_u7684_u6587_u4EF6_u653E_mysql_2C__u901A_u8FC7_u76D1_u63A7_mysql__u5B9E_u73B0"><a hre]]>
+    </summary>
+    
+      <category term="inotify" scheme="http://yoursite.com/tags/inotify/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用 supervisor 管理进程]]></title>
+    <link href="http://yoursite.com/2016/05/11/%E4%BD%BF%E7%94%A8-supervisor-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/"/>
+    <id>http://yoursite.com/2016/05/11/使用-supervisor-管理进程/</id>
+    <published>2016-05-11T01:08:17.000Z</published>
+    <updated>2016-05-11T01:09:10.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/p/5075744.html</a></p>
+<p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">http://liyangliang.me/posts/2015/06/using-supervisor/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/p/5075744.html</a><]]>
+    </summary>
+    
+      <category term="supervisor" scheme="http://yoursite.com/tags/supervisor/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[修复ImageMagic漏洞(CVE-2016-3714)]]></title>
     <link href="http://yoursite.com/2016/05/10/%E4%BF%AE%E5%A4%8DImageMagic%E6%BC%8F%E6%B4%9E-CVE-2016-3714/"/>
     <id>http://yoursite.com/2016/05/10/修复ImageMagic漏洞-CVE-2016-3714/</id>
     <published>2016-05-10T10:29:23.000Z</published>
-    <updated>2016-05-11T00:34:35.000Z</updated>
+    <updated>2016-05-11T07:03:19.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u53CD_u5F39_Shell__28Reverse_Shell_29__u5B9E_u9A8C"><a href="#u53CD_u5F39_Shell__28Reverse_Shell_29__u5B9E_u9A8C" class="headerlink" title="反弹 Shell (Reverse Shell) 实验"></a>反弹 Shell (Reverse Shell) 实验</h3><p>将node1的 shell 反弹给 node3</p>
 <p>node3监听2333端口:</p>
 <pre><code>[root@node3 ~]# nc -lvv 2333
@@ -101,6 +164,7 @@ SAFE
 testing MSL
 SAFE
 </code></pre><p>参考:</p>
+<p><a href="https://imagetragick.com/" target="_blank" rel="external">https://imagetragick.com/</a></p>
 <p><a href="http://bobao.360.cn/learning/detail/2862.html" target="_blank" rel="external">CVE-2016-3714ImageMagick远程执行漏洞修复建议</a></p>
 <p><a href="http://le4f.net/post/post/reverse-shell-during-the-penetration-test" target="_blank" rel="external">渗透测试:反弹与转发小结 - Reverse Shell During the Penetration Test</a></p>
 ]]></content>
@@ -481,7 +545,7 @@ Committed revision 7.
     <link href="http://yoursite.com/2016/04/22/Docker-%E9%83%A8%E7%BD%B2Gitlab/"/>
     <id>http://yoursite.com/2016/04/22/Docker-部署Gitlab/</id>
     <published>2016-04-22T09:38:07.000Z</published>
-    <updated>2016-04-22T12:09:19.000Z</updated>
+    <updated>2016-05-11T07:34:57.000Z</updated>
     <content type="html"><![CDATA[<p>环境: 阿里云 centos7镜像, 已经安装了 docker <a href="http://www.a-ho.com/2016/04/22/Centos-7-%E5%AE%89%E8%A3%85Docker/" target="_blank" rel="external">(docker 安装详情)</a></p>
 <p>参考:</p>
 <p><a href="https://github.com/sameersbn/docker-gitlab#installation" target="_blank" rel="external">sameersbn/gitlab:8.6.6</a></p>
@@ -491,9 +555,9 @@ Committed revision 7.
     <![CDATA[<p>环境: 阿里云 centos7镜像, 已经安装了 docker <a href="http://www.a-ho.com/2016/04/22/Centos-7-%E5%AE%89%E8%A3%85Docker/" target="_blank" rel="external]]>
     </summary>
     
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
-    
       <category term="Gitlab" scheme="http://yoursite.com/tags/Gitlab/"/>
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
@@ -504,7 +568,7 @@ Committed revision 7.
     <link href="http://yoursite.com/2016/04/22/Centos-7-%E5%AE%89%E8%A3%85Docker/"/>
     <id>http://yoursite.com/2016/04/22/Centos-7-安装Docker/</id>
     <published>2016-04-22T06:31:15.000Z</published>
-    <updated>2016-04-22T09:20:08.000Z</updated>
+    <updated>2016-05-11T07:34:37.000Z</updated>
     <content type="html"><![CDATA[<p>环境:阿里云 centos7 镜像</p>
 <h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><p>1.查看内核版本, 如果内核太旧, 请升级到最新版本</p>
 <pre><code># uname -r
@@ -579,7 +643,7 @@ rm -rf /var/lib/docker
 <h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><p>1.查看内核版本, 如果内核太旧, 请升级到最新版本<]]>
     </summary>
     
-      <category term="Docker" scheme="http://yoursite.com/tags/Docker/"/>
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
@@ -630,7 +694,7 @@ rm -rf /var/lib/docker
     <link href="http://yoursite.com/2016/04/19/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC/"/>
     <id>http://yoursite.com/2016/04/19/系统管理常用脚本/</id>
     <published>2016-04-19T09:29:28.000Z</published>
-    <updated>2016-04-29T09:48:20.000Z</updated>
+    <updated>2016-05-11T07:02:55.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
 find ./ -type d |xargs chmod 755
 </code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
@@ -647,6 +711,8 @@ mount -a
 free -m
 </code></pre><h3 id="awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><a href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA" class="headerlink" title="awk 交换1,2列, 以tab 作为分隔符输出"></a>awk 交换1,2列, 以tab 作为分隔符输出</h3><pre><code>awk  -v  OFS=&apos;\t&apos; &apos;{temp=$1;$1=$2;$2=temp;print}&apos; 1.txt
 </code></pre><h3 id="u751F_u6210_key"><a href="#u751F_u6210_key" class="headerlink" title="生成 key"></a>生成 key</h3><pre><code>ssh-keygen -f test   -C &quot;test key&quot;
+</code></pre><h3 id="u67E5_u770B_u547D_u4EE4_u5BF9_u5E94_u7684_rpm__u5B89_u88C5_u5305"><a href="#u67E5_u770B_u547D_u4EE4_u5BF9_u5E94_u7684_rpm__u5B89_u88C5_u5305" class="headerlink" title="查看命令对应的 rpm 安装包"></a>查看命令对应的 rpm 安装包</h3><p>比如想查看 dig 的:</p>
+<pre><code>rpm -qf  `which dig`
 </code></pre>]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href=]]>
@@ -1509,72 +1575,6 @@ Or, if you don&apos;t want/need launchctl, you can just run:
       <category term="os x" scheme="http://yoursite.com/tags/os-x/"/>
     
       <category term="postgresql" scheme="http://yoursite.com/tags/postgresql/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[nginx打开目录浏览功能(autoindex)]]></title>
-    <link href="http://yoursite.com/2016/03/29/nginx%E6%89%93%E5%BC%80%E7%9B%AE%E5%BD%95%E6%B5%8F%E8%A7%88%E5%8A%9F%E8%83%BD-autoindex/"/>
-    <id>http://yoursite.com/2016/03/29/nginx打开目录浏览功能-autoindex/</id>
-    <published>2016-03-29T03:27:44.000Z</published>
-    <updated>2016-04-05T02:46:59.000Z</updated>
-    <content type="html"><![CDATA[<pre><code>server {
-        server_name hook.123.cn;
-        root /opt/www/svnhook/document/php;
-        location / {
-                autoindex on;
-                autoindex_localtime on;
-                charset utf-8,gbk;  # 解决中文乱码
-
-                # 认证登陆
-                auth_basic            &quot;Password please&quot;;
-                auth_basic_user_file  /etc/nginx/htpasswd;
-
-
-                index 投标单位管理.html;
-                if (!-e $request_filename) {
-                        rewrite ^(.*)$  /manage.html last;
-                }
-        }
-}
-</code></pre><p><code>/etc/nginx/htpasswd</code> 记得修改为 nginx 的权限 , 账号密码可以通过在线的htpasswd生成器生成</p>
-<p><a href="http://blog.licess.com/nginx-autoindex/" target="_blank" rel="external">nginx打开目录浏览功能(autoindex)</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<pre><code>server {
-        server_name hook.123.cn;
-        root /opt/www/svnhook/document/php;
-        location / {
-                autoin]]>
-    </summary>
-    
-      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[使用rsync]]></title>
-    <link href="http://yoursite.com/2016/03/28/%E4%BD%BF%E7%94%A8rsync/"/>
-    <id>http://yoursite.com/2016/03/28/使用rsync/</id>
-    <published>2016-03-28T07:57:13.000Z</published>
-    <updated>2016-03-28T08:00:56.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6"><a href="#u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6" class="headerlink" title="拷贝文件夹除了带 mysql 之外的文件"></a>拷贝文件夹除了带 mysql 之外的文件</h3><pre><code>rsync -av --exclude &apos;*mysql*&apos; root@server:/home/eg/php2 /home/php
-
--a for archive (mostly all files)
--v for verbose output
-</code></pre><p><a href="http://stackoverflow.com/questions/1228466/how-to-filter-files-when-using-scp-to-copy-dir-recursively" target="_blank" rel="external">How to filter files when using scp to copy dir recursively?</a></p>
-<p>顺便学习到了ls 的这种用法</p>
-<pre><code>ls --ignore=*mysql* 
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u62F7_u8D1D_u6587_u4EF6_u5939_u9664_u4E86_u5E26_mysql__u4E4B_u5916_u7684_u6587_u4EF6"><a href="#u62F7_u8D1D_u6587_u4EF6_u5939_u9664_]]>
-    </summary>
-    
-      <category term="rsync" scheme="http://yoursite.com/tags/rsync/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
