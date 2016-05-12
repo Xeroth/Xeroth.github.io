@@ -4,42 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>svn 配置http 服务 | Live with love</title>
+  <title>Tag: nfs | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装服务安装http
-yum install -y httpd
-安装 svn
-yum install -y subversion
-安装Apache SVN模块
-yum install -y mod_dav_svn
-配置然后是把 svn 配置运行起来, 教程网上很多… 
-再然后.把 svn 整合进 apache 的配置文件
-[root@iZ94c5cs7guZ httpd]# cat /etc/ht">
-<meta property="og:type" content="article">
-<meta property="og:title" content="svn 配置http 服务">
-<meta property="og:url" content="http://yoursite.com/2016/05/06/svn-配置http-服务/index.html">
+  <meta name="description" content="每天都要进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Live with love">
+<meta property="og:url" content="http://yoursite.com/tags/nfs/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="安装服务安装http
-yum install -y httpd
-安装 svn
-yum install -y subversion
-安装Apache SVN模块
-yum install -y mod_dav_svn
-配置然后是把 svn 配置运行起来, 教程网上很多… 
-再然后.把 svn 整合进 apache 的配置文件
-[root@iZ94c5cs7guZ httpd]# cat /etc/ht">
-<meta property="og:updated_time" content="2016-05-09T09:59:32.000Z">
+<meta property="og:description" content="每天都要进步">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="svn 配置http 服务">
-<meta name="twitter:description" content="安装服务安装http
-yum install -y httpd
-安装 svn
-yum install -y subversion
-安装Apache SVN模块
-yum install -y mod_dav_svn
-配置然后是把 svn 配置运行起来, 教程网上很多… 
-再然后.把 svn 整合进 apache 的配置文件
-[root@iZ94c5cs7guZ httpd]# cat /etc/ht">
+<meta name="twitter:title" content="Live with love">
+<meta name="twitter:description" content="每天都要进步">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -217,176 +192,57 @@ yum install -y mod_dav_svn
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-svn-配置http-服务" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/05/06/svn-配置http-服务/" class="article-date">
-  	<time datetime="2016-05-06T03:07:33.000Z" itemprop="datePublished">2016-05-06</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/05/12/Centos7-配置-NFS/" class="archive-article-date">
+  	<time datetime="2016-05-12T08:35:09.000Z" itemprop="datePublished">5月 12</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      svn 配置http 服务
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/05/12/Centos7-配置-NFS/">Centos7 配置 NFS</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/apache/">apache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svn/">svn</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nfs/">nfs</a></li></ul>
 	</div>
 
-        
+          
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/it/">it</a>
 	</div>
 
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_u670D_u52A1"><span class="toc-number">1.</span> <span class="toc-text">安装服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u751F_u6210_SSL__u8BC1_u4E66"><span class="toc-number">2.1.</span> <span class="toc-text">生成 SSL 证书</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6DFB_u52A0_u7528_u6237_u7684_u811A_u672C"><span class="toc-number">2.2.</span> <span class="toc-text">添加用户的脚本</span></a></li></ol></li></ol>
-            </div>
-        
-        <h3 id="u5B89_u88C5_u670D_u52A1"><a href="#u5B89_u88C5_u670D_u52A1" class="headerlink" title="安装服务"></a>安装服务</h3><p>安装http</p>
-<pre><code>yum install -y httpd
-</code></pre><p>安装 svn</p>
-<pre><code>yum install -y subversion
-</code></pre><p>安装Apache SVN模块</p>
-<pre><code>yum install -y mod_dav_svn
-</code></pre><h3 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h3><p>然后是把 svn 配置运行起来, 教程网上很多… </p>
-<p>再然后.把 svn 整合进 apache 的配置文件</p>
-<pre><code>[root@iZ94c5cs7guZ httpd]# cat /etc/httpd/conf.d/subversion.conf
-LoadModule dav_svn_module     modules/mod_dav_svn.so
-LoadModule authz_svn_module   modules/mod_authz_svn.so
-
-&lt;Location /svn&gt;    #这行是配置访问的 url , 比如 http://a.com/svn/repos
-    DAV svn
-    SVNParentPath /data/svndata        #这个就是svn的主目录
-    AuthType Basic
-    AuthName &quot;Authorization SVN: &quot;
-    AuthzSVNAccessFile /data/svndata/authz    #这个文件是从某个仓库考过来的, 权限自己根据需求修改
-    AuthUserFile /etc/httpd/conf.d/passwdfile   #这个文件是 htpasswd 生成的, 生成的用户名要写进上面的 auth 文件
-    Require valid-user
-&lt;/Location&gt;
-</code></pre><p>修改一些权限:</p>
-<pre><code>chown apache:apache -R /data/svndata
-chown apache:apache /etc/httpd/conf.d/passwdfile
-</code></pre><p>htpasswd 新增用户:</p>
-<pre><code>htpasswd  -n username
-</code></pre><p>然后可以配置 nginx 反向代理:</p>
-<h4 id="u751F_u6210_SSL__u8BC1_u4E66"><a href="#u751F_u6210_SSL__u8BC1_u4E66" class="headerlink" title="生成 SSL 证书"></a>生成 SSL 证书</h4><p>上面的还没有 https 加密</p>
-<pre><code># cd /etc/httpd/conf/
-# openssl req -new -x509 -keyout server.key -out server.crt -days 365 -nodes  #这个是缩365天之后不能用了嘛, 感觉在挖坑...
-</code></pre><h4 id="u6DFB_u52A0_u7528_u6237_u7684_u811A_u672C"><a href="#u6DFB_u52A0_u7528_u6237_u7684_u811A_u672C" class="headerlink" title="添加用户的脚本"></a>添加用户的脚本</h4><pre><code>cat svn_add_http_admin.sh
-#!/bin/bash
-
-SVNPATH=/data/svndata/        #svn 主目录
-PASSWDFILE=/etc/httpd/conf.d/passwdfile
-
-read -p &quot;input user name: &quot; USER
-read -p &quot;input password: &quot; PASSWD
-
-/usr/bin/htpasswd -b $PASSWDFILE $USER $PASSWD
-sed  -ri &quot;s@(^admin = .*)@\1\,$USER@&quot; $SVNPATH/authz
-</code></pre><p>参考:</p>
-<p><a href="http://my.oschina.net/u/206356/blog/287635" target="_blank" rel="external">Centos 下搭建SVN ＋ Apache 服务器</a></p>
-<p><a href="http://www.opstool.com/article/282" target="_blank" rel="external">CentOS搭建Nginx+Subversion环境</a></p>
-<p><a href="https://wiki.archlinux.org/index.php/Subversion_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87\" target="_blank" rel="external">Subversion (简体中文)</a>)</p>
-<p><a href="http://fengchj.com/?p=735" target="_blank" rel="external">Apache核心(Core)指令<location>和<directory>区别</directory></location></a></p>
-<p><a href="https://blog.linuxeye.com/333.html" target="_blank" rel="external">Apache htpasswd命令用法详解</a></p>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/05/10/修复ImageMagic漏洞-CVE-2016-3714/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          修复ImageMagic漏洞(CVE-2016-3714)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/05/05/svnhook-同步代码到远端机器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">svnhook 同步代码到远端机器</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="svn-配置http-服务" data-title="svn 配置http 服务" data-url="http://yoursite.com/2016/05/06/svn-配置http-服务/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"livewithlove"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 </div>
       <footer id="footer">
@@ -418,9 +274,9 @@ sed  -ri &quot;s@(^admin = .*)@\1\,$USER@&quot; $SVNPATH/authz
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-11T07:41:10.000Z</updated>
+  <updated>2016-05-12T08:37:26.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Centos7 配置 NFS]]></title>
+    <link href="http://yoursite.com/2016/05/12/Centos7-%E9%85%8D%E7%BD%AE-NFS/"/>
+    <id>http://yoursite.com/2016/05/12/Centos7-配置-NFS/</id>
+    <published>2016-05-12T08:35:09.000Z</published>
+    <updated>2016-05-12T08:37:26.000Z</updated>
+    <content type="html"><![CDATA[<p>参考:</p>
+<p>防火墙开放端口111和2049</p>
+<p><a href="http://blog.dreamlu.net/blog/67" target="_blank" rel="external">http://blog.dreamlu.net/blog/67</a></p>
+<p><a href="http://www.server-world.info/en/note?os=CentOS_7&amp;p=nfs" target="_blank" rel="external">http://www.server-world.info/en/note?os=CentOS_7&amp;p=nfs</a></p>
+<p><a href="http://www.server-world.info/en/note?os=CentOS_7&amp;p=nfs&amp;f=2" target="_blank" rel="external">http://www.server-world.info/en/note?os=CentOS_7&amp;p=nfs&amp;f=2</a></p>
+<p>挂载命令</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考:</p>
+<p>防火墙开放端口111和2049</p>
+<p><a href="http://blog.dreamlu.net/blog/67" target="_blank" rel="external">http://blog.dreamlu.net/blog/6]]>
+    </summary>
+    
+      <category term="nfs" scheme="http://yoursite.com/tags/nfs/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[<<Docker从入门到实践>>读书笔记(一) 基础篇]]></title>
@@ -1395,172 +1420,6 @@ admin = rw
     </summary>
     
       <category term="shell" scheme="http://yoursite.com/tags/shell/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[centos7 安装破解confluence 5.8]]></title>
-    <link href="http://yoursite.com/2016/04/05/centos7-%E5%AE%89%E8%A3%85%E7%A0%B4%E8%A7%A3confluence-5-8/"/>
-    <id>http://yoursite.com/2016/04/05/centos7-安装破解confluence-5-8/</id>
-    <published>2016-04-05T03:09:57.000Z</published>
-    <updated>2016-04-12T02:38:32.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u5B89_u88C5_jdk"><a href="#u5B89_u88C5_jdk" class="headerlink" title="安装 jdk"></a>安装 jdk</h3><pre><code>$ yum install -y java-1.7.0-openjdk.x86_64
-$ java -version
-java version &quot;1.7.0_99&quot;
-OpenJDK Runtime Environment (rhel-2.6.5.0.el7_2-x86_64 u99-b00)
-OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
-</code></pre><a id="more"></a>
-<h3 id="u5B89_u88C5_u6570_u636E_u5E93"><a href="#u5B89_u88C5_u6570_u636E_u5E93" class="headerlink" title="安装数据库"></a>安装数据库</h3><p><del>本来打算直接用 mariadb 的, 但是 confluence 不支持这个驱动.只能另外装 mysql 了, 下面这小段作废, 直接跳 mysql 安装</del></p>
-<pre><code>yum install -y mariadb*
-systemctl start mariadb.service
-systemctl enable mariadb.service
-mysql_secure_installation  #一路 yes 下去
-
-#解决中文乱码问题
-vim /etc/my.cnf
-[mysqld]
-character-set-server =utf8
-重启服务
-</code></pre><p>centos7 yum 源不带 mysql, 需要自己安装 yum 源</p>
-<pre><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
-rpm -ivh mysql-community-release-el7-5.noarch.rpm
-yum install mysql-server
-</code></pre><h3 id="u5F00_u59CB_u5B89_u88C5_confluence"><a href="#u5F00_u59CB_u5B89_u88C5_confluence" class="headerlink" title="开始安装 confluence"></a>开始安装 confluence</h3><pre><code>$ chmod u+x /usr/local/confluence-5.8.10-x64.bin
-$ /usr/local/confluence-5.8.10-x64.bin
-Unpacking JRE ...
-Starting Installer ...
-四月 05, 2016 3:13:16 下午 java.util.prefs.FileSystemPreferences$1 run
-INFO: Created user preferences directory.
-
-This will install Confluence 5.8.10 on your computer.
-OK [o, Enter], Cancel [c]
-
-Choose the appropriate installation or upgrade option.
-Please choose one of the following:
-Express Install (uses default settings) [1],
-Custom Install (recommended for advanced users) [2, Enter],
-Upgrade an existing Confluence installation [3]
-1
-See where Confluence will be installed and the settings that will be used.
-Installation Directory: /opt/atlassian/confluence
-Home Directory: /var/atlassian/application-data/confluence
-HTTP Port: 8090
-RMI Port: 8000
-Install as service: Yes
-Install [i, Enter], Exit [e]
-i
-</code></pre><p>http访问</p>
-<pre><code>http://your.centos.ip:8090
-</code></pre><p>点击安装, 记录 serverid : BH9S-DN8I-F20N-QN2C</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack1.png" alt="confluence-crack1"></p>
-<h3 id="u7834_u89E3"><a href="#u7834_u89E3" class="headerlink" title="破解"></a>破解</h3><p>停止wiki服务, 进行破解</p>
-<pre><code>$ /etc/init.d/confluence stop
-executing using dedicated user
-If you encounter issues starting up Confluence, please see the Installation guide at http://confluence.atlassian.com/display/DOC/Confluence+Installation+Guide
-
-Server startup logs are located in /opt/atlassian/confluence/logs/catalina.out
-Using CATALINA_BASE:   /opt/atlassian/confluence
-Using CATALINA_HOME:   /opt/atlassian/confluence
-Using CATALINA_TMPDIR: /opt/atlassian/confluence/temp
-Using JRE_HOME:        /opt/atlassian/confluence/jre/
-Using CLASSPATH:       /opt/atlassian/confluence/bin/bootstrap.jar:/opt/atlassian/confluence/bin/tomcat-juli.jar
-Using CATALINA_PID:    /opt/atlassian/confluence/work/catalina.pid
-Tomcat stopped.
-
-
-cp /opt/atlassian/confluence/confluence/WEB-INF/lib/atlassian-extras-decoder-v2-3.2.jar /tmp/atlassian-extras-2.4.jar
-</code></pre><p>破解将在 mac 本地进行, 因为需要图形界面…</p>
-<pre><code>➜ /Users/cristaly7/tmp &gt;scp -r HD_Server_Config:/root/confluence5.8/confluence5.1-crack .
-➜ /Users/cristaly7/tmp &gt;cd confluence5.1-crack/iNViSiBLE
-➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;chmod u+x keygen_MacOSX.sh
-
-# 按照网上的文章运行命令
-/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java -jar confluence_keygen.jar
-zsh: no such file or directory: /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin/java
-➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;java -v
-No Java runtime present, requesting install.
-</code></pre><p>没有java, 需要安装 java</p>
-<p><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">下载 java</a>  </p>
-<p>运行破解程序</p>
-<pre><code>➜ /Users/cristaly7/tmp/confluence5.1-crack/iNViSiBLE &gt;java -jar confluence_keygen.jar
-</code></pre><p>输入 serverid , 点击. patch</p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack2.png" alt=""></p>
-<p>选择 <code>confluence5.1-crack</code> 文件夹里的 <code>atlassian-extras-2.4.jar</code> </p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack3.png" alt=""></p>
-<p>点击.gen 会生成 key, 并且<code>confluence5.1-crack</code> 文件夹会多出一个<code>atlassian-extras-2.4.bak</code></p>
-<p><img src="http://7xpsj5.com1.z0.glb.clouddn.com/confluence-crack4.png" alt=""></p>
-<p>拷贝破解的文件到安装目录进行覆盖</p>
-<pre><code>➜ /Users/cristaly7/tmp/confluence5.1-crack &gt;scp atlassian-extras-2.4.jar HD_Server_Config:/opt/atlassian/confluence/confluence/WEB-INF/lib
-</code></pre><p>开启 wiki 服务</p>
-<pre><code>$ service confluence start
-</code></pre><p>在 License key 那里输入刚才生成的 key</p>
-<p>拷贝 mysql 驱动</p>
-<pre><code>cp mysql-connector-java-5.1.32-bin.jar  /opt/atlassian/confluence/confluence/WEB-INF/lib/
-</code></pre><p>重启服务</p>
-<pre><code>service confluence restart
-</code></pre><h3 id="u5B89_u88C5_u9875_u9762_u914D_u7F6E"><a href="#u5B89_u88C5_u9875_u9762_u914D_u7F6E" class="headerlink" title="安装页面配置"></a>安装页面配置</h3><p>在页面上，选择数据库“MySQL”，点击“ Externam Database”</p>
-<p>登录mysql 创建数据库及账号</p>
-<pre><code>mysql -uroot -p
-create database wiki character set UTF8;
-grant all on wiki.* to wiki_user@&quot;%&quot; identified by &quot;wiki_password&quot;;
-</code></pre><p>我这里装的是 percona 5.6</p>
-<p>确定存储引擎是 InnoDB</p>
-<p>在页面上点击“Direct JDBC”</p>
-<p>填写db信息</p>
-<p>Driver Class Name不用变</p>
-<p>Database URL，修正对应ip、port、database，例如：</p>
-<pre><code>jdbc:mysql://localhost:3306/wiki?useUnicode=true&amp;characterEncoding=UTF8&amp;sessionVariables=storage_engine%3DInnoDB
-</code></pre><p>上面的连接符是”<code>&amp;amp;</code>”不是”&amp;”，这样是没有问题的，如果你要用”&amp;”也可以尝试，但后面可能出错</p>
-<p>点击“Next”，此时可能会有一个比较长的等待，如果此处出错了，停掉wiki服务，卸载wiki，删掉wiki文件，卸载数据库，从第一步重新来。</p>
-<p>如果上一步成功的话，点击“Empty Site”。你也可以点击“Example Site”</p>
-<p>点击“Manage users and groups within Confluence”，设置管理员相关信息。这里是“下一步”还是“确定”忘了，点击即可</p>
-<h3 id="u57FA_u672C_u4F7F_u7528"><a href="#u57FA_u672C_u4F7F_u7528" class="headerlink" title="基本使用"></a>基本使用</h3><h3 id="u5751"><a href="#u5751" class="headerlink" title="坑"></a>坑</h3><h4 id="u90AE_u4EF6_u914D_u7F6E_u4E0D_u80FD_u6210_u529F"><a href="#u90AE_u4EF6_u914D_u7F6E_u4E0D_u80FD_u6210_u529F" class="headerlink" title="邮件配置不能成功"></a>邮件配置不能成功</h4><p>无论是直接配置 smtp, 还是修改配置文件配置 JNxx的, 都不行</p>
-<p>配置 smtp 直接说验证失败</p>
-<p>配置 JNxx 的, 每次一点击测试邮件发送, 就找不到页面, 并且网上也没有解决方案, 太令人暴躁了</p>
-<h4 id="u4E0A_u4F20_u7684_doc__u4E2D_u6587_u9644_u4EF6_u663E_u793A_u4E71_u7801"><a href="#u4E0A_u4F20_u7684_doc__u4E2D_u6587_u9644_u4EF6_u663E_u793A_u4E71_u7801" class="headerlink" title="上传的 doc 中文附件显示乱码"></a>上传的 doc 中文附件显示乱码</h4><h4 id="mysql-bin_log__u5F88_u5927_21"><a href="#mysql-bin_log__u5F88_u5927_21" class="headerlink" title="mysql-bin log 很大!"></a>mysql-bin log 很大!</h4><p>什么原因? confluence 刷了很多这样的日志:</p>
-<pre><code>&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-  &lt;startDate&gt;2016-04-12 09:29:42.126 CST&lt;/startDate&gt;
-  &lt;endDate&gt;2016-04-12 09:29:42.126 CST&lt;/endDate&gt;
-&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-  &lt;startDate&gt;2016-04-12 09:44:42.126 CST&lt;/startDate&gt;
-  &lt;endDate&gt;2016-04-12 09:44:42.127 CST&lt;/endDate&gt;
-&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-  &lt;startDate&gt;2016-04-12 09:59:42.126 CST&lt;/startDate&gt;
-  &lt;endDate&gt;2016-04-12 09:59:42.126 CST&lt;/endDate&gt;
-&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-  &lt;startDate&gt;2016-04-12 10:14:42.126 CST&lt;/startDate&gt;
-  &lt;endDate&gt;2016-04-12 10:14:42.126 CST&lt;/endDate&gt;
-&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-&lt;com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-  &lt;startDate&gt;2016-04-12 10:29:42.126 CST&lt;/startDate&gt;
-  &lt;endDate&gt;2016-04-12 10:29:42.126 CST&lt;/endDate&gt;
-&lt;/com.atlassian.confluence.schedule.ScheduledJobHistory&gt;
-</code></pre><p><em>General Configuration &gt; Scheduled Jobs</em> 到这里可以进行设置和关闭任务调度, 然而不知道关了会有啥后果, 真是操蛋玩意!</p>
-<h4 id="Analytics__u6027_u80FD_u6536_u96C6_u53D1_u9001"><a href="#Analytics__u6027_u80FD_u6536_u96C6_u53D1_u9001" class="headerlink" title="Analytics 性能收集发送"></a>Analytics 性能收集发送</h4><p>这个会收集 confluence 使用情况发送到 confluence 公司….尼玛老子用的破解版的啊, 还发送, 果断关闭</p>
-<p>未完待续….</p>
-<p>参考:</p>
-<p><a href="http://www.jianshu.com/p/d7e253db24d9" target="_blank" rel="external">创业工具之知识管理：Confluence</a></p>
-<p><a href="http://www.jianshu.com/p/27cb54b4a81a" target="_blank" rel="external">知识管理Confluence：常用基本操作</a></p>
-<p><a href="http://www.tuicool.com/articles/7FvuMn" target="_blank" rel="external">CentOS安装confluence(WIKI)</a></p>
-<p><a href="http://www.centoscn.com/image-text/install/2015/1121/6441.html" target="_blank" rel="external">centos安装confluence及破解</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u5B89_u88C5_jdk"><a href="#u5B89_u88C5_jdk" class="headerlink" title="安装 jdk"></a>安装 jdk</h3><pre><code>$ yum install -y java-1.7.0-openjdk.x86_64
-$ java -version
-java version &quot;1.7.0_99&quot;
-OpenJDK Runtime Environment (rhel-2.6.5.0.el7_2-x86_64 u99-b00)
-OpenJDK 64-Bit Server VM (build 24.95-b01, mixed mode)
-</code></pre>]]>
-    
-    </summary>
-    
-      <category term="confluence" scheme="http://yoursite.com/tags/confluence/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
