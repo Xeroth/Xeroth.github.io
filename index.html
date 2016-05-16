@@ -73,13 +73,13 @@
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>標籤</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
-						<li>關於</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -220,19 +220,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pcntl"><span class="toc-number">1.</span> <span class="toc-text">pcntl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis"><span class="toc-number">2.</span> <span class="toc-text">redis</span></a></li></ol>
-            </div>
-        
-        <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>参考:</p>
-<p><a href="http://www.cnblogs.com/fengwei/archive/2012/09/16/2687716.html" target="_blank" rel="external">php添加pcntl扩展 问题及解决方法</a></p>
-<p><a href="https://blog.phpgao.com/redis_php.html#开启redis扩展" target="_blank" rel="external">Linux服务器配置Redis并启用PHP支持</a></p>
-<p><a href="http://my.oschina.net/liuhuan0927/blog/616880" target="_blank" rel="external">PHP 支持 redis扩展</a></p>
-
+        <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>git clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+</code></pre><p>最后记得把扩展加入 php.ini , 重新加载配置生效</p>
       
     </div>
     
@@ -249,6 +242,10 @@
 	</div>
 
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/16/php-添加pcntl和-redis-支持/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

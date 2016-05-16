@@ -6,25 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>php 添加pcntl和 redis 支持 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="pcntlredis参考:
-php添加pcntl扩展 问题及解决方法
-Linux服务器配置Redis并启用PHP支持
-PHP 支持 redis扩展">
+  <meta name="description" content="pcntlredisgit clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;amp;&amp;amp; make install
+最后记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php 添加pcntl和 redis 支持">
 <meta property="og:url" content="http://yoursite.com/2016/05/16/php-添加pcntl和-redis-支持/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="pcntlredis参考:
-php添加pcntl扩展 问题及解决方法
-Linux服务器配置Redis并启用PHP支持
-PHP 支持 redis扩展">
-<meta property="og:updated_time" content="2016-05-16T02:23:18.000Z">
+<meta property="og:description" content="pcntlredisgit clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;amp;&amp;amp; make install
+最后记">
+<meta property="og:updated_time" content="2016-05-16T03:37:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php 添加pcntl和 redis 支持">
-<meta name="twitter:description" content="pcntlredis参考:
-php添加pcntl扩展 问题及解决方法
-Linux服务器配置Redis并启用PHP支持
-PHP 支持 redis扩展">
+<meta name="twitter:description" content="pcntlredisgit clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;amp;&amp;amp; make install
+最后记">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -83,13 +89,13 @@ PHP 支持 redis扩展">
 				<div class="tips-box hide">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
-						<li>菜单</li>
-						<li>標籤</li>
+						<li>Menu</li>
+						<li>Tags</li>
 						
-						<li>友情链接</li>
+						<li>Links</li>
 						
 						
-						<li>關於</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -251,7 +257,14 @@ PHP 支持 redis扩展">
             <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pcntl"><span class="toc-number">1.</span> <span class="toc-text">pcntl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis"><span class="toc-number">2.</span> <span class="toc-text">redis</span></a></li></ol>
             </div>
         
-        <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>参考:</p>
+        <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>git clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+</code></pre><p>最后记得把扩展加入 php.ini , 重新加载配置生效</p>
+<a id="more"></a>
+<p>参考:</p>
 <p><a href="http://www.cnblogs.com/fengwei/archive/2012/09/16/2687716.html" target="_blank" rel="external">php添加pcntl扩展 问题及解决方法</a></p>
 <p><a href="https://blog.phpgao.com/redis_php.html#开启redis扩展" target="_blank" rel="external">Linux服务器配置Redis并启用PHP支持</a></p>
 <p><a href="http://my.oschina.net/liuhuan0927/blog/616880" target="_blank" rel="external">PHP 支持 redis扩展</a></p>
@@ -279,7 +292,7 @@ PHP 支持 redis扩展">
 <div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<span class="jiathis_txt">Share to: &nbsp; </span>
 		<a class="jiathis_button_facebook"></a> 
     <a class="jiathis_button_twitter"></a>
     <a class="jiathis_button_plus"></a> 

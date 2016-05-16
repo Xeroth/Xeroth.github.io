@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-16T02:23:18.000Z</updated>
+  <updated>2016-05-16T03:37:50.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,14 +19,27 @@
     <link href="http://yoursite.com/2016/05/16/php-%E6%B7%BB%E5%8A%A0pcntl%E5%92%8C-redis-%E6%94%AF%E6%8C%81/"/>
     <id>http://yoursite.com/2016/05/16/php-添加pcntl和-redis-支持/</id>
     <published>2016-05-16T02:17:33.000Z</published>
-    <updated>2016-05-16T02:23:18.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>参考:</p>
+    <updated>2016-05-16T03:37:50.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>git clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+</code></pre><p>最后记得把扩展加入 php.ini , 重新加载配置生效</p>
+<a id="more"></a>
+<p>参考:</p>
 <p><a href="http://www.cnblogs.com/fengwei/archive/2012/09/16/2687716.html" target="_blank" rel="external">php添加pcntl扩展 问题及解决方法</a></p>
 <p><a href="https://blog.phpgao.com/redis_php.html#开启redis扩展" target="_blank" rel="external">Linux服务器配置Redis并启用PHP支持</a></p>
 <p><a href="http://my.oschina.net/liuhuan0927/blog/616880" target="_blank" rel="external">PHP 支持 redis扩展</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="red]]>
+    <![CDATA[<h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>git clone https://github.com/phpredis/phpredis.git phpredis
+cd phpredis
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+</code></pre><p>最后记得把扩展加入 php.ini , 重新加载配置生效</p>]]>
+    
     </summary>
     
       <category term="php" scheme="http://yoursite.com/tags/php/"/>
