@@ -6,19 +6,40 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>使用 supervisor 管理进程 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="http://www.cnblogs.com/shanyou/p/5075744.html
-http://liyangliang.me/posts/2015/06/using-supervisor/">
+  <meta name="description" content="安装（Centos）：yum install python-setuptools
+
+easy_install supervisor
+测试是否安装成功：
+echo_supervisord_conf
+会显示以下内容，其实是一个配置模版:
+; Sample supervisor config file.
+;
+; For more information on the config file, pleas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 supervisor 管理进程">
 <meta property="og:url" content="http://yoursite.com/2016/05/11/使用-supervisor-管理进程/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="http://www.cnblogs.com/shanyou/p/5075744.html
-http://liyangliang.me/posts/2015/06/using-supervisor/">
-<meta property="og:updated_time" content="2016-05-11T01:09:10.000Z">
+<meta property="og:description" content="安装（Centos）：yum install python-setuptools
+
+easy_install supervisor
+测试是否安装成功：
+echo_supervisord_conf
+会显示以下内容，其实是一个配置模版:
+; Sample supervisor config file.
+;
+; For more information on the config file, pleas">
+<meta property="og:updated_time" content="2016-05-16T01:12:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 supervisor 管理进程">
-<meta name="twitter:description" content="http://www.cnblogs.com/shanyou/p/5075744.html
-http://liyangliang.me/posts/2015/06/using-supervisor/">
+<meta name="twitter:description" content="安装（Centos）：yum install python-setuptools
+
+easy_install supervisor
+测试是否安装成功：
+echo_supervisord_conf
+会显示以下内容，其实是一个配置模版:
+; Sample supervisor config file.
+;
+; For more information on the config file, pleas">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -116,7 +137,7 @@ http://liyangliang.me/posts/2015/06/using-supervisor/">
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Ansible/" style="font-size: 10px;">Ansible</a> <a href="/tags/Centos-7/" style="font-size: 12px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 14px;">Django</a> <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/Gitlab/" style="font-size: 10px;">Gitlab</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Reverse-Shell/" style="font-size: 10px;">Reverse Shell</a> <a href="/tags/Synchronize/" style="font-size: 10px;">Synchronize</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 16px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12px;">css</a> <a href="/tags/docker/" style="font-size: 18px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx/" style="font-size: 16px;">nginx</a> <a href="/tags/os-x/" style="font-size: 16px;">os x</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/rsync/" style="font-size: 12px;">rsync</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 16px;">shell</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/svn/" style="font-size: 18px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12px;">碎碎念</a>
+						<a href="/tags/Ansible/" style="font-size: 10px;">Ansible</a> <a href="/tags/Centos-7/" style="font-size: 12px;">Centos 7</a> <a href="/tags/Django/" style="font-size: 14px;">Django</a> <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/Dokuwiki/" style="font-size: 10px;">Dokuwiki</a> <a href="/tags/English/" style="font-size: 10px;">English</a> <a href="/tags/Galera/" style="font-size: 10px;">Galera</a> <a href="/tags/Gitlab/" style="font-size: 10px;">Gitlab</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/Reverse-Shell/" style="font-size: 10px;">Reverse Shell</a> <a href="/tags/Synchronize/" style="font-size: 10px;">Synchronize</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/apache/" style="font-size: 10px;">apache</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/book/" style="font-size: 16px;">book</a> <a href="/tags/confluence/" style="font-size: 10px;">confluence</a> <a href="/tags/css/" style="font-size: 12px;">css</a> <a href="/tags/docker/" style="font-size: 18px;">docker</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/job/" style="font-size: 10px;">job</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx/" style="font-size: 16px;">nginx</a> <a href="/tags/os-x/" style="font-size: 16px;">os x</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql</a> <a href="/tags/privoxy/" style="font-size: 10px;">privoxy</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/rsync/" style="font-size: 12px;">rsync</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/sed/" style="font-size: 10px;">sed</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/shell/" style="font-size: 16px;">shell</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/supervisor/" style="font-size: 10px;">supervisor</a> <a href="/tags/svn/" style="font-size: 18px;">svn</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/yilia/" style="font-size: 10px;">yilia</a> <a href="/tags/碎碎念/" style="font-size: 12px;">碎碎念</a>
 					</div>
 				</section>
 				
@@ -242,11 +263,163 @@ http://liyangliang.me/posts/2015/06/using-supervisor/">
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><span class="toc-number">1.</span> <span class="toc-text">安装（Centos）：</span></a></li></ol>
             </div>
         
-        <p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/p/5075744.html</a></p>
-<p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">http://liyangliang.me/posts/2015/06/using-supervisor/</a></p>
+        <h3 id="u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><a href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A" class="headerlink" title="安装（Centos）："></a>安装（Centos）：</h3><pre><code>yum install python-setuptools
+
+easy_install supervisor
+</code></pre><p>测试是否安装成功：</p>
+<pre><code>echo_supervisord_conf
+</code></pre><p>会显示以下内容，其实是一个配置模版:</p>
+<pre><code>; Sample supervisor config file.
+;
+; For more information on the config file, please see:
+; http://supervisord.org/configuration.html
+;
+; Notes:
+;  - Shell expansion (&quot;~&quot; or &quot;$HOME&quot;) is not supported.  Environment
+;    variables can be expanded using this syntax: &quot;%(ENV_HOME)s&quot;.
+;  - Comments must have a leading space: &quot;a=b ;comment&quot; not &quot;a=b;comment&quot;.
+
+[unix_http_server]
+file=/tmp/supervisor.sock   ; (the path to the socket file)
+;chmod=0700                 ; socket file mode (default 0700)
+;chown=nobody:nogroup       ; socket file uid:gid owner
+;username=user              ; (default is no username (open server))
+;password=123               ; (default is no password (open server))
+
+;[inet_http_server]         ; inet (TCP) server disabled by default
+;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)
+;username=user              ; (default is no username (open server))
+;password=123               ; (default is no password (open server))
+
+[supervisord]
+logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+logfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)
+logfile_backups=10           ; (num of main logfile rotation backups;default 10)
+loglevel=info                ; (log level;default info; others: debug,warn,trace)
+pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+nodaemon=false               ; (start in foreground if true;default false)
+minfds=1024                  ; (min. avail startup file descriptors;default 1024)
+minprocs=200                 ; (min. avail process descriptors;default 200)
+;umask=022                   ; (process file creation umask;default 022)
+;user=chrism                 ; (default is current user, required if root)
+;identifier=supervisor       ; (supervisord identifier, default is &apos;supervisor&apos;)
+;directory=/tmp              ; (default is not to cd during start)
+;nocleanup=true              ; (don&apos;t clean up tempfiles at start;default false)
+;childlogdir=/tmp            ; (&apos;AUTO&apos; child log dir, default $TEMP)
+;environment=KEY=&quot;value&quot;     ; (key value pairs to add to environment)
+;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)
+
+; the below section must remain in the config file for RPC
+; (supervisorctl/web interface) to work, additional interfaces may be
+; added by defining them in separate rpcinterface: sections
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
+;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket
+;username=chris              ; should be same as http_username if set
+;password=123                ; should be same as http_password if set
+;prompt=mysupervisor         ; cmd line prompt (default &quot;supervisor&quot;)
+;history_file=~/.sc_history  ; use readline history if available
+
+; The below sample program section shows all possible program subsection values,
+; create one or more &apos;real&apos; program: sections to be able to control them under
+; supervisor.
+
+;[program:theprogramname]
+;command=/bin/cat              ; the program (relative uses PATH, can take args)
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+;numprocs=1                    ; number of processes copies to start (def 1)
+;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=999                  ; the relative start priority (default 999)
+;autostart=true                ; start at supervisord start (default: true)
+;startsecs=1                   ; # of secs prog must stay up to be running (def. 1)
+;startretries=3                ; max # of serial start failures when starting (default 3)
+;autorestart=unexpected        ; when to restart if exited after running (def: unexpected)
+;exitcodes=0,2                 ; &apos;expected&apos; exit codes used with autorestart (default 0,2)
+;stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrism                   ; setuid to this UNIX account to run the program
+;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
+;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO
+;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+;stdout_capture_maxbytes=1MB   ; number of bytes in &apos;capturemode&apos; (default 0)
+;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO
+;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+;stderr_capture_maxbytes=1MB   ; number of bytes in &apos;capturemode&apos; (default 0)
+;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+; The below sample eventlistener section shows all possible
+; eventlistener subsection values, create one or more &apos;real&apos;
+; eventlistener: sections to be able to handle event notifications
+; sent by supervisor.
+
+;[eventlistener:theeventlistenername]
+;command=/bin/eventlistener    ; the program (relative uses PATH, can take args)
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+;numprocs=1                    ; number of processes copies to start (def 1)
+;events=EVENT                  ; event notif. types to subscribe to (req&apos;d)
+;buffer_size=10                ; event buffer queue size (default 10)
+;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=-1                   ; the relative start priority (default -1)
+;autostart=true                ; start at supervisord start (default: true)
+;startsecs=1                   ; # of secs prog must stay up to be running (def. 1)
+;startretries=3                ; max # of serial start failures when starting (default 3)
+;autorestart=unexpected        ; autorestart if exited after running (def: unexpected)
+;exitcodes=0,2                 ; &apos;expected&apos; exit codes used with autorestart (default 0,2)
+;stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrism                   ; setuid to this UNIX account to run the program
+;redirect_stderr=false         ; redirect_stderr=true is not allowed for eventlisteners
+;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO
+;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO
+;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+; The below sample group section shows all possible group values,
+; create one or more &apos;real&apos; group: sections to create &quot;heterogeneous&quot;
+; process groups.
+
+;[group:thegroupname]
+;programs=progname1,progname2  ; each refers to &apos;x&apos; in [program:x] definitions
+;priority=999                  ; the relative start priority (default 999)
+
+; The [include] section can just contain the &quot;files&quot; setting.  This
+; setting can list multiple files (separated by whitespace or
+; newlines).  It can also contain wildcards.  The filenames are
+; interpreted as relative to this file.  Included files *cannot*
+; include files themselves.
+
+;[include]
+;files = relative/directory/*.ini
+</code></pre><p>创建配置文件：</p>
+<pre><code>echo_supervisord_conf &gt; /etc/supervisord.conf
+</code></pre><p>参考:</p>
+<p><a href="https://fukun.org/archives/07102224.html" target="_blank" rel="external">Supervisor的安装与使用入门</a></p>
+<p><a href="http://zengxh.blog.51cto.com/10650604/1713838" target="_blank" rel="external">supervisor安装并监控进程</a></p>
+<p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">进程监控工具supervisor 启动Mongodb</a></p>
+<p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">使用 supervisor 管理进程</a></p>
 
       
     </div>

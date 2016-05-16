@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-12T08:37:26.000Z</updated>
+  <updated>2016-05-16T02:23:18.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[php 添加pcntl和 redis 支持]]></title>
+    <link href="http://yoursite.com/2016/05/16/php-%E6%B7%BB%E5%8A%A0pcntl%E5%92%8C-redis-%E6%94%AF%E6%8C%81/"/>
+    <id>http://yoursite.com/2016/05/16/php-添加pcntl和-redis-支持/</id>
+    <published>2016-05-16T02:17:33.000Z</published>
+    <updated>2016-05-16T02:23:18.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>参考:</p>
+<p><a href="http://www.cnblogs.com/fengwei/archive/2012/09/16/2687716.html" target="_blank" rel="external">php添加pcntl扩展 问题及解决方法</a></p>
+<p><a href="https://blog.phpgao.com/redis_php.html#开启redis扩展" target="_blank" rel="external">Linux服务器配置Redis并启用PHP支持</a></p>
+<p><a href="http://my.oschina.net/liuhuan0927/blog/616880" target="_blank" rel="external">PHP 支持 redis扩展</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="red]]>
+    </summary>
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+      <category term="redis" scheme="http://yoursite.com/tags/redis/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Centos7 配置 NFS]]></title>
@@ -183,12 +206,164 @@ select不行，delete\update可以
     <link href="http://yoursite.com/2016/05/11/%E4%BD%BF%E7%94%A8-supervisor-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/"/>
     <id>http://yoursite.com/2016/05/11/使用-supervisor-管理进程/</id>
     <published>2016-05-11T01:08:17.000Z</published>
-    <updated>2016-05-11T01:09:10.000Z</updated>
-    <content type="html"><![CDATA[<p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/p/5075744.html</a></p>
-<p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">http://liyangliang.me/posts/2015/06/using-supervisor/</a></p>
+    <updated>2016-05-16T01:12:45.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><a href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A" class="headerlink" title="安装（Centos）："></a>安装（Centos）：</h3><pre><code>yum install python-setuptools
+
+easy_install supervisor
+</code></pre><p>测试是否安装成功：</p>
+<pre><code>echo_supervisord_conf
+</code></pre><p>会显示以下内容，其实是一个配置模版:</p>
+<pre><code>; Sample supervisor config file.
+;
+; For more information on the config file, please see:
+; http://supervisord.org/configuration.html
+;
+; Notes:
+;  - Shell expansion (&quot;~&quot; or &quot;$HOME&quot;) is not supported.  Environment
+;    variables can be expanded using this syntax: &quot;%(ENV_HOME)s&quot;.
+;  - Comments must have a leading space: &quot;a=b ;comment&quot; not &quot;a=b;comment&quot;.
+
+[unix_http_server]
+file=/tmp/supervisor.sock   ; (the path to the socket file)
+;chmod=0700                 ; socket file mode (default 0700)
+;chown=nobody:nogroup       ; socket file uid:gid owner
+;username=user              ; (default is no username (open server))
+;password=123               ; (default is no password (open server))
+
+;[inet_http_server]         ; inet (TCP) server disabled by default
+;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)
+;username=user              ; (default is no username (open server))
+;password=123               ; (default is no password (open server))
+
+[supervisord]
+logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+logfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)
+logfile_backups=10           ; (num of main logfile rotation backups;default 10)
+loglevel=info                ; (log level;default info; others: debug,warn,trace)
+pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+nodaemon=false               ; (start in foreground if true;default false)
+minfds=1024                  ; (min. avail startup file descriptors;default 1024)
+minprocs=200                 ; (min. avail process descriptors;default 200)
+;umask=022                   ; (process file creation umask;default 022)
+;user=chrism                 ; (default is current user, required if root)
+;identifier=supervisor       ; (supervisord identifier, default is &apos;supervisor&apos;)
+;directory=/tmp              ; (default is not to cd during start)
+;nocleanup=true              ; (don&apos;t clean up tempfiles at start;default false)
+;childlogdir=/tmp            ; (&apos;AUTO&apos; child log dir, default $TEMP)
+;environment=KEY=&quot;value&quot;     ; (key value pairs to add to environment)
+;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)
+
+; the below section must remain in the config file for RPC
+; (supervisorctl/web interface) to work, additional interfaces may be
+; added by defining them in separate rpcinterface: sections
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
+;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket
+;username=chris              ; should be same as http_username if set
+;password=123                ; should be same as http_password if set
+;prompt=mysupervisor         ; cmd line prompt (default &quot;supervisor&quot;)
+;history_file=~/.sc_history  ; use readline history if available
+
+; The below sample program section shows all possible program subsection values,
+; create one or more &apos;real&apos; program: sections to be able to control them under
+; supervisor.
+
+;[program:theprogramname]
+;command=/bin/cat              ; the program (relative uses PATH, can take args)
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+;numprocs=1                    ; number of processes copies to start (def 1)
+;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=999                  ; the relative start priority (default 999)
+;autostart=true                ; start at supervisord start (default: true)
+;startsecs=1                   ; # of secs prog must stay up to be running (def. 1)
+;startretries=3                ; max # of serial start failures when starting (default 3)
+;autorestart=unexpected        ; when to restart if exited after running (def: unexpected)
+;exitcodes=0,2                 ; &apos;expected&apos; exit codes used with autorestart (default 0,2)
+;stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrism                   ; setuid to this UNIX account to run the program
+;redirect_stderr=true          ; redirect proc stderr to stdout (default false)
+;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO
+;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+;stdout_capture_maxbytes=1MB   ; number of bytes in &apos;capturemode&apos; (default 0)
+;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO
+;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+;stderr_capture_maxbytes=1MB   ; number of bytes in &apos;capturemode&apos; (default 0)
+;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions (def no adds)
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+; The below sample eventlistener section shows all possible
+; eventlistener subsection values, create one or more &apos;real&apos;
+; eventlistener: sections to be able to handle event notifications
+; sent by supervisor.
+
+;[eventlistener:theeventlistenername]
+;command=/bin/eventlistener    ; the program (relative uses PATH, can take args)
+;process_name=%(program_name)s ; process_name expr (default %(program_name)s)
+;numprocs=1                    ; number of processes copies to start (def 1)
+;events=EVENT                  ; event notif. types to subscribe to (req&apos;d)
+;buffer_size=10                ; event buffer queue size (default 10)
+;directory=/tmp                ; directory to cwd to before exec (def no cwd)
+;umask=022                     ; umask for process (default None)
+;priority=-1                   ; the relative start priority (default -1)
+;autostart=true                ; start at supervisord start (default: true)
+;startsecs=1                   ; # of secs prog must stay up to be running (def. 1)
+;startretries=3                ; max # of serial start failures when starting (default 3)
+;autorestart=unexpected        ; autorestart if exited after running (def: unexpected)
+;exitcodes=0,2                 ; &apos;expected&apos; exit codes used with autorestart (default 0,2)
+;stopsignal=QUIT               ; signal used to kill process (default TERM)
+;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)
+;stopasgroup=false             ; send stop signal to the UNIX process group (default false)
+;killasgroup=false             ; SIGKILL the UNIX process group (def false)
+;user=chrism                   ; setuid to this UNIX account to run the program
+;redirect_stderr=false         ; redirect_stderr=true is not allowed for eventlisteners
+;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO
+;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)
+;stdout_events_enabled=false   ; emit events on stdout writes (default false)
+;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO
+;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)
+;stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)
+;stderr_events_enabled=false   ; emit events on stderr writes (default false)
+;environment=A=&quot;1&quot;,B=&quot;2&quot;       ; process environment additions
+;serverurl=AUTO                ; override serverurl computation (childutils)
+
+; The below sample group section shows all possible group values,
+; create one or more &apos;real&apos; group: sections to create &quot;heterogeneous&quot;
+; process groups.
+
+;[group:thegroupname]
+;programs=progname1,progname2  ; each refers to &apos;x&apos; in [program:x] definitions
+;priority=999                  ; the relative start priority (default 999)
+
+; The [include] section can just contain the &quot;files&quot; setting.  This
+; setting can list multiple files (separated by whitespace or
+; newlines).  It can also contain wildcards.  The filenames are
+; interpreted as relative to this file.  Included files *cannot*
+; include files themselves.
+
+;[include]
+;files = relative/directory/*.ini
+</code></pre><p>创建配置文件：</p>
+<pre><code>echo_supervisord_conf &gt; /etc/supervisord.conf
+</code></pre><p>参考:</p>
+<p><a href="https://fukun.org/archives/07102224.html" target="_blank" rel="external">Supervisor的安装与使用入门</a></p>
+<p><a href="http://zengxh.blog.51cto.com/10650604/1713838" target="_blank" rel="external">supervisor安装并监控进程</a></p>
+<p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">进程监控工具supervisor 启动Mongodb</a></p>
+<p><a href="http://liyangliang.me/posts/2015/06/using-supervisor/" target="_blank" rel="external">使用 supervisor 管理进程</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">http://www.cnblogs.com/shanyou/p/5075744.html</a><]]>
+    <![CDATA[<h3 id="u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><a href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A" class="headerlink" title="安装（Centos）："></a>安装（Ce]]>
     </summary>
     
       <category term="supervisor" scheme="http://yoursite.com/tags/supervisor/"/>
@@ -1401,25 +1576,6 @@ admin = rw
     </summary>
     
       <category term="svn" scheme="http://yoursite.com/tags/svn/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Shell数组]]></title>
-    <link href="http://yoursite.com/2016/04/08/Shell%E6%95%B0%E7%BB%84/"/>
-    <id>http://yoursite.com/2016/04/08/Shell数组/</id>
-    <published>2016-04-08T03:19:37.000Z</published>
-    <updated>2016-04-14T01:44:33.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409" target="_blank" rel="external">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数组赋值</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># a=(1 2 3 b c d)</span></span><br><span class="line"><span class="comment"># 调用数组元素</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
-<a id="more"></a>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386"><a href="#Linux_Shell_u4E2D_u7684_u6570_u7EC4_u53CA_u904D_u5386" class="headerlink" title="Linux Shell中的数组及遍历"></a><a href="http://blog.csdn.net/redhat456/article/details/6068409">Linux Shell中的数组及遍历</a></h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 数组赋值</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># a=(1 2 3 b c d)</span></span><br><span class="line"><span class="comment"># 调用数组元素</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[0]&#125;</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[1]&#125;</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[3]&#125;</span></span><br><span class="line">b    </span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># echo $&#123;a[@]&#125;</span></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> b c d</span><br><span class="line">root<span class="variable">@Ubuntu</span><span class="symbol">:~</span><span class="comment"># for i in $&#123;a[@]&#125;; do echo $i; done</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>]]>
-    
-    </summary>
-    
-      <category term="shell" scheme="http://yoursite.com/tags/shell/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
