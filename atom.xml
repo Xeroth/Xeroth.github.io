@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-16T03:47:59.000Z</updated>
+  <updated>2016-05-19T09:15:51.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Linux 命令]]></title>
+    <link href="http://yoursite.com/2016/05/19/Linux-%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2016/05/19/Linux-命令/</id>
+    <published>2016-05-19T09:09:36.000Z</published>
+    <updated>2016-05-19T09:15:51.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u8F6F_u8FDE_u63A5"><a href="#u8F6F_u8FDE_u63A5" class="headerlink" title="软连接"></a>软连接</h3><p>想把目录 /opt/www/v1.0.1 软连接到 /mnt/下面, 软链接后, 目录为 /mnt/v1.0.1</p>
+<p>命令: </p>
+<pre><code>ln -s /opt/www/v1.0.1/ /mnt/
+</code></pre><p>注意</p>
+<ul>
+<li>要用绝对路径, 用相对路径会报错: Too many levels of symbolic links</li>
+<li>目录后面的斜杠 / 要带上</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u8F6F_u8FDE_u63A5"><a href="#u8F6F_u8FDE_u63A5" class="headerlink" title="软连接"></a>软连接</h3><p>想把目录 /opt/www/v1.0.1 软连接到 /mnt/下面, 软链接]]>
+    </summary>
+    
+      <category term="man" scheme="http://yoursite.com/tags/man/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[php 添加pcntl和 redis 支持]]></title>
@@ -1405,249 +1430,6 @@ Error: Nothing to do
       <category term="Galera" scheme="http://yoursite.com/tags/Galera/"/>
     
       <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[svn仓库间数据转移, 回滚, 子目录权限控制]]></title>
-    <link href="http://yoursite.com/2016/04/12/svn%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB/"/>
-    <id>http://yoursite.com/2016/04/12/svn仓库间数据转移/</id>
-    <published>2016-04-12T01:36:17.000Z</published>
-    <updated>2016-05-10T10:16:04.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
-<pre><code>project1
-    ├── branches
-    ├── tags
-    └── trunk
-        ├── code
-        │   ├── andriod
-        │   ├── ios
-        │   ├── php
-        │   └── sql
-        ├── doc
-        └── readme.txt
-</code></pre><p><strong>trunk</strong>是主分支，是日常开发进行的地方。</p>
-<p><strong>branches</strong>是分支。一些阶段性的release版本，这些版本是可以继续进行开发和维护的，则放在branches目录中。又比如为不同用户客制化的版本，也可以放在分支中进行开发。</p>
-<p><strong>tags</strong>目录一般是只读的，这里存储阶段性的发布版本，只是作为一个里程碑的版本进行存档。    </p>
-<p>现在需要将分散的代码仓库都迁移放到 <em>trunk-code</em> 目录下进行分类存放, 并规划相应仓库的人员权限</p>
-<a id="more"></a>
-<h3 id="u6743_u9650_u6D4B_u8BD5"><a href="#u6743_u9650_u6D4B_u8BD5" class="headerlink" title="权限测试"></a>权限测试</h3><p>由于迁移得先通知部门成员, 停止提交并暂停 svn 服务, 估计得找个夜黑风高的时候进行, 大白天的我还是先测试一下子目录里仓库的人员权限吧</p>
-<p>虽说是权限测试, 我们也得搞点数据过来, 顺便当代码仓库迁移演练吧</p>
-<h4 id="u4ED3_u5E93_u95F4_u6570_u636E_u8FC1_u79FB_u65B9_u5F0F_3A"><a href="#u4ED3_u5E93_u95F4_u6570_u636E_u8FC1_u79FB_u65B9_u5F0F_3A" class="headerlink" title="仓库间数据迁移方式:"></a>仓库间数据迁移方式:</h4><p>不能直接将A仓库重命名为B，或将A复制得到一个复本，再将复本命名为B</p>
-<p>使用<em>svnadmin dump</em> &amp; <em>svnadmin load</em></p>
-<p>创建B仓库(如果B不存在)</p>
-<pre><code>svnadmin create /svndata/B    
-</code></pre><p>导出A仓库</p>
-<pre><code>svnadmin dump /svndata/A &gt; A.dump    
-</code></pre><p>将 A仓库 备份文件导入 B 仓库</p>
-<pre><code>svnadmin load /svndata/B &lt; A.dump
-</code></pre><h4 id="u7136_u800C_u95EE_u9898_u6765_u4E86"><a href="#u7136_u800C_u95EE_u9898_u6765_u4E86" class="headerlink" title="然而问题来了"></a>然而问题来了</h4><p>发现设想的svn目录结构不太好实现, 因为svn 不支持仓库里面创建子仓库, 只能自己创建子目录</p>
-<pre><code># svnadmin create project1/trunk
-svnadmin: E165002: &apos;/data/svndata/project1/trunk&apos; is a subdirectory of an existing repository rooted at &apos;/data/svndata/project1&apos;
-</code></pre><p>如果是通过子目录的方式, 假设ios 目录的代码要回滚, 那岂不是整个代码仓库都要跟着回滚了?</p>
-<p>不过也不确定能不能只回滚单个目录, 还得实验测试一下</p>
-<p>而且通过 checkout 旧仓库到子目录, 然后再 add/commit 到新仓库的方式, 旧仓库的历史记录不就都丢失了么? 因为不删除 .svn 就无法 add, 会报错的</p>
-<pre><code>svn: warning: W150002: &apos;/opt/www/svnhook/project1/trunk/code/php/everouter_app&apos; is already under version control
-svn: E200009: Could not add all targets because some targets are already versioned
-svn: E200009: Illegal target for the requested operation
-</code></pre><p>如果能接受丢失旧库历史版本, 那么测试一下能不能只回滚单个目录(经下方检测, 是可以的)</p>
-<h4 id="u597D_u5427_2C__u987A_u4FBF_u6765_u5B66_u4E60_u4E00_u4E0B_svn__u7684_u56DE_u6EDA"><a href="#u597D_u5427_2C__u987A_u4FBF_u6765_u5B66_u4E60_u4E00_u4E0B_svn__u7684_u56DE_u6EDA" class="headerlink" title="好吧, 顺便来学习一下 svn 的回滚"></a>好吧, 顺便来学习一下 svn 的回滚</h4><p>先分别到2个子目录做变更提交</p>
-<pre><code>[root@iZ94c5cs7guZ everouter_app]# touch outest
-[root@iZ94c5cs7guZ everouter_app]# svn add outest
-A         outest
-[root@iZ94c5cs7guZ everouter_app]# svn ci -m &quot;add outest&quot;
-
-[root@iZ94c5cs7guZ everinner_app]# touch intest
-[root@iZ94c5cs7guZ everinner_app]# svn add intest
-A         intest
-[root@iZ94c5cs7guZ everinner_app]# svn ci -m &quot;add intest&quot;    
-</code></pre><p>还有2个未提交的    </p>
-<pre><code>[root@iZ94c5cs7guZ everinner_app]# echo 123 &gt; intest
-[root@iZ94c5cs7guZ everinner_app]# svn st
-M       intest
-[root@iZ94c5cs7guZ everinner_app]# cd ..
-[root@iZ94c5cs7guZ php]# cd everouter_app/
-[root@iZ94c5cs7guZ everouter_app]# echo 456 &gt; outest
-[root@iZ94c5cs7guZ everouter_app]# svn st
-M       outest
-[root@iZ94c5cs7guZ everouter_app]# cd ..
-[root@iZ94c5cs7guZ php]# svn st
-M       everinner_app/intest
-M       everouter_app/outest
-</code></pre><p>现在有2个尚未提交的改动, 试试看能不能只 revert 其中一个</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn revert everinner_app/intest
-Reverted &apos;everinner_app/intest&apos;
-[root@iZ94c5cs7guZ php]# svn st
-M       everouter_app/outest
-</code></pre><p>好, 可以睇到, 单独 revert 一个未 commit 的文件系某问题嘅</p>
-<p>然后测试对整个目录的回滚, 先进行一些变更</p>
-<pre><code>[root@iZ94c5cs7guZ php]# cd everinner_app/
-[root@iZ94c5cs7guZ everinner_app]# echo 789 &gt; intest
-[root@iZ94c5cs7guZ everinner_app]# cd conf/
-[root@iZ94c5cs7guZ conf]# echo 456 &gt; intest2
-[root@iZ94c5cs7guZ conf]# svn add intest2
-A         intest2
-[root@iZ94c5cs7guZ conf]# cd ..
-[root@iZ94c5cs7guZ everinner_app]# svn st
-M       conf/intest2
-M       intest
-</code></pre><p>看看发生的变更</p>
-<pre><code>[root@iZ94c5cs7guZ everinner_app]# cd ..
-[root@iZ94c5cs7guZ php]# svn st
-A       everinner_app/conf/intest2
-M       everinner_app/intest
-M       everouter_app/outest
-</code></pre><p>回滚everinner_app目录</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn revert everinner_app/ --recursive
-Reverted &apos;everinner_app/conf/intest2&apos;
-Reverted &apos;everinner_app/intest&apos;
-[root@iZ94c5cs7guZ php]# svn st
-M       everouter_app/outest
-</code></pre><p>可以看出, 未 commit 的目录也是可以整个回滚的, 但是具体到开发人员使用会是怎样的一种情况呢…</p>
-<p>那么已经 commit 的情况下呢?</p>
-<p>查看一下提交的历史记录</p>
-<pre><code>$ svn update
-
-$ svn log|less
-
-------------------------------------------------------------------------
-r5 | hugo | 2016-04-12 16:02:32 +0800 (Tue, 12 Apr 2016) | 1 line
-
-666 outest
-------------------------------------------------------------------------
-r4 | hugo | 2016-04-12 15:59:55 +0800 (Tue, 12 Apr 2016) | 1 line
-
-add outest change
-------------------------------------------------------------------------
-r3 | hugo | 2016-04-12 14:20:01 +0800 (Tue, 12 Apr 2016) | 1 line
-
-add outest
-------------------------------------------------------------------------
-r2 | hugo | 2016-04-12 14:19:25 +0800 (Tue, 12 Apr 2016) | 1 line
-
-add intest
-------------------------------------------------------------------------
-r1 | hugo | 2016-04-12 11:56:01 +0800 (Tue, 12 Apr 2016) | 1 line
-
-add trunk/code/php/everinner_app and trunk/code/php/everouter_app
-------------------------------------------------------------------------
-(END)
-</code></pre><p>假设我们outest 文件修改错了, 要回滚到r3版本(当前版本是 r5, ), 先对比一下</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn diff -r 5:3 everouter_app/outest
-Index: everouter_app/outest
-===================================================================
---- everouter_app/outest    (revision 5)
-+++ everouter_app/outest    (revision 3)
-@@ -1,2 +0,0 @@
--456
--666
-</code></pre><p>可以看出 r3版本是没有456,666这两行的,确定无误之后, 用 merge 回滚</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn merge -r 5:3 everouter_app/outest
---- Reverse-merging r5 through r4 into &apos;everouter_app/outest&apos;:
-U    everouter_app/outest
---- Recording mergeinfo for reverse merge of r5 through r4 into &apos;everouter_app/outest&apos;:
- U   everouter_app/outest
---- Eliding mergeinfo from &apos;everouter_app/outest&apos;:
- U   everouter_app/outest
-[root@iZ94c5cs7guZ php]# cat everouter_app/outest
-[root@iZ94c5cs7guZ php]#
-</code></pre><p>确认无误后, 提交</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn commit -m &quot;revert to revision 3&quot;
-Sending        everouter_app/outest
-Transmitting file data .
-Committed revision 6.
-</code></pre><p>如果 outer 目录和 inner 目录都有变更, 回滚会不会互相影响呢, 用脚趾头想想是会的</p>
-<pre><code>[root@iZ94c5cs7guZ php]# svn diff -r 7:4
-Index: everinner_app/intest
-===================================================================
---- everinner_app/intest    (revision 7)
-+++ everinner_app/intest    (revision 4)
-@@ -1 +0,0 @@
--123
-Index: everouter_app/outest
-===================================================================
---- everouter_app/outest    (revision 7)
-+++ everouter_app/outest    (revision 4)
-@@ -0,0 +1 @@
-+456  
-</code></pre><p>看上面的对比, 如果我们想要回到版本4,让 intest 去掉123那行, 那么会使得 outest 增加456, 相互影响了</p>
-<p>好吧, 子目录的回滚之谜已经解决, 结论就是未 commit 的可以目录内 revert, 子目录间不受影响</p>
-<p>已经 commit 的则不能随意 merge 了, 会影响到其他目录内容</p>
-<h4 id="u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5"><a href="#u6B63_u5F0F_u5F00_u59CB_u6743_u9650_u6D4B_u8BD5" class="headerlink" title="正式开始权限测试"></a>正式开始权限测试</h4><p>搞了这么多,目录结构也比较复杂了, 可以开始子目录的权限控制测试了</p>
-<p>现在进行用户规划管理</p>
-<p>admin 拥有project1所有的控制权限</p>
-<p>cto 拥有code目录以及子目录的权限</p>
-<p>in_user 拥有inner 目录的权限</p>
-<p>ou_user 拥有outer 目录的权限</p>
-<p>authz文件(才发现直接修改配置文件, 不用重启 svn 就能生效)</p>
-<pre><code>[groups]
-cto = ctouser
-in_user = hxk
-ou_user = cn
-
-[svndata:/project1]
-@cto = r
-
-[svndata:/project1/trunk/code]
-@cto = rw
-</code></pre><p>checkout 试试</p>
-<pre><code>$ svn co   svn://test.svn.cn/project1/trunk/code  --username ctouser
-A    code/php
-A    code/php/everinner_app
-A    code/php/everinner_app/conf
-A    code/php/everinner_app/conf/config.php    
-...    
-</code></pre><p>疗效不错,结果发现没有写权限╮(╯_╰)╭</p>
-<p>结果都是泪啊:</p>
-<p><em>用户在父目录的权限会把子目录的给覆盖​, 无法进行有效的用户权限控制.</em></p>
-<p>你可能会说, 直接在子目录给权限不就行了, 抱歉, 这样连根目录的读权限都没有, 是不能通过验证的</p>
-<h3 id="u65E5_u4E86_uD83D_uDC36_2C__u53D1_u73B0_u4EE5_u524D_u88AB_u67D0_u7BC7_u6587_u7AE0_u8BEF_u5BFC_u4E86_2C__u539F_u6765_u662F_u80FD_u505A_u5B50_u76EE_u5F55_u6743_u9650_u63A7_u5236_u7684_21"><a href="#u65E5_u4E86_uD83D_uDC36_2C__u53D1_u73B0_u4EE5_u524D_u88AB_u67D0_u7BC7_u6587_u7AE0_u8BEF_u5BFC_u4E86_2C__u539F_u6765_u662F_u80FD_u505A_u5B50_u76EE_u5F55_u6743_u9650_u63A7_u5236_u7684_21" class="headerlink" title="日了🐶, 发现以前被某篇文章误导了, 原来是能做子目录权限控制的!"></a>日了🐶, 发现以前被某篇文章误导了, 原来是能做子目录权限控制的!</h3><p>正确的写法是这样:</p>
-<pre><code>[/]
-@admin = r
-@dev = r
-@hook = r
-
-[/branches]
-@dev = rw
-
-[/trunk]
-kali = rw
-lilia = rw
-
-[/tags]
-admin = rw
-</code></pre><p>真是被某些文章误导了!以后还是直接看官网文档吧 - -</p>
-<p>扩展阅读:</p>
-<p><a href="http://developer.51cto.com/art/201005/201718.htm" target="_blank" rel="external">SVN中tag branch trunk用法详解</a>    </p>
-<p>参考:</p>
-<p><a href="http://blog.csdn.net/pttaag/article/details/8076210" target="_blank" rel="external">SVN的标准目录结构：trunk、branches、tags</a></p>
-<p><a href="http://huguiqi.com/2016/03/07/linux%E4%B8%8BSVN%E4%BB%93%E5%BA%93%E9%97%B4%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%A7%BB%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D/" target="_blank" rel="external">linux下SVN仓库间数据转移或重命名</a></p>
-<p><a href="http://holbrook.github.io/2014/01/29/svn_install_config_and_mgnt.html" target="_blank" rel="external">subversion安装、配置和管理</a></p>
-<p><a href="http://hushicai.com/2014/03/06/ming-ling-xing-zhong-hui-gun-svn.html" target="_blank" rel="external">命令行中回滚svn</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>由于之前的同事没有好好规划 svn 仓库结构, 现需要重新规划目录结构如下:</p>
-<pre><code>project1
-    ├── branches
-    ├── tags
-    └── trunk
-        ├── code
-        │   ├── andriod
-        │   ├── ios
-        │   ├── php
-        │   └── sql
-        ├── doc
-        └── readme.txt
-</code></pre><p><strong>trunk</strong>是主分支，是日常开发进行的地方。</p>
-<p><strong>branches</strong>是分支。一些阶段性的release版本，这些版本是可以继续进行开发和维护的，则放在branches目录中。又比如为不同用户客制化的版本，也可以放在分支中进行开发。</p>
-<p><strong>tags</strong>目录一般是只读的，这里存储阶段性的发布版本，只是作为一个里程碑的版本进行存档。    </p>
-<p>现在需要将分散的代码仓库都迁移放到 <em>trunk-code</em> 目录下进行分类存放, 并规划相应仓库的人员权限</p>]]>
-    
-    </summary>
-    
-      <category term="svn" scheme="http://yoursite.com/tags/svn/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     

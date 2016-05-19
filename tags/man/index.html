@@ -4,24 +4,17 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>mac os 安装使用postgresql | Live with love</title>
+  <title>Tag: man | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安装➜ /Users/cristaly7/Desktop/15/15 &amp;gt;brew install postgres
-==&amp;gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
-#######################################">
-<meta property="og:type" content="article">
-<meta property="og:title" content="mac os 安装使用postgresql">
-<meta property="og:url" content="http://yoursite.com/2016/04/01/mac-os-安装使用postgresql/index.html">
+  <meta name="description" content="每天都要进步">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Live with love">
+<meta property="og:url" content="http://yoursite.com/tags/man/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="安装➜ /Users/cristaly7/Desktop/15/15 &amp;gt;brew install postgres
-==&amp;gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
-#######################################">
-<meta property="og:updated_time" content="2016-04-08T03:27:53.000Z">
+<meta property="og:description" content="每天都要进步">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mac os 安装使用postgresql">
-<meta name="twitter:description" content="安装➜ /Users/cristaly7/Desktop/15/15 &amp;gt;brew install postgres
-==&amp;gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
-#######################################">
+<meta name="twitter:title" content="Live with love">
+<meta name="twitter:description" content="每天都要进步">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -199,203 +192,57 @@
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-mac-os-安装使用postgresql" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2016/04/01/mac-os-安装使用postgresql/" class="article-date">
-  	<time datetime="2016-04-01T08:42:33.000Z" itemprop="datePublished">2016-04-01</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/05/19/Linux-命令/" class="archive-article-date">
+  	<time datetime="2016-05-19T09:09:36.000Z" itemprop="datePublished">5月 19</time>
 </a>
-    </div>
+        </div>
+    	 
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      mac os 安装使用postgresql
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/05/19/Linux-命令/">Linux 命令</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os-x/">os x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/man/">man</a></li></ul>
 	</div>
 
-        
+          
 	<div class="article-category tagcloud">
 	<a class="article-category-link" href="/categories/it/">it</a>
 	</div>
 
 
+        </div>
         <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- page.path 表示不含根路径的页面网址。还有数种方式可以匹配页面，在此不赘述。 -->
-        
-        
-            <div id="toc" class="toc-article">
-                <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521D_u59CB_u5316"><span class="toc-number">2.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u542F_u52A8_u4E0E_u505C_u6B62"><span class="toc-number">3.</span> <span class="toc-text">启动与停止</span></a></li></ol>
-            </div>
-        
-        <h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>➜ /Users/cristaly7/Desktop/15/15 &gt;brew install postgres
-==&gt; Downloading https://homebrew.bintray.com/bottles/postgresql-9.4.5_2.el_capitan.bottle.tar.gz
-######################################################################## 100.0%
-==&gt; Pouring postgresql-9.4.5_2.el_capitan.bottle.tar.gz
-==&gt; Caveats
-If builds of PostgreSQL 9 are failing and you have version 8.x installed,
-you may need to remove the previous version first. See:
-  https://github.com/Homebrew/homebrew/issues/2510
-
-To migrate existing data from a previous major version (pre-9.4) of PostgreSQL, see:
-  https://www.postgresql.org/docs/9.4/static/upgrading.html
-
-To load postgresql:
-  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-Or, if you don&apos;t want/need launchctl, you can just run:
-  postgres -D /usr/local/var/postgres
-==&gt; Summary
-🍺  /usr/local/Cellar/postgresql/9.4.5_2: 3,021 files, 33.7M
-</code></pre><a id="more"></a>
-<h3 id="u521D_u59CB_u5316"><a href="#u521D_u59CB_u5316" class="headerlink" title="初始化"></a>初始化</h3><pre><code>➜ /Users/cristaly7 &gt;initdb ~/postgresql
-The files belonging to this database system will be owned by user &quot;cristaly7&quot;.
-This user must also own the server process.
-
-The database cluster will be initialized with locales
-  COLLATE:  en_US.UTF-8
-  CTYPE:    zh_CN.UTF-8
-  MESSAGES: en_US.UTF-8
-  MONETARY: en_US.UTF-8
-  NUMERIC:  en_US.UTF-8
-  TIME:     en_US.UTF-8
-The default database encoding has accordingly been set to &quot;UTF8&quot;.
-initdb: could not find suitable text search configuration for locale &quot;zh_CN.UTF-8&quot;
-The default text search configuration will be set to &quot;simple&quot;.
-
-Data page checksums are disabled.
-
-creating directory /Users/cristaly7/postgresql ... ok
-creating subdirectories ... ok
-selecting default max_connections ... 100
-selecting default shared_buffers ... 128MB
-selecting dynamic shared memory implementation ... posix
-creating configuration files ... ok
-creating template1 database in /Users/cristaly7/postgresql/base/1 ... ok
-initializing pg_authid ... ok
-initializing dependencies ... ok
-creating system views ... ok
-loading system objects&apos; descriptions ... ok
-creating collations ... ok
-creating conversions ... ok
-creating dictionaries ... ok
-setting privileges on built-in objects ... ok
-creating information schema ... ok
-loading PL/pgSQL server-side language ... ok
-vacuuming database template1 ... ok
-copying template1 to template0 ... ok
-copying template1 to postgres ... ok
-syncing data to disk ... ok
-
-WARNING: enabling &quot;trust&quot; authentication for local connections
-You can change this by editing pg_hba.conf or using the option -A, or
---auth-local and --auth-host, the next time you run initdb.
-
-Success. You can now start the database server using:
-
-    postgres -D /Users/cristaly7/postgresql
-or
-    pg_ctl -D /Users/cristaly7/postgresql -l logfile start
-</code></pre><h3 id="u542F_u52A8_u4E0E_u505C_u6B62"><a href="#u542F_u52A8_u4E0E_u505C_u6B62" class="headerlink" title="启动与停止"></a>启动与停止</h3><pre><code>➜ /Users/cristaly7 &gt;pg_ctl -D /Users/cristaly7/postgresql -l ~/postgresql/logfile start
-server starting
-
-➜ /Users/cristaly7 &gt;pg_ctl -D ~/postgresql stop -s -m fast
-</code></pre><p>### </p>
-<p>参考:</p>
-<p><a href="http://blog.everlose.com/mac-homebrew-postgresql.html" target="_blank" rel="external">Mac下使用homebrew安装postgresql及配置</a></p>
-
-      
-    </div>
-    
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/04/05/centos7-安装破解confluence-5-8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          centos7 安装破解confluence 5.8
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/03/29/nginx打开目录浏览功能-autoindex/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">nginx打开目录浏览功能(autoindex)</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
-
-
-
-
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="mac-os-安装使用postgresql" data-title="mac os 安装使用postgresql" data-url="http://yoursite.com/2016/04/01/mac-os-安装使用postgresql/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"livewithlove"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-
-
+    
 
 </div>
       <footer id="footer">
@@ -427,9 +274,9 @@ server starting
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false
 	}
