@@ -225,10 +225,10 @@
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8F6F_u8FDE_u63A5"><span class="toc-number">1.</span> <span class="toc-text">软连接</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8F6F_u8FDE_u63A5"><span class="toc-number">1.</span> <span class="toc-text">软连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u521B_u5EFA"><span class="toc-number">1.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u5220_u9664"><span class="toc-number">1.2.</span> <span class="toc-text">删除</span></a></li></ol></li></ol>
             </div>
         
-        <h3 id="u8F6F_u8FDE_u63A5"><a href="#u8F6F_u8FDE_u63A5" class="headerlink" title="软连接"></a>软连接</h3><p>想把目录 /opt/www/v1.0.1 软连接到 /mnt/下面, 软链接后, 目录为 /mnt/v1.0.1</p>
+        <h3 id="u8F6F_u8FDE_u63A5"><a href="#u8F6F_u8FDE_u63A5" class="headerlink" title="软连接"></a>软连接</h3><h4 id="u521B_u5EFA"><a href="#u521B_u5EFA" class="headerlink" title="创建"></a>创建</h4><p>想把目录 /opt/www/v1.0.1 软连接到 /mnt/下面, 软链接后, 目录为 /mnt/v1.0.1</p>
 <p>命令: </p>
 <pre><code>ln -s /opt/www/v1.0.1/ /mnt/
 </code></pre><p>注意</p>
@@ -236,6 +236,8 @@
 <li>要用绝对路径, 用相对路径会报错: Too many levels of symbolic links</li>
 <li>目录后面的斜杠 / 要带上</li>
 </ul>
+<h4 id="u5220_u9664"><a href="#u5220_u9664" class="headerlink" title="删除"></a>删除</h4><pre><code>rm -rf /mnt/v1.0.1
+</code></pre><p>注意: 不是 <code>rm -rf /mnt/v1.0.1/</code>  这样会把真正内容删除的!</p>
 
       
     </div>
