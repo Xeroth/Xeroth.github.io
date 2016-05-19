@@ -440,10 +440,10 @@ Or, if you don&apos;t want/need launchctl, you can just run:
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E_u57DF_u540D_u5B50_u76EE_u5F55"><span class="toc-number">2.</span> <span class="toc-text">配置域名子目录</span></a></li></ol>
             </div>
         
-        <pre><code>server {
+        <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><pre><code>server {
         server_name hook.123.cn;
         root /opt/www/svnhook/document/php;
         location / {
@@ -464,6 +464,13 @@ Or, if you don&apos;t want/need launchctl, you can just run:
 }
 </code></pre><p><code>/etc/nginx/htpasswd</code> 记得修改为 nginx 的权限 , 账号密码可以通过在线的htpasswd生成器生成</p>
 <p><a href="http://blog.licess.com/nginx-autoindex/" target="_blank" rel="external">nginx打开目录浏览功能(autoindex)</a></p>
+<h3 id="u914D_u7F6E_u57DF_u540D_u5B50_u76EE_u5F55"><a href="#u914D_u7F6E_u57DF_u540D_u5B50_u76EE_u5F55" class="headerlink" title="配置域名子目录"></a>配置域名子目录</h3><pre><code>location /betafile/ {
+    alias /opt/www/app_upload_files/;
+    autoindex on;
+    autoindex_localtime on;
+    charset utf-8,gbk;
+}
+</code></pre><p>alias 表示 子目录对应的服务器真实目录 </p>
 
       
     </div>

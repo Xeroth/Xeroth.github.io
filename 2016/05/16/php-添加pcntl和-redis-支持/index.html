@@ -6,31 +6,49 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>php 添加pcntl和 redis 支持 | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="pcntlredisgit clone https://github.com/phpredis/phpredis.git phpredis
-cd phpredis
+  <meta name="description" content="pcntl进入同版本 php 源码:
+cd ext/pcntl
 /usr/local/php/bin/phpize
 ./configure --with-php-config=/usr/local/php/bin/php-config
 make &amp;amp;&amp;amp; make install
-最后记">
+测试是否安装成功
+&amp;lt;?php
+echo pcntl_fork();
+?&amp;gt;
+输出
+23165
+r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php 添加pcntl和 redis 支持">
 <meta property="og:url" content="http://yoursite.com/2016/05/16/php-添加pcntl和-redis-支持/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="pcntlredisgit clone https://github.com/phpredis/phpredis.git phpredis
-cd phpredis
+<meta property="og:description" content="pcntl进入同版本 php 源码:
+cd ext/pcntl
 /usr/local/php/bin/phpize
 ./configure --with-php-config=/usr/local/php/bin/php-config
 make &amp;amp;&amp;amp; make install
-最后记">
-<meta property="og:updated_time" content="2016-05-16T03:37:50.000Z">
+测试是否安装成功
+&amp;lt;?php
+echo pcntl_fork();
+?&amp;gt;
+输出
+23165
+r">
+<meta property="og:updated_time" content="2016-05-16T03:47:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php 添加pcntl和 redis 支持">
-<meta name="twitter:description" content="pcntlredisgit clone https://github.com/phpredis/phpredis.git phpredis
-cd phpredis
+<meta name="twitter:description" content="pcntl进入同版本 php 源码:
+cd ext/pcntl
 /usr/local/php/bin/phpize
 ./configure --with-php-config=/usr/local/php/bin/php-config
 make &amp;amp;&amp;amp; make install
-最后记">
+测试是否安装成功
+&amp;lt;?php
+echo pcntl_fork();
+?&amp;gt;
+输出
+23165
+r">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -257,7 +275,18 @@ make &amp;amp;&amp;amp; make install
             <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#pcntl"><span class="toc-number">1.</span> <span class="toc-text">pcntl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis"><span class="toc-number">2.</span> <span class="toc-text">redis</span></a></li></ol>
             </div>
         
-        <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>git clone https://github.com/phpredis/phpredis.git phpredis
+        <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><p>进入同版本 php 源码:</p>
+<pre><code>cd ext/pcntl
+/usr/local/php/bin/phpize
+./configure --with-php-config=/usr/local/php/bin/php-config
+make &amp;&amp; make install
+</code></pre><p>测试是否安装成功</p>
+<pre><code>&lt;?php
+echo pcntl_fork();
+?&gt;
+</code></pre><p>输出</p>
+<pre><code>23165
+</code></pre><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><pre><code>git clone https://github.com/phpredis/phpredis.git phpredis
 cd phpredis
 /usr/local/php/bin/phpize
 ./configure --with-php-config=/usr/local/php/bin/php-config

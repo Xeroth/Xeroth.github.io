@@ -28,7 +28,7 @@ echo_supervisord_conf
 ; Sample supervisor config file.
 ;
 ; For more information on the config file, pleas">
-<meta property="og:updated_time" content="2016-05-16T01:12:45.000Z">
+<meta property="og:updated_time" content="2016-05-16T10:22:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 supervisor 管理进程">
 <meta name="twitter:description" content="安装（Centos）：yum install python-setuptools
@@ -263,7 +263,7 @@ echo_supervisord_conf
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><span class="toc-number">1.</span> <span class="toc-text">安装（Centos）：</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><span class="toc-number">1.</span> <span class="toc-text">安装（Centos）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u914D_u7F6E_u76D1_u63A7_u4E00_u4E2A_u547D_u4EE4_u7684_u8FDB_u7A0B"><span class="toc-number">2.1.</span> <span class="toc-text">配置监控一个命令的进程</span></a></li></ol></li></ol>
             </div>
         
         <h3 id="u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><a href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A" class="headerlink" title="安装（Centos）："></a>安装（Centos）：</h3><pre><code>yum install python-setuptools
@@ -413,8 +413,42 @@ serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 
 ;[include]
 ;files = relative/directory/*.ini
-</code></pre><p>创建配置文件：</p>
+</code></pre><h3 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h3><p>创建配置文件：</p>
 <pre><code>echo_supervisord_conf &gt; /etc/supervisord.conf
+</code></pre><h4 id="u914D_u7F6E_u76D1_u63A7_u4E00_u4E2A_u547D_u4EE4_u7684_u8FDB_u7A0B"><a href="#u914D_u7F6E_u76D1_u63A7_u4E00_u4E2A_u547D_u4EE4_u7684_u8FDB_u7A0B" class="headerlink" title="配置监控一个命令的进程"></a>配置监控一个命令的进程</h4><p>比如有个脚本, 用来监控文件变化 ,发报警的:</p>
+<pre><code># cat  /root/shell/inotify_bid.sh
+#!/bin/bash
+
+PHP=/usr/bin/php
+ALARM=/home/www/app/command/alarm.php
+LOG=/data/bid_inotify.log
+DIR=&quot;/data/app_upload_files/file /data/app_upload_files/file_bak/&quot;
+
+/bin/inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f %e&apos; -e access,modify,delete,attrib $DIR
+do
+    echo $line |tee $LOG &gt;&gt; /root/shell/bid_inotify.log
+    $PHP  $ALARM
+done
+</code></pre><p>怕这个后台运行挂掉, 所以用 supervisor 来做监控:</p>
+<p>再配置 <code>/etc/supervisord.conf</code>  </p>
+<pre><code>[program:inotify_bid]
+directory = /root/shell/ ; 程序的启动目录, 执行命令前进入的目录
+command = /root/shell/inotify_bid.sh  ; 启动命令，可以看出与手动在命令行启动的命令是一样的
+autostart = true     ; 在 supervisord 启动的时候也自动启动
+startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
+autorestart = true   ; 程序异常退出后自动重启
+startretries = 3     ; 启动失败自动重试次数，默认是 3
+redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
+stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
+stdout_logfile_backups = 20     ; stdout 日志文件备份数
+; stdout 日志文件，需要注意当指定目录不存在时无法正常启动，所以需要手动创建目录（supervisord 会自动创建日志文件）
+stdout_logfile = /tmp/inotify_bid_stdout.log
+</code></pre><p>每当修改了命令的时候, 要重启一下program:</p>
+<pre><code># supervisorctl restart inotify_bid
+inotify_bid: stopped
+inotify_bid: started
+</code></pre><p>查看状态</p>
+<pre><code># supervisorctl status inotify_bid
 </code></pre><p>参考:</p>
 <p><a href="https://fukun.org/archives/07102224.html" target="_blank" rel="external">Supervisor的安装与使用入门</a></p>
 <p><a href="http://zengxh.blog.51cto.com/10650604/1713838" target="_blank" rel="external">supervisor安装并监控进程</a></p>

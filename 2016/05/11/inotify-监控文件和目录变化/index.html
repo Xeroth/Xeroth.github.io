@@ -26,7 +26,7 @@ mysql 能不能设置这样的功能:  查询某个表的某个字段就触发�
 默认你连接mysql后执行的命令这个文件里会有记录，你可以发告警，不过是事后
 北京-青山  17:09:19
 不过这个是在服务器">
-<meta property="og:updated_time" content="2016-05-11T07:03:07.000Z">
+<meta property="og:updated_time" content="2016-05-16T06:23:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="inotify 监控文件和目录变化">
 <meta name="twitter:description" content="本来打算把要监控的文件放 mysql, 通过监控 mysql 实现广州-kali  17:06:13
@@ -281,7 +281,10 @@ binlog日志里应该可以提取出来
 北京-青山  17:20:05
 select不行，delete\update可以
 </code></pre><p>但是网上有的说查看正在写入的 binlog 会有不良后果… , 所以另寻他法, 想起了以前做文件同步时候用的 inotify</p>
-<h3 id="u5B89_u88C5_u4F7F_u7528_inotify-tools"><a href="#u5B89_u88C5_u4F7F_u7528_inotify-tools" class="headerlink" title="安装使用 inotify-tools"></a>安装使用 inotify-tools</h3><p>inotify 是用 C 的, 作为一只菜鸟 sa, 我用用封装好的inotify-tools 就够了~</p>
+<h3 id="u5B89_u88C5_u4F7F_u7528_inotify-tools"><a href="#u5B89_u88C5_u4F7F_u7528_inotify-tools" class="headerlink" title="安装使用 inotify-tools"></a>安装使用 inotify-tools</h3><p>首先查看系统内核支不支持 inotify</p>
+<pre><code># grep INOTIFY_USER /boot/config-$(uname -r)
+CONFIG_INOTIFY_USER=y
+</code></pre><p>inotify 是用 C 的, 作为一只菜鸟 sa, 我用用封装好的inotify-tools 就够了~</p>
 <p>安装</p>
 <pre><code>yum -y install inotify-tools
 </code></pre><p>看看监控/root  目录的效果, 在一个终端输入如下命令, 另一个终端做测试, 比如cat a.txt:</p>
