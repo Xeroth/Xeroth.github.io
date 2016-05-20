@@ -6,31 +6,34 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Centos7 配置 NFS | Live with love</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考:
-防火墙开放端口111和2049
-http://blog.dreamlu.net/blog/67
-http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs
-http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs&amp;amp;f=2
-挂载命令">
+  <meta name="description" content="安装yum -y install nfs-utils
+配置nfs配置文件:
+cat /etc/exports
+/data/backup/bid 10.45.46.144/24(rw,no_root_squash)    #允许挂载 NFS 的机器ip
+服务自启动:
+systemctl start rpcbind nfs-server 
+systemctl enable rpcbind nfs-se">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos7 配置 NFS">
 <meta property="og:url" content="http://yoursite.com/2016/05/12/Centos7-配置-NFS/index.html">
 <meta property="og:site_name" content="Live with love">
-<meta property="og:description" content="参考:
-防火墙开放端口111和2049
-http://blog.dreamlu.net/blog/67
-http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs
-http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs&amp;amp;f=2
-挂载命令">
-<meta property="og:updated_time" content="2016-05-12T08:37:26.000Z">
+<meta property="og:description" content="安装yum -y install nfs-utils
+配置nfs配置文件:
+cat /etc/exports
+/data/backup/bid 10.45.46.144/24(rw,no_root_squash)    #允许挂载 NFS 的机器ip
+服务自启动:
+systemctl start rpcbind nfs-server 
+systemctl enable rpcbind nfs-se">
+<meta property="og:updated_time" content="2016-05-20T02:37:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos7 配置 NFS">
-<meta name="twitter:description" content="参考:
-防火墙开放端口111和2049
-http://blog.dreamlu.net/blog/67
-http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs
-http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs&amp;amp;f=2
-挂载命令">
+<meta name="twitter:description" content="安装yum -y install nfs-utils
+配置nfs配置文件:
+cat /etc/exports
+/data/backup/bid 10.45.46.144/24(rw,no_root_squash)    #允许挂载 NFS 的机器ip
+服务自启动:
+systemctl start rpcbind nfs-server 
+systemctl enable rpcbind nfs-se">
   
     <link rel="alternative" href="/atom.xml" title="Live with love" type="application/atom+xml">
   
@@ -254,10 +257,27 @@ http://www.server-world.info/en/note?os=CentOS_7&amp;amp;p=nfs&amp;amp;f=2
         
             <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-            
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5B89_u88C5"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u914D_u7F6E"><span class="toc-number">2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5BA2_u6237_u7AEF_u6302_u8F7D"><span class="toc-number">3.</span> <span class="toc-text">客户端挂载</span></a></li></ol>
             </div>
         
-        <p>参考:</p>
+        <h3 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h3><pre><code>yum -y install nfs-utils
+</code></pre><h3 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h3><p>nfs配置文件:</p>
+<pre><code>cat /etc/exports
+/data/backup/bid 10.45.46.144/24(rw,no_root_squash)    #允许挂载 NFS 的机器ip
+</code></pre><p>服务自启动:</p>
+<pre><code>systemctl start rpcbind nfs-server 
+systemctl enable rpcbind nfs-server
+</code></pre><p>nfs 启动后, 检查状态:</p>
+<pre><code>exportfs -v
+/data/backup/bid
+10.45.46.144/24(rw,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash)
+</code></pre><p>重新读取 nfs 配置文件:</p>
+<pre><code>exportfs -rv
+</code></pre><a id="more"></a>
+<h3 id="u5BA2_u6237_u7AEF_u6302_u8F7D"><a href="#u5BA2_u6237_u7AEF_u6302_u8F7D" class="headerlink" title="客户端挂载"></a>客户端挂载</h3><pre><code>mount -t nfs nfs_server_ip:/data/backup/bid /mnt/
+</code></pre><p>查看挂载</p>
+<pre><code>df -Th
+</code></pre><p>参考:</p>
 <p>防火墙开放端口111和2049</p>
 <p><a href="http://blog.dreamlu.net/blog/67" target="_blank" rel="external">http://blog.dreamlu.net/blog/67</a></p>
 <p><a href="http://www.server-world.info/en/note?os=CentOS_7&amp;p=nfs" target="_blank" rel="external">http://www.server-world.info/en/note?os=CentOS_7&amp;p=nfs</a></p>
