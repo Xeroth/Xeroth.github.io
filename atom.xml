@@ -1138,7 +1138,7 @@ rm -rf /var/lib/docker
     <link href="http://yoursite.com/2016/04/19/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC/"/>
     <id>http://yoursite.com/2016/04/19/系统管理常用脚本/</id>
     <published>2016-04-19T09:29:28.000Z</published>
-    <updated>2016-05-11T07:02:55.000Z</updated>
+    <updated>2016-05-23T02:27:32.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
 find ./ -type d |xargs chmod 755
 </code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
@@ -1157,7 +1157,9 @@ free -m
 </code></pre><h3 id="u751F_u6210_key"><a href="#u751F_u6210_key" class="headerlink" title="生成 key"></a>生成 key</h3><pre><code>ssh-keygen -f test   -C &quot;test key&quot;
 </code></pre><h3 id="u67E5_u770B_u547D_u4EE4_u5BF9_u5E94_u7684_rpm__u5B89_u88C5_u5305"><a href="#u67E5_u770B_u547D_u4EE4_u5BF9_u5E94_u7684_rpm__u5B89_u88C5_u5305" class="headerlink" title="查看命令对应的 rpm 安装包"></a>查看命令对应的 rpm 安装包</h3><p>比如想查看 dig 的:</p>
 <pre><code>rpm -qf  `which dig`
-</code></pre>]]></content>
+</code></pre><h3 id="u53EA_u590D_u5236_u76EE_u5F55_u7ED3_u6784"><a href="#u53EA_u590D_u5236_u76EE_u5F55_u7ED3_u6784" class="headerlink" title="只复制目录结构"></a>只复制目录结构</h3><pre><code>find src_dir -type d -exec mkdir -p dest_dir/\{\} \;
+</code></pre><p>就是把 src_dir 目录结构复制到 dest_dir </p>
+]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href=]]>
     </summary>
