@@ -318,7 +318,7 @@ CONFIG_INOTIFY_USER=y
     <link href="http://yoursite.com/2016/05/11/%E4%BD%BF%E7%94%A8-supervisor-%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/"/>
     <id>http://yoursite.com/2016/05/11/使用-supervisor-管理进程/</id>
     <published>2016-05-11T01:08:17.000Z</published>
-    <updated>2016-05-16T10:22:10.000Z</updated>
+    <updated>2016-05-25T01:13:50.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u5B89_u88C5_uFF08Centos_uFF09_uFF1A"><a href="#u5B89_u88C5_uFF08Centos_uFF09_uFF1A" class="headerlink" title="安装（Centos）："></a>安装（Centos）：</h3><pre><code>yum install python-setuptools
 
 easy_install supervisor
@@ -502,7 +502,15 @@ inotify_bid: stopped
 inotify_bid: started
 </code></pre><p>查看状态</p>
 <pre><code># supervisorctl status inotify_bid
-</code></pre><p>参考:</p>
+</code></pre><h3 id="u5E38_u7528_u7BA1_u7406_u547D_u4EE4"><a href="#u5E38_u7528_u7BA1_u7406_u547D_u4EE4" class="headerlink" title="常用管理命令"></a>常用管理命令</h3><ul>
+<li>supervisord，初始启动Supervisord，启动、管理配置中设置的进程。</li>
+<li>supervisorctl stop programxxx，停止某一个进程(programxxx)，programxxx为[program:chatdemon]里配置的值，这个示例就是chatdemon。</li>
+<li>supervisorctl start programxxx，启动某个进程</li>
+<li>supervisorctl restart programxxx，重启某个进程</li>
+<li>supervisorctl stop all，停止全部进程，注：start、restart、stop都不会载入最新的配置文件。</li>
+<li>supervisorctl reload，载入最新的配置文件，并按新的配置启动、管理所有进程。</li>
+</ul>
+<p>参考:</p>
 <p><a href="https://fukun.org/archives/07102224.html" target="_blank" rel="external">Supervisor的安装与使用入门</a></p>
 <p><a href="http://zengxh.blog.51cto.com/10650604/1713838" target="_blank" rel="external">supervisor安装并监控进程</a></p>
 <p><a href="http://www.cnblogs.com/shanyou/p/5075744.html" target="_blank" rel="external">进程监控工具supervisor 启动Mongodb</a></p>
