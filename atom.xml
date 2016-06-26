@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-21T07:55:25.000Z</updated>
+  <updated>2016-06-26T13:04:36.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,77 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Git命令学习]]></title>
+    <link href="http://yoursite.com/2016/06/26/Git%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://yoursite.com/2016/06/26/Git命令学习/</id>
+    <published>2016-06-26T04:11:58.000Z</published>
+    <updated>2016-06-26T13:04:36.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3"><a href="#Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3" class="headerlink" title="Git远程操作详解"></a><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解</a></h3><p>涉及命令:</p>
+<ul>
+<li>git clone</li>
+<li>git remote</li>
+<li>git fetch</li>
+<li>git pull</li>
+<li>git push</li>
+</ul>
+<h4 id="git_branch_u547D_u4EE4_u7684-r_u9009_u9879_uFF0C_u53EF_u4EE5_u7528_u6765_u67E5_u770B_u8FDC_u7A0B_u5206_u652F_uFF0C-a_u9009_u9879_u67E5_u770B_u6240_u6709_u5206_u652F_u3002"><a href="#git_branch_u547D_u4EE4_u7684-r_u9009_u9879_uFF0C_u53EF_u4EE5_u7528_u6765_u67E5_u770B_u8FDC_u7A0B_u5206_u652F_uFF0C-a_u9009_u9879_u67E5_u770B_u6240_u6709_u5206_u652F_u3002" class="headerlink" title="git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。"></a>git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。</h4><pre><code>$ git branch -r
+origin/master
+
+$ git branch -a
+* master
+  remotes/origin/master
+</code></pre><h4 id="u53D6_u56DE_u8FDC_u7A0B_u4E3B_u673A_u7684_u66F4_u65B0_u4EE5_u540E_uFF0C_u53EF_u4EE5_u5728_u5B83_u7684_u57FA_u7840_u4E0A_uFF0C_u4F7F_u7528git_checkout_u547D_u4EE4_u521B_u5EFA_u4E00_u4E2A_u65B0_u7684_u5206_u652F_u3002"><a href="#u53D6_u56DE_u8FDC_u7A0B_u4E3B_u673A_u7684_u66F4_u65B0_u4EE5_u540E_uFF0C_u53EF_u4EE5_u5728_u5B83_u7684_u57FA_u7840_u4E0A_uFF0C_u4F7F_u7528git_checkout_u547D_u4EE4_u521B_u5EFA_u4E00_u4E2A_u65B0_u7684_u5206_u652F_u3002" class="headerlink" title="取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。"></a>取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。</h4><pre><code>$ git checkout -b newBrach origin/master
+</code></pre><h4 id="u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002"><a href="#u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002" class="headerlink" title="此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。"></a>此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。</h4><pre><code>$ git merge origin/master
+# 或者
+$ git rebase origin/master
+</code></pre><p>上面命令表示在当前分支上，合并origin/master。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3"><a href="#Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3" class="headerlink" title="Git远程操作详解"></a]]>
+    </summary>
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Git代码冲突常见解决方法]]></title>
+    <link href="http://yoursite.com/2016/06/25/Git%E4%BB%A3%E7%A0%81%E5%86%B2%E7%AA%81%E5%B8%B8%E8%A7%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/06/25/Git代码冲突常见解决方法/</id>
+    <published>2016-06-25T04:08:13.000Z</published>
+    <updated>2016-06-26T13:04:25.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u5982_u679C_u540C_u4E00_u4E2A_u6587_u4EF6_2C__u8FDC_u7AEF_u505A_u4E86_u4FEE_u6539_2C__u672C_u5730_u4E5F_u505A_u4E86_u4FEE_u6539_2C__u8FD9_u65F6_u5019_u672C_u5730_u6267_u884C_git_pull__2C__u4F1A_u62A5_u9519_3A"><a href="#u5982_u679C_u540C_u4E00_u4E2A_u6587_u4EF6_2C__u8FDC_u7AEF_u505A_u4E86_u4FEE_u6539_2C__u672C_u5730_u4E5F_u505A_u4E86_u4FEE_u6539_2C__u8FD9_u65F6_u5019_u672C_u5730_u6267_u884C_git_pull__2C__u4F1A_u62A5_u9519_3A" class="headerlink" title="如果同一个文件, 远端做了修改, 本地也做了修改, 这时候本地执行 git pull  , 会报错:"></a>如果同一个文件, 远端做了修改, 本地也做了修改, 这时候本地执行 git pull  , 会报错:</h3><pre><code>Updating c1cddf2..78c0dc1
+error: Your local changes to the following files would be overwritten by merge:
+    conf/gitolite.conf
+Please, commit your changes or stash them before you can merge.
+Aborting
+</code></pre><p>因为直接拉取远端的, 会覆盖本地的修改, 所以会报这个错.</p>
+<p>如果希望保留生产服务器上所做的改动,仅仅并入新配置项, 处理方法如下:</p>
+<pre><code>git stash  #把本地修改暂存
+git pull    #拉取远端变更
+git stash pop    # 将本地变更加入
+</code></pre><p>然后可以使用git diff -w +文件名 来确认代码自动合并的情况.</p>
+<p>反过来,如果希望用代码库中的文件完全覆盖本地工作版本. 方法如下:</p>
+<pre><code>git reset --hard
+git pull
+</code></pre><p>其中git reset是针对版本,如果想针对文件回退本地修改,使用</p>
+<pre><code>git checkout HEAD file/to/restore  
+</code></pre><p>参考:</p>
+<p><a href="http://blog.csdn.net/iefreer/article/details/7679631" target="_blank" rel="external">http://blog.csdn.net/iefreer/article/details/7679631</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u5982_u679C_u540C_u4E00_u4E2A_u6587_u4EF6_2C__u8FDC_u7AEF_u505A_u4E86_u4FEE_u6539_2C__u672C_u5730_u4E5F_u505A_u4E86_u4FEE_u6539_2C__]]>
+    </summary>
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+      <category term="it" scheme="http://yoursite.com/categories/it/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[设置普通用户sudo 免密码执行特定命令]]></title>
@@ -1187,72 +1258,6 @@ rm -rf /var/lib/docker
       <category term="Ansible" scheme="http://yoursite.com/tags/Ansible/"/>
     
       <category term="Synchronize" scheme="http://yoursite.com/tags/Synchronize/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[系统管理常用脚本]]></title>
-    <link href="http://yoursite.com/2016/04/19/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC/"/>
-    <id>http://yoursite.com/2016/04/19/系统管理常用脚本/</id>
-    <published>2016-04-19T09:29:28.000Z</published>
-    <updated>2016-05-25T01:12:36.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href="#u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644" class="headerlink" title="文件和文件夹权限递归为777，还原成默认的755和644"></a>文件和文件夹权限递归为777，还原成默认的755和644</h3><pre><code>find . -type f -exec chmod 644 {} +
-find ./ -type d |xargs chmod 755
-</code></pre><h3 id="u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6"><a href="#u8BB2_ssh/config__u7684_u4E3B_u673A_u4FE1_u606F_u8F6C_u79FB_u5230_ansible_hosts__u6587_u4EF6" class="headerlink" title="讲 ssh/config 的主机信息转移到 ansible hosts 文件"></a>讲 ssh/config 的主机信息转移到 ansible hosts 文件</h3><pre><code>awk -F[=\ ] &apos;$2 ~ /HD_Server/ {print &quot;[&quot;$2&quot;]&quot;; a=a$2&quot;\n&quot;}; $1 ~ /Hostname/ {print $2} END{print &quot;[HDS]\n&quot;a}&apos; .ssh/config
-</code></pre><p>其中<code>a=a$2&quot;\n&quot;</code> 为字符串连接</p>
-<h3 id="u521B_u5EFA_swap"><a href="#u521B_u5EFA_swap" class="headerlink" title="创建 swap"></a>创建 swap</h3><pre><code>[root@node1 ~]# cat create_swap.sh
-#!/bin/bash
-
-fallocate -l 512M /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo &quot;/swapfile none swap defaults 0 0&quot; &gt;&gt;  /etc/fstab
-mount -a
-free -m
-</code></pre><h3 id="awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA"><a href="#awk__u4EA4_u63621_2C2_u5217_2C__u4EE5tab__u4F5C_u4E3A_u5206_u9694_u7B26_u8F93_u51FA" class="headerlink" title="awk 交换1,2列, 以tab 作为分隔符输出"></a>awk 交换1,2列, 以tab 作为分隔符输出</h3><pre><code>awk  -v  OFS=&apos;\t&apos; &apos;{temp=$1;$1=$2;$2=temp;print}&apos; 1.txt
-</code></pre><h3 id="u751F_u6210_key"><a href="#u751F_u6210_key" class="headerlink" title="生成 key"></a>生成 key</h3><pre><code>ssh-keygen -f test   -C &quot;test key&quot;
-</code></pre><h3 id="u67E5_u770B_u547D_u4EE4_u5BF9_u5E94_u7684_rpm__u5B89_u88C5_u5305"><a href="#u67E5_u770B_u547D_u4EE4_u5BF9_u5E94_u7684_rpm__u5B89_u88C5_u5305" class="headerlink" title="查看命令对应的 rpm 安装包"></a>查看命令对应的 rpm 安装包</h3><p>比如想查看 dig 的:</p>
-<pre><code>rpm -qf  `which dig`
-</code></pre><h3 id="u53EA_u590D_u5236_u76EE_u5F55_u7ED3_u6784"><a href="#u53EA_u590D_u5236_u76EE_u5F55_u7ED3_u6784" class="headerlink" title="只复制目录结构"></a>只复制目录结构</h3><pre><code>find src_dir -type d -exec mkdir -p dest_dir/\{\} \;
-</code></pre><p>就是把 src_dir 目录结构复制到 dest_dir </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u6587_u4EF6_u548C_u6587_u4EF6_u5939_u6743_u9650_u9012_u5F52_u4E3A777_uFF0C_u8FD8_u539F_u6210_u9ED8_u8BA4_u7684755_u548C644"><a href=]]>
-    </summary>
-    
-      <category term="shell" scheme="http://yoursite.com/tags/shell/"/>
-    
-      <category term="it" scheme="http://yoursite.com/categories/it/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Vagrant安装使用]]></title>
-    <link href="http://yoursite.com/2016/04/14/Vagrant%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/04/14/Vagrant安装使用/</id>
-    <published>2016-04-14T10:49:01.000Z</published>
-    <updated>2016-04-14T11:29:05.000Z</updated>
-    <content type="html"><![CDATA[<p>下载,安装</p>
-<p>在新 terminal 可以看到 vagrant 命令</p>
-<pre><code>$ vagrant --version
-Vagrant 1.8.1
-</code></pre><h3 id="u51E0_u4E2A_u6982_u5FF5"><a href="#u51E0_u4E2A_u6982_u5FF5" class="headerlink" title="几个概念"></a>几个概念</h3><p><em>Provider</em>：供应商，在这里指Vagrant调用的虚拟化工具。Vagrant本身并没有能力创建虚拟机，它是调用一些虚拟化工具来创建，如VirtualBox、VMWare、Xen、Docker，甚至AWS，这些虚拟化工具只要安装好了，vagrant会自动封装在底层通过统一的命令调用。也就是说使用vagrant时你电脑上还需要安装对应的Provider，默认是免费开源的virtualbox。<br><em>Box</em>：可被Vagrant直接使用的虚拟机镜像文件，大小根据内容的不同从200M-2G不等。针对不同的Provider，Box文件的格式是不一样的，从 vagrantcloud.com 你可以找到社区维护的box。</p>
-<p><em>Vagrantfile</em>：Vagrant根据Vagrantfile中的配置来创建虚拟机，是Vagrant的核心。在Vagrantfile文件中你需要指明使用哪个Box（可以下载好的或自己制作，或指定在线的URL地址），虚拟机使用的内存大小和CPU，需要预安装哪些软件，虚拟机的网络配置，与host的共享目录等。</p>
-<p><em>Provisioner</em>：是Vagrant的插件的一种。大部分现成的box并不是你正好想要的，通过使用你熟悉的provisioner，比如Puppet，可以在你使用vagrant up启动虚拟机时自动的安装软件、修改配置等初始化操作。当然你也可以在最先启动虚拟机后，使用vagrant ssh进去然后手动安装软件，但毕竟不是所有人都是系统管理员，写好Vagrantfile后无需人工干预马上就可以使用vm。目前支持并实现的provisioning有Puppet、Salt、Ansible、Chef这些知名的自动化运维工具，当然需要一定的使用经验；也可以使用shell provisioner，故名思议这个插件就是通过执行shell命令完成统一的作用。</p>
-<p><em>Guest Additions</em>：这个是常在下载 base box 介绍里有的，一般用来实现host到vm的端口转发、目录共享，在开发环境上都建议装上以便测试。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>下载,安装</p>
-<p>在新 terminal 可以看到 vagrant 命令</p>
-<pre><code>$ vagrant --version
-Vagrant 1.8.1
-</code></pre><h3 id="u51E0_u4E2A_u6982_u5FF5"><]]>
-    </summary>
-    
-      <category term="vagrant" scheme="http://yoursite.com/tags/vagrant/"/>
     
       <category term="it" scheme="http://yoursite.com/categories/it/"/>
     
