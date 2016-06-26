@@ -321,7 +321,7 @@ docker search -s 100 centos 显示100⭐️以上的镜像
     <link href="http://yoursite.com/2016/05/11/inotify-%E7%9B%91%E6%8E%A7%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E5%8F%98%E5%8C%96/"/>
     <id>http://yoursite.com/2016/05/11/inotify-监控文件和目录变化/</id>
     <published>2016-05-11T01:49:32.000Z</published>
-    <updated>2016-05-25T01:12:57.000Z</updated>
+    <updated>2016-06-23T01:01:57.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u672C_u6765_u6253_u7B97_u628A_u8981_u76D1_u63A7_u7684_u6587_u4EF6_u653E_mysql_2C__u901A_u8FC7_u76D1_u63A7_mysql__u5B9E_u73B0"><a href="#u672C_u6765_u6253_u7B97_u628A_u8981_u76D1_u63A7_u7684_u6587_u4EF6_u653E_mysql_2C__u901A_u8FC7_u76D1_u63A7_mysql__u5B9E_u73B0" class="headerlink" title="本来打算把要监控的文件放 mysql, 通过监控 mysql 实现"></a>本来打算把要监控的文件放 mysql, 通过监控 mysql 实现</h3><pre><code>广州-kali  17:06:13
 mysql 能不能设置这样的功能:  查询某个表的某个字段就触发报警脚本
 北京-青山  17:08:22
@@ -351,7 +351,8 @@ CONFIG_INOTIFY_USER=y
 11/05/16 10:54 /root/a.txt ACCESS
 </code></pre><p>利用管道就能触发变更操作:</p>
 <pre><code>[root@node1 ~]# inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f %e&apos; -e access,move,modify,delete,create,attrib /root | while read line; do echo &quot;sb. is doing sth.&quot; ; done
-</code></pre><p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
+</code></pre><p>想排除监控路径, 加–exclude 参数</p>
+<p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u672C_u6765_u6253_u7B97_u628A_u8981_u76D1_u63A7_u7684_u6587_u4EF6_u653E_mysql_2C__u901A_u8FC7_u76D1_u63A7_mysql__u5B9E_u73B0"><a hre]]>

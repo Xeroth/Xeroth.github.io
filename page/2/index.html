@@ -328,7 +328,8 @@ CONFIG_INOTIFY_USER=y
 11/05/16 10:54 /root/a.txt ACCESS
 </code></pre><p>利用管道就能触发变更操作:</p>
 <pre><code>[root@node1 ~]# inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f %e&apos; -e access,move,modify,delete,create,attrib /root | while read line; do echo &quot;sb. is doing sth.&quot; ; done
-</code></pre><p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
+</code></pre><p>想排除监控路径, 加–exclude 参数</p>
+<p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
 
       
     </div>

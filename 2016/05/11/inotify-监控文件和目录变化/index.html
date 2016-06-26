@@ -26,7 +26,7 @@ mysql 能不能设置这样的功能:  查询某个表的某个字段就触发�
 默认你连接mysql后执行的命令这个文件里会有记录，你可以发告警，不过是事后
 北京-青山  17:09:19
 不过这个是在服务器">
-<meta property="og:updated_time" content="2016-05-25T01:12:57.000Z">
+<meta property="og:updated_time" content="2016-06-23T01:01:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="inotify 监控文件和目录变化">
 <meta name="twitter:description" content="本来打算把要监控的文件放 mysql, 通过监控 mysql 实现广州-kali  17:06:13
@@ -292,7 +292,8 @@ CONFIG_INOTIFY_USER=y
 11/05/16 10:54 /root/a.txt ACCESS
 </code></pre><p>利用管道就能触发变更操作:</p>
 <pre><code>[root@node1 ~]# inotifywait -mrq --timefmt &apos;%d/%m/%y %H:%M&apos; --format &apos;%T %w%f %e&apos; -e access,move,modify,delete,create,attrib /root | while read line; do echo &quot;sb. is doing sth.&quot; ; done
-</code></pre><p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
+</code></pre><p>想排除监控路径, 加–exclude 参数</p>
+<p><a href="https://www.centos.bz/2012/06/inotify-tools-introduction/" target="_blank" rel="external">inotify-tools使用方法介绍</a></p>
 
       
     </div>
