@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Live with love]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-06-26T13:04:36.000Z</updated>
+  <updated>2016-06-26T14:03:41.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://yoursite.com/2016/06/26/Git%E5%91%BD%E4%BB%A4%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yoursite.com/2016/06/26/Git命令学习/</id>
     <published>2016-06-26T04:11:58.000Z</published>
-    <updated>2016-06-26T13:04:36.000Z</updated>
+    <updated>2016-06-26T14:03:41.000Z</updated>
     <content type="html"><![CDATA[<h3 id="Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3"><a href="#Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3" class="headerlink" title="Git远程操作详解"></a><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解</a></h3><p>涉及命令:</p>
 <ul>
 <li>git clone</li>
@@ -28,20 +28,63 @@
 <li>git pull</li>
 <li>git push</li>
 </ul>
-<h4 id="git_branch_u547D_u4EE4_u7684-r_u9009_u9879_uFF0C_u53EF_u4EE5_u7528_u6765_u67E5_u770B_u8FDC_u7A0B_u5206_u652F_uFF0C-a_u9009_u9879_u67E5_u770B_u6240_u6709_u5206_u652F_u3002"><a href="#git_branch_u547D_u4EE4_u7684-r_u9009_u9879_uFF0C_u53EF_u4EE5_u7528_u6765_u67E5_u770B_u8FDC_u7A0B_u5206_u652F_uFF0C-a_u9009_u9879_u67E5_u770B_u6240_u6709_u5206_u652F_u3002" class="headerlink" title="git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。"></a>git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。</h4><pre><code>$ git branch -r
+<h4 id="git_fetch"><a href="#git_fetch" class="headerlink" title="git fetch"></a>git fetch</h4><p>git fetch 命令通常用来查看其他人的进程，因为它取回的代码对你本地的开发代码没有影响。</p>
+<p>默认情况下，git fetch取回所有分支（branch）的更新。如果只想取回特定分支的更新，可以指定分支名。</p>
+<pre><code>$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;
+</code></pre><h4 id="git_branch"><a href="#git_branch" class="headerlink" title="git branch"></a>git branch</h4><p>git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。</p>
+<pre><code>$ git branch -r
 origin/master
 
 $ git branch -a
 * master
   remotes/origin/master
-</code></pre><h4 id="u53D6_u56DE_u8FDC_u7A0B_u4E3B_u673A_u7684_u66F4_u65B0_u4EE5_u540E_uFF0C_u53EF_u4EE5_u5728_u5B83_u7684_u57FA_u7840_u4E0A_uFF0C_u4F7F_u7528git_checkout_u547D_u4EE4_u521B_u5EFA_u4E00_u4E2A_u65B0_u7684_u5206_u652F_u3002"><a href="#u53D6_u56DE_u8FDC_u7A0B_u4E3B_u673A_u7684_u66F4_u65B0_u4EE5_u540E_uFF0C_u53EF_u4EE5_u5728_u5B83_u7684_u57FA_u7840_u4E0A_uFF0C_u4F7F_u7528git_checkout_u547D_u4EE4_u521B_u5EFA_u4E00_u4E2A_u65B0_u7684_u5206_u652F_u3002" class="headerlink" title="取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。"></a>取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。</h4><pre><code>$ git checkout -b newBrach origin/master
-</code></pre><h4 id="u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002"><a href="#u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002" class="headerlink" title="此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。"></a>此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。</h4><pre><code>$ git merge origin/master
+</code></pre><h4 id="git_checkout"><a href="#git_checkout" class="headerlink" title="git checkout"></a>git checkout</h4><p>取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。</p>
+<pre><code>$ git checkout -b newBrach origin/master
+</code></pre><p>或者 git chekcout 切换分支</p>
+<h4 id="u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002"><a href="#u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002" class="headerlink" title="此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。"></a>此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。</h4><pre><code>$ git merge origin/master
 # 或者
 $ git rebase origin/master
 </code></pre><p>上面命令表示在当前分支上，合并origin/master。</p>
-]]></content>
+<a id="more"></a>
+<h3 id="git_pull"><a href="#git_pull" class="headerlink" title="git pull"></a>git pull</h3><p>git pull命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。它的完整格式稍稍有点复杂。</p>
+<pre><code>$ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
+</code></pre><p>比如，取回origin主机的next分支，与本地的master分支合并，需要写成下面这样。</p>
+<pre><code>$ git pull origin next:master
+</code></pre><p>如果远程分支是与当前分支合并，则冒号后面的部分可以省略。</p>
+<pre><code>$ git pull origin next
+</code></pre><p>上面命令表示，取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再做git merge。</p>
+<pre><code>$ git fetch origin
+$ git merge origin/next
+</code></pre><p>如果远程主机删除了某个分支，默认情况下，git pull 不会在拉取远程分支的时候，删除对应的本地分支。这是为了防止，由于其他人操作了远程主机，导致git pull不知不觉删除了本地分支。<br>但是，你可以改变这个行为，加上参数 -p 就会在本地删除远程已经删除的分支。</p>
+<pre><code>$ git pull -p
+</code></pre>]]></content>
     <summary type="html">
-    <![CDATA[<h3 id="Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3"><a href="#Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3" class="headerlink" title="Git远程操作详解"></a]]>
+    <![CDATA[<h3 id="Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3"><a href="#Git_u8FDC_u7A0B_u64CD_u4F5C_u8BE6_u89E3" class="headerlink" title="Git远程操作详解"></a><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html">Git远程操作详解</a></h3><p>涉及命令:</p>
+<ul>
+<li>git clone</li>
+<li>git remote</li>
+<li>git fetch</li>
+<li>git pull</li>
+<li>git push</li>
+</ul>
+<h4 id="git_fetch"><a href="#git_fetch" class="headerlink" title="git fetch"></a>git fetch</h4><p>git fetch 命令通常用来查看其他人的进程，因为它取回的代码对你本地的开发代码没有影响。</p>
+<p>默认情况下，git fetch取回所有分支（branch）的更新。如果只想取回特定分支的更新，可以指定分支名。</p>
+<pre><code>$ git fetch &lt;远程主机名&gt; &lt;分支名&gt;
+</code></pre><h4 id="git_branch"><a href="#git_branch" class="headerlink" title="git branch"></a>git branch</h4><p>git branch命令的-r选项，可以用来查看远程分支，-a选项查看所有分支。</p>
+<pre><code>$ git branch -r
+origin/master
+
+$ git branch -a
+* master
+  remotes/origin/master
+</code></pre><h4 id="git_checkout"><a href="#git_checkout" class="headerlink" title="git checkout"></a>git checkout</h4><p>取回远程主机的更新以后，可以在它的基础上，使用git checkout命令创建一个新的分支。</p>
+<pre><code>$ git checkout -b newBrach origin/master
+</code></pre><p>或者 git chekcout 切换分支</p>
+<h4 id="u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002"><a href="#u6B64_u5916_uFF0C_u4E5F_u53EF_u4EE5_u4F7F_u7528git_merge_u547D_u4EE4_u6216_u8005git_rebase_u547D_u4EE4_uFF0C_u5728_u672C_u5730_u5206_u652F_u4E0A_u5408_u5E76_u8FDC_u7A0B_u5206_u652F_u3002" class="headerlink" title="此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。"></a>此外，也可以使用git merge命令或者git rebase命令，在本地分支上合并远程分支。</h4><pre><code>$ git merge origin/master
+# 或者
+$ git rebase origin/master
+</code></pre><p>上面命令表示在当前分支上，合并origin/master。</p>]]>
+    
     </summary>
     
       <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
